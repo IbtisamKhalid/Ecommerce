@@ -5,10 +5,12 @@ import Layout from './components/Layout'
 import Home from "./pages/Home"
 import About from "./pages/About"
 import ContactMe from './pages/ContactMe'
+import "bootstrap/dist/css/bootstrap.css";
+import "bootstrap/dist/js/bootstrap.bundle.min.js";
 
 
 function App() {
-  const [count, setCount] = useState(0)
+  
 
   return (
     <>

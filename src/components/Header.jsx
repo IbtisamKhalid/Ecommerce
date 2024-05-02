@@ -1,8 +1,5 @@
 import React from "react";
 import { NavLink, Link } from "react-router-dom";
-import "bootstrap/dist/css/bootstrap.css";
-import "bootstrap/dist/js/bootstrap.bundle.min.js";
-import "../App.css";
 import { BsSearch } from "react-icons/bs";
 import first from "../assets/images/compare.svg";
 import second from "../assets/images/wishlist.svg";
@@ -35,7 +32,7 @@ function Header() {
           <div className="row align-item-center">
             <div className="col-2">
               <h2>
-                <Link className="dev text-white">Rana Store</Link>
+                <Link className="dev text-white">MY Store</Link>
               </h2>
             </div>
             <div className="col-5">
