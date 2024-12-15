@@ -1,5 +1,5 @@
 import React from "react";
-import first from "../assets/images/newsletter.png";
+import first from "../../assets/images/newsletter.png";
 
 import { Link } from "react-router-dom";
 import { BsLinkedin, BsYoutube, BsInstagram, BsFacebook,BsTwitter,BsGithub } from "react-icons/bs";

@@ -1,18 +1,17 @@
-import React, { useState } from "react";
-import first from "../assets/images/main-banner-1.jpg";
-import second from "../assets/images/catbanner-01.jpg";
-import third from "../assets/images/catbanner-02.jpg";
-import fourth from "../assets/images/catbanner-03.jpg";
-import fifth from "../assets/images/catbanner-04.jpg";
+import first from "../../assets/images/main-banner-1.jpg";
+import second from "../../assets/images/catbanner-01.jpg";
+import third from "../../assets/images/catbanner-02.jpg";
+import fourth from "../../assets/images/catbanner-03.jpg";
+import fifth from "../../assets/images/catbanner-04.jpg";
+import sixth from "../../assets/images/service.png";
+import seventh from "../../assets/images/service-02.png";
+import eighth from "../../assets/images/service-03.png";
+import ninth from "../../assets/images/service-04.png";
+import tenth from "../../assets/images/service-05.png";
+import Camerapic from "../../assets/images/camera.jpg";
 import { Link } from "react-router-dom";
-import sixth from "../assets/images/service.png";
-import seventh from "../assets/images/service-02.png";
-import eighth from "../assets/images/service-03.png";
-import ninth from "../assets/images/service-04.png";
-import tenth from "../assets/images/service-05.png";
-import Camerapic from "../assets/images/camera.jpg";
 
-const pictures = [
+const pictures      = [
   {
     picture: second,
     subHeading: "SUPERCHARGED FOR PROS.",
@@ -28,7 +27,7 @@ const pictures = [
     lineebreak: "",
   },
 ];
-const pictures2 = [
+const pictures2     = [
   {
     picture: fourth,
     subHeading: "SUPERCHARGED FOR PROS.",
@@ -44,8 +43,7 @@ const pictures2 = [
     lineebreak: "",
   },
 ];
-
-const section2Pics = [
+const section2Pics  = [
   {
     Heading: "Camera",
     items: "10 Items",

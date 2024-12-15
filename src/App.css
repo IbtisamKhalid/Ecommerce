@@ -106,6 +106,10 @@ body {
   background-color: transparent;
   color: var(--color-febd69) !important;
 }
+.menu-links .navlink{
+  font-size: 100px;
+  color: aquamarine;
+}
 
 /*  Header Ends here */
 

@@ -1,16 +1,16 @@
 import React from "react";
 import { NavLink, Link } from "react-router-dom";
 import { BsSearch } from "react-icons/bs";
-import first from "../assets/images/compare.svg";
-import second from "../assets/images/wishlist.svg";
-import third from "../assets/images/user.svg";
-import fourth from "../assets/images/cart.svg";
-import fifth from "../assets/images/menu.svg";
+import first from "../../assets/images/compare.svg";
+import second from "../../assets/images/wishlist.svg";
+import third from "../../assets/images/user.svg";
+import fourth from "../../assets/images/cart.svg";
+import fifth from "../../assets/images/menu.svg";
 
 function Header() {
   return (
     <>
-      <header className="header-top-strip py-3">
+      <header className="header-top-strip py-2">
         <div className="container-xxl">
           <div className="row">
             <div className="col-6">
@@ -132,10 +132,10 @@ function Header() {
                 </div>
                 <div className="menu-links">
                   <div className="d-flex align-items-center gap-15">
-                    <NavLink to="/home">Home</NavLink>
-                    <NavLink to="/">Our Store</NavLink>
-                    <NavLink to="/">Blog</NavLink>
-                    <NavLink to="/contact">Contact</NavLink>
+                    <NavLink className="navlink " to="/home">Home</NavLink>
+                    <NavLink className="navlink " to="/">Products</NavLink>
+                    <NavLink className="navlink " to="/">Blog</NavLink>
+                    <NavLink className="navlink " to="/contact">Contact</NavLink>
                   </div>
                 </div>
               </div>
