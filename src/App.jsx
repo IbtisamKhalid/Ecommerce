@@ -1,10 +1,12 @@
 import { useState } from 'react'
 import './App.css'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
-import Layout from './EcommeraceModule/components/Layout'
-import Home from "./EcommeraceModule/pages/Home"
+import Home from "./Home"
+import LayoutStore from './EcommeraceModule/components/Layout'
+import LayoutEscrow from './EscrowModule/Components/Layout'
+import HomeStore from "./EcommeraceModule/pages/Home"
+import HomeEscrow from "./EscrowModule/Pages/Home"
 import About from "./EcommeraceModule/pages/About"
-import ContactMe from './EcommeraceModule/pages/ContactMe'
 import "bootstrap/dist/css/bootstrap.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
 
@@ -17,14 +19,13 @@ function App() {
     <BrowserRouter>
     <Routes>
       <Route path='/' element={<Home />} />
-      <Route path="/store" element={<Layout />} >
-          <Route index element={<Home />} />
+      <Route path="/store" element={<LayoutStore />} >
+          <Route index element={<HomeStore />} />
           <Route path="Home" element={<Home />  }/>
           <Route path="About" element={<About />  }/>
-          {/* <Route path="/contactme" element={<ContactMe />  }/> */}
       </Route>
-      <Route path="/escrow" element={<Layout />} >
-          <Route index element={<Home />} />
+      <Route path="/escrow" element={<LayoutEscrow />} >
+          <Route index element={<HomeEscrow />} />
           <Route path="Home" element={<Home />  }/>
           <Route path="about" element={<About />  }/>
       </Route> 
