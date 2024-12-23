@@ -5,10 +5,11 @@ import Home from "./Home"
 import LayoutStore from './EcommeraceModule/components/Layout'
 import LayoutEscrow from './EscrowModule/Components/Layout'
 import HomeStore from "./EcommeraceModule/pages/Home"
-import HomeEscrow from "./EscrowModule/Pages/Home"
+import HomeEscrow from "./EscrowModule/Components/Home"
 import About from "./EcommeraceModule/pages/About"
 import "bootstrap/dist/css/bootstrap.css";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
+import '@fontsource/roboto'; 
 
 
 function App() {
@@ -26,7 +27,7 @@ function App() {
       </Route>
       <Route path="/escrow" element={<LayoutEscrow />} >
           <Route index element={<HomeEscrow />} />
-          <Route path="Home" element={<Home />  }/>
+          {/* <Route path="Home" element={<Home />  }/> */}
           <Route path="about" element={<About />  }/>
       </Route> 
     </Routes>

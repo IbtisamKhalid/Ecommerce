@@ -10,6 +10,7 @@ import ninth from "../../assets/images/service-04.png";
 import tenth from "../../assets/images/service-05.png";
 import Camerapic from "../../assets/images/camera.jpg";
 import { Link } from "react-router-dom";
+import './home.css'
 
 const pictures      = [
   {
