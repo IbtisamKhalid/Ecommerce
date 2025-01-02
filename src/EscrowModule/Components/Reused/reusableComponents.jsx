@@ -195,7 +195,6 @@ export function StartHome() {
     transform: "rotate(270deg)",
     left: "-208px",
     top: "-235px",
-    zIndex: "1",
   };
   const spanStyle2 = {
     position: "relative",
@@ -276,8 +275,9 @@ export function StartHome() {
       <Box
         sx={{
           backgroundColor: "rgb(1, 66, 106)",
-          display: "flex",
-          flexDirection: { xs: "column", md: "row" },
+          display:{xs:"block"},
+          "@media (min-width:720px)": { display: "flex" },
+          flexDirection: {},
           gap: 2,
           p: "1rem 0 9rem",
         }}
@@ -433,12 +433,13 @@ export function StartHome() {
           sx={{
             flex: 1,
             display: "block",
+            // "@media (min-width:800)": {display:"block"} ,
             color: "white",
             textAlign: "Left",
             animation: "slideFromTop 1s ease-out",
           }}
         >
-          <Box sx={{ display: "flex", zIndex: 1100 }}>
+          <Box sx={{ display:{sm:"block",md:"flex"}, zIndex: 1100,  }}>
             <Box sx={{ p: "0 1rem 0 0" }}>
               <img
                 src={myobj[currentIndex].picture}
