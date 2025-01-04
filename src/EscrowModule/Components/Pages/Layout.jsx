@@ -14,7 +14,7 @@ function Layout() {
 
   return (
     <>
-    <Box backgroundColor="rgb(1, 66, 106)">
+    <Box>
     <Header />
     <Outlet />
     </Box>

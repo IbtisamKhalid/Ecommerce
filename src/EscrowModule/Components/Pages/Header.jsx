@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import {
   Typography,
   Box,
@@ -11,12 +11,27 @@ import {
   Divider,
   IconButton,
 } from "@mui/material";
+
+
 import MenuIcon from "@mui/icons-material/Menu";
 import KeyboardArrowDownIcon from "@mui/icons-material/KeyboardArrowDown";
 import KeyboardArrowUpIcon from "@mui/icons-material/KeyboardArrowUp";
+
+
+import { SubMenuNavComponent } from "../Reused/reusableComponents";
+// import SignIn from "./SignIn";
+// import SignUP from "./SignUP";
+
+
 import CssBaseline from "@mui/material/CssBaseline";
-import { SubMenuNavComponent } from "./Reused/reusableComponents";
+
+
+
+
 import { Link } from "react-router-dom";
+
+
+
 
 const drawerWidth = 240;
 const Colors = {
@@ -33,7 +48,6 @@ const submenuData = [
   [
     { index: 0, mainHeading: "Escrow", subHeading: "What is Escrow" },
     { index: 1, mainHeading: "Learn More", subHeading: "How It Works" },
-    // { index:2,mainHeading: "Learn More", subHeading: "Why Choose Us" },
   ],
   [
     { index: 0, mainHeading: "About", subHeading: "Company History" },
@@ -50,13 +64,46 @@ const submenuData = [
     { index: 2, mainHeading: "Contact", subHeading: "How to Contact Us" },
   ],
 ];
-function Header(props) {
-  const { window } = props;
-  const [mobileOpen, setMobileOpen] = React.useState(false);
-  const [hoveredButton, setHoveredButton] = React.useState(null);
-  const [name, setName] = React.useState(null);
-  const [itemIndex, setItemIndex] = React.useState(null);
-  const [backgroundColor, setBackgroundColor] = React.useState("");
+function Header() {
+  const [mobileOpen, setMobileOpen] = useState(false);
+  const [hoveredButton, setHoveredButton] = useState(null);
+  const [name, setName] = useState(null);
+  const [itemIndex, setItemIndex] = useState(null);
+  const [backgroundColor, setBackgroundColor] = useState("inherit");
+  const [textColor, setTextColor] = useState("white");
+  const [isAtTop, setIsAtTop] = useState(true);
+
+  // Monitor scroll position
+  useEffect(() => {
+    const checkScrollPosition = () => {
+      if (typeof window !== "undefined") {
+        const scrolledToTop = window.scrollY === 0;
+
+        setIsAtTop(scrolledToTop);
+
+        if (scrolledToTop) {
+          // At the top of the page
+          setBackgroundColor("inherit");
+          setTextColor("white");
+        } else {
+          // Scrolled down
+          setBackgroundColor("white");
+          setTextColor("black");
+        }
+      }
+    };
+
+    // Check on initial render
+    checkScrollPosition();
+
+    // Listen for scroll events
+    window.addEventListener("scroll", checkScrollPosition);
+
+    // Cleanup event listener
+    return () => {
+      window.removeEventListener("scroll", checkScrollPosition);
+    };
+  }, []);
 
   const handleMouseEnter = (index, name) => {
     setHoveredButton(name);
@@ -74,7 +121,6 @@ function Header(props) {
   const handleDrawerToggle = () => {
     setMobileOpen((prevState) => !prevState);
   };
-
 
   const drawer = (
     <Box onClick={handleDrawerToggle} sx={{ textAlign: "center" }}>
@@ -107,7 +153,14 @@ function Header(props) {
 
   return (
     <>
-      <Box sx={{ position: "sticky", top: 0, zIndex: 10 }}>
+      <Box
+        sx={{
+          position: "sticky",
+          top: 0,
+          backgroundColor:"rgb(1, 66, 106)",
+          zIndex:10
+        }}
+      >
         <CssBaseline />
         <Box
           sx={{
@@ -115,10 +168,12 @@ function Header(props) {
             justifyContent: "space-between",
             alignItems: "center",
             p: { xs: "0 1.5rem", sm: "0 3rem", md: "0 6rem", lg: "0 8rem" },
-            backgroundColor: backgroundColor,
-            color: "white",
-            position: "sticky",
+            backgroundColor: isAtTop ? "transparent" : backgroundColor,
+            color: textColor,
             zIndex: 1100,
+            "& :hover": {
+              bgcolor: "rgb(1, 66, 106)",
+            },
           }}
         >
           <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
@@ -137,7 +192,7 @@ function Header(props) {
             <Typography
               variant="h6"
               component="div"
-              sx={{ p: "0.8rem 0 1rem" }}
+              sx={{ p: "0.8rem 0 1rem", color: textColor }}
             >
               TrustBridge
             </Typography>
@@ -148,11 +203,11 @@ function Header(props) {
               }}
             >
               {navItems.map((item) => (
-                <Box key={item.name} onMouseLeave={handleMouseLeave} sx={{}}>
+                <Box key={item.name} onMouseLeave={handleMouseLeave}>
                   <Button
                     sx={{
-                      transition: "all 0.4s ease",
-                      color: "white",
+                      // transition: "all 0.4s ease",
+                      color: textColor,
                       "&:hover": {
                         bgcolor: "rgba(72, 139, 180, 0.1)",
                       },
@@ -178,7 +233,7 @@ function Header(props) {
                   textAlign: "center",
                   p: "1.3rem 1rem 1rem",
                   m: "0.4rem 0",
-                  color: "white",
+                  color: textColor,
                 }}
               >
                 Our Store
@@ -195,12 +250,16 @@ function Header(props) {
             }}
           >
             <Button
-              sx={{ color: "white", p: "1.3rem 1rem 1rem", m: "0.4rem 0" }}
+            component={Link}
+            to="/SignIn"
+              sx={{ p: "1.3rem 1rem 1rem", m: "0.4rem 0", color: textColor, textDecoration:"none" }}
             >
               Login
             </Button>
             <Button
-              sx={{ color: "white", p: "1.3rem 1rem 1rem", m: "0.4rem 0" }}
+            component={Link}
+            to="/SignUP"
+              sx={{ p: "1.3rem 1rem 1rem", m: "0.4rem 0", color: textColor, textDecoration:"none" }}
             >
               SignUp
             </Button>
@@ -220,16 +279,13 @@ function Header(props) {
               boxShadow: "0px 4px 8px rgba(0, 0, 0, 0.1)",
               transition: "all 1s ease",
             }}
-            transition
             onMouseEnter={() => handleMouseEnter(itemIndex, name)}
             onMouseLeave={handleMouseLeave}
           >
             <SubMenuNavComponent data={submenuData[itemIndex]} />
-            {console.log(submenuData[itemIndex], itemIndex)}
           </Box>
         )}
 
-        {/* Drawer Section */}
         <Drawer
           variant="temporary"
           open={mobileOpen}
