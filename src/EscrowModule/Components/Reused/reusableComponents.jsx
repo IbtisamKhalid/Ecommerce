@@ -13,7 +13,7 @@ import Grid from "@mui/material/Grid2";
 
 import PropTypes from "prop-types";
 
-import { Link, useHref } from "react-router-dom";
+import { Link} from "react-router-dom";
 
 import Circles from "../../EscrowAssets/svgs/Circles";
 import TickSvg from "../../EscrowAssets/Untick.png";
@@ -96,7 +96,7 @@ export function SubMenuNavComponent({ data }) {
             <Grid
               key={submenuItem.index}
               component={Link}
-              to={"/escrow/home"}
+              to={submenuItem.Link}
               size={4}
               sx={{
                 transition: "all 0.4s ease",
