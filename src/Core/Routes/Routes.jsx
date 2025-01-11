@@ -14,6 +14,8 @@ import {
   UserDashboard,
   SignIn,
   SignUP,
+  StartEscrow,
+
 } from "../../EscrowModule/Pages";
 import {
   About,
@@ -42,6 +44,7 @@ function Routes() {
           </Route>
           <Route path="SignIn" element={<SignIn />} />
           <Route path="SignUp" element={<SignUP />} />
+          <Route path="StartEscrow" element={<StartEscrow />} />
           <Route path="/queries" element={<Layout />}>
             <Route path="About" element={<About />} />
             <Route path="Careers" element={<Careers />} />

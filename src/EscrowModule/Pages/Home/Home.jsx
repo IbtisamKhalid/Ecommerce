@@ -9,7 +9,7 @@ function HomeEscrow() {
   return (
     <>
       <Box
-        p={{ xs: "0 1.5rem", sm: "0 3rem", md: "0 6rem", lg: "0 8rem" }}
+        p={{ xs: "0 1.5rem", sm: "0 3rem", md: "0 5rem", lg: "0 7rem" }}
         backgroundColor="rgb(1, 66, 106)"
       >
         <StartHome />

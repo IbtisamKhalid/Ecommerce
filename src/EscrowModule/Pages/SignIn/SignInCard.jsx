@@ -1,4 +1,3 @@
-import React, { useState } from "react";
 import {
   Box,
   Button,
@@ -10,106 +9,26 @@ import {
   Link,
   TextField,
   Typography,
-  styled,
 } from "@mui/material";
-import MuiCard from "@mui/material/Card";
-import axios from "axios"; // Ensure axios is imported
+import { Card } from "../../../constants/SignInConstants";
+import React, { useState } from "react";
 import ForgotPassword from "./ForgotPassword";
 import { GoogleIcon, FacebookIcon } from "./CustomIcons";
-import { useGoogleLogin } from "@react-oauth/google";
-import { useNavigate } from "react-router-dom";
-
-const Card = styled(MuiCard)(({ theme }) => ({
-  display: "flex",
-  flexDirection: "column",
-  alignSelf: "center",
-  width: "100%",
-  padding: theme.spacing(4),
-  gap: theme.spacing(2),
-  boxShadow:
-    "hsla(220, 30%, 5%, 0.05) 0px 5px 15px 0px, hsla(220, 25%, 10%, 0.05) 0px 15px 35px -5px",
-  [theme.breakpoints.up("sm")]: {
-    width: "450px",
-  },
-}));
+import useSignIn from "./hooks/useSignIn";
 
 export default function SignInCard() {
-  const [emailError, setEmailError] = useState(false);
-  const [emailErrorMessage, setEmailErrorMessage] = useState("");
-  const [passwordError, setPasswordError] = useState(false);
-  const [passwordErrorMessage, setPasswordErrorMessage] = useState("");
-  const [open, setOpen] = useState(false);
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
-const navigate = useNavigate();
-  const validateInputs = () => {
-    let isValid = true;
-
-    if (!email || !/\S+@\S+\.\S+/.test(email)) {
-      setEmailError(true);
-      setEmailErrorMessage("Please enter a valid email address.");
-      isValid = false;
-    } else {
-      setEmailError(false);
-      setEmailErrorMessage("");
-    }
-
-    if (!password || password.length < 6) {
-      setPasswordError(true);
-      setPasswordErrorMessage("Password must be at least 6 characters long.");
-      isValid = false;
-    } else {
-      setPasswordError(false);
-      setPasswordErrorMessage("");
-    }
-
-    return isValid;
-  };
-
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-
-    if (!validateInputs()) {
-      return;
-    }
-
-    try {
-      const response = await axios.post(
-        "http://localhost:5000/api/auth/login",
-        { email, password }
-      );
-
-      if (response && response.data) {
-        console.log("User Logged In:", response.data);
-        navigate("/escrow/UserDashboard");
-      }
-    } catch (error) {
-      console.error("Error Logging In user:", error);
-      if (error.response) {
-        console.error("Server responded with:", error.response.data);
-        alert(`Error: ${error.response.data.message || "Login failed"}`);
-      } else {
-        alert("Unable to connect to the server. Please try again later.");
-      }
-    }
-  };
-
-  const handleClickOpen = () => {
-    setOpen(true);
-  };
-
-  const handleClose = () => {
-    setOpen(false);
-  };
-
-  const googleLogin = useGoogleLogin({
-    onSuccess: (tokenResponse) => {
-      navigate("/escrow/UserDashboard");
-    },
-    onError: () => {
-      console.error("Google Signup Failed");
-    },
-  });
+  const {
+    validateInputs,
+    handleSubmit,
+    handleClickOpen,
+    handleClose,
+    googleLogin,
+    emailError,
+    emailErrorMessage,
+    passwordError,
+    passwordErrorMessage,
+    open,
+  } = useSignIn();
 
   return (
     <Card variant="outlined">

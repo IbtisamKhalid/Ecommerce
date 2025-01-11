@@ -3,7 +3,6 @@ import { Outlet } from "react-router-dom";
 import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
 import { Box } from "@mui/material";
-import { useContext, createContext } from "react";
 
 function LayoutEscrow() {
   // const
@@ -11,7 +10,7 @@ function LayoutEscrow() {
   return (
     <>
       <Box>
-        <Header  />
+        <Header backColor="rgb(1, 66, 106)" atTopTextColor="white"/>
         <Outlet />
         <Footer />
       </Box>
