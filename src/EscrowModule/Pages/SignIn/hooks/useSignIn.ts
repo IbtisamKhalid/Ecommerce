@@ -48,7 +48,7 @@ function useSignIn() {
         { email, password }
       );
 
-      if (response && response.data) {
+      if (response.status===200 && response.data) {
         console.log("User Logged In:", response.data);
         navigate("/escrow/UserDashboard");
       }
@@ -90,6 +90,8 @@ function useSignIn() {
     passwordError,
     passwordErrorMessage,
     open,
+    setEmail,
+    setPassword
   };
 }
 

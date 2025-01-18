@@ -11,12 +11,21 @@ import {
   Layout,
   HomeEscrow,
   LayoutEscrow,
-  UserDashboard,
   SignIn,
   SignUP,
-  StartEscrow,
-
 } from "../../EscrowModule/Pages";
+import {
+  UserDashboard,
+  StartEscrow,
+  LoggedInLayout,
+  EscrowHistory,
+  EscrowDisputes,
+  EscrowPayments,
+  MakeContracts,
+  EscrowDetails,
+  DisputeDetails,
+  DetailsWrapper,
+} from "../../EscrowModule/Pages/LoggedInPages";
 import {
   About,
   Careers,
@@ -34,17 +43,19 @@ function Routes() {
     <>
       <BrowserRouter>
         <ReactRoutes>
+        <Route path="*" element={<Home />} />
           <Route path="/" element={<Home />} />
           <Route path="/store" element={<LayoutStore />}>
             <Route index element={<HomeStore />} />
           </Route>
           <Route path="/escrow" element={<LayoutEscrow />}>
             <Route index element={<HomeEscrow />} />
-            <Route path="UserDashboard" element={<UserDashboard />} />
           </Route>
           <Route path="SignIn" element={<SignIn />} />
           <Route path="SignUp" element={<SignUP />} />
-          <Route path="StartEscrow" element={<StartEscrow />} />
+          <Route path="/StartEscrow" element={<StartEscrow />} />
+          <Route path="/Contract" element={<MakeContracts />} />
+          <Route path="/Contract" element={<MakeContracts />} />
           <Route path="/queries" element={<Layout />}>
             <Route path="About" element={<About />} />
             <Route path="Careers" element={<Careers />} />
@@ -55,6 +66,14 @@ function Routes() {
             <Route path="Contact" element={<Contact />} />
             <Route path="Help" element={<Help />} />
             <Route path="SupportCenter" element={<SupportCenter />} />
+          </Route>
+          <Route path="/LoggedIn" element={<LoggedInLayout />}>
+            <Route path="UserDashboard" element={<UserDashboard />} />
+            <Route path="EscrowHistory" element={<EscrowHistory />} />
+            <Route path="EscrowDisputes" element={<EscrowDisputes />} />
+            <Route path="EscrowPayments" element={<EscrowPayments />} />
+            <Route path="escrowdetails/:id" element={<DetailsWrapper />} />
+            <Route path="disputedetails/:id" element={<DisputeDetails />} />
           </Route>
         </ReactRoutes>
       </BrowserRouter>

@@ -37,7 +37,8 @@ function Header({
     mobileOpen,
     itemIndex,
     zIndex,
-    name
+    name,
+    setBackgroundColor
   } = useHeader({ backColor, atTopTextColor, atTopColor });
 
   const drawer = (
@@ -79,6 +80,8 @@ function Header({
           zIndex: zIndex,
           
         }}
+        // onMouseEnter={}
+        // onMouseLeave={}
       >
         <CssBaseline />
         <Box

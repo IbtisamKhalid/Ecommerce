@@ -62,6 +62,7 @@ const useHeader = ({backColor, atTopTextColor, atTopColor}) => {
       setMobileOpen((prevState) => !prevState);
     };
 
+
     return {
         handleDrawerToggle,
         handleMouseEnter,
@@ -73,7 +74,8 @@ const useHeader = ({backColor, atTopTextColor, atTopColor}) => {
         mobileOpen,
         itemIndex,
         zIndex,
-        name
+        name,
+        setBackgroundColor
     }
 }
 

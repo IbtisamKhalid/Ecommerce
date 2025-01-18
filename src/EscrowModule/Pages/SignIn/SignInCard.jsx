@@ -28,6 +28,8 @@ export default function SignInCard() {
     passwordError,
     passwordErrorMessage,
     open,
+    setEmail,
+    setPassword
   } = useSignIn();
 
   return (

@@ -7,26 +7,25 @@ function useReusableComponent({ BoxIcon, CarIcon, ServiceIcon }) {
   const [currentIndex, setCurrentIndex] = useState(0);
   const selectOptions2 = ["PKR", "USD", "CAD", "UK"];
   const spanStyle1 = {
-    // position: "relative",
+    position: "relative",
     display: "block",
     height: "1px",
     // width: "150%" /* Adjust the width as needed */,
     backgroundColor: "rgb(224, 221, 221)",
     transform: "rotate(270deg)",
-    // right: "123px",
+    right: "123px",
     // right: "33.5%",
-    // bottom: "182px",
-    zIndex: 11,
+    bottom: "182px",
   };
   const spanStyle2 = {
-    // position: "relative",
+    position: "relative",
     display: "block",
     height: "1px",
     // width: "55%" /* Adjust the width as needed */,
     backgroundColor: "#fff",
     transform: "rotate(270deg)",
-    // right: "33.5%",
-    // top: "170px",
+    right: "33.5%",
+    top: "170px",
   };
 
   const imgStyle = {

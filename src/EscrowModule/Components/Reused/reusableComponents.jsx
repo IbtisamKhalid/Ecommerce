@@ -116,7 +116,11 @@ export function SubMenuNavComponent({ data }) {
     </>
   );
 }
-export const GetStartedButton = ({ additionalStyles = {}, Link = "" }) => {
+export const GetStartedButton = ({
+  additionalStyles = {},
+  Link = "",
+  Text = "Get Started Now",
+}) => {
   return (
     <>
       <Button
@@ -134,7 +138,7 @@ export const GetStartedButton = ({ additionalStyles = {}, Link = "" }) => {
           ...additionalStyles,
         }}
       >
-        Get Started Now
+        {Text}
       </Button>
     </>
   );
@@ -155,7 +159,9 @@ export const BarTypography = ({ Text = "I'm", additionalStyles = {} }) => (
 export const BarSelect = ({
   options = ["Selling", "Buying", "Brokering"],
   rolee = "Selling",
-  setRolee= (role)=>{rolee=role},
+  setRolee = (role) => {
+    rolee = role;
+  },
   additionalStyles = {},
 }) => (
   <Select
@@ -256,7 +262,8 @@ export function StartHome() {
     activeIndex,
     setRole,
     setCurreny,
-    setValue,} = useReusableComponent({ BoxIcon, CarIcon, ServiceIcon });
+    setValue,
+  } = useReusableComponent({ BoxIcon, CarIcon, ServiceIcon });
 
   return (
     <>
@@ -277,6 +284,7 @@ export function StartHome() {
             flex: 1,
             color: "white",
             animation: "slideFromLeft 1s ease-out",
+            fontStretch:"extra-expanded"
           }}
         >
           <Typography
