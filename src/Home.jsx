@@ -1,8 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
-
-
 function Home() {
   return (
     <>
@@ -17,7 +15,7 @@ function Home() {
         </button>
       </div>
     </>
-  );
+  )
 }
 
 export default Home;
