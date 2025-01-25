@@ -1,4 +1,3 @@
-import React from "react";
 import { Box, Typography, Link } from "@mui/material";
 import { Colors, Fonts } from "../../../../Theme/Theme";
 
@@ -59,7 +58,8 @@ function TrustBridge() {
           sx={{
             fontWeight: "bold",
             marginTop: "1.5rem",
-            color: Colors.fontColor,fontFamily:Fonts.primaryFont
+            color: Colors.fontColor,
+            fontFamily: Fonts.primaryFont,
           }}
         >
           Suitable for a Range of Goods
@@ -80,7 +80,7 @@ function TrustBridge() {
         >
           If you own an e-commerce store, a marketplace, an auction site, or any
           other platform, our service is a great way to protect you and your
-          customers, regardless of the transaction's value.
+          customers, regardless of the transaction`&apos;`s value.
         </Typography>
 
         {/* Buyer Protection */}
@@ -89,7 +89,8 @@ function TrustBridge() {
           sx={{
             fontWeight: "bold",
             marginTop: "1.5rem",
-            color: Colors.fontColor,fontFamily:Fonts.primaryFont
+            color: Colors.fontColor,
+            fontFamily: Fonts.primaryFont,
           }}
         >
           Buyer Protection
@@ -129,7 +130,8 @@ function TrustBridge() {
           sx={{
             fontWeight: "bold",
             marginTop: "1.5rem",
-            color: Colors.fontColor,fontFamily:Fonts.primaryFont
+            color: Colors.fontColor,
+            fontFamily: Fonts.primaryFont,
           }}
         >
           Seller Protection
@@ -174,7 +176,8 @@ function TrustBridge() {
           sx={{
             fontWeight: "bold",
             marginTop: "1.5rem",
-            color: Colors.fontColor,fontFamily:Fonts.primaryFont
+            color: Colors.fontColor,
+            fontFamily: Fonts.primaryFont,
           }}
         >
           Broker Protection
@@ -204,7 +207,8 @@ function TrustBridge() {
           sx={{
             fontWeight: "bold",
             marginTop: "1.5rem",
-            color: Colors.fontColor,fontFamily:Fonts.primaryFont
+            color: Colors.fontColor,
+            fontFamily: Fonts.primaryFont,
           }}
         >
           Positive Customer Reviews
@@ -225,8 +229,7 @@ function TrustBridge() {
             fontWeight: "bold",
             marginTop: "1.5rem",
             color: Colors.fontColor,
-          fontFamily:Fonts.primaryFont
-            
+            fontFamily: Fonts.primaryFont,
           }}
         >
           Trusted Partnerships
@@ -246,7 +249,7 @@ function TrustBridge() {
             fontWeight: "bold",
             marginTop: "1.5rem",
             color: Colors.fontColor,
-            fontFamily:Fonts.primaryFont
+            fontFamily: Fonts.primaryFont,
           }}
         >
           Additional Support

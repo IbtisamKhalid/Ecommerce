@@ -1,9 +1,10 @@
-import React from "react";
+/* eslint-disable react/prop-types */
+/* eslint-disable no-unused-vars */
 import { Box, Typography } from "@mui/material";
 import { Colors } from "../../../../Theme/Theme";
 import EscrowShield from "../../../../EscrowAssets/svgs/EscrowShield";
 
-function CurrentStepCompletionComponent({ content = {}, children }) {
+function ProceedToPayment({ content = {}, children }) {
   return (
     <>
       <Box
@@ -44,4 +45,4 @@ function CurrentStepCompletionComponent({ content = {}, children }) {
   );
 }
 
-export default CurrentStepCompletionComponent;
+export default ProceedToPayment;

@@ -1,4 +1,3 @@
-import React from "react";
 import { Box, Typography } from "@mui/material";
 import EscrowDetails from "../EscrowDetails/EscrowDetails";
 import { Colors } from "../../../../Theme/Theme";
@@ -6,7 +5,19 @@ import FAQAccordion from "../FAQAccordion/FAQAccordion";
 function DetailsWrapper() {
   return (
     <>
-      <Box sx={{ p: "2rem 8rem", display: "flex", bgcolor: Colors.tertiary }}>
+      <Box
+        sx={{
+          p: { xs: "1rem", sm: "1rem 2rem" },
+          "@media (min-width:900px)": { p: "1.5rem 2rem" },
+          "@media (min-width:960px)": { p: "1.5rem 2rem" },
+          "@media (min-width:1000px)": { p: "1.5rem 3rem" },
+          "@media (min-width:1060px)": { p: "1.5rem 3rem", display: "flex" },
+          "@media (min-width:1100px)": { p: "1.5rem 4rem" },
+          "@media (min-width:1200px)": { p: "2rem 6rem" },
+          display: { xs: "block" },
+          bgcolor: Colors.tertiary,
+        }}
+      >
         <Box>
           <EscrowDetails />
         </Box>
@@ -17,6 +28,8 @@ function DetailsWrapper() {
               bgcolor: "#EEF7FE",
               borderRadius: "8px",
               border: `1px solid ${Colors.borderColor}`,
+              "@media (max-width:1060px)": { display: "none" },
+              remmb:"0.8"
             }}
           >
             <Typography
@@ -33,7 +46,7 @@ function DetailsWrapper() {
             </Typography>
           </Box>
           <Box>
-            <FAQAccordion />
+            <FAQAccordion showInstructions={false} />
           </Box>
         </Box>
       </Box>

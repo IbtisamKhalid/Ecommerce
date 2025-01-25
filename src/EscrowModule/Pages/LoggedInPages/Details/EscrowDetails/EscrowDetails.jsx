@@ -1,14 +1,14 @@
 import { useLocation } from "react-router-dom";
 import CircleIcon from "@mui/icons-material/Circle";
 import { Colors, Fonts } from "../../../../Theme/Theme";
-import { Box, Typography, Button, Divider } from "@mui/material";
+import { Box, Typography, Button } from "@mui/material";
 import StepperComponent from "../StepperComponent/StepperComponent";
-import CurrentStep from "../CurrentStepCompletionComponent/CurrentStepCompletionComponent";
+import ProceedToPayment from "../ProceedToPaymentComponent/ProceedToPayment";
 
 function EscrowDetails() {
   const location = useLocation();
   const { item } = location.state; // Access passed data
-  const stepp = 0;
+  // const stepp = 0;
   return (
     <>
       <Box
@@ -66,9 +66,9 @@ function EscrowDetails() {
         <Box>
           <StepperComponent />
         </Box>
-        {item.status.primary === "Awaiting Agreement" ? (
+        {item.role === "Buyer" && item.agreed == true && (
           <Box>
-            <CurrentStep>
+            <ProceedToPayment>
               {" "}
               <Button
                 sx={{
@@ -85,10 +85,8 @@ function EscrowDetails() {
               >
                 Proceed To Payment
               </Button>{" "}
-            </CurrentStep>
+            </ProceedToPayment>
           </Box>
-        ) : (
-          ""
         )}
       </Box>
       <Box

@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable react/prop-types */
 import {
   Typography,
   Box,
@@ -152,7 +154,7 @@ SubMenuNavComponent.propTypes = {
   ).isRequired,
 };
 export const BarTypography = ({ Text = "I'm", additionalStyles = {} }) => (
-  <Typography sx={{ color: Colors.secondaryColor, ...additionalStyles }}>
+  <Typography sx={{ color: Colors.secondaryColor, ...additionalStyles ,mr:"0.5rem"}}>
     {Text}
   </Typography>
 );
@@ -236,7 +238,7 @@ export const BarTextfield = ({ additionalStyles = {} }) => {
           borderBottom: "none", // Removes hover underline
         },
         "& .MuiInput-root": {
-          pl: "0.3rem", // Align with other items
+          // pl: "0.3rem", // Align with other items
           m: 0,
         },
         "& :hover": {

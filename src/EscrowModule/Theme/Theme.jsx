@@ -1,4 +1,3 @@
-import React from "react";
 
 export const Colors = {
   subNavGradient: "linear-gradient(rgb(1, 66, 106), rgb(0, 29, 66))",
@@ -15,7 +14,9 @@ export const Colors = {
   quaternry:"#01426a",
   borderColor:"rgb(216, 214, 214)",
   EscrowDetailsColor:"rgb(34, 92, 171)",
-  secondNavColor:"rgb(1, 66, 106)"
+  secondNavColor:"rgb(1, 66, 106)",
+  primaryBackColor:"#f9f9f9",
+
 
 };
 

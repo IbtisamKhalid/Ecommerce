@@ -14,7 +14,6 @@ import {
   ListItemText,
   ListItemButton,
 } from "@mui/material";
-import React from "react";
 import { Link } from "react-router-dom";
 import useNavBar from "./hooks/useNavBar";
 import Logout from "@mui/icons-material/Logout";
@@ -83,7 +82,7 @@ export default function LoggedInNavBar() {
             width: "100%",
             display: "flex",
             justifyContent: "space-between",
-            alignItems: "baseline",
+            alignItems: "center",
             "@media (max-width:910px)": { justifyContent: "flex-end" },
           }}
         >
@@ -241,11 +240,14 @@ export default function LoggedInNavBar() {
                 <Tooltip title="Open Profile">
                   <MenuItem
                     onClick={handleClose}
+                    component={Link} // Add Link as the component
+                    to="/loggedin/profilesetting" // Define the route
                     sx={{
                       p: "0.5rem 1.8rem",
                       color: "#0088FF",
                       fontWeight: "600",
                       fontFamily: Fonts.primaryFont,
+                      textDecoration: "none", // Prevent underlining the text
                     }}
                   >
                     <Avatar />
@@ -271,11 +273,14 @@ export default function LoggedInNavBar() {
                 <Tooltip title="Open Setting">
                   <MenuItem
                     onClick={handleClose}
+                    component={Link} // Add Link as the component
+                    to="/loggedin/profilesetting" // Define the route
                     sx={{
-                      p: "0.5rem 1.85rem",
+                      p: "0.5rem 1.8rem",
                       color: "#0088FF",
                       fontWeight: "600",
                       fontFamily: Fonts.primaryFont,
+                      textDecoration: "none", // Prevent underlining the text
                     }}
                   >
                     <ListItemIcon

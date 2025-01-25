@@ -1,93 +1,44 @@
-import React, { useState, useEffect } from "react";
-import { Box,  Typography, CircularProgress } from "@mui/material";
+/* eslint-disable no-unused-vars */
+/* eslint-disable react/prop-types */
+
+import {
+  Box,
+  Typography,
+  CircularProgress,
+  useMediaQuery,
+} from "@mui/material";
 import CircleIcon from "@mui/icons-material/Circle";
 import { Colors } from "../../../../Theme/Theme";
-import { useNavigate } from "react-router-dom";
+import useEscrowDataGrid from "./Hooks/useEscrowDataGrid";
 
 function EscrowDataGridComponent({ tableName, status, onRendered }) {
-  const [loading, setLoading] = useState(true);
-
-  useEffect(() => {
-    setLoading(true);
-    const timer = setTimeout(() => {
-      setLoading(false);
-      if (onRendered) onRendered();
-    }, 500);
-
-    return () => clearTimeout(timer);
-  }, [status]);
-
-  const columns = [
-    { headerName: "ID", width: 100, textAlign: "left" },
-    { headerName: "TRANSACTION TITLE", width: 400, textAlign: "left" },
-    { headerName: "CREATED", width: 150, textAlign: "left" },
-    { headerName: "AMOUNT", width: 150, textAlign: "left" },
-    { headerName: "ROLE", width: 120, textAlign: "left" },
-    { headerName: "STATUS", width: 200, textAlign: "right" },
-  ];
-
-  const rows = [
-    {
-      id: "13075658",
-      title: "My Transaction",
-      subtitle: "Domain Name",
-      created: "Jan 12, 2025",
-      amount: "$91.00 USD",
-      role: "Buyer",
-      status: {
-        primary: "Awaiting Agreement",
-        secondary: "Requires Seller's Action",
-      },
-    },
-    {
-      id: "13075658",
-      title: "My Transaction",
-      subtitle: "Domain Name",
-      created: "Jan 12, 2025",
-      amount: "$91.00 USD",
-      role: "Buyer",
-      status: {
-        primary: "Awaiting Agreement",
-        secondary: "Requires Seller's Action",
-      },
-    },
-    {
-      id: "13075658",
-      title: "My Transaction",
-      subtitle: "Domain Name",
-      created: "Jan 12, 2025",
-      amount: "$91.00 USD",
-      role: "Buyer",
-      status: {
-        primary: "Awaiting Agreement",
-        secondary: "Requires Seller's Action",
-      },
-    },
-  ];
-  const navigate = useNavigate();
-
-  const handleBoxClick = (item) => {
-    navigate(`/LoggedIn/escrowdetails/${item.id}`, { state: { item } });
-  };
+  const isSmallScreen = useMediaQuery("(min-width:820px)");
+  const { loading, columns, rows, handleBoxClick,handleAgreement } = useEscrowDataGrid({
+    onRendered,
+  });
   return (
     <>
-      <Box sx={{ pY: 3, bgcolor: "white", boxShadow: 1, borderRadius: "4px" }}>
+      <Box sx={{bgcolor: "white" }}>
         <Typography
           variant="subtitle2"
           sx={{
             p: "1.2rem 1rem",
             color: "#666",
-            borderBottom: "1px solid rgb(216, 214, 214)",
+            border: "1px solid rgb(216, 214, 214)",
+            borderRadius: "4px",
           }}
         >
           Showing <strong>{status}</strong> transactions.
         </Typography>
+      </Box>
+      {isSmallScreen && (
         <Box
           sx={{
             display: "flex",
-            p: "0.8rem 1rem",
+            p: "0.8rem 0",
             bgcolor: "#f9f9f9",
-            borderBottom: "1px solid rgb(216, 214, 214)",
+            // borderBottom: "1px solid rgb(216, 214, 214)",
+            justifyContent: "space-between",
           }}
         >
           {columns.map((item, index) => {
@@ -96,7 +47,7 @@ function EscrowDataGridComponent({ tableName, status, onRendered }) {
                 variant="p"
                 key={index}
                 sx={{
-                  width: item.width,
+                  // width: item.width,
                   textAlign: item.textAlign,
                   fontFamily: "Roboto, serif",
                   fontOpticalSizing: "auto",
@@ -105,7 +56,8 @@ function EscrowDataGridComponent({ tableName, status, onRendered }) {
                   fontVariationSettings: "wdth 100",
                   color: "#666",
                   fontSize: "15px",
-                  padding: "",
+                  padding: "0 1rem",
+                  marginRight: item.m 
                 }}
               >
                 {item.headerName}
@@ -113,46 +65,177 @@ function EscrowDataGridComponent({ tableName, status, onRendered }) {
             );
           })}
         </Box>
-        {loading ? (
-          <Box
-            sx={{
-              display: "flex",
-              justifyContent: "center",
-              alignItems: "center",
-              height: "300px",
-            }}
-          >
-            <CircularProgress />
-          </Box>
-        ) : (
-          <Box>
-            {rows.map((item, index) => (
-              <Box
+      )}
+      {loading ? (
+        <Box
+          sx={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            height: "300px",
+          }}
+        >
+          <CircularProgress />
+        </Box>
+      ) : isSmallScreen ? (
+        <Box
+          sx={{
+            border: `1px solid ${Colors.borderColor}`,
+            borderRadius: "6px",
+            bgcolor: "white",
+
+          }}
+        >
+          {rows.map((item, index) => (
+            <Box
+              sx={{
+                display: "flex",
+                p: "1.3rem 1rem",
+                // textAlign: "left",
+                alignItems: "center",
+                cursor: "pointer",
+                borderBottom: `1px solid ${Colors.borderColor}`,
+                justifyContent: "space-between",
+              }}
+              onClick={() => item.agreed ? handleBoxClick(item) : handleAgreement(item)}
+              key={index}
+            >
+              <Typography
                 sx={{
-                  display: "flex",
-                  p: "1.3rem 1rem",
-                  bgcolor: "inherit",
-                  textAlign: "left",
-                  alignItems: "center",
-                  cursor: "pointer",
+                  width: "fit-content",
+                  fontSize: "14px",
+                  fontWeight: 450,
+                  fontFamily: "Roboto, serif",
+                  fontStyle: "normal",
+                  fontVariationSettings: "wdth 100",
+                  // pr: "1rem",
                 }}
-                onClick={() => handleBoxClick(item)}
-                key={index}
               >
+                {item.id}
+              </Typography>
+              <Box sx={{ display: "block",marginLeft:"-2rem"}}>
                 <Typography
                   sx={{
-                    width: 100,
                     fontSize: "14px",
                     fontWeight: 450,
                     fontFamily: "Roboto, serif",
                     fontStyle: "normal",
                     fontVariationSettings: "wdth 100",
+
                   }}
                 >
                   {" "}
-                  {item.id}{" "}
+                  {item.title}{" "}
                 </Typography>
-                <Box sx={{ display: "block", width: 400 }}>
+                <Typography sx={{ fontSize: "13px", color: Colors.backColor }}>
+                  {" "}
+                  {item.subtitle}{" "}
+                </Typography>
+              </Box>
+              <Typography
+                sx={{
+                  fontSize: "14px",
+                  fontWeight: 450,
+                  fontFamily: "Roboto, serif",
+                  fontStyle: "normal",
+                  fontVariationSettings: "wdth 100",
+                  marginLeft:"-2.8rem"
+                }}
+              >
+                {item.amount}
+              </Typography>
+              <Typography
+                sx={{
+                  fontSize: "14px",
+                  fontWeight: 450,
+                  fontFamily: "Roboto, serif",
+                  fontStyle: "normal",
+                  fontVariationSettings: "wdth 100",
+                  marginLeft:"0.5rem"
+                }}
+              >
+                {item.created}
+              </Typography>
+              
+              <Typography
+                sx={{
+                  fontSize: "14px",
+                  fontWeight: 450,
+                  fontFamily: "Roboto, serif",
+                  fontStyle: "normal",
+                  fontVariationSettings: "wdth 100",
+                }}
+              >
+                {item.role}
+              </Typography>
+              <Box sx={{ display: "block", justifyItems: "right" }}>
+                <Typography
+                  sx={{
+                    fontSize: "14px",
+                    fontWeight: 450,
+                    fontFamily: "Roboto, serif",
+                    fontStyle: "normal",
+                    fontVariationSettings: "wdth 100",
+                    bgcolor: "#fff1a8",
+                    color: "#677702",
+                    p: "0.3rem 0.7rem 0.3rem 0.5rem",
+                    borderRadius: "12px",
+                    mb: "0.2rem",
+                    width: "fit-content",
+                  }}
+                >
+                  <CircleIcon
+                    sx={{ fontSize: "10px", marginRight: "0.4rem" }}
+                  />
+                  {item.status.primary}{" "}
+                </Typography>
+                <Typography
+                  sx={{
+                    fontSize: "14px",
+                    fontWeight: 450,
+                    fontFamily: "Roboto, serif",
+                    fontStyle: "normal",
+                    fontVariationSettings: "wdth 100",
+                    borderRadius: "12px",
+                    bgcolor: "#ebebeb",
+                    color: " #4f4f4f",
+                    p: "0.3rem 0.7rem 0.3rem 0.5rem",
+                  }}
+                >
+                  <CircleIcon
+                    sx={{ fontSize: "10px", marginRight: "0.4rem" }}
+                  />
+                  {item.status.secondary}{" "}
+                </Typography>
+              </Box>
+            </Box>
+          ))}
+        </Box>
+      ) : (
+        //box for mobiles
+        <Box>
+          {" "}
+          {rows.map((item, index) => (
+            <Box
+              key={index}
+              display={"block"}
+              sx={{
+                bgcolor: "white",
+                boxShadow: 1,
+                borderRadius: "4px",
+                m: "1rem 1.5rem",
+                p: "2rem",
+              }}
+              onClick={() => item.agreed ? handleBoxClick(item) : handleAgreement(item)}
+            >
+              {/* main content */}
+              <Box
+                display={"flex"}
+                sx={{ justifyContent: "space-between", width: "100%" }}
+              >
+                {/* First Box(Id title category) */}
+
+                <Box>
                   <Typography
                     sx={{
                       fontSize: "14px",
@@ -160,79 +243,61 @@ function EscrowDataGridComponent({ tableName, status, onRendered }) {
                       fontFamily: "Roboto, serif",
                       fontStyle: "normal",
                       fontVariationSettings: "wdth 100",
+                      color: Colors.secondaryColor,
                     }}
                   >
                     {" "}
-                    {item.title}{" "}
+                    {item.id}{" "}
                   </Typography>
-                  <Typography
-                    sx={{ fontSize: "13px", color: Colors.backColor }}
-                  >
-                    {" "}
-                    {item.subtitle}{" "}
-                  </Typography>
+                  <Box sx={{ display: "block", width: 200 }}>
+                    <Typography
+                      sx={{
+                        fontSize: "14px",
+                        fontWeight: 450,
+                        fontFamily: "Roboto, serif",
+                        fontStyle: "normal",
+                        fontVariationSettings: "wdth 100",
+                      }}
+                    >
+                      {" "}
+                      {item.title}{" "}
+                    </Typography>
+                    <Typography
+                      sx={{ fontSize: "13px", color: Colors.backColor }}
+                    >
+                      {" "}
+                      {item.subtitle}{" "}
+                    </Typography>
+                  </Box>
                 </Box>
-                <Typography
-                  sx={{
-                    width: 150,
-                    fontSize: "14px",
-                    fontWeight: 450,
-                    fontFamily: "Roboto, serif",
-                    fontStyle: "normal",
-                    fontVariationSettings: "wdth 100",
-                  }}
-                >
-                  {" "}
-                  {item.created}{" "}
-                </Typography>
-                <Typography
-                  sx={{
-                    width: 150,
-                    fontSize: "14px",
-                    fontWeight: 450,
-                    fontFamily: "Roboto, serif",
-                    fontStyle: "normal",
-                    fontVariationSettings: "wdth 100",
-                  }}
-                >
-                  {" "}
-                  {item.amount}{" "}
-                </Typography>
-                <Typography
-                  sx={{
-                    width: 120,
-                    fontSize: "14px",
-                    fontWeight: 450,
-                    fontFamily: "Roboto, serif",
-                    fontStyle: "normal",
-                    fontVariationSettings: "wdth 100",
-                  }}
-                >
-                  {" "}
-                  {item.role}{" "}
-                </Typography>
-                <Box
-                  sx={{ display: "block", width: 200, justifyItems: "right" }}
-                >
+                {/*  */}
+                {/*  */}
+                {/* Second Box(Role Amount Created at) */}
+                <Box sx={{ textAlign: "right" }}>
                   <Typography
                     sx={{
                       fontSize: "14px",
                       fontWeight: 450,
                       fontFamily: "Roboto, serif",
                       fontStyle: "normal",
-                      fontVariationSettings: "wdth 100",
-                      bgcolor: "#fff1a8",
-                      color: "#677702",
-                      p: "0.3rem 0.7rem 0.3rem 0.5rem",
-                      borderRadius: "12px",
-                      mb: "0.2rem",
-                      width: "fit-content",
+                      color: Colors.secondaryColor,
                     }}
                   >
-                    <CircleIcon
-                      sx={{ fontSize: "10px", marginRight: "0.4rem" }}
-                    />
-                    {item.status.primary}{" "}
+                    {" "}
+                    {item.role}{" "}
+                  </Typography>
+
+                  <Typography
+                    sx={{
+                      fontSize: "14px",
+                      fontWeight: 550,
+                      fontFamily: "Roboto, serif",
+                      fontStyle: "normal",
+                      // fontVariationSettings: "wdth 100",
+                    }}
+                  >
+                    {" "}
+                    {item.amount}{" "}
                   </Typography>
                   <Typography
                     sx={{
@@ -240,24 +305,60 @@ function EscrowDataGridComponent({ tableName, status, onRendered }) {
                       fontWeight: 450,
                       fontFamily: "Roboto, serif",
                       fontStyle: "normal",
-                      fontVariationSettings: "wdth 100",
-                      borderRadius: "12px",
-                      bgcolor: "#ebebeb",
-                      color: " #4f4f4f",
-                      p: "0.3rem 0.7rem 0.3rem 0.5rem",
+                      // fontVariationSettings: "wdth 100",
                     }}
                   >
-                    <CircleIcon
-                      sx={{ fontSize: "10px", marginRight: "0.4rem" }}
-                    />
-                    {item.status.secondary}{" "}
+                    {" "}
+                    {item.created}{" "}
                   </Typography>
                 </Box>
               </Box>
-            ))}
-          </Box>
-        )}
-      </Box>
+              {/* Status */}
+              <Box sx={{ display: "flex", mt: "1rem" }}>
+                <Typography
+                  sx={{
+                    fontSize: "14px",
+                    fontWeight: 450,
+                    fontFamily: "Roboto, serif",
+                    fontStyle: "normal",
+                    fontVariationSettings: "wdth 100",
+                    bgcolor: "#fff1a8",
+                    color: "#677702",
+                    p: "0.3rem 1.5rem 0.3rem 1.3rem",
+                    borderRadius: "12px",
+                    m: "0 0.7rem 0.2rem 0",
+                    width: "fit-content",
+                  }}
+                >
+                  <CircleIcon
+                    sx={{ fontSize: "10px", marginRight: "0.4rem" }}
+                  />
+                  {item.status.primary}{" "}
+                </Typography>
+                <Typography
+                  sx={{
+                    fontSize: "14px",
+                    fontWeight: 450,
+                    fontFamily: "Roboto, serif",
+                    fontStyle: "normal",
+                    fontVariationSettings: "wdth 100",
+                    borderRadius: "12px",
+                    bgcolor: "#ebebeb",
+                    color: " #4f4f4f",
+                    p: "0.3rem 1rem 0.3rem 0.7rem",
+                  }}
+                >
+                  <CircleIcon
+                    sx={{ fontSize: "10px", marginRight: "0.4rem" }}
+                  />
+                  {item.status.secondary}{" "}
+                </Typography>
+              </Box>{" "}
+            </Box>
+          ))}{" "}
+        </Box>
+      )}
+      {/* </Box> */}
     </>
   );
 }

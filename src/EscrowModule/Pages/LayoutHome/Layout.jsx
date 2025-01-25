@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React from "react";
 import { Outlet } from "react-router-dom";
 import Header from "../Header/Header";
@@ -10,7 +11,7 @@ function LayoutEscrow() {
   return (
     <>
       <Box>
-        <Header backColor="rgb(1, 66, 106)" atTopTextColor="white"/>
+        <Header backColor="rgb(1, 66, 106)" atTopTextColor="white" />
         <Outlet />
         <Footer />
       </Box>

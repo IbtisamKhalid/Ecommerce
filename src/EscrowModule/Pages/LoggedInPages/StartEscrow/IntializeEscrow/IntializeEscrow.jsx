@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import {
   Box,
   FormControl,
@@ -10,8 +11,7 @@ import {
   Divider,
   MenuItem,
 } from "@mui/material";
-import React, { useState } from "react";
-import { Controller, get } from "react-hook-form";
+import { Controller } from "react-hook-form";
 import { Colors, Fonts } from "../../../../Theme/Theme";
 import useStartEscrow from "./Hooks/useStartEscrow";
 import LoggedInNavbarLayout from "../../LoggedInNavBar/LoggedInNavbarLayout/LoggedInNavbarLayout.jsx";
@@ -46,21 +46,22 @@ export const SelectComponent = ({ name, control, label, options = [] }) => {
 
 function IntializeEscrow() {
   const {
-    control,
+    watch,
     errors,
+    control,
     showBox,
-    onSubmit,
     register,
-    handleSubmit,
+    onSubmit,
     secondPerson,
+    handleSubmit,
     selectRoleOption,
     selecCurrencyOption,
-    watch,
   } = useStartEscrow();
+  
   const Price = watch("Price");
-  const MyRole = watch("MyRole");
-  const Currency = watch("Currency");
-  const ItemName = watch("ItemName");
+  // const MyRole = watch("MyRole");
+  // const Currency = watch("Currency");
+  // const ItemName = watch("ItemName");
   const ItemCategory = watch("ItemCategory");
   const ItemDescription = watch("ItemDescription");
   const TransactionTitle = watch("TransactionTitle");

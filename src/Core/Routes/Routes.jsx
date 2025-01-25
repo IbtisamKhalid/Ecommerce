@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import React from "react";
 import { BrowserRouter, Route, Routes as ReactRoutes } from "react-router-dom";
 import Home from "../../Home";
@@ -38,12 +39,14 @@ import {
   SupportCenter,
 } from "../../EscrowModule/Modules/Header/index";
 
+import ProfileSetting from "../../EscrowModule/Pages/LoggedInPages/ProfileSetting/ProfileSetting/ProfileSetting";
+
 function Routes() {
   return (
     <>
       <BrowserRouter>
         <ReactRoutes>
-        <Route path="*" element={<Home />} />
+          <Route path="*" element={<Home />} />
           <Route path="/" element={<Home />} />
           <Route path="/store" element={<LayoutStore />}>
             <Route index element={<HomeStore />} />
@@ -55,7 +58,7 @@ function Routes() {
           <Route path="SignUp" element={<SignUP />} />
           <Route path="/StartEscrow" element={<StartEscrow />} />
           <Route path="/Contract" element={<MakeContracts />} />
-          <Route path="/Contract" element={<MakeContracts />} />
+          {/* <Route path="/Contract" element={<MakeContracts />} /> */}
           <Route path="/queries" element={<Layout />}>
             <Route path="About" element={<About />} />
             <Route path="Careers" element={<Careers />} />
@@ -72,6 +75,7 @@ function Routes() {
             <Route path="EscrowHistory" element={<EscrowHistory />} />
             <Route path="EscrowDisputes" element={<EscrowDisputes />} />
             <Route path="EscrowPayments" element={<EscrowPayments />} />
+            <Route path="ProfileSetting" element={<ProfileSetting />} />
             <Route path="escrowdetails/:id" element={<DetailsWrapper />} />
             <Route path="disputedetails/:id" element={<DisputeDetails />} />
           </Route>

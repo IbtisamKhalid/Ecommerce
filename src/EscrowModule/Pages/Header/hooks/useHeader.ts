@@ -47,7 +47,7 @@ const useHeader = ({backColor, atTopTextColor, atTopColor}) => {
       setHoveredButton(name);
       setName(name);
       setItemIndex(index);
-      setBackgroundColor("rgb(1, 66, 106)");
+      // setBackgroundColor("rgb(1, 66, 106)");
       setZIndex(12)
       
     };

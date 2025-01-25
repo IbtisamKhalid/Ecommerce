@@ -1,45 +1,27 @@
-import React from "react";
-import LoggedInNavbarLayout from "../../LoggedInNavBar/LoggedInNavbarLayout/LoggedInNavbarLayout";
-import { Box, Typography, Button, TextField } from "@mui/material";
+import { Box } from "@mui/material";
 import { Colors } from "../../../../Theme/Theme";
-import useMakeContract from "./hooks/useMakeContract";
+import FAQAccordion from "../../Details/FAQAccordion/FAQAccordion";
+import InputGathering from "../../Components/InputGatheringComponent/InputGathering";
+import ContractInstruction from "../../Components/ContractInstruction/ContractInstruction";
+import LoggedInNavbarLayout from "../../LoggedInNavBar/LoggedInNavbarLayout/LoggedInNavbarLayout";
+
 function MakeContracts() {
-  const { terms, addTerm, setInputValue, inputValue, containerRef } =
-    useMakeContract();
   return (
     <>
       <LoggedInNavbarLayout />
-      <Box sx={{ display: "flex" }}>
-        <Box
-          sx={{
-            margin: "2rem 0 2rem 7rem",
-            bgcolor: Colors.tertiary,
-            p: "2rem",
-            width: " 30% ",
-          }}
-        >
-          <Typography variant="h5">Terms and Conditions</Typography>
-          <Box sx={{ bgcolor: "white" }}>
-            <Box sx={{ height: "350px",overflow:"scroll", scrollbarWidth:"none" }} ref={containerRef}>
-              {terms.map((terms, index) => {
-                return <li key={index}>{terms}</li>;
-              })}
-            </Box>
-            <TextField
-              variant="outlined"
-              label="Terms"
-              fullWidth
-              helperText=" "
-              value={inputValue}
-              onChange={(e) => {
-                setInputValue(e.target.value);
-              }}
-            />
-          </Box>
-          <Button onClick={addTerm}>Add Terms</Button>
-          <Button>Make Contract</Button>
+      <Box
+        sx={{
+          display: "flex",
+          p: "2rem 0 2rem 7rem",
+          bgcolor: Colors.primaryBackColor,
+        }}
+      >
+        <InputGathering isContract={true} />
+
+        <Box sx={{ flexBasis: "30%", m: "0 1rem" }}>
+          <ContractInstruction isContract={true} />
+          <FAQAccordion isContract={true} />
         </Box>
-        <Box>this is the second box</Box>
       </Box>
     </>
   );

@@ -1,3 +1,5 @@
+/* eslint-disable no-unused-vars */
+/* eslint-disable react/prop-types */
 import { Link } from "react-router-dom";
 import useHeader from "./hooks/useHeader";
 import MenuIcon from "@mui/icons-material/Menu";
@@ -18,13 +20,14 @@ import {
   Divider,
   IconButton,
 } from "@mui/material";
-import { useState } from "react";
 
 function Header({
-  backColor = "",
+  backColor = "white",
   atTopColor = "",
   txtColor = "",
   atTopTextColor = "",
+  hoverBGColor="",
+  hoverTextColor="",
 }) {
   const {
     handleDrawerToggle,
@@ -38,7 +41,6 @@ function Header({
     itemIndex,
     zIndex,
     name,
-    setBackgroundColor
   } = useHeader({ backColor, atTopTextColor, atTopColor });
 
   const drawer = (
@@ -78,10 +80,10 @@ function Header({
           top: 0,
           backgroundColor: backgroundColor,
           zIndex: zIndex,
-          
+          "& :hover:":{
+            color:"white"
+          }
         }}
-        // onMouseEnter={}
-        // onMouseLeave={}
       >
         <CssBaseline />
         <Box
@@ -91,12 +93,12 @@ function Header({
             alignItems: "center",
             p: { xs: "0 1.5rem", sm: "0 3rem", md: "0 6rem", lg: "0 8rem" },
             backgroundColor: isAtTop ? backColor : backgroundColor,
-            color: textColor,
+            color:isAtTop ? textColor : "white",
             zIndex: 1100,
-            "& :hover": {
-              bgcolor: "rgb(1, 66, 106)",
-              zIndex: 1200,
-            },
+            // "& :hover": {
+            //   bgcolor: "rgb(1, 66, 106)",
+            //   zIndex: 1200,
+            // },
           }}
         >
           <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>

@@ -1,10 +1,9 @@
-import React from "react";
+/* eslint-disable react/prop-types */
 import { Box, Typography, IconButton } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import { Colors, Fonts } from "../../../../Theme/Theme";
 
-
-export default function LoggedInNavbarLayout ({ children, handleDrawerToggle }){
+export default function LoggedInNavbarLayout({ children, handleDrawerToggle }) {
   return (
     <>
       <Box
@@ -35,10 +34,10 @@ export default function LoggedInNavbarLayout ({ children, handleDrawerToggle }){
                 "@media (min-width:910px)": { display: "none" },
                 color: "white",
                 p: 0,
-                mt: 1,
+                mt: -1, // Remove top margin to align with text
               }}
             >
-              <MenuIcon sx={{ fontSize: "1.5rem" }} />
+              <MenuIcon />
             </IconButton>
           )}
 
@@ -48,8 +47,10 @@ export default function LoggedInNavbarLayout ({ children, handleDrawerToggle }){
               color: "white",
               fontWeight: 700,
               textAlign: "center",
-              lineHeight: 1,
+              lineHeight: "normal", // Adjust line-height for better alignment
               mr: 2,
+              display: "flex",
+              alignItems: "center", // Vertically centers the text
             }}
           >
             TrustBridge
@@ -73,5 +74,4 @@ export default function LoggedInNavbarLayout ({ children, handleDrawerToggle }){
       </Box>
     </>
   );
-};
-
+}

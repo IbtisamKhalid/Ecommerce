@@ -1,10 +1,9 @@
-import React from "react";
 import { Typography, Box, Container, Grid2 as Grid } from "@mui/material";
 import { Colors, Fonts } from "../../../../Theme/Theme";
 
 const LearnMore = () => {
   return (
-    <Container sx={{ width: "100%" }}>
+    <Container sx={{ width: "70%" }}>
       <Box
         sx={{
           padding: "2.5rem 2rem 2.5rem 2rem",
