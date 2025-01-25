@@ -16,8 +16,7 @@ function MakeContracts() {
           bgcolor: Colors.primaryBackColor,
         }}
       >
-        <InputGathering isContract={true} />
-
+        <InputGathering forContract={true} />
         <Box sx={{ flexBasis: "30%", m: "0 1rem" }}>
           <ContractInstruction isContract={true} />
           <FAQAccordion isContract={true} />

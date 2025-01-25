@@ -18,7 +18,7 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import { Colors } from "../../../../Theme/Theme";
 import useInputGathering from "./hooks/useInputGathering";
 
-function InputGathering({ isContract }) {
+function InputGathering({ forContract }) {
   const {
     terms,
     addTerm,
@@ -37,7 +37,8 @@ function InputGathering({ isContract }) {
     description,
     navigateTO,
     label,
-  } = useInputGathering(isContract);
+    isContract,
+  } = useInputGathering({ forContract });
 
   return (
     <>
@@ -77,7 +78,7 @@ function InputGathering({ isContract }) {
           {terms.length > 0 || attachments.length > 0 ? (
             <>
               {terms.length > 0 ? (
-                <Box sx={{ flexBasis: "60%" }}>
+                <Box sx={{ flexBasis: isContract ? "100%" : "60%" }}>
                   <Typography>Details</Typography>
 
                   <List sx={{ listStyleType: "decimal", paddingLeft: "1rem" }}>
@@ -124,63 +125,67 @@ function InputGathering({ isContract }) {
                   There are currently no details Added.
                 </Typography>
               )}
-              {attachments.length > 0 ? (
-                <Box sx={{ flexBasis: "40%" }}>
-                  <Typography>Attachments</Typography>
-                  {/* Attachments */}
-                  {!isContract && attachments.length > 0 && (
-                    <List
-                      sx={{ listStyleType: "decimal", paddingLeft: "1rem" }}
-                    >
-                      {attachments.map((file, index) => (
-                        <ListItem
-                          key={index}
-                          sx={{
-                            display: "list-item",
-                            p: "0 0 0 0.2rem !important",
-                          }}
-                        >
+
+              {!isContract &&
+                (attachments.length > 0 ? (
+                  <Box sx={{ flexBasis: "40%" }}>
+                    <Typography>Attachments</Typography>
+                    {/* Attachments */}
+                    {!isContract && attachments.length > 0 && (
+                      <List
+                        sx={{ listStyleType: "decimal", paddingLeft: "1rem" }}
+                      >
+                        {attachments.map((file, index) => (
                           <ListItem
+                            key={index}
                             sx={{
-                              display: "flex",
-                              justifyContent: "space-between",
-                              alignItems: "center",
+                              display: "list-item",
                               p: "0 0 0 0.2rem !important",
                             }}
                           >
-                            <Typography
+                            <ListItem
                               sx={{
-                                fontSize: "14px",
-                                color: Colors.secondaryColor,
+                                display: "flex",
+                                justifyContent: "space-between",
+                                alignItems: "center",
+                                p: "0 0 0 0.2rem !important",
                               }}
                             >
-                              {file.name}
-                            </Typography>
-                            <IconButton
-                              edge="end"
-                              aria-label="delete"
-                              onClick={() => removeAttachment(index)}
-                            >
-                              <DeleteIcon sx={{ color: Colors.dangerColor }} />
-                            </IconButton>
+                              <Typography
+                                sx={{
+                                  fontSize: "14px",
+                                  color: Colors.secondaryColor,
+                                }}
+                              >
+                                {file.name}
+                              </Typography>
+                              <IconButton
+                                edge="end"
+                                aria-label="delete"
+                                onClick={() => removeAttachment(index)}
+                              >
+                                <DeleteIcon
+                                  sx={{ color: Colors.dangerColor }}
+                                />
+                              </IconButton>
+                            </ListItem>
                           </ListItem>
-                        </ListItem>
-                      ))}
-                    </List>
-                  )}
-                </Box>
-              ) : (
-                <Typography
-                  sx={{
-                    textAlign: "center",
-                    color: Colors.secondaryColor,
-                    padding: "1rem 0",
-                    flexBasis: "40%",
-                  }}
-                >
-                  There are currently no Attachments Added.
-                </Typography>
-              )}
+                        ))}
+                      </List>
+                    )}
+                  </Box>
+                ) : (
+                  <Typography
+                    sx={{
+                      textAlign: "center",
+                      color: Colors.secondaryColor,
+                      padding: "1rem 0",
+                      flexBasis: "40%",
+                    }}
+                  >
+                    There are currently no Attachments Added.
+                  </Typography>
+                ))}
             </>
           ) : (
             <Typography

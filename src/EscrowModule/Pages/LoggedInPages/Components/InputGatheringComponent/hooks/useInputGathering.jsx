@@ -1,7 +1,8 @@
 import { useNavigate } from "react-router-dom";
 import React, { useState, useEffect } from "react";
 
-function useInputGathering({ isContract }) {
+function useInputGathering({ forContract }) {
+  const isContract = forContract;
   const [terms, setTerms] = useState([]);
   const [index, setIndex] = useState(0);
   const containerRef = React.useRef(null);
@@ -74,6 +75,7 @@ function useInputGathering({ isContract }) {
     description,
     navigateTO,
     label,
+    isContract,
   };
 }
 
