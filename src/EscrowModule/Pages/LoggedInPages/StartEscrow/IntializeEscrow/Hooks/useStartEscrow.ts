@@ -34,11 +34,13 @@ function useStartEscrow() {
       }
     }
     else if(showBox){
-        navigate("/LoggedIn/EscrowHistory")
+        navigate("/contract", { state: { data } })
         console.log("Form Submitted: ", data);
     }
 
   };
+    
+
 
   return {
     control,

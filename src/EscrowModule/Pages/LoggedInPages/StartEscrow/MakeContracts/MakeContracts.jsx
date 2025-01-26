@@ -4,8 +4,10 @@ import FAQAccordion from "../../Details/FAQAccordion/FAQAccordion";
 import InputGathering from "../../Components/InputGatheringComponent/InputGathering";
 import ContractInstruction from "../../Components/ContractInstruction/ContractInstruction";
 import LoggedInNavbarLayout from "../../LoggedInNavBar/LoggedInNavbarLayout/LoggedInNavbarLayout";
-
+import { useLocation } from "react-router-dom";
 function MakeContracts() {
+  const location = useLocation();
+  const { data } = location.state;
   return (
     <>
       <LoggedInNavbarLayout />
@@ -16,7 +18,7 @@ function MakeContracts() {
           bgcolor: Colors.primaryBackColor,
         }}
       >
-        <InputGathering forContract={true} />
+        <InputGathering data={data} forContract={true} />
         <Box sx={{ flexBasis: "30%", m: "0 1rem" }}>
           <ContractInstruction isContract={true} />
           <FAQAccordion isContract={true} />

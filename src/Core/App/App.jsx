@@ -1,9 +1,11 @@
-import Routes from '../Routes/Routes'
-
+import Routes from "../Routes/Routes";
+import { EscrowProvider } from "../../EscrowModule/EscrowContext/EscrowContext";
 function App() {
   return (
     <>
-    <Routes />
+      <EscrowProvider>
+        <Routes />
+      </EscrowProvider>
     </>
   );
 }

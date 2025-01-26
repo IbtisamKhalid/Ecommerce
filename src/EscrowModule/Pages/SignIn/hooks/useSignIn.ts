@@ -1,16 +1,26 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import axios from "axios"; // Ensure axios is imported
 import { useGoogleLogin } from "@react-oauth/google";
 import { useNavigate } from "react-router-dom";
+import {
+  IsUserLoggedIn,
+  UserContext,
+} from "../../../EscrowContext/Hooks/useEscrowContext";
+
 function useSignIn() {
-  const [emailError, setEmailError] = useState(false);
-  const [emailErrorMessage, setEmailErrorMessage] = useState("");
-  const [passwordError, setPasswordError] = useState(false);
-  const [passwordErrorMessage, setPasswordErrorMessage] = useState("");
-  const [open, setOpen] = useState(false);
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
   const navigate = useNavigate();
+  const [email, setEmail] = useState("");
+  const [open, setOpen] = useState(false);
+  const [password, setPassword] = useState("");
+  const { user, setUser } = useContext(UserContext);
+  const [emailError, setEmailError] = useState(false);
+  const [passwordError, setPasswordError] = useState(false);
+  const [emailErrorMessage, setEmailErrorMessage] = useState("");
+  const [passwordErrorMessage, setPasswordErrorMessage] = useState("");
+  const { isUserLoggedIn, setIsUserLoggedIn } = useContext(IsUserLoggedIn);
+  // const [email, setEmail] = useState("ibtisamkhalid@gmail.com");
+  // const [password, setPassword] = useState("ibtisamkhalid");
+
   const validateInputs = () => {
     let isValid = true;
 
@@ -33,6 +43,7 @@ function useSignIn() {
     }
 
     return isValid;
+    // return true;
   };
 
   const handleSubmit = async (event) => {
@@ -48,9 +59,16 @@ function useSignIn() {
         { email, password }
       );
 
-      if (response.status===200 && response.data) {
-        console.log("User Logged In:", response.data);
-        navigate("/escrow/UserDashboard");
+      console.log("Axios Response:", response.data); // Debugging log
+
+      if (response.status === 200 && response.data) {
+        const { token, user } = response.data; // Expect 'user' here
+        console.log("User Logged In:", user);
+
+        setIsUserLoggedIn(true);
+        setUser(email); // Update user context
+        localStorage.setItem("authToken", token);
+        navigate("/LoggedIn/EscrowHistory");
       }
     } catch (error) {
       console.error("Error Logging In user:", error);
@@ -91,7 +109,7 @@ function useSignIn() {
     passwordErrorMessage,
     open,
     setEmail,
-    setPassword
+    setPassword,
   };
 }
 

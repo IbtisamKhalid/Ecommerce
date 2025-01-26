@@ -1,7 +1,9 @@
+/* eslint-disable no-unused-vars */
 import { useNavigate } from "react-router-dom";
 import React, { useState, useEffect } from "react";
-
-function useInputGathering({ forContract }) {
+import { useEscrowHistory } from "../../../../../EscrowContext/Hooks/useEscrowContext";
+function useInputGathering({ data, forContract }) {
+  const { addEscrowTransaction } = useEscrowHistory();
   const isContract = forContract;
   const [terms, setTerms] = useState([]);
   const [index, setIndex] = useState(0);
@@ -54,6 +56,35 @@ function useInputGathering({ forContract }) {
       addTerm();
     }
   };
+  const handleSave = () => {
+    if (terms.length > 0) {
+      console.log(data);
+      const transaction = {
+        id: Date.now().toString(),
+        title: data.TransactionTitle,
+        subtitle: "Domain Name",
+        created: Date.now().toString(),
+        amount: data.Price,
+        currency: data.Currency,
+        role: data.MyRole,
+        status: {
+          primary: "Awaiting Agreement",
+          secondary: "Requires Seller's Action",
+        },
+        agreed: false,
+        step: 0,
+        contract: terms,
+        dispute: false,
+        disputeDetails: [],
+      };
+      console.log(transaction);
+
+      addEscrowTransaction(transaction);
+      navigate(navigateTO)
+    } else {
+      console.log("nope");
+    }
+  };
   return {
     terms,
     setTerms,
@@ -64,7 +95,6 @@ function useInputGathering({ forContract }) {
     containerRef,
     deleteTerm,
     handleEnterKeyPress,
-    navigate,
     attachments,
     isDialogOpen,
     setDialogOpen,
@@ -73,9 +103,9 @@ function useInputGathering({ forContract }) {
     removeAttachment,
     heading,
     description,
-    navigateTO,
     label,
     isContract,
+    handleSave,
   };
 }
 
