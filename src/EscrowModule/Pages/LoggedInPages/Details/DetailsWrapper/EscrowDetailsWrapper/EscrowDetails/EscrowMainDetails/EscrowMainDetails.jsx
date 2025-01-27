@@ -1,11 +1,14 @@
 import { useLocation } from "react-router-dom";
 import CircleIcon from "@mui/icons-material/Circle";
-import { Colors, Fonts } from "../../../../Theme/Theme";
-import { Box, Typography, Button } from "@mui/material";
-import StepperComponent from "../StepperComponent/StepperComponent";
-import ProceedToPayment from "../ProceedToPaymentComponent/ProceedToPayment";
 
-function EscrowDetails() {
+import { Box, Typography, Button } from "@mui/material";
+import StepperComponent from "../../../../StepperComponent/StepperComponent";
+import ProceedToPayment from "../../../../ProceedToPaymentComponent/ProceedToPayment";
+import { Colors,Fonts } from "../../../../../../../Theme/Theme";
+
+
+
+function EscrowMainDetails() {
   const location = useLocation();
   const { item } = location.state; // Access passed data
   // const stepp = 0;
@@ -64,7 +67,7 @@ function EscrowDetails() {
           </Typography>
         </Box>
         <Box>
-          <StepperComponent />
+          <StepperComponent step={item.step} />
         </Box>
         {item.role === "Buyer" && item.agreed == true && (
           <Box>
@@ -214,7 +217,7 @@ function EscrowDetails() {
               color: Colors.fontColor,
               fontSize: "15px",
               fontFamily: Fonts.primaryFont,
-              fontWeight:"600"
+              fontWeight: "600",
             }}
           >
             Total:
@@ -225,7 +228,7 @@ function EscrowDetails() {
               color: Colors.fontColor,
               fontSize: "15px",
               fontFamily: Fonts.primaryFont,
-              fontWeight:"600"
+              fontWeight: "600",
             }}
           >
             $100
@@ -239,7 +242,7 @@ function EscrowDetails() {
           m: "2rem 0",
           border: `1px solid ${Colors.borderColor}`,
           marginRight: "1rem",
-          bgcolor:"white"
+          bgcolor: "white",
         }}
       >
         <Typography
@@ -263,4 +266,4 @@ function EscrowDetails() {
   );
 }
 
-export default EscrowDetails;
+export default EscrowMainDetails;

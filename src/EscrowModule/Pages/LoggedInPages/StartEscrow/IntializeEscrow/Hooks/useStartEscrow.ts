@@ -22,10 +22,11 @@ function useStartEscrow() {
 
   const onSubmit = (data) => {
     console.log("In Submit");
+    const item = data;
     if (!showBox) {
       setShowBox(true);
       console.log("inbox");
-      if (data.MyRole == "Buyer") {
+      if (item.MyRole == "Buyer") {
         setSecondPerson("Seller");
         console.log("Seller");
       } else {
@@ -34,8 +35,8 @@ function useStartEscrow() {
       }
     }
     else if(showBox){
-        navigate("/contract", { state: { data } })
-        console.log("Form Submitted: ", data);
+        navigate("/contract", { state: { item, addingTerms:false } })
+        console.log("Form Submitted: ", item);
     }
 
   };

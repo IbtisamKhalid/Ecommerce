@@ -1,7 +1,8 @@
 import { Box, Typography } from "@mui/material";
 // import React from "react";
 import FAQAccordion from "../FAQAccordion/FAQAccordion";
-import ContractInstruction from "../../StartEscrow/MakeContracts/ContractInstruction/ContractInstruction";
+import ContractInstruction from "../../Components/ContractInstruction/ContractInstruction";
+
 function EscowAgreement() {
   return (
     <>

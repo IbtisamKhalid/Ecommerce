@@ -4,11 +4,15 @@ import FAQAccordion from "../../Details/FAQAccordion/FAQAccordion";
 import InputGathering from "../../Components/InputGatheringComponent/InputGathering";
 import ContractInstruction from "../../Components/ContractInstruction/ContractInstruction";
 import LoggedInNavbarLayout from "../../LoggedInNavBar/LoggedInNavbarLayout/LoggedInNavbarLayout";
+import { useLocation } from "react-router-dom";
+useLocation
 function FileDispute() {
+  const location = useLocation();
+  const { item, addingTerms } = location.state;
+  console.log("item in make contract",item, addingTerms);
   return (
-<>
-
-<LoggedInNavbarLayout />
+    <>
+      <LoggedInNavbarLayout />
       <Box
         sx={{
           display: "flex",
@@ -16,14 +20,16 @@ function FileDispute() {
           bgcolor: Colors.primaryBackColor,
         }}
       >
-        <InputGathering forContract={false} />
+        <InputGathering item={item}
+          forContract={false}
+          addingTerms={addingTerms} />
         <Box sx={{ flexBasis: "30%", m: "0 1rem" }}>
           <ContractInstruction isContract={false} />
           <FAQAccordion isContract={false} />
         </Box>
       </Box>
-
-</>  )
+    </>
+  );
 }
 
-export default FileDispute
+export default FileDispute;

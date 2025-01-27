@@ -12,13 +12,95 @@ export const IsUserLoggedIn = createContext();
 export const useEscrowHistory = () => {
   return useContext(EscrowHistoryContext);
 };
+export const useDisputeHistory = () => {
+  return useContext(DisputeHistoryContext);
+};
 // Create contexts
 
 function useEscrowContext() {
   const [user, setUser] = useState();
   const [userEmail, setUserEmail] = useState();
   const [stepperStep, setStepperStep] = useState(2);
-  const [escrowHistory, setEscrowHistory] = useState([]);
+  const [escrowHistory, setEscrowHistory] = useState([
+    {
+      agreed: true,
+      amount: "100",
+      contract: ["hehehhehe", "heheheh"],
+      created: "17379158899",
+      currency: "pkr",
+      dispute: true,
+      disputeDetails: [
+        "the Issue Arised because hw did not send me the right product",
+        "the Issue Arised because hw did not send me the right product",
+      ],
+      id: "1737915881575",
+      role: "Buyer",
+      step: 4,
+      status: {
+        primary: "Awaiting Agreement",
+        secondary: "Requires Seller's Action",
+      },
+      disputeStatus: {
+        primary: "Being Resolved",
+      },
+      subtitle: "Domain Name",
+      title: "My Disputeeee Transaction",
+    },
+    {
+      agreed: false,
+      amount: "10",
+      contract: ["hehehhehe", "heheheh"],
+      created: "1737915881575",
+      currency: "USD",
+      dispute: false,
+      disputeDetails: [],
+      id: "1737915881575",
+      role: "Buyer",
+      step: 1,
+      status: {
+        primary: "Awaiting Agreement",
+        secondary: "Requires Seller's Action",
+      },
+      subtitle: "Domain Name",
+      title: "My Transaction",
+    },
+    {
+      agreed: false,
+      amount: "10",
+      contract: ["hehehhehe", "heheheh"],
+      created: "1737915881575",
+      currency: "USD",
+      dispute: false,
+      disputeDetails: [],
+      id: "1737915881575",
+      role: "Buyer",
+      step: 2,
+      status: {
+        primary: "Awaiting Agreement",
+        secondary: "Requires Seller's Action",
+      },
+      subtitle: "Domain Name",
+      title: "My Transaction",
+    },
+    {
+      agreed: false,
+      amount: "10",
+      contract: ["hehehhehe", "heheheh"],
+      created: "1737915881575",
+      currency: "USD",
+      dispute: false,
+      disputeDetails: [],
+      id: "1737915881575",
+      role: "Buyer",
+      step: 4,
+      status: {
+        primary: "Awaiting Agreement",
+        secondary: "Requires Seller's Action",
+      },
+      subtitle: "Domain Name",
+      title: "My Transaction",
+    },
+  ]);
   const [disputeHistory, setDisputeHistory] = useState([]);
   const [paymentHistory, setPaymentHistory] = useState([]);
   const [isUserLoggedIn, setIsUserLoggedIn] = useState(true);

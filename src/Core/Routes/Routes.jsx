@@ -7,7 +7,6 @@ import {
   HomeStore,
   ContactMe,
 } from "../../EcommeraceModule/pages";
-
 import {
   Layout,
   HomeEscrow,
@@ -23,10 +22,9 @@ import {
   EscrowDisputes,
   EscrowPayments,
   MakeContracts,
-  EscrowDetails,
-  DisputeDetails,
-  DetailsWrapper,
 } from "../../EscrowModule/Pages/LoggedInPages";
+import DisputeDetailsWrapper from "../../EscrowModule/Pages/LoggedInPages/Details/DetailsWrapper/DisputeDetailsWrapper/DisputeDetailsWrapper";
+import EscrowDetailsWrapper from "../../EscrowModule/Pages/LoggedInPages/Details/DetailsWrapper/EscrowDetailsWrapper/EscrowDetailsWrapper";
 import {
   About,
   Careers,
@@ -40,6 +38,7 @@ import {
 } from "../../EscrowModule/Modules/Header/index";
 import ProfileSetting from "../../EscrowModule/Pages/LoggedInPages/ProfileSetting/ProfileSetting/ProfileSetting";
 import { IsUserLoggedIn } from "../../EscrowModule/EscrowContext/Hooks/useEscrowContext";
+import FileDispute from "../../EscrowModule/Pages/LoggedInPages/DIsputeModule/FileDisputeComponent/FileDispute";
 function Routes() {
   const { isUserLoggedIn, setIsUserLoggedIn } = useContext(IsUserLoggedIn);
 
@@ -51,14 +50,21 @@ function Routes() {
             <>
               <Route path="/StartEscrow" element={<StartEscrow />} />
               <Route path="/Contract" element={<MakeContracts />} />
+              <Route path="/FileDispute" element={<FileDispute />} />
               <Route path="/LoggedIn" element={<LoggedInLayout />}>
                 <Route path="UserDashboard" element={<UserDashboard />} />
                 <Route path="EscrowHistory" element={<EscrowHistory />} />
                 <Route path="EscrowDisputes" element={<EscrowDisputes />} />
                 <Route path="EscrowPayments" element={<EscrowPayments />} />
                 <Route path="ProfileSetting" element={<ProfileSetting />} />
-                <Route path="escrowdetails/:id" element={<DetailsWrapper />} />
-                <Route path="disputedetails/:id" element={<DisputeDetails />} />
+                <Route
+                  path="escrowdetails/:id"
+                  element={<EscrowDetailsWrapper />}
+                />
+                <Route
+                  path="disputedetails/:id"
+                  element={<DisputeDetailsWrapper />}
+                />
               </Route>
             </>
           )}

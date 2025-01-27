@@ -27,11 +27,13 @@ export const EscrowProvider = ({ children }) => {
     UserContext,
     UserEmailContext,
     IsUserLoggedIn,
+    setEscrowHistory,
   } = useEscrowContext();
   return (
     <EscrowHistoryContext.Provider
       value={{
         escrowHistory,
+        setEscrowHistory,
         addEscrowTransaction,
         deleteEscrowTransaction,
         updateDisputeDetails,

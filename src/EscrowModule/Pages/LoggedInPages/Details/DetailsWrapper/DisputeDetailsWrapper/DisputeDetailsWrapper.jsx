@@ -1,8 +1,10 @@
-import { Box, Typography } from "@mui/material";
-import EscrowDetails from "../EscrowDetails/EscrowDetails";
-import { Colors } from "../../../../Theme/Theme";
-import FAQAccordion from "../FAQAccordion/FAQAccordion";
-function DetailsWrapper() {
+import { Box, } from "@mui/material";
+import { Colors } from "../../../../../Theme/Theme";
+import FAQAccordion from "../../FAQAccordion/FAQAccordion";
+import EscrowDisputeDetails from "./EscrowDisputeDetails/EscrowDisputeDetails";
+import EscrowMainDetails from "./EscrowMainDetails/EscrowMainDetails";
+
+function DisputeDetailsWrapper() {
   return (
     <>
       <Box
@@ -19,7 +21,7 @@ function DetailsWrapper() {
         }}
       >
         <Box>
-          <EscrowDetails />
+          <EscrowMainDetails />
         </Box>
         <Box sx={{ flexBasis: "40%" }}>
           <Box
@@ -29,10 +31,11 @@ function DetailsWrapper() {
               borderRadius: "8px",
               border: `1px solid ${Colors.borderColor}`,
               "@media (max-width:1060px)": { display: "none" },
-              remmb:"0.8"
+              remmb: "0.8",
             }}
           >
-            <Typography
+            <EscrowDisputeDetails />
+            {/* <Typography
               variant="h6"
               sx={{ m: "0 0 1rem 0", color: Colors.EscrowDetailsColor }}
             >
@@ -43,7 +46,7 @@ function DetailsWrapper() {
               sx={{ fontSize: "14px", color: Colors.fontColor }}
             >
               January 17, 2025, 1:09 AM GMT+5 Buyer initiates the transaction
-            </Typography>
+            </Typography> */}
           </Box>
           <Box>
             <FAQAccordion showInstructions={false} />
@@ -54,4 +57,4 @@ function DetailsWrapper() {
   );
 }
 
-export default DetailsWrapper;
+export default DisputeDetailsWrapper;

@@ -4,7 +4,7 @@ import { Box, Typography } from "@mui/material";
 import { Colors } from "../../../../Theme/Theme";
 import EscrowShield from "../../../../EscrowAssets/svgs/EscrowShield";
 
-function ProceedToPayment({ content = {}, children }) {
+function ProceedToPayment({ children }) {
   return (
     <>
       <Box
@@ -17,7 +17,7 @@ function ProceedToPayment({ content = {}, children }) {
           overflow: "hidden",
         }}
       >
-        <Box sx={{flexBasis:"90%",width:"90%"}}>
+        <Box sx={{ flexBasis: "90%", width: "90%" }}>
           <Typography
             gutterBottom
             variant="h6"
@@ -33,11 +33,12 @@ function ProceedToPayment({ content = {}, children }) {
             variant="body1"
             sx={{ fontSize: "15px", m: "0.8rem 0", color: Colors.backColor }}
           >
-            Please click on the button below and follow the instructions to send the payment for the transaction.
+            Please click on the button below and follow the instructions to send
+            the payment for the transaction.
           </Typography>
           {children}
         </Box>
-        <Box sx={{position:"relative",right:"-10%",flexBasis:"5%"}}>
+        <Box sx={{ position: "relative", right: "-10%", flexBasis: "5%" }}>
           <EscrowShield />
         </Box>
       </Box>

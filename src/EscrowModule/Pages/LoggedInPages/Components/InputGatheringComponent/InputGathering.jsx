@@ -18,7 +18,8 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import { Colors } from "../../../../Theme/Theme";
 import useInputGathering from "./hooks/useInputGathering";
 
-function InputGathering({ data,forContract  }) {
+
+function InputGathering({ item, forContract, addingTerms }) {
   const {
     terms,
     addTerm,
@@ -36,9 +37,9 @@ function InputGathering({ data,forContract  }) {
     description,
     label,
     isContract,
-    handleSave
-  } = useInputGathering({ data,forContract });
-
+    handleSave,
+  } = useInputGathering({ item, forContract, addingTerms });
+console.log("Item in input fathering?",item);
   return (
     <>
       <Box

@@ -8,17 +8,19 @@ import {
   useMediaQuery,
 } from "@mui/material";
 import CircleIcon from "@mui/icons-material/Circle";
-import { Colors } from "../../../../Theme/Theme";
+
 import useEscrowDataGrid from "./Hooks/useEscrowDataGrid";
+import { Colors } from "../../../../../Theme/Theme";
 
 function EscrowDataGridComponent({ tableName, status, onRendered }) {
   const isSmallScreen = useMediaQuery("(min-width:820px)");
-  const { loading, columns, rows, handleBoxClick,handleAgreement } = useEscrowDataGrid({
-    onRendered,
-  });
+  const { loading, columns, rows, handleBoxClick, handleAgreement } =
+    useEscrowDataGrid({
+      onRendered,
+    });
   return (
     <>
-      <Box sx={{bgcolor: "white" }}>
+      <Box sx={{ bgcolor: "white" }}>
         <Typography
           variant="subtitle2"
           sx={{
@@ -57,7 +59,7 @@ function EscrowDataGridComponent({ tableName, status, onRendered }) {
                   color: "#666",
                   fontSize: "15px",
                   padding: "0 1rem",
-                  marginRight: item.m 
+                  marginRight: item.m,
                 }}
               >
                 {item.headerName}
@@ -77,13 +79,12 @@ function EscrowDataGridComponent({ tableName, status, onRendered }) {
         >
           <CircularProgress />
         </Box>
-      ) : isSmallScreen && rows.length > 0  ? (
+      ) : isSmallScreen ? (
         <Box
           sx={{
             border: `1px solid ${Colors.borderColor}`,
             borderRadius: "6px",
             bgcolor: "white",
-
           }}
         >
           {rows.map((item, index) => (
@@ -97,7 +98,9 @@ function EscrowDataGridComponent({ tableName, status, onRendered }) {
                 borderBottom: `1px solid ${Colors.borderColor}`,
                 justifyContent: "space-between",
               }}
-              onClick={() => item.agreed ? handleBoxClick(item) : handleAgreement(item)}
+              onClick={() =>
+                item.agreed ? handleBoxClick(item) : handleAgreement(item)
+              }
               key={index}
             >
               <Typography
@@ -113,7 +116,7 @@ function EscrowDataGridComponent({ tableName, status, onRendered }) {
               >
                 {item.id}
               </Typography>
-              <Box sx={{ display: "block",marginLeft:"-2rem"}}>
+              <Box sx={{ display: "block", marginLeft: "-2rem" }}>
                 <Typography
                   sx={{
                     fontSize: "14px",
@@ -121,7 +124,6 @@ function EscrowDataGridComponent({ tableName, status, onRendered }) {
                     fontFamily: "Roboto, serif",
                     fontStyle: "normal",
                     fontVariationSettings: "wdth 100",
-
                   }}
                 >
                   {" "}
@@ -139,7 +141,7 @@ function EscrowDataGridComponent({ tableName, status, onRendered }) {
                   fontFamily: "Roboto, serif",
                   fontStyle: "normal",
                   fontVariationSettings: "wdth 100",
-                  marginLeft:"-2.8rem"
+                  marginLeft: "-2.8rem",
                 }}
               >
                 {item.amount}
@@ -151,12 +153,12 @@ function EscrowDataGridComponent({ tableName, status, onRendered }) {
                   fontFamily: "Roboto, serif",
                   fontStyle: "normal",
                   fontVariationSettings: "wdth 100",
-                  marginLeft:"0.5rem"
+                  marginLeft: "0.5rem",
                 }}
               >
                 {item.created}
               </Typography>
-              
+
               <Typography
                 sx={{
                   fontSize: "14px",
@@ -226,7 +228,9 @@ function EscrowDataGridComponent({ tableName, status, onRendered }) {
                 m: "1rem 1.5rem",
                 p: "2rem",
               }}
-              onClick={() => item.agreed ? handleBoxClick(item) : handleAgreement(item)}
+              onClick={() =>
+                item.agreed ? handleBoxClick(item) : handleAgreement(item)
+              }
             >
               {/* main content */}
               <Box
