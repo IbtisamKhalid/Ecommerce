@@ -1,9 +1,8 @@
 import { useLocation, useNavigate } from "react-router-dom";
 import CircleIcon from "@mui/icons-material/Circle";
 
-import { Box, Typography, Button } from "@mui/material";
+import { Box, Typography, } from "@mui/material";
 import StepperComponent from "../../../StepperComponent/StepperComponent";
-import ProceedToPayment from "../../../ProceedToPaymentComponent/ProceedToPayment";
 import { Colors, Fonts } from "../../../../../../Theme/Theme";
 function EscrowMainDetails() {
   const navigate = useNavigate();
@@ -14,6 +13,7 @@ function EscrowMainDetails() {
   const handleAddContractTerms = () => {
     navigate("/Contract", { state: { item, addingTerms: true } });
   };
+
   return (
     <>
       <Box
@@ -49,52 +49,68 @@ function EscrowMainDetails() {
             <span style={{ color: "blue" }}>UserId2</span>. The inspection
             period for this transaction is 1 calendar day.
           </Typography>
-          <Typography
-            sx={{
-              fontSize: "14px",
-              fontWeight: 450,
-              fontFamily: "Roboto, serif",
-              fontStyle: "normal",
-              fontVariationSettings: "wdth 100",
-              bgcolor: "#fff1a8",
-              color: "#677702",
-              p: "0.3rem 0.7rem 0.3rem 0.5rem",
-              borderRadius: "12px",
-              mb: "1rem",
-              width: "fit-content",
-            }}
-          >
-            <CircleIcon sx={{ fontSize: "10px", marginRight: "0.4rem" }} />
-            {item.status.primary}
-          </Typography>
+          <Box display={"flex"} sx={{ gap: 2, m: "0.5rem 0" }}>
+            <Typography
+              sx={{
+                fontSize: "14px",
+                fontWeight: 450,
+                fontFamily: "Roboto, serif",
+                fontStyle: "normal",
+                fontVariationSettings: "wdth 100",
+                bgcolor: "#fff1a8",
+                color: "#677702",
+                p: "0.3rem 0.7rem 0.3rem 0.5rem",
+                borderRadius: "12px",
+                width: "fit-content",
+              }}
+            >
+              <CircleIcon sx={{ fontSize: "10px", marginRight: "0.4rem" }} />
+              {item.status.primary}
+            </Typography>
+            <Typography
+              sx={{
+                fontSize: "14px",
+                fontWeight: 450,
+                fontFamily: "Roboto, serif",
+                fontStyle: "normal",
+                fontVariationSettings: "wdth 100",
+                borderRadius: "12px",
+                bgcolor: "#ebebeb",
+                color: " #4f4f4f",
+                p: "0.3rem 0.7rem 0.3rem 0.5rem",
+                width: "fit-content",
+              }}
+            >
+              <CircleIcon sx={{ fontSize: "10px", marginRight: "0.4rem" }} />
+              {item.status.secondary}{" "}
+            </Typography>
+          </Box>
         </Box>
         <Box>
           <StepperComponent step={item.step} />
         </Box>
-        {item.role == "Buyer" && item.agreed == true && (
-          <Box>
-            <ProceedToPayment>
-              {" "}
-              <Button
-                sx={{
-                  p: "0.4rem 0.5rem",
-                  fontFamily: Fonts.primaryFont,
-                  bgcolor: "rgb(34, 92, 171)",
-                  fontWeight: 500,
-                  color: "white",
-                  "&:hover": {
-                    bgcolor: "rgb(1, 66, 106)",
-                  },
-                  fontSize: "12px",
-                }}
-                // onClick={}
-              >
-                Proceed To Payment
-              </Button>
-            </ProceedToPayment>
-          </Box>
+
+        
+        {item.step == 3 && item.dispute && (
+          <Typography
+            sx={{
+              borderTop: `1px solid ${Colors.borderColor}`,
+              mt: "1.2rem",
+              p: "1.5rem 0 0",
+              textAlign: "center",
+              fontSize: "15px",
+              color: Colors.EscrowDetailsColor,
+              "&:hover": {
+                color: "black",
+              },
+            }}
+          >
+            The Transaction is in Dispute at the moment. Our Team is trying hard
+            to resolve it. <br /> Your Patience is Greatly Appreciated
+          </Typography>
         )}
       </Box>
+
       <Box
         sx={{
           p: "2rem",
@@ -202,7 +218,9 @@ function EscrowMainDetails() {
             justifyContent: "space-between",
             // p: "0.5rem 0 1.5rem 0",
           }}
-        ></Box>
+        >
+          
+        </Box>
         <Typography
           variant="body1"
           sx={{
@@ -239,7 +257,7 @@ function EscrowMainDetails() {
               fontFamily: Fonts.primaryFont,
             }}
           >
-            $100
+            {item.currency} {item.amount}
           </Typography>
         </Box>
         <Box
@@ -268,7 +286,7 @@ function EscrowMainDetails() {
               fontFamily: Fonts.primaryFont,
             }}
           >
-            $0
+            {item.currency} 0
           </Typography>
         </Box>
         <Box sx={{ display: "flex", justifyContent: "space-between" }}>
@@ -292,7 +310,7 @@ function EscrowMainDetails() {
               fontWeight: "600",
             }}
           >
-            $100
+            {item.currency} {item.amount}
           </Typography>
         </Box>
       </Box>

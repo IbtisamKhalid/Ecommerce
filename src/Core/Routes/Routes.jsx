@@ -23,6 +23,7 @@ import {
   EscrowPayments,
   MakeContracts,
 } from "../../EscrowModule/Pages/LoggedInPages";
+
 import DisputeDetailsWrapper from "../../EscrowModule/Pages/LoggedInPages/Details/DetailsWrapper/DisputeDetailsWrapper/DisputeDetailsWrapper";
 import EscrowDetailsWrapper from "../../EscrowModule/Pages/LoggedInPages/Details/DetailsWrapper/EscrowDetailsWrapper/EscrowDetailsWrapper";
 import {
@@ -39,6 +40,8 @@ import {
 import ProfileSetting from "../../EscrowModule/Pages/LoggedInPages/ProfileSetting/ProfileSetting/ProfileSetting";
 import { IsUserLoggedIn } from "../../EscrowModule/EscrowContext/Hooks/useEscrowContext";
 import FileDispute from "../../EscrowModule/Pages/LoggedInPages/DIsputeModule/FileDisputeComponent/FileDispute";
+import PaymentContainer from "../../EscrowModule/Pages/LoggedInPages/Details/ProceedToPaymentComponent/Payment/PaymenPageContainer/PaymentContainer";
+
 function Routes() {
   const { isUserLoggedIn, setIsUserLoggedIn } = useContext(IsUserLoggedIn);
 
@@ -50,6 +53,7 @@ function Routes() {
             <>
               <Route path="/StartEscrow" element={<StartEscrow />} />
               <Route path="/Contract" element={<MakeContracts />} />
+              <Route path="/Payment" element={<PaymentContainer />} />
               <Route path="/FileDispute" element={<FileDispute />} />
               <Route path="/LoggedIn" element={<LoggedInLayout />}>
                 <Route path="UserDashboard" element={<UserDashboard />} />

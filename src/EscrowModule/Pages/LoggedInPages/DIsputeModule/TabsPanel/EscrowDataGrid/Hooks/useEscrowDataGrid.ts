@@ -3,9 +3,7 @@ import { useNavigate } from "react-router-dom";
 import { useEscrowHistory } from "../../../../../../EscrowContext/Hooks/useEscrowContext";
 
 function useEscrowDataGrif({ onRendered }) {
-  const {
-    escrowHistory,
-  } = useEscrowHistory();
+  const { escrowHistory } = useEscrowHistory();
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -68,8 +66,13 @@ function useEscrowDataGrif({ onRendered }) {
           secondaryStatus = "Awaiting Delivery";
           break;
         case 3:
-          primaryStatus = "Delivery Confirmed";
-          secondaryStatus = "Inspection Period";
+          if (transaction.dispute) {
+            primaryStatus = "In Dispute";
+            secondaryStatus = "Inspection Period";
+          } else {
+            primaryStatus = "Delivery Confirmed";
+            secondaryStatus = "Inspection Period";
+          }
           break;
         default:
           primaryStatus = "Transaction Closed";

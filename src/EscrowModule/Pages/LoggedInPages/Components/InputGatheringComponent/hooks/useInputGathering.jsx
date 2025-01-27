@@ -121,7 +121,7 @@ function useInputGathering({ item, forContract, addingTerms }) {
       if (transaction.id === item.id) {
         // Add entered terms to the disputeDetails and set dispute to true
         const updatedDisputeDetails = [
-          ...transaction.disputeDetails,
+          // ...transaction.disputeDetails,
           ...terms, // Append new terms to existing dispute details
         ];
 
@@ -159,35 +159,6 @@ function useInputGathering({ item, forContract, addingTerms }) {
     }
   };
 
-  // const handleSave = () => {
-  //   if (terms.length > 0) {
-  //     console.log(item);
-  //     const transaction = {
-  //       id: Date.now().toString(),
-  //       title: item.TransactionTitle,
-  //       subtitle: "Domain Name",
-  //       created: Date.now().toString(),
-  //       amount: item.Price,
-  //       currency: item.Currency,
-  //       role: item.MyRole,
-  //       status: {
-  //         primary: "Awaiting Agreement",
-  //         secondary: "Requires Seller's Action",
-  //       },
-  //       agreed: false,
-  //       step: 0,
-  //       contract: terms,
-  //       dispute: false,
-  //       disputeDetails: [],
-  //     };
-  //     console.log(transaction);
-
-  //     addEscrowTransaction(transaction);
-  //     navigate(navigateTO);
-  //   } else {
-  //     console.log("nope");
-  //   }
-  // };
   return {
     terms,
     setTerms,
