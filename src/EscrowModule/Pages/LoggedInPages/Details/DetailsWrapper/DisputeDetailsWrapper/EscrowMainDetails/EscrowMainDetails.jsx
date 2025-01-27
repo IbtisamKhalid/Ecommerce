@@ -1,9 +1,8 @@
 import { useLocation, useNavigate } from "react-router-dom";
 import CircleIcon from "@mui/icons-material/Circle";
 
-import { Box, Typography, Button } from "@mui/material";
+import { Box, Typography, } from "@mui/material";
 import StepperComponent from "../../../StepperComponent/StepperComponent";
-import ProceedToPayment from "../../../ProceedToPaymentComponent/ProceedToPayment";
 import { Colors, Fonts } from "../../../../../../Theme/Theme";
 function EscrowMainDetails() {
   const navigate = useNavigate();
@@ -14,9 +13,7 @@ function EscrowMainDetails() {
   const handleAddContractTerms = () => {
     navigate("/Contract", { state: { item, addingTerms: true } });
   };
-  const handleFileDispute = () => {
-    navigate("/FileDispute", { state: { item, addingTerms: true } });
-  };
+
   return (
     <>
       <Box
@@ -92,90 +89,8 @@ function EscrowMainDetails() {
         <Box>
           <StepperComponent step={item.step} />
         </Box>
-        {item.role == "Buyer" && item.agreed == true && item.step == 1 && (
-          <Box>
-            <ProceedToPayment>
-              {" "}
-              <Button
-                sx={{
-                  p: "0.4rem 0.5rem",
-                  fontFamily: Fonts.primaryFont,
-                  bgcolor: "rgb(34, 92, 171)",
-                  fontWeight: 500,
-                  color: "white",
-                  "&:hover": {
-                    bgcolor: "rgb(1, 66, 106)",
-                  },
-                  fontSize: "12px",
-                }}
-                // onClick={}
-              >
-                Proceed To Payment
-              </Button>
-            </ProceedToPayment>
-          </Box>
-        )}
-        {item.step == 3 && !item.dispute && (
-          <Box
-            sx={{
-              border: "0.5px solid rgb(34, 92, 171)",
-              p: "1rem 1rem",
-              mt: "1.5rem",
-              borderRadius: "10px",
-            }}
-          >
-            <Typography
-              variant="h6"
-              sx={{
-                p: "0.5rem 0",
-                color: Colors.EscrowDetailsColor,
-                fontSize: "20px",
-                fontWeight: 550,
-                fontFamily: "Roboto, serif",
-                fontStyle: "normal",
-              }}
-            >
-              Issue with the Product?
-            </Typography>
-            <Typography
-              variant="h6"
-              sx={{
-                color: Colors.fontColor,
-                fontSize: "14px",
-                fontWeight: 450,
-                fontFamily: "Roboto, serif",
-                fontStyle: "normal",
-              }}
-            >
-              If you have any issue with the product or service you can file for
-              dispute. our team will help you resolve it.
-            </Typography>
-            <Typography
-              variant="h6"
-              sx={{
-                p: "0.5rem",
-                bgcolor: Colors.EscrowDetailsColor,
-                textDecoration: "none",
-                cursor: "pointer",
-                "&:hover": {
-                  bgcolor: Colors.secondNavColor,
-                },
-                color: "white",
-                mt: "0.5rem",
-                fontSize: "14px",
-                fontWeight: 550,
-                fontFamily: "Roboto, serif",
-                fontStyle: "normal",
-                width: "fit-content",
-                justifySelf: "right",
-                borderRadius: "9px",
-              }}
-              onClick={handleFileDispute}
-            >
-              File Dispute?
-            </Typography>
-          </Box>
-        )}
+
+        
         {item.step == 3 && item.dispute && (
           <Typography
             sx={{
@@ -195,6 +110,7 @@ function EscrowMainDetails() {
           </Typography>
         )}
       </Box>
+
       <Box
         sx={{
           p: "2rem",
@@ -302,7 +218,9 @@ function EscrowMainDetails() {
             justifyContent: "space-between",
             // p: "0.5rem 0 1.5rem 0",
           }}
-        ></Box>
+        >
+          
+        </Box>
         <Typography
           variant="body1"
           sx={{
@@ -392,7 +310,7 @@ function EscrowMainDetails() {
               fontWeight: "600",
             }}
           >
-           {item.currency} {item.amount}
+            {item.currency} {item.amount}
           </Typography>
         </Box>
       </Box>
