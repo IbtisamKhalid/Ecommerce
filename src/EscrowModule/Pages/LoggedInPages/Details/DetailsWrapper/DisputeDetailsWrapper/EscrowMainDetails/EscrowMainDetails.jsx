@@ -14,6 +14,9 @@ function EscrowMainDetails() {
   const handleAddContractTerms = () => {
     navigate("/Contract", { state: { item, addingTerms: true } });
   };
+  const handleFileDispute = () => {
+    navigate("/FileDispute", { state: { item, addingTerms: true } });
+  };
   return (
     <>
       <Box
@@ -49,29 +52,47 @@ function EscrowMainDetails() {
             <span style={{ color: "blue" }}>UserId2</span>. The inspection
             period for this transaction is 1 calendar day.
           </Typography>
-          <Typography
-            sx={{
-              fontSize: "14px",
-              fontWeight: 450,
-              fontFamily: "Roboto, serif",
-              fontStyle: "normal",
-              fontVariationSettings: "wdth 100",
-              bgcolor: "#fff1a8",
-              color: "#677702",
-              p: "0.3rem 0.7rem 0.3rem 0.5rem",
-              borderRadius: "12px",
-              mb: "1rem",
-              width: "fit-content",
-            }}
-          >
-            <CircleIcon sx={{ fontSize: "10px", marginRight: "0.4rem" }} />
-            {item.status.primary}
-          </Typography>
+          <Box display={"flex"} sx={{ gap: 2, m: "0.5rem 0" }}>
+            <Typography
+              sx={{
+                fontSize: "14px",
+                fontWeight: 450,
+                fontFamily: "Roboto, serif",
+                fontStyle: "normal",
+                fontVariationSettings: "wdth 100",
+                bgcolor: "#fff1a8",
+                color: "#677702",
+                p: "0.3rem 0.7rem 0.3rem 0.5rem",
+                borderRadius: "12px",
+                width: "fit-content",
+              }}
+            >
+              <CircleIcon sx={{ fontSize: "10px", marginRight: "0.4rem" }} />
+              {item.status.primary}
+            </Typography>
+            <Typography
+              sx={{
+                fontSize: "14px",
+                fontWeight: 450,
+                fontFamily: "Roboto, serif",
+                fontStyle: "normal",
+                fontVariationSettings: "wdth 100",
+                borderRadius: "12px",
+                bgcolor: "#ebebeb",
+                color: " #4f4f4f",
+                p: "0.3rem 0.7rem 0.3rem 0.5rem",
+                width: "fit-content",
+              }}
+            >
+              <CircleIcon sx={{ fontSize: "10px", marginRight: "0.4rem" }} />
+              {item.status.secondary}{" "}
+            </Typography>
+          </Box>
         </Box>
         <Box>
           <StepperComponent step={item.step} />
         </Box>
-        {item.role == "Buyer" && item.agreed == true && (
+        {item.role == "Buyer" && item.agreed == true && item.step == 1 && (
           <Box>
             <ProceedToPayment>
               {" "}
@@ -93,6 +114,85 @@ function EscrowMainDetails() {
               </Button>
             </ProceedToPayment>
           </Box>
+        )}
+        {item.step == 3 && !item.dispute && (
+          <Box
+            sx={{
+              border: "0.5px solid rgb(34, 92, 171)",
+              p: "1rem 1rem",
+              mt: "1.5rem",
+              borderRadius: "10px",
+            }}
+          >
+            <Typography
+              variant="h6"
+              sx={{
+                p: "0.5rem 0",
+                color: Colors.EscrowDetailsColor,
+                fontSize: "20px",
+                fontWeight: 550,
+                fontFamily: "Roboto, serif",
+                fontStyle: "normal",
+              }}
+            >
+              Issue with the Product?
+            </Typography>
+            <Typography
+              variant="h6"
+              sx={{
+                color: Colors.fontColor,
+                fontSize: "14px",
+                fontWeight: 450,
+                fontFamily: "Roboto, serif",
+                fontStyle: "normal",
+              }}
+            >
+              If you have any issue with the product or service you can file for
+              dispute. our team will help you resolve it.
+            </Typography>
+            <Typography
+              variant="h6"
+              sx={{
+                p: "0.5rem",
+                bgcolor: Colors.EscrowDetailsColor,
+                textDecoration: "none",
+                cursor: "pointer",
+                "&:hover": {
+                  bgcolor: Colors.secondNavColor,
+                },
+                color: "white",
+                mt: "0.5rem",
+                fontSize: "14px",
+                fontWeight: 550,
+                fontFamily: "Roboto, serif",
+                fontStyle: "normal",
+                width: "fit-content",
+                justifySelf: "right",
+                borderRadius: "9px",
+              }}
+              onClick={handleFileDispute}
+            >
+              File Dispute?
+            </Typography>
+          </Box>
+        )}
+        {item.step == 3 && item.dispute && (
+          <Typography
+            sx={{
+              borderTop: `1px solid ${Colors.borderColor}`,
+              mt: "1.2rem",
+              p: "1.5rem 0 0",
+              textAlign: "center",
+              fontSize: "15px",
+              color: Colors.EscrowDetailsColor,
+              "&:hover": {
+                color: "black",
+              },
+            }}
+          >
+            The Transaction is in Dispute at the moment. Our Team is trying hard
+            to resolve it. <br /> Your Patience is Greatly Appreciated
+          </Typography>
         )}
       </Box>
       <Box
@@ -239,7 +339,7 @@ function EscrowMainDetails() {
               fontFamily: Fonts.primaryFont,
             }}
           >
-            $100
+            {item.currency} {item.amount}
           </Typography>
         </Box>
         <Box
@@ -268,7 +368,7 @@ function EscrowMainDetails() {
               fontFamily: Fonts.primaryFont,
             }}
           >
-            $0
+            {item.currency} 0
           </Typography>
         </Box>
         <Box sx={{ display: "flex", justifyContent: "space-between" }}>
@@ -292,7 +392,7 @@ function EscrowMainDetails() {
               fontWeight: "600",
             }}
           >
-            $100
+           {item.currency} {item.amount}
           </Typography>
         </Box>
       </Box>
