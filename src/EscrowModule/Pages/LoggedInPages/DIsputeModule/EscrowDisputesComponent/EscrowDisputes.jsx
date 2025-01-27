@@ -1,5 +1,5 @@
 import { Box, Typography } from "@mui/material";
-import TabsPanel from "../../TabsPanel/TabsPanel";
+import TabsPanel from "../TabsPanel/TabsPanel";
 import { Colors,Fonts } from "../../../../Theme/Theme";
 const EscrowDisputes = () => {
   const Tabs = ["All", "Completed", "Ongoing", "Cancelled"];

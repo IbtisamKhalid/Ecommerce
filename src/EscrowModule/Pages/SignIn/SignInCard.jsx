@@ -11,7 +11,6 @@ import {
   Typography,
 } from "@mui/material";
 import { Card } from "../../../constants/SignInConstants";
-import React, { useState } from "react";
 import ForgotPassword from "./ForgotPassword";
 import { GoogleIcon, FacebookIcon } from "./CustomIcons";
 import useSignIn from "./hooks/useSignIn";
@@ -29,7 +28,7 @@ export default function SignInCard() {
     passwordErrorMessage,
     open,
     setEmail,
-    setPassword
+    setPassword,
   } = useSignIn();
 
   return (
@@ -139,7 +138,7 @@ export default function SignInCard() {
         <Button
           fullWidth
           variant="outlined"
-          onClick={() => alert("Sign in with Facebook")}
+          onClick={() => setIsUserLoggedIn(true)}
           startIcon={<FacebookIcon />}
         >
           Sign in with Facebook

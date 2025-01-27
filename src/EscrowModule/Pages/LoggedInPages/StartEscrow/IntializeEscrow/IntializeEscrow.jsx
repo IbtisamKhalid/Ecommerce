@@ -45,6 +45,7 @@ export const SelectComponent = ({ name, control, label, options = [] }) => {
 };
 
 function IntializeEscrow() {
+ 
   const {
     watch,
     errors,
@@ -57,7 +58,7 @@ function IntializeEscrow() {
     selectRoleOption,
     selecCurrencyOption,
   } = useStartEscrow();
-  
+
   const Price = watch("Price");
   // const MyRole = watch("MyRole");
   // const Currency = watch("Currency");
@@ -66,6 +67,7 @@ function IntializeEscrow() {
   const ItemDescription = watch("ItemDescription");
   const TransactionTitle = watch("TransactionTitle");
   const InspectionPeriod = watch("InspectionPeriod");
+
 
   return (
     <>
@@ -220,7 +222,7 @@ function IntializeEscrow() {
                   <Grid item size={{ xs: 12, sm: 6 }} xs={6}>
                     <TextField
                       variant="outlined"
-                      label="Price in $"
+                      label="Price"
                       fullWidth
                       defaultValue="0"
                       {...register("Price", {

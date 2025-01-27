@@ -18,7 +18,8 @@ import DeleteIcon from "@mui/icons-material/Delete";
 import { Colors } from "../../../../Theme/Theme";
 import useInputGathering from "./hooks/useInputGathering";
 
-function InputGathering({ forContract }) {
+
+function InputGathering({ item, forContract, addingTerms }) {
   const {
     terms,
     addTerm,
@@ -27,7 +28,6 @@ function InputGathering({ forContract }) {
     containerRef,
     deleteTerm,
     handleEnterKeyPress,
-    navigate,
     attachments,
     isDialogOpen,
     setDialogOpen,
@@ -35,11 +35,11 @@ function InputGathering({ forContract }) {
     removeAttachment,
     heading,
     description,
-    navigateTO,
     label,
     isContract,
-  } = useInputGathering({ forContract });
-
+    handleSave,
+  } = useInputGathering({ item, forContract, addingTerms });
+console.log("Item in input fathering?",item);
   return (
     <>
       <Box
@@ -251,7 +251,7 @@ function InputGathering({ forContract }) {
                       borderRadius: "4px",
                       fontSize: "0.875rem",
                     }}
-                    onClick={() => navigate(navigateTO)}
+                    onClick={handleSave}
                   >
                     Save
                   </Typography>
