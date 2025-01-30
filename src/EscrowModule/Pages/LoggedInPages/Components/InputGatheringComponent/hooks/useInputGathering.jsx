@@ -41,8 +41,8 @@ function useInputGathering({ item, forContract, addingTerms }) {
     ? "Add the terms and conditions that will be upheld by both parties to ensure no issues occur when the transaction is done."
     : "Provide the necessary information about the dispute, including details that will help in resolution.";
   const navigateTO = isContract
-    ? "/LoggedIn/EscrowHistory"
-    : "/LoggedIn/EscrowDisputes";
+    ? `/LoggedIn/Escrowdetails/${item.id}`
+    : `/LoggedIn/disputedetails/${item.id}`;
   const label = isContract ? "Terms" : "Dispute Details";
 
   const deleteTerm = (index) => {
@@ -113,18 +113,17 @@ function useInputGathering({ item, forContract, addingTerms }) {
       console.log("New transaction:", transaction);
     }
 
-    navigate(navigateTO);
+    navigate(navigateTO, { state: { item } });
   };
+
   const disputeHandling = () => {
     // Find the escrow history object that matches the item's id
     const updatedHistory = escrowHistory.map((transaction) => {
       if (transaction.id === item.id) {
         // Add entered terms to the disputeDetails and set dispute to true
         const updatedDisputeDetails = [
-          // ...transaction.disputeDetails,
-          ...terms, // Append new terms to existing dispute details
+          terms,
         ];
-
         return {
           ...transaction,
           dispute: true, // Mark as disputed
@@ -144,7 +143,7 @@ function useInputGathering({ item, forContract, addingTerms }) {
     console.log("Updated escrow history with dispute details:", updatedHistory);
     console.log("Updated item with dispute details:", item);
 
-    navigate(navigateTO); // Navigate to the appropriate page
+    navigate(navigateTO, { state: { item } }); // Navigate to the appropriate page
   };
 
   const handleSave = () => {

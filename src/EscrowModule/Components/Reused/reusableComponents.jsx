@@ -13,7 +13,7 @@ import React from "react";
 import "./reusableComponents.css";
 import PropTypes from "prop-types";
 import Grid from "@mui/material/Grid2";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Colors, Fonts } from "../../Theme/Theme";
 
 //Escrow Method Imports
@@ -38,6 +38,8 @@ import Milestone from "../../EscrowAssets/Icon-06-05.png";
 import Electronic from "../../EscrowAssets/Icon-06-03.png";
 import Merchandise from "../../EscrowAssets/Icon-06-04.png";
 import useReusableComponent from "./hooks/useReusableComponent";
+
+import { IsUserLoggedIn } from "../../EscrowContext/Hooks/useEscrowContext";
 
 export function SubMenuNavComponent({ data }) {
   return (
@@ -120,14 +122,22 @@ export function SubMenuNavComponent({ data }) {
 }
 export const GetStartedButton = ({
   additionalStyles = {},
-  Link = "",
+  item = "",
   Text = "Get Started Now",
 }) => {
+  const { isUserLoggedIn, setIsUserLoggedIn } =
+    React.useContext(IsUserLoggedIn);
+  const navigate = useNavigate();
+  const handleGetStarted = () => {
+    if (isUserLoggedIn) {
+      navigate("/startescrow");
+    } else {
+      navigate("/signin");
+    }
+  };
   return (
     <>
       <Button
-        component={Link}
-        to={Link}
         variant="primary"
         sx={{
           p: "0.8rem",
@@ -139,6 +149,7 @@ export const GetStartedButton = ({
           },
           ...additionalStyles,
         }}
+        onClick={handleGetStarted}
       >
         {Text}
       </Button>
@@ -154,7 +165,9 @@ SubMenuNavComponent.propTypes = {
   ).isRequired,
 };
 export const BarTypography = ({ Text = "I'm", additionalStyles = {} }) => (
-  <Typography sx={{ color: Colors.secondaryColor, ...additionalStyles ,mr:"0.5rem"}}>
+  <Typography
+    sx={{ color: Colors.secondaryColor, ...additionalStyles, mr: "0.5rem" }}
+  >
     {Text}
   </Typography>
 );
@@ -286,7 +299,7 @@ export function StartHome() {
             flex: 1,
             color: "white",
             animation: "slideFromLeft 1s ease-out",
-            fontStretch:"extra-expanded"
+            fontStretch: "extra-expanded",
           }}
         >
           <Typography
