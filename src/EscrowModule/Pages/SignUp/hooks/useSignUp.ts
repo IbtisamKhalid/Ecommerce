@@ -1,6 +1,6 @@
 import React from "react";
 
-function useSignUp() {
+function useSignUp({isEscrow,role}) {
   const [emailError, setEmailError] = React.useState(false);
   const [emailErrorMessage, setEmailErrorMessage] = React.useState("");
   const [passwordError, setPasswordError] = React.useState(false);
@@ -45,19 +45,37 @@ function useSignUp() {
     return isValid;
   };
 
-  const handleSubmit = (event) => {
-    if (nameError || emailError || passwordError) {
-      event.preventDefault();
-      return;
-    }
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    if (!validateInputs()) return;
+  
     const data = new FormData(event.currentTarget);
-    console.log({
+    const userData = {
       name: data.get("name"),
-      lastName: data.get("lastName"),
       email: data.get("email"),
       password: data.get("password"),
-    });
+      role: role,
+    };
+  
+    try {
+      const response = await fetch("http://localhost:5000/api/register", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(userData),
+      });
+  
+      const result = await response.json();
+      if (response.ok) {
+        alert("User registered successfully!");
+      } else {
+        alert(result.message);
+      }
+    } catch (error) {
+      console.error("Error:", error);
+      alert("Failed to register user.");
+    }
   };
+  
 
   return {
     handleSubmit,

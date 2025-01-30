@@ -15,6 +15,8 @@ const ProductCard = ({
   price,
   subHeading,
   stars,
+  width,
+  height
 }) => {
   const [img, setImg] = useState(image);
   const [wishIcon, setWishIcon] = useState(wish);
@@ -25,7 +27,7 @@ const ProductCard = ({
       sx={{
         bgcolor: "white",
         width: "100%",
-        height: "390px",
+        height: height || "390px",
         borderRadius: "10px",
         position: "relative",
         overflow: "hidden",
@@ -141,7 +143,7 @@ const ProductCard = ({
           src={img}
           alt="Product"
           style={{
-            width: "250px",
+            width: width || "250px",
             borderRadius: "10px",
           }}
         />

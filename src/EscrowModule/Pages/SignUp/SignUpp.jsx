@@ -1,26 +1,27 @@
 import {
-  Box,
-  Button,
-  Checkbox,
-  Divider,
-  FormLabel,
-  FormControl,
-  FormControlLabel,
-  Link,
   TextField,
+  FormControl,
+  FormLabel,
+  Button,
   Typography,
+  Box,
+  Divider,
+  Checkbox,
+  FormControlLabel,
+  Select,
+  MenuItem,
+  InputAdornment,
 } from "@mui/material";
-import * as React from 'react';
-import useSignUp from './hooks/useSignUp.ts';
-import AppTheme from '../shared-theme/AppTheme';
+import * as React from "react";
+import useSignUp from "./hooks/useSignUp.ts";
+import AppTheme from "../shared-theme/AppTheme";
 import { GoogleLogin } from "@react-oauth/google";
-import CssBaseline from '@mui/material/CssBaseline';
-import { GoogleIcon, FacebookIcon } from './CustomIcons.jsx';
+import CssBaseline from "@mui/material/CssBaseline";
+import { GoogleIcon, FacebookIcon } from "./CustomIcons.jsx";
 import { Card, SignUpContainer } from "../../../constants/SignUpConstants";
-
-
-
-export default function SignUp(props) {
+import Link from "@mui/material/Link";
+export default function SignUp({isEscrow}) {
+  const [role, setRole] = React.useState("");
   const {
     handleSubmit,
     validateInputs,
@@ -30,25 +31,27 @@ export default function SignUp(props) {
     passwordErrorMessage,
     emailError,
     emailErrorMessage,
-  } = useSignUp()
+  } = useSignUp({isEscrow,role});
+
+
   return (
-    <AppTheme {...props}>
+    <AppTheme>
       <CssBaseline enableColorScheme />
       <SignUpContainer direction="column" justifyContent="space-between">
         <Card variant="outlined">
           <Typography
             component="h1"
             variant="h4"
-            sx={{ width: '100%', fontSize: 'clamp(2rem, 10vw, 2.15rem)' }}
+            sx={{ width: "100%", fontSize: "clamp(2rem, 10vw, 2.15rem)" }}
           >
             Sign up
           </Typography>
           <Box
             component="form"
             onSubmit={handleSubmit}
-            sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}
+            sx={{ display: "flex", flexDirection: "column", gap: 2 }}
           >
-            <FormControl>
+            <FormControl sx={{ display: "flex" }}>
               <FormLabel htmlFor="name">Full name</FormLabel>
               <TextField
                 autoComplete="name"
@@ -59,7 +62,7 @@ export default function SignUp(props) {
                 placeholder="Jon Snow"
                 error={nameError}
                 helperText={nameErrorMessage}
-                color={nameError ? 'error' : 'primary'}
+                color={nameError ? "error" : "primary"}
               />
             </FormControl>
             <FormControl>
@@ -74,7 +77,7 @@ export default function SignUp(props) {
                 variant="outlined"
                 error={emailError}
                 helperText={emailErrorMessage}
-                color={passwordError ? 'error' : 'primary'}
+                color={passwordError ? "error" : "primary"}
               />
             </FormControl>
             <FormControl>
@@ -90,9 +93,29 @@ export default function SignUp(props) {
                 variant="outlined"
                 error={passwordError}
                 helperText={passwordErrorMessage}
-                color={passwordError ? 'error' : 'primary'}
+                color={passwordError ? "error" : "primary"}
               />
             </FormControl>
+            <FormControl>
+              <FormLabel htmlFor="role">Role</FormLabel>
+              <Select
+                id="role"
+                name="role"
+                required
+                fullWidth
+                value={role}
+                onChange={(e) => setRole(e.target.value)}
+                sx={{
+                  "& .MuiSelect-icon": {
+                    display: "none",
+                  },
+                }}
+              >
+                <MenuItem value="Buyer">Buyer</MenuItem>
+                <MenuItem value="Seller">Seller</MenuItem>
+              </Select>
+            </FormControl>
+
             <FormControlLabel
               control={<Checkbox value="allowExtraEmails" color="primary" />}
               label="I want to receive updates via email."
@@ -107,31 +130,47 @@ export default function SignUp(props) {
             </Button>
           </Box>
           <Divider>
-            <Typography sx={{ color: 'text.secondary' }}>or</Typography>
+            <Typography sx={{ color: "text.secondary" }}>or</Typography>
           </Divider>
-          <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2 }}>
+          <Box sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
             <Button
               fullWidth
               variant="outlined"
-              onClick={() => alert('Sign up with Google')}
+              onClick={() => <GoogleLogin
+                onSuccess={async (credentialResponse) => {
+                  const { credential } = credentialResponse;
+                  try {
+                    const response = await fetch("http://localhost:5000/api/google-signup", {
+                      method: "POST",
+                      headers: { "Content-Type": "application/json" },
+                      body: JSON.stringify({ token: credential }),
+                    });
+              
+                    const result = await response.json();
+                    if (response.ok) {
+                      alert("Google signup successful!");
+                    } else {
+                      alert(result.message);
+                    }
+                  } catch (error) {
+                    console.error("Error:", error);
+                    alert("Google signup failed.");
+                  }
+                }}
+                onError={() => alert("Google signup failed.")}
+              />
+              }
               startIcon={<GoogleIcon />}
             >
               Sign up with Google
             </Button>
-            <Button
-              fullWidth
-              variant="outlined"
-              onClick={() => alert('Sign up with Facebook')}
-              startIcon={<FacebookIcon />}
-            >
-              Sign up with Facebook
-            </Button>
-            <Typography sx={{ textAlign: 'center' }}>
-              Already have an account?{' '}
+
+            <Typography sx={{ textAlign: "center" }}>
+              Already have an account?{" "}
               <Link
                 href="/material-ui/getting-started/templates/sign-in/"
                 variant="body2"
-                sx={{ alignSelf: 'center' }}
+                sx={{ alignSelf: "center" }}
               >
                 Sign in
               </Link>

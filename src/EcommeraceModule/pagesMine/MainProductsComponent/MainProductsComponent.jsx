@@ -9,7 +9,7 @@ import { Grid2 as Grid } from "@mui/material";
 function MainProductsComponent() {
   return (
     <>
-      <Grid container spacing={2} >
+      <Grid container spacing={2}>
         <Grid item size={3}>
           <MainProductCard
             image={watch}
