@@ -1,6 +1,9 @@
 import React from "react";
+import { useGoogleLogin } from "@react-oauth/google";
+import { useNavigate } from "react-router-dom";
 
-function useSignUp({isEscrow,role}) {
+function useSignUp({ isEscrow, role }) {
+  const navigate = useNavigate();
   const [emailError, setEmailError] = React.useState(false);
   const [emailErrorMessage, setEmailErrorMessage] = React.useState("");
   const [passwordError, setPasswordError] = React.useState(false);
@@ -48,34 +51,76 @@ function useSignUp({isEscrow,role}) {
   const handleSubmit = async (event) => {
     event.preventDefault();
     if (!validateInputs()) return;
-  
+
     const data = new FormData(event.currentTarget);
     const userData = {
       name: data.get("name"),
       email: data.get("email"),
       password: data.get("password"),
       role: role,
+      address: "Some Default Address", // Add this
+      phone: "1234567890", // Add this
     };
-  
+
     try {
-      const response = await fetch("http://localhost:5000/api/register", {
+      const response = await fetch("http://localhost:5000/api/auth/register", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(userData),
       });
-  
+
       const result = await response.json();
       if (response.ok) {
         alert("User registered successfully!");
       } else {
-        alert(result.message);
+        console.log("Msg Is ", result.message || result.error);  // Handle both 'message' and 'error'
       }
     } catch (error) {
       console.error("Error:", error);
       alert("Failed to register user.");
     }
   };
-  
+
+
+  // const handleGoogleSignup = async (credential) => {
+  //   console.log("Sending token to backend:", credential);  // Add this log to verify the token
+  //   try {
+  //     const response = await fetch("http://localhost:5000/api/auth/google-signup", {
+  //       method: "POST",
+  //       headers: { "Content-Type": "application/json" },
+  //       body: JSON.stringify({ token: credential }), // This is where the token is sent
+  //     });
+
+  //     const result = await response.json();
+  //     if (response.ok) {
+  //       alert("Google signup successful!");
+  //     } else {
+  //       alert(result.message);
+  //     }
+  //   } catch (error) {
+  //     console.error("Error:", error);
+  //     alert("Google signup failed.");
+  //   }
+  // };
+
+  // const googleLogin = useGoogleLogin({
+  //   onSuccess: (tokenResponse) => {
+  //     console.log("Token Response:", tokenResponse); // Check the response
+
+  //     // Use the access_token instead of credential
+  //     const accessToken = tokenResponse?.access_token;
+
+  //     if (accessToken) {
+  //       navigate("/loggedin/escrowhistory");
+  //       handleGoogleSignup(accessToken); // Pass the access token to your signup handler
+  //     } else {
+  //       console.error("Google login failed: No access_token found.");
+  //     }
+  //   },
+  //   onError: () => {
+  //     alert("Google signup failed.");
+  //   },
+  // });
 
   return {
     handleSubmit,
@@ -86,6 +131,7 @@ function useSignUp({isEscrow,role}) {
     passwordErrorMessage,
     emailError,
     emailErrorMessage,
+    // googleLogin,
   };
 }
 

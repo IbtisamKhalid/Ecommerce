@@ -20,7 +20,11 @@ import CssBaseline from "@mui/material/CssBaseline";
 import { GoogleIcon, FacebookIcon } from "./CustomIcons.jsx";
 import { Card, SignUpContainer } from "../../../constants/SignUpConstants";
 import Link from "@mui/material/Link";
-export default function SignUp({isEscrow}) {
+import { useState } from "react";
+
+export default function SignUp({ isEscrow }) {
+ 
+
   const [role, setRole] = React.useState("");
   const {
     handleSubmit,
@@ -31,8 +35,8 @@ export default function SignUp({isEscrow}) {
     passwordErrorMessage,
     emailError,
     emailErrorMessage,
-  } = useSignUp({isEscrow,role});
-
+    // googleLogin
+  } = useSignUp({ isEscrow, role });
 
   return (
     <AppTheme>
@@ -136,34 +140,14 @@ export default function SignUp({isEscrow}) {
             <Button
               fullWidth
               variant="outlined"
-              onClick={() => <GoogleLogin
-                onSuccess={async (credentialResponse) => {
-                  const { credential } = credentialResponse;
-                  try {
-                    const response = await fetch("http://localhost:5000/api/google-signup", {
-                      method: "POST",
-                      headers: { "Content-Type": "application/json" },
-                      body: JSON.stringify({ token: credential }),
-                    });
-              
-                    const result = await response.json();
-                    if (response.ok) {
-                      alert("Google signup successful!");
-                    } else {
-                      alert(result.message);
-                    }
-                  } catch (error) {
-                    console.error("Error:", error);
-                    alert("Google signup failed.");
-                  }
-                }}
-                onError={() => alert("Google signup failed.")}
-              />
-              }
+              // onClick={googleLogin} // Show Google login when clicked
               startIcon={<GoogleIcon />}
             >
               Sign up with Google
             </Button>
+
+            {/* Google Login component is conditionally rendered */}
+          
 
             <Typography sx={{ textAlign: "center" }}>
               Already have an account?{" "}
