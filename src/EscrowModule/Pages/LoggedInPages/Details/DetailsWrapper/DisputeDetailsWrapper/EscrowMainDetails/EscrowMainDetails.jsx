@@ -212,15 +212,6 @@ function EscrowMainDetails() {
         >
           Item Details{" "}
         </Typography>
-        <Box
-          sx={{
-            display: "flex",
-            justifyContent: "space-between",
-            // p: "0.5rem 0 1.5rem 0",
-          }}
-        >
-          
-        </Box>
         <Typography
           variant="body1"
           sx={{

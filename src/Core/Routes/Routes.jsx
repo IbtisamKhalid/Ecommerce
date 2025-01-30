@@ -6,7 +6,7 @@ import {
   LayoutStore,
   HomeStore,
   ContactMe,
-} from "../../EcommeraceModule/pages";
+} from "../../EcommeraceModule/pagesMine";
 import {
   Layout,
   HomeEscrow,
@@ -72,18 +72,6 @@ function Routes() {
               </Route>
             </>
           )}
-
-          <Route path="*" element={<Home />} />
-          <Route path="/" element={<Home />} />
-          <Route path="/store" element={<LayoutStore />}>
-            <Route index element={<HomeStore />} />
-          </Route>
-          <Route path="/escrow" element={<LayoutEscrow />}>
-            <Route index element={<HomeEscrow />} />
-          </Route>
-          <Route path="SignIn" element={<SignIn />} />
-          <Route path="SignUp" element={<SignUP />} />
-          {/* <Route path="/Contract" element={<MakeContracts />} /> */}
           <Route path="/queries" element={<Layout />}>
             <Route path="About" element={<About />} />
             <Route path="Careers" element={<Careers />} />
@@ -95,6 +83,17 @@ function Routes() {
             <Route path="Help" element={<Help />} />
             <Route path="SupportCenter" element={<SupportCenter />} />
           </Route>
+          <Route path="*" element={<Home />} />
+          <Route path="/" element={<Home />} />
+          <Route path="/store" element={<LayoutStore />}>
+            <Route index element={<HomeStore />} />
+          </Route>
+          <Route path="/escrow" element={<LayoutEscrow />}>
+            <Route index element={<HomeEscrow />} />
+          </Route>
+          <Route path="SignIn" element={<SignIn />} />
+          <Route path="SignUp" element={<SignUP />} />
+          {/* <Route path="/Contract" element={<MakeContracts />} /> */}
         </ReactRoutes>
       </BrowserRouter>
     </>

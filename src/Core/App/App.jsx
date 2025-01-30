@@ -1,4 +1,5 @@
 import Routes from "../Routes/Routes";
+// import Index from "../../EcommeraceModule/Index";
 import { EscrowProvider } from "../../EscrowModule/EscrowContext/EscrowContext";
 function App() {
   return (
@@ -6,6 +7,7 @@ function App() {
       <EscrowProvider>
         <Routes />
       </EscrowProvider>
+        {/* <Index /> */}
     </>
   );
 }
