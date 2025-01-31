@@ -160,74 +160,24 @@
   
   /* Home Page Starts From here  */
   
-  .main-banner img {
-    height: auto;
-    width: 100%;
-  }
-  .main-banner-content {
-    /* position:relative; */
-    top: 15%;
-    left: 10%;
-  }
-  .main-banner-content h5 {
-    font-size: 16px;
-    font-weight: 400;
-    line-height: 24px;
-    color: var(--color-bf4800);
-    margin: 0 0 12px;
-    letter-spacing: 0.3px;
-  }
-  
-  .main-banner-content h3 {
-    font-size: 52px;
-    line-height: 64px;
-    letter-spacing: -2px;
-    font-weight: 500;
-    text-transform: none;
-  }
-  .main-banner-content p {
-    font-size: 16px;
-    line-height: 28px;
-    letter-spacing: 0.4px;
-    margin: 0 0 36px;
-    color: var(--color-131921);
-  }
+
   
   /* */
   
-  .small-banner img {
-    width: 100%;
-    /* width:100%; */
-    height: auto;
-  }
+
   
   .small-banner-content {
-    top: 15%;
-    left: 10%;
+
   }
   .small-banner-content h5 {
-    font-size: 12px;
-    line-height: 16px;
-    color: var(--color-bf4800);
-    margin: 0 0 12px;
-    letter-spacing: 0.3px;
+
   }
   
   .small-banner-content h3 {
-    font-size: 19px;
-    margin: 5px 0 7px;
-    letter-spacing: 0px;
-    line-height: 32px;
-    font-weight: 500;
-    text-transform: none;
+
   }
   .small-banner-content p {
-    font-size: 12px;
-    line-height: 18px;
-  width: 64%;
-    letter-spacing: 0.2px;
-    margin: 0 0 36px;
-    color: var(--color-131921);
+
   }
   
   /* section2 starts from here  */

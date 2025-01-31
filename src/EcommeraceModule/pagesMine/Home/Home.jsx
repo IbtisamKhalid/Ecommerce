@@ -41,8 +41,6 @@ const pictures = [
     desc: "From $999.00 or $41.62/mo. <br /> for 24 mo.",
     lineebreak: "",
   },
-];
-const pictures2 = [
   {
     picture: fourth,
     subHeading: "SUPERCHARGED FOR PROS.",
@@ -58,6 +56,7 @@ const pictures2 = [
     lineebreak: "",
   },
 ];
+const pictures2 = [];
 const sectionPics1 = [
   {
     Heading: "Camera & Videos",
@@ -107,85 +106,121 @@ function Home() {
   return (
     <>
       {/* Main Pictures Section */}
-      <section className="home-wrapper-1 py-5">
-        <Box className="container-xxl">
-          <Box className="row overflow-hidden">
-            <Box className="col-6 p-0 m-0">
-              <Box className="main-banner position-relative p-2">
-                <img
-                  src={first}
-                  className="image-fluid rounded-3 "
-                  alt="main banner"
-                />
-                <Box className="main-banner-content position-absolute">
-                  <h5>SUPERCHARGED FOR PROS.</h5>
-                  <h3>IPAD S13+ Pro.</h3>
-                  <p>
-                    From $999.00 or $41.62/mo. <br /> for 24 mo. Footnote*
-                  </p>
-                  <Link className="button a">BUY NOW</Link>
-                </Box>
-              </Box>
-            </Box>
+      <section>
+        <Box display={{xs:"block",md:"flex"}} sx={{ margin: "2rem 2rem 0" ,gap:2}}>
+          <Box sx={{ position: "relative", flexBasis: "50%" }}>
+            <img
+              src={first}
+              className="image-fluid rounded-3"
+              alt="main banner"
+              style={{ height: "100%", width: "100%" }}
+            />
+            <Box position={"absolute"} sx={{ top: "15%", left: "10%" }}>
+              <Typography
+                sx={{
+                  fontSize: "15px",
+                  fontWeight: 400,
+                  lineHeight: "24px",
+                  color: "#bf4800", // Using CSS variable syntax
+                  margin: "0 0 0.3rem",
+                  letterSpacing: "0.3px",
+                }}
+              >
+                SUPERCHARGED FOR PROS.
+              </Typography>
 
-            <Box className="col-3 p-0">
-              <Box className="d-flex flex-wrap justify-content-between align-items-center ">
-                {pictures.map((value, index) => {
-                  return (
-                    <Box
-                      key={index}
-                      className="small-banner position-relative p-2"
-                    >
-                      <img
-                        src={value.picture}
-                        className="image-fluid rounded-4"
-                        alt="main banner"
-                      />
+              <Typography
+                sx={{
+                  fontSize: "42px",
+                  lineHeight: "64px",
+                  letterSpacing: "-2px",
+                  fontWeight: 500,
+                  textTransform: "none",
+                }}
+              >
+                IPAD S13+ Pro.
+              </Typography>
 
-                      <Box className="small-banner-content position-absolute">
-                        <h5>{value.subHeading}</h5>
-                        <h3>{value.mainHeading}</h3>
-                        <p>{value.desc}</p>
-                        {/* {console.log(value.subHeading)} */}
-                      </Box>
-                    </Box>
-                  );
-                })}
-              </Box>
-            </Box>
-            <Box className="col-3 p-0">
-              <Box className="d-flex flex-wrap justify-content-between align-items-center ">
-                {pictures2.map((value, index) => {
-                  return (
-                    <Box
-                      key={index}
-                      className="small-banner position-relative p-2"
-                    >
-                      <img
-                        src={value.picture}
-                        className="image-fluid rounded-4"
-                        alt="main banner"
-                      />
+              <Typography
+                sx={{
+                  fontSize: "16px",
+                  lineHeight: "28px",
+                  letterSpacing: "0.4px",
+                  margin: "0 0 36px",
+                  color: "#131921", // Using CSS variable syntax
+                }}
+              >
+                From $999.00 or $41.62/mo. <br /> for 24 mo. Footnote*
+              </Typography>
 
-                      <Box className="small-banner-content position-absolute">
-                        <h5>{value.subHeading}</h5>
-                        <h3>{value.mainHeading}</h3>
-                        <p>{value.desc}</p>
-                      </Box>
-                    </Box>
-                  );
-                })}
-              </Box>
+              <Link className="button a">BUY NOW</Link>
             </Box>
           </Box>
+          <Grid
+            container
+            spacing={2}
+            sx={{ margin: "0 0", flexBasis: "50%" }}
+          >
+            {pictures.map((value, index) => {
+              return (
+                <Grid key={index} item sx={{ position: "relative" }} size={6}>
+                  <img
+                    src={value.picture}
+                    alt="main banner "
+                    className="rounded-3"
+                    style={{ height: "100%", width: "100%" }}
+                  />
+
+                  <Box
+                    className="small-banner-content "
+                    sx={{ position: "absolute", top: "15%", left: "10%" }}
+                  >
+                    <Typography
+                      sx={{
+                        fontSize: "12px",
+                        lineHeight: "16px",
+                        margin: "0 0 12px",
+                        letterSpacing: "0.3px",
+                        color: "#bf4800",
+                      }}
+                    >
+                      {value.subHeading}
+                    </Typography>
+
+                    <Typography
+                      sx={{
+                        fontSize: "19px",
+                        margin: "5px 0 7px",
+                        letterSpacing: "0px",
+                        lineHeight: "32px",
+                        fontWeight: 500,
+                        textTransform: "none",
+                      }}
+                    >
+                      {value.mainHeading}
+                    </Typography>
+
+                    <Typography
+                      sx={{
+                        fontSize: "12px",
+                        lineHeight: "18px",
+                        width: "64%",
+                        letterSpacing: "0.2px",
+                        margin: "0 0 36px",
+                        color: "#131921",
+                      }}
+                    >
+                      {value.desc}
+                    </Typography>
+                  </Box>
+                </Grid>
+              );
+            })}
+          </Grid>
         </Box>
       </section>
 
       <Box sx={{ backgroundColor: "#f5f5f7" }}>
-        
-        
-        
-        
         {/* Advantages */}
         <section className="home-wrapper-2" style={{ padding: "3rem 2rem " }}>
           <Box>
@@ -193,7 +228,12 @@ function Home() {
               <Grid
                 item
                 size={{ xs: 3, sm: 6, md: 3 }}
-                sx={{ display: "flex", gap: 2, alignItems: "center" }}
+                sx={{
+                  xs: { display: "flex" },
+                  md: "block",
+                  gap: 2,
+                  alignItems: "center",
+                }}
               >
                 <img
                   src={sixth}
@@ -212,7 +252,11 @@ function Home() {
               <Grid
                 item
                 size={{ xs: 3, sm: 6, md: 3 }}
-                sx={{ display: "flex", gap: 2, alignItems: "center" }}
+                sx={{
+                  display: { xs: "block", md: "flex" },
+                  gap: 2,
+                  alignItems: "center",
+                }}
               >
                 <img
                   src={seventh}
@@ -250,7 +294,11 @@ function Home() {
               <Grid
                 item
                 size={{ xs: 3, sm: 6, md: 3 }}
-                sx={{ display: "flex", gap: 2, alignItems: "center" }}
+                sx={{
+                  display: { xs: "block", md: "flex" },
+                  gap: 2,
+                  alignItems: "center",
+                }}
               >
                 <img
                   src={ninth}
@@ -269,7 +317,11 @@ function Home() {
               <Grid
                 item
                 size={{ xs: 3, sm: 6, md: 3 }}
-                sx={{ display: "flex", gap: 2, alignItems: "center" }}
+                sx={{
+                  display: { xs: "flex", md: "block" },
+                  gap: 2,
+                  alignItems: "center",
+                }}
               >
                 <img
                   src={tenth}
@@ -288,8 +340,7 @@ function Home() {
             </Grid>
           </Box>
         </section>
-        
-        
+
         {/* Categories Link */}
         <section style={{ pb: 5 }}>
           <Box
@@ -406,28 +457,28 @@ function Home() {
             <FeaturedCollectionComponent />
           </Box>
         </section>
-        
+
         {/* Main Products Collection */}
         <section>
           <Box>
             <MainProductsComponent />
           </Box>
         </section>
-        
+
         {/* Recomended Products Collection */}
         <section>
           <Box>
             <LogoSliderComponent />
           </Box>
         </section>
-        
+
         {/* Special Products Collection */}
         <section>
           <Box>
             <SpecialProduct />
           </Box>
         </section>
-        
+
         {/* Recomended Products Collection */}
         <section>
           <Box>

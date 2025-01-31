@@ -1,6 +1,5 @@
 export { default as StartEscrow } from "./StartEscrow/StartEscrow/StartEscrow.jsx";
 export { default as MakeContracts } from "./StartEscrow/MakeContracts/MakeContracts.jsx";
-export { default as UserDashboard } from "./UserDashboard/UserDashboard";
 export { default as LoggedInLayout } from "./LoggedInLayout/LoggedInLayout";
 export { default as EscrowHistory } from "./EscrowHistory/EscrowHistory.jsx";
 export { default as EscrowDisputes } from "./DIsputeModule/EscrowDisputesComponent/EscrowDisputes.jsx";

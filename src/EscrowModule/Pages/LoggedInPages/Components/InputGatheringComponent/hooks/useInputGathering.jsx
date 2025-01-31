@@ -41,8 +41,8 @@ function useInputGathering({ item, forContract, addingTerms }) {
     ? "Add the terms and conditions that will be upheld by both parties to ensure no issues occur when the transaction is done."
     : "Provide the necessary information about the dispute, including details that will help in resolution.";
   const navigateTO = isContract
-    ? `/LoggedIn/Escrowdetails/${item.id}`
-    : `/LoggedIn/disputedetails/${item.id}`;
+    ? `/LoggedIn/Escrowdetails`
+    : `/LoggedIn/disputedetails`;
   const label = isContract ? "Terms" : "Dispute Details";
 
   const deleteTerm = (index) => {
@@ -121,9 +121,7 @@ function useInputGathering({ item, forContract, addingTerms }) {
     const updatedHistory = escrowHistory.map((transaction) => {
       if (transaction.id === item.id) {
         // Add entered terms to the disputeDetails and set dispute to true
-        const updatedDisputeDetails = [
-          terms,
-        ];
+        const updatedDisputeDetails = [terms];
         return {
           ...transaction,
           dispute: true, // Mark as disputed

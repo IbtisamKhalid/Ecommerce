@@ -15,7 +15,6 @@ import {
   SignUP,
 } from "../../EscrowModule/Pages";
 import {
-  UserDashboard,
   StartEscrow,
   LoggedInLayout,
   EscrowHistory,
@@ -56,17 +55,16 @@ function Routes() {
               <Route path="/Payment" element={<PaymentContainer />} />
               <Route path="/FileDispute" element={<FileDispute />} />
               <Route path="/LoggedIn" element={<LoggedInLayout />}>
-                <Route path="UserDashboard" element={<UserDashboard />} />
                 <Route path="EscrowHistory" element={<EscrowHistory />} />
                 <Route path="EscrowDisputes" element={<EscrowDisputes />} />
                 <Route path="EscrowPayments" element={<EscrowPayments />} />
                 <Route path="ProfileSetting" element={<ProfileSetting />} />
                 <Route
-                  path="escrowdetails/:id"
+                  path="escrowdetails"
                   element={<EscrowDetailsWrapper />}
                 />
                 <Route
-                  path="disputedetails/:id"
+                  path="disputedetails"
                   element={<DisputeDetailsWrapper />}
                 />
               </Route>
