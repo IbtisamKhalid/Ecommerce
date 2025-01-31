@@ -18,12 +18,7 @@ import Mobile from "../../../StoreAssets/img/sp3.png";
 import Laptop from "../../../StoreAssets/img/sp2.png";
 
 import CustomTabsPanel from "./CustomTabsPanel/CustomTabsPanel";
-import AccountCircleIcon from "@mui/icons-material/AccountCircle";
-import LockIcon from "@mui/icons-material/Lock";
-import HomeIcon from "@mui/icons-material/Home";
-import SecurityIcon from "@mui/icons-material/Security";
-import NotificationsIcon from "@mui/icons-material/Notifications";
-import { Colors, Fonts } from "../../../../EscrowModule/Theme/Theme";
+
 
 function TabsPanel({ tabsName = [], tableName, status }) {
   const [value, setValaue] = useState(0);
@@ -32,6 +27,7 @@ function TabsPanel({ tabsName = [], tableName, status }) {
   // Use media query to detect screen size
   const at800 = useMediaQuery("(max-width: 800px)");
   const at900 = useMediaQuery("(max-width: 900px)");
+  const at1200 = useMediaQuery("(max-width: 1200px)");
 
   const handleTabChange = (event, newValue) => {
     setValaue(newValue);
@@ -74,7 +70,7 @@ function TabsPanel({ tabsName = [], tableName, status }) {
         <Box
           sx={{
             display: "flex",
-            flexDirection: at800 ? "column" : "row",
+            flexDirection: at1200 ? "column" : "row",
             width: "100%",
             height: "100%",
             borderRadius: "8px",
@@ -86,8 +82,8 @@ function TabsPanel({ tabsName = [], tableName, status }) {
           <Tabs
             value={value}
             onChange={handleTabChange}
-            orientation={at800 ? "horizontal" : "vertical"}
-            variant={at800 ? "fullWidth" : "standard"}
+            orientation={at1200 ? "horizontal" : "vertical"}
+            variant={at900 ? "fullWidth" : "standard"}
             sx={{
               borderRadius: "20px",
               bgcolor: "white",
@@ -108,13 +104,13 @@ function TabsPanel({ tabsName = [], tableName, status }) {
                     sx={{
                       display: "flex",
                       alignItems: "center",
-                      justifyContent: "flex-start",
+                      justifyContent: at800 ? "center": "flex-start",
                       gap: "8px",
                       width: "100%",
                       textAlign: "left",
                       p: "0.5rem 1rem 0.5rem 0.5rem", // Reduce extra padding
                       whiteSpace: "nowrap", // Prevents text from breaking into two lines
-                      overflow: "hidden",
+                      // overflow: "hidden",
                       textOverflow: "ellipsis", // Add ellipsis if text overflows
                     }}
                   >
@@ -127,7 +123,7 @@ function TabsPanel({ tabsName = [], tableName, status }) {
                         objectFit: "cover",
                       }}
                     />
-                    {!at900 && (
+                    {!at800 && (
                       <Typography
                         variant="h6"
                         fontSize={14}

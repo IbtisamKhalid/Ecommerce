@@ -13,7 +13,7 @@ function MainProductCard({
       sx={{
         height: "388px",
         position: "relative",
-        m: "3rem 1rem",
+        m: "3rem 0",
         borderRadius: "12px",
         overflow: "hidden",
         "&:hover img": {
@@ -56,8 +56,8 @@ function MainProductCard({
         src={image}
         alt=""
         style={{
-          width: "314px",
-          height: "auto",
+          width: "100%",
+          height: "100%",
           display: "block",
           zIndex: 1,
           borderRadius: "12px",

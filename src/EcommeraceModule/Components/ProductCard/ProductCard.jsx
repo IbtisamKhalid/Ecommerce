@@ -32,6 +32,8 @@ const ProductCard = ({
         position: "relative",
         overflow: "hidden",
         transition: "all 0.3s ease-in-out",
+        justifyItems: "center",
+        textAlign:"left"
       }}
       onMouseEnter={() => {
         setImg(imageonHover);
@@ -149,7 +151,7 @@ const ProductCard = ({
         />
       </Box>
 
-      <Box sx={{ textAlign: "left", padding: "10px 20px" }}>
+      <Box sx={{ textAlign: "left", padding: "10px 30px",width:"100%" }}>
         <Typography
           sx={{ color: C.colorFeaturedCollectionSubHeading, fontSize: "12px" }}
         >

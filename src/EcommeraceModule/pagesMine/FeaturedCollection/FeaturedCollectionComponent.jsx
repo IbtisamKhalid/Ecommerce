@@ -1,5 +1,11 @@
 import React from "react";
-import { Typography, Box, Grid2 as Grid, IconButton } from "@mui/material";
+import {
+  Typography,
+  Box,
+  Grid2 as Grid,
+  IconButton,
+  useMediaQuery,
+} from "@mui/material";
 import ProductCard from "../../Components/ProductCard/ProductCard";
 import camera from "../../StoreAssets/img/camers.jpg";
 import headphone from "../../StoreAssets/img/headphone1.jpg";
@@ -15,9 +21,17 @@ import { ColorsEcommrace as C } from "../../Theme/EcommeraceTheme";
 import RefreshIcon from "@mui/icons-material/Refresh";
 
 function FeaturedCollectionComponent() {
-  
-  const [count, setCount] = React.useState(0)
+  const at1080 = useMediaQuery("(min-width:1080px)");
+  const [count, setCount] = React.useState(0);
+  const [sizeGrid, setSizeGrid] = React.useState(2.4); // Default value is 2.4
 
+  React.useEffect(() => {
+    if (at1080) {
+      setSizeGrid(2.4); // Set to 2.4 when at1080 is false
+    } else {
+      setSizeGrid(3); // Set to 3 when at1080 is true
+    }
+  }, [at1080]);
   const products = [
     {
       id: 1,
@@ -49,8 +63,8 @@ function FeaturedCollectionComponent() {
     {
       id: 4,
       image: tab,
-      heading: "Havells",
-      subHeading: "Tab from Havells",
+      heading: "Tab from Havells",
+      subHeading: "Havells",
       stars: 5,
       price: "$200",
       imageonHover: tabhover,
@@ -101,18 +115,23 @@ function FeaturedCollectionComponent() {
       </Box>
 
       <Grid container spacing={2}>
-        {displayedProducts.map((product) => (
-          <Grid item key={product.id} size={2.4}>
-            <ProductCard
-              image={product.image}
-              heading={product.heading}
-              subHeading={product.subHeading}
-              stars={product.stars}
-              price={product.price}
-              imageonHover={product.imageonHover}
-            />
-          </Grid>
-        ))}
+        {displayedProducts
+          .slice(
+            0,
+            at1080 ? displayedProducts.length : displayedProducts.length - 1
+          ) // Exclude last product if at1080 is true
+          .map((product) => (
+            <Grid item key={product.id} size={{ xs: 6, md: sizeGrid }}>
+              <ProductCard
+                image={product.image}
+                heading={product.heading}
+                subHeading={product.subHeading}
+                stars={product.stars}
+                price={product.price}
+                imageonHover={product.imageonHover}
+              />
+            </Grid>
+          ))}
       </Grid>
     </section>
   );

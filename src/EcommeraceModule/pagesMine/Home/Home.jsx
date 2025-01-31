@@ -1,114 +1,45 @@
-import first from "../../StoreAssets/images/main-banner-1.jpg";
-import second from "../../StoreAssets/images/catbanner-01.jpg";
-import third from "../../StoreAssets/images/catbanner-02.jpg";
-import fourth from "../../StoreAssets/images/catbanner-03.jpg";
-import fifth from "../../StoreAssets/images/catbanner-04.jpg";
-import sixth from "../../StoreAssets/images/service.png";
-import seventh from "../../StoreAssets/images/service-02.png";
-import eighth from "../../StoreAssets/images/service-03.png";
-import ninth from "../../StoreAssets/images/service-04.png";
-import tenth from "../../StoreAssets/images/service-05.png";
-import Camerapic from "../../StoreAssets/img/SpecialProduct2/sp1.jpg";
-import TV from "../../StoreAssets/images/tv.jpg";
-import Speaker from "../../StoreAssets/img/speakerhover.jpg";
-import Watch from "../../StoreAssets/img/watchhovered.jpg";
-import HP from "../../StoreAssets/img/HP.jpg";
-import Console from "../../StoreAssets/img/Console.jpg";
-import Accesories from "../../StoreAssets/img/accesories.jpg";
-import Monitor from "../../StoreAssets/img/SpecialProduct3/sp1.jpg";
-import { Link } from "react-router-dom";
 import "./home.css";
-import { Box, Grid2 as Grid, Typography } from "@mui/material";
-import FeaturedCollectionComponent from "../FeaturedCollection/FeaturedCollectionComponent";
-import MainProductsComponent from "../MainProductsComponent/MainProductsComponent";
-import SpecialProduct from "../SpecialProductComponent/SpecialProduct";
-import RecomendedProduct from "../RecomendedProductComponent/RecomendedProduct";
-import LogoSliderComponent from "../LogoSliderComponent/LogoSliderComponent";
-import { ColorsEcommrace as C } from "../../Theme/EcommeraceTheme";
-
-const pictures = [
-  {
-    picture: second,
-    subHeading: "SUPERCHARGED FOR PROS.",
-    mainHeading: "IPAD S13+ Pro.",
-    desc: "From $999.00 or $41.62/mo. <br /> for 24 mo.",
-    lineebreak: "",
-  },
-  {
-    picture: third,
-    subHeading: "SUPERCHARGED FOR PROS.",
-    mainHeading: "IPAD S13+ Pro.",
-    desc: "From $999.00 or $41.62/mo. <br /> for 24 mo.",
-    lineebreak: "",
-  },
-  {
-    picture: fourth,
-    subHeading: "SUPERCHARGED FOR PROS.",
-    mainHeading: "IPAD S13+ Pro.",
-    desc: "From $999.00 or $41.62/mo. <br /> for 24 mo.",
-    lineebreak: "",
-  },
-  {
-    picture: fifth,
-    subHeading: "SUPERCHARGED FOR PROS.",
-    mainHeading: "IPAD S13+ Pro.",
-    desc: "From $999.00 or $41.62/mo. <br /> for 24 mo.",
-    lineebreak: "",
-  },
-];
-const pictures2 = [];
-const sectionPics1 = [
-  {
-    Heading: "Camera & Videos",
-    items: "12 Items",
-    picture: Camerapic,
-  },
-  {
-    Heading: "Smart Television",
-    items: "10 Items",
-    picture: TV,
-  },
-  {
-    Heading: "Smart Watches",
-    items: "17 Items",
-    picture: Watch,
-  },
-  {
-    Heading: "Music & Gaming",
-    items: "16 Items",
-    picture: Console,
-  },
-];
-const sectionPics2 = [
-  {
-    Heading: "Headphones",
-    items: "4 Items",
-    picture: HP,
-  },
-  {
-    Heading: "Accessories",
-    items: "20 Items",
-    picture: Monitor,
-  },
-  {
-    Heading: "Poratable Speaker",
-    items: "15 Items",
-    picture: Speaker,
-  },
-  {
-    Heading: "Home Appliances",
-    items: "15 Items",
-    picture: Accesories,
-  },
-];
+import React, { useState } from "react";
+import {
+  first,
+  sixth,
+  seventh,
+  ninth,
+  tenth,
+  Link,
+  Box,
+  Grid,
+  Typography,
+  FeaturedCollectionComponent,
+  MainProductsComponent,
+  SpecialProduct,
+  RecomendedProduct,
+  LogoSliderComponent,
+  C,
+  pictures,
+  sectionPics1,
+  useMediaQuery,
+} from "./ImportsHome/ImportHome.js";
 
 function Home() {
+  const at936 = useMediaQuery("(min-width:936px)");
+  const at600 = useMediaQuery("(min-width:600px)");
+  const [value, setValue] = useState(-1);
   return (
     <>
       {/* Main Pictures Section */}
       <section>
-        <Box display={{xs:"block",md:"flex"}} sx={{ margin: "2rem 2rem 0" ,gap:2}}>
-          <Box sx={{ position: "relative", flexBasis: "50%" }}>
+        <Box
+          display={{ xs: "block", md: "flex" }}
+          sx={{ margin: "2rem 2rem 0", gap: 2 }}
+        >
+          <Box
+            sx={{
+              position: "relative",
+              flexBasis: "50%",
+              marginBottom: "1rem",
+            }}
+          >
             <img
               src={first}
               className="image-fluid rounded-3"
@@ -159,7 +90,7 @@ function Home() {
           <Grid
             container
             spacing={2}
-            sx={{ margin: "0 0", flexBasis: "50%" }}
+            sx={{ margin: "0 0 1rem", flexBasis: "50%", display: {} }}
           >
             {pictures.map((value, index) => {
               return (
@@ -229,10 +160,10 @@ function Home() {
                 item
                 size={{ xs: 3, sm: 6, md: 3 }}
                 sx={{
-                  xs: { display: "flex" },
-                  md: "block",
+                  display: { xs: "block", md: "flex" },
                   gap: 2,
                   alignItems: "center",
+                  textAlign: { xs: "center", md: "left" },
                 }}
               >
                 <img
@@ -256,6 +187,7 @@ function Home() {
                   display: { xs: "block", md: "flex" },
                   gap: 2,
                   alignItems: "center",
+                  textAlign: { xs: "center", md: "left" },
                 }}
               >
                 <img
@@ -298,6 +230,7 @@ function Home() {
                   display: { xs: "block", md: "flex" },
                   gap: 2,
                   alignItems: "center",
+                  textAlign: { xs: "center", md: "left" },
                 }}
               >
                 <img
@@ -318,9 +251,10 @@ function Home() {
                 item
                 size={{ xs: 3, sm: 6, md: 3 }}
                 sx={{
-                  display: { xs: "flex", md: "block" },
+                  display: { xs: "block", md: "flex" },
                   gap: 2,
                   alignItems: "center",
+                  textAlign: { xs: "center", md: "left" },
                 }}
               >
                 <img
@@ -344,7 +278,7 @@ function Home() {
         {/* Categories Link */}
         <section style={{ pb: 5 }}>
           <Box
-            className="categories"
+            // className="categories"
             sx={{
               borderRadius: "8px",
               margin: "0 1rem",
@@ -352,102 +286,119 @@ function Home() {
               backgroundColor: "white",
             }}
           >
-            <Grid
-              container
-              spacing={2}
-              sx={{ borderBottom: "1px solid  #ededed" }}
-            >
-              {sectionPics1.map((value) => {
-                return (
-                  <>
-                    <Grid
-                      item
-                      size={3}
+            <Grid container>
+              {sectionPics1.map((value, index) => (
+                <Grid
+                  item
+                  size={at600 ? 4 : 6}
+                  sx={{
+                    p: "1rem 1rem",
+                    alignItems: "center",
+                    display: at936 ? "flex" : "block",
+                    borderRight:
+                      index !== sectionPics1.length - 1 &&
+                      index !== sectionPics1.length - 4
+                        ? "1px solid #ededed"
+                        : "none",
+                    justifyItems: at936 ? "space-between" : "center",
+                    justifyContent: at936 ? "space-between" : "center",
+                    borderBottom: value.border,
+                  }}
+                >
+                  {!at936 && (
+                    <img
+                      src={value.picture}
+                      alt="myPic"
+                      style={{ width: "100px", height: "100px" }}
+                    />
+                  )}
+                  <Box textAlign={at936 ? "left" : "center"}>
+                    <Typography
                       sx={{
-                        borderRight: "1px solid  #ededed",
-                        display: "flex",
-                        justifyContent: "space-between",
-                        alignItems: "center",
-                        p: "1rem 1rem",
+                        colors: C.colorFeaturedCollectionHeading,
+                        fontWeight: "600",
+                        fontFamily: "Rubik, Sans Serif",
+                        cursor: "pointer",
+                        "&:hover": { textDecoration: "underline" },
                       }}
                     >
-                      <Box>
-                        <Typography
-                          sx={{
-                            colors: C.colorFeaturedCollectionHeading,
-                            fontWeight: "600",
-                            fontFamily: "Rubik, Sans Serif",
-                            cursor: "pointer",
-                            "&:hover": { textDecoration: "underline" },
-                          }}
-                        >
-                          {value.Heading}
-                        </Typography>
-                        <Typography
-                          sx={{
-                            colors: C.colorCategoriesSubHeading,
-                            fontSize: "14px",
-                          }}
-                        >
-                          {value.items}
-                        </Typography>
-                      </Box>
-                      <img
-                        src={value.picture}
-                        alt="myPic"
-                        style={{ width: "100px", height: "100px" }}
-                      />
-                    </Grid>
-                  </>
-                );
-              })}
-            </Grid>
-            <Grid container spacing={2}>
-              {sectionPics2.map((value) => {
-                return (
-                  <>
-                    <Grid
-                      item
-                      size={3}
+                      {value.Heading}
+                    </Typography>
+                    <Typography
                       sx={{
-                        borderRight: "1px solid  #ededed",
-                        display: "flex",
-                        justifyContent: "space-between",
-                        alignItems: "center",
-                        p: "1rem 1rem",
+                        colors: C.colorCategoriesSubHeading,
+                        fontSize: "14px",
                       }}
                     >
-                      <Box>
-                        <Typography
-                          sx={{
-                            colors: C.colorFeaturedCollectionHeading,
-                            fontWeight: "600",
-                            fontFamily: "Rubik, Sans Serif",
-                            cursor: "pointer",
-                            "&:hover": { textDecoration: "underline" },
-                          }}
-                        >
-                          {value.Heading}
-                        </Typography>
-                        <Typography
-                          sx={{
-                            colors: C.colorCategoriesSubHeading,
-                            fontSize: "14px",
-                          }}
-                        >
-                          {value.items}
-                        </Typography>
-                      </Box>
-                      <img
-                        src={value.picture}
-                        alt="myPic"
-                        style={{ width: "100px", height: "100px" }}
-                      />
-                    </Grid>
-                  </>
-                );
-              })}
+                      {value.items}
+                    </Typography>
+                  </Box>
+                  {at936 && (
+                    <img
+                      src={value.picture}
+                      alt="myPic"
+                      style={{ width: "100px", height: "100px" }}
+                    />
+                  )}
+                </Grid>
+              ))}
             </Grid>
+            {/* <Grid container spacing={2}>
+              {sectionPics2.map((value, index) => (
+                <Grid
+                  key={index}
+                  item
+                  size={at600 ? 4 : 6}
+                  sx={{
+                    borderRight:
+                      index !== sectionPics1.length - 1
+                        ? "1px solid #ededed"
+                        : "none",
+                    display: at936 ? "flex" : "block",
+                    justifyItems: at936 ? "space-between" : "center",
+                    justifyContent: at936 ? "space-between" : "center",
+                    alignItems: "center",
+                    p: "1rem 1rem",
+                  }}
+                >
+                  {!at936 && (
+                    <img
+                      src={value.picture}
+                      alt="myPic"
+                      style={{ width: "100px", height: "100px" }}
+                    />
+                  )}
+                  <Box textAlign={at936 ? "left" : "center"}>
+                    <Typography
+                      sx={{
+                        colors: C.colorFeaturedCollectionHeading,
+                        fontWeight: "600",
+                        fontFamily: "Rubik, Sans Serif",
+                        cursor: "pointer",
+                        "&:hover": { textDecoration: "underline" },
+                      }}
+                    >
+                      {value.Heading}
+                    </Typography>
+                    <Typography
+                      sx={{
+                        colors: C.colorCategoriesSubHeading,
+                        fontSize: "14px",
+                      }}
+                    >
+                      {value.items}
+                    </Typography>
+                  </Box>
+                  {at936 && (
+                    <img
+                      src={value.picture}
+                      alt="myPic"
+                      style={{ width: "100px", height: "100px" }}
+                    />
+                  )}
+                </Grid>
+              ))}
+            </Grid> */}
           </Box>
         </section>
 
