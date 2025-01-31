@@ -2,8 +2,11 @@ import { Box, Typography } from "@mui/material";
 import { Colors } from "../../../../../Theme/Theme";
 import FAQAccordion from "../../FAQAccordion/FAQAccordion";
 import EscrowMainDetails from "./EscrowDetails/EscrowMainDetails/EscrowMainDetails";
+import { useLocation } from "react-router-dom";
 
 function EscrowDetailsWrapper() {
+  const location = useLocation();
+  const { item } = location.state;
   return (
     <>
       <Box
@@ -20,7 +23,7 @@ function EscrowDetailsWrapper() {
         }}
       >
         <Box>
-          <EscrowMainDetails />
+          <EscrowMainDetails item={item} />
         </Box>
         <Box sx={{ flexBasis: "40%" }}>
           <Box
