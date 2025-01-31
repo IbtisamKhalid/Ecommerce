@@ -6,12 +6,12 @@ import StepperComponent from "../../../../StepperComponent/StepperComponent";
 import ProceedToPayment from "../../../../ProceedToPaymentComponent/ProceedToPayment";
 import { Colors, Fonts } from "../../../../../../../Theme/Theme";
 
-function EscrowMainDetails({item}) {
-  // const navigate = useNavigate();
-  // const location = useLocation();
-  // const { item } = location.state; // Access passed data
+function EscrowMainDetails() {
+  const navigate = useNavigate();
+  const location = useLocation();
+  const { item } = location.state; // Access passed data
   // const stepp = 0;
-  console.log(item);
+  console.log("item in EscrowMainDetail",item);
   const handleProceedToPayment = () => {
     navigate("/payment", { state: { item } });
   };

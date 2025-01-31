@@ -5,8 +5,6 @@ import EscrowMainDetails from "./EscrowDetails/EscrowMainDetails/EscrowMainDetai
 import { useLocation } from "react-router-dom";
 
 function EscrowDetailsWrapper() {
-  const location = useLocation();
-  const { item } = location.state;
   return (
     <>
       <Box
@@ -23,7 +21,7 @@ function EscrowDetailsWrapper() {
         }}
       >
         <Box>
-          <EscrowMainDetails item={item} />
+          <EscrowMainDetails />
         </Box>
         <Box sx={{ flexBasis: "40%" }}>
           <Box

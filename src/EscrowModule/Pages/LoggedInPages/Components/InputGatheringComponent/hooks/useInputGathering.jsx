@@ -71,21 +71,26 @@ function useInputGathering({ item, forContract, addingTerms }) {
 
   const contractHandling = (index) => {
     if (addingTerms) {
-      // If adding terms, find and update the existing transaction
-      const updatedHistory = escrowHistory.map((transaction) => {
-        if (transaction.id === item.id) {
-          return {
-            ...transaction,
-            contract: terms, // Update the contract with new terms
-          };
-        }
-        return transaction;
-      });
+      // If adding terms, update the existing transaction in history
+      const updatedHistory = escrowHistory.map((transaction) =>
+        transaction.id === item.id
+          ? { ...transaction, contract: terms }
+          : transaction
+      );
 
+      console.log("Updated transaction history:", updatedHistory);
       setEscrowHistory(updatedHistory); // Save the updated history
-      console.log("Updated transaction:", updatedHistory);
+
+      // ✅ Extract and pass only the updated transaction, NOT the full array
+      const updatedTransaction = updatedHistory.find((t) => t.id === item.id);
+      if (!updatedTransaction) {
+        console.error("Updated transaction not found!");
+        return;
+      }
+
+      navigate(navigateTO, { state: { item: updatedTransaction } });
     } else if (!addingTerms) {
-      // If not adding terms, create a new transaction
+      // Create a new transaction
       const transaction = {
         id: Date.now().toString(),
         title: item.TransactionTitle,
@@ -109,11 +114,28 @@ function useInputGathering({ item, forContract, addingTerms }) {
         secondPersonEmail: item.secondPersonEmail,
         secondPersonNumber: item.secondPersonNumber,
       };
-      addEscrowTransaction(transaction);
-      console.log("New transaction:", transaction);
-    }
 
-    navigate(navigateTO, { state: { item } });
+      console.log("New transaction:", transaction);
+      addEscrowTransaction(transaction);
+
+      // Create a modified item object with additional attributes
+      const updatedItem = {
+        ...item,
+        status: {
+          primary: "Awaiting Agreement",
+          secondary: "Requires Seller's Action",
+        }, // Adding status to item
+        agreed: false,
+        step: 0,
+        contract: terms,
+        dispute: false,
+        disputeDetails: [],
+        created: Date.now().toString(),
+        id: Date.now().toString(),
+      };
+
+      navigate(navigateTO, { state: { item: updatedItem } });
+    }
   };
 
   const disputeHandling = () => {
