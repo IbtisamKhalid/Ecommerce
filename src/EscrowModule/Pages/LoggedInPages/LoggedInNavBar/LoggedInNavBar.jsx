@@ -20,7 +20,7 @@ import Logout from "@mui/icons-material/Logout";
 import Settings from "@mui/icons-material/Settings";
 import { Colors, Fonts } from "../../../Theme/Theme";
 import PersonAdd from "@mui/icons-material/PersonAdd";
-import LoggedInNavBarLayout from "./LoggedInNavbarLayout/LoggedInNavbarLayout";
+import LoggedInNavBarLayout from "./LoggedInNavbarLayout/LoggedNavLayout";
 import { GetStartedButton } from "../../../Components/Reused/reusableComponents";
 
 export default function LoggedInNavBar() {

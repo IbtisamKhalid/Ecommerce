@@ -3,7 +3,7 @@ import { Box, Typography, IconButton } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import { Colors, Fonts } from "../../../../Theme/Theme";
 
-export default function LoggedInNavbarLayout({ children, handleDrawerToggle }) {
+export default function LoggedNavLayout({ children, handleDrawerToggle }) {
   return (
     <>
       <Box

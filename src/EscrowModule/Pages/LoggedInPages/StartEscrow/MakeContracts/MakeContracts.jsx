@@ -3,12 +3,12 @@ import { Colors } from "../../../../Theme/Theme";
 import FAQAccordion from "../../Details/FAQAccordion/FAQAccordion";
 import InputGathering from "../../Components/InputGatheringComponent/InputGathering";
 import ContractInstruction from "../../Components/ContractInstruction/ContractInstruction";
-import LoggedInNavbarLayout from "../../LoggedInNavBar/LoggedInNavbarLayout/LoggedInNavbarLayout";
+import LoggedInNavbarLayout from "../../LoggedInNavBar/LoggedInNavbarLayout/LoggedNavLayout";
 import { useLocation } from "react-router-dom";
 function MakeContracts() {
   const location = useLocation();
   const { item, addingTerms } = location.state;
-  console.log("item in make contract",item, addingTerms);
+  console.log("item in make contract", item, addingTerms);
   return (
     <>
       <LoggedInNavbarLayout />

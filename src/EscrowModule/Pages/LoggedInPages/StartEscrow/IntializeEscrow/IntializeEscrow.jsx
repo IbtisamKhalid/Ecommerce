@@ -14,7 +14,7 @@ import {
 import { Controller } from "react-hook-form";
 import { Colors, Fonts } from "../../../../Theme/Theme";
 import useStartEscrow from "./Hooks/useStartEscrow";
-import LoggedInNavbarLayout from "../../LoggedInNavBar/LoggedInNavbarLayout/LoggedInNavbarLayout.jsx";
+import LoggedInNavbarLayout from "../../LoggedInNavBar/LoggedInNavbarLayout/LoggedNavLayout.jsx";
 
 export const SelectComponent = ({ name, control, label, options = [] }) => {
   return (
@@ -45,7 +45,6 @@ export const SelectComponent = ({ name, control, label, options = [] }) => {
 };
 
 function IntializeEscrow() {
- 
   const {
     watch,
     errors,
@@ -67,7 +66,6 @@ function IntializeEscrow() {
   const ItemDescription = watch("ItemDescription");
   const TransactionTitle = watch("TransactionTitle");
   const InspectionPeriod = watch("InspectionPeriod");
-
 
   return (
     <>
