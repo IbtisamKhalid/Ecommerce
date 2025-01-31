@@ -6,10 +6,10 @@ import StepperComponent from "../../../../StepperComponent/StepperComponent";
 import ProceedToPayment from "../../../../ProceedToPaymentComponent/ProceedToPayment";
 import { Colors, Fonts } from "../../../../../../../Theme/Theme";
 
-function EscrowMainDetails({ item }) {
-  const navigate = useNavigate();
-  const location = useLocation();
-  const { item } = location.state; // Access passed data
+function EscrowMainDetails({item}) {
+  // const navigate = useNavigate();
+  // const location = useLocation();
+  // const { item } = location.state; // Access passed data
   // const stepp = 0;
   console.log(item);
   const handleProceedToPayment = () => {
