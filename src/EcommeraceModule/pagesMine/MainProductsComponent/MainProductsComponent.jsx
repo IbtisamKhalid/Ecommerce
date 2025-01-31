@@ -3,7 +3,7 @@ import MainProductCard from "../../Components/MainProductCard/MainProductCard";
 import mobile from "../../StoreAssets/img/mobile2.jpg";
 import laptop from "../../StoreAssets/img/laptop2.jpg";
 import watch from "../../StoreAssets/img/watch2.jpg";
-import speaker from "../../StoreAssets/img/speaker2.jpg";
+import speaker from "../../StoreAssets/img/Speaker2.jpg";
 import { Grid2 as Grid } from "@mui/material";
 
 function MainProductsComponent() {
