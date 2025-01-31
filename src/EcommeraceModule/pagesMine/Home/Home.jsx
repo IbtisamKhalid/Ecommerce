@@ -14,7 +14,7 @@ import Speaker from "../../StoreAssets/img/speakerhover.jpg";
 import Watch from "../../StoreAssets/img/watchhovered.jpg";
 import HP from "../../StoreAssets/img/HP.jpg";
 import Console from "../../StoreAssets/img/Console.jpg";
-import Accesories from "../../StoreAssets/img/Accesories.jpg";
+import Accesories from "../../StoreAssets/img/accesories.jpg";
 import Monitor from "../../StoreAssets/img/SpecialProduct3/sp1.jpg";
 import { Link } from "react-router-dom";
 import "./home.css";
