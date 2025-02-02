@@ -20,11 +20,14 @@ import {
   sectionPics1,
   useMediaQuery,
 } from "./ImportsHome/ImportHome.js";
+import ProductImageZoom from "../../Components/ProductImageZoom/ProductImageZoom.jsx";
+import ParallaxScroll from "./ParallaxScroll .jsx";
 
 function Home() {
+  const images = [first, sixth, seventh, ninth];
   const at936 = useMediaQuery("(min-width:936px)");
   const at600 = useMediaQuery("(min-width:600px)");
-  const [value, setValue] = useState(-1);
+
   return (
     <>
       {/* Main Pictures Section */}
@@ -434,6 +437,18 @@ function Home() {
         <section>
           <Box>
             <RecomendedProduct />
+          </Box>
+        </section>
+        {/* Recomended Products Collection */}
+        <section>
+          <Box>
+            <ProductImageZoom images={images} />
+          </Box>
+        </section>
+        {/* Recomended Products Collection */}
+        <section>
+          <Box>
+            <ParallaxScroll />
           </Box>
         </section>
       </Box>
