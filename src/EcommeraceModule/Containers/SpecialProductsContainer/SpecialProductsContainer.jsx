@@ -1,10 +1,11 @@
 import React from "react";
 import Slider from "../../Components/Slider/Slider";
-import { Box, Typography, Grid2 as Grid, Button } from "@mui/material";
+import { Box, Typography, Grid2 as Grid, Button , useMediaQuery} from "@mui/material";
 import ReactStars from "react-rating-stars-component";
 import { ColorsEcommrace as C } from "../../Theme/EcommeraceTheme";
 
 function SpecialProductsContainer({ pData = [] }) {
+  const at780 = useMediaQuery('(min-width:800px)')
   return (
     <Grid
       container
@@ -17,7 +18,7 @@ function SpecialProductsContainer({ pData = [] }) {
       {pData.map((product, index) => (
         <Grid
           item
-          size={6}
+          size={at780 ? 6 : 12}
           key={index}
           sx={{
             marginBottom: "20px",

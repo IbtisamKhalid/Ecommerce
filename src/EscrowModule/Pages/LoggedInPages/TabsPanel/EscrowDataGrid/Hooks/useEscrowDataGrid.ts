@@ -84,10 +84,10 @@ function useEscrowDataGrif({ onRendered }) {
   const navigate = useNavigate();
 
   const handleBoxClick = (item) => {
-    navigate(`/LoggedIn/escrowdetails/${item.id}`, { state: { item } });
+    navigate(`/LoggedIn/escrowdetails`, { state: { item } });
   };
   const handleAgreement = (item) => {
-    navigate(`/LoggedIn/escrowdetails/${item.id}`, { state: { item } });
+    navigate(`/LoggedIn/escrowdetails`, { state: { item } });
   };
 
   return {

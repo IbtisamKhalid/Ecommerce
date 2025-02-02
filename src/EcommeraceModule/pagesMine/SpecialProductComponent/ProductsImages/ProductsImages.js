@@ -1,8 +1,8 @@
-import sp1 from "../../../StoreAssets/img/SpecialProduct1/sp1.jpg";
-import sp2 from "../../../StoreAssets/img/SpecialProduct1/sp2.jpg";
-import sp3 from "../../../StoreAssets/img/SpecialProduct1/sp3.jpg";
-import sp4 from "../../../StoreAssets/img/SpecialProduct1/sp4.jpg";
-import sp5 from "../../../StoreAssets/img/SpecialProduct1/sp5.jpg";
+import sp1 from "../../../StoreAssets/img/SpecialProduct1/SP1.jpg";
+import sp2 from "../../../StoreAssets/img/SpecialProduct1/SP2.jpg";
+import sp3 from "../../../StoreAssets/img/SpecialProduct1/SP3.jpg";
+import sp4 from "../../../StoreAssets/img/SpecialProduct1/SP4.jpg";
+import sp5 from "../../../StoreAssets/img/SpecialProduct1/SP5.jpg";
 
 export const SpecialProduct1 = {
   sp1,

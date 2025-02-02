@@ -11,7 +11,7 @@ function EscrowMainDetails() {
   const location = useLocation();
   const { item } = location.state; // Access passed data
   // const stepp = 0;
-  console.log(item);
+  console.log("item in EscrowMainDetail",item);
   const handleProceedToPayment = () => {
     navigate("/payment", { state: { item } });
   };

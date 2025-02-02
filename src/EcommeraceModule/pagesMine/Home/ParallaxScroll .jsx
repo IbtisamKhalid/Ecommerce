@@ -70,6 +70,10 @@ const StickyOnScroll = () => {
           alignItems: "center",
           justifyContent: "center",
           position: isSticky ? "sticky" : "relative",
+<<<<<<< HEAD
+=======
+          top: isSticky ? "0" : "auto", // Stick to the top while the parent is in view
+>>>>>>> SecondryBranch
           marginBottom:"100px"
         }}
       >

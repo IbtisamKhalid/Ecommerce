@@ -18,8 +18,7 @@ function useSignIn() {
   const [emailErrorMessage, setEmailErrorMessage] = useState("");
   const [passwordErrorMessage, setPasswordErrorMessage] = useState("");
   const { isUserLoggedIn, setIsUserLoggedIn } = useContext(IsUserLoggedIn);
-  // const [email, setEmail] = useState("ibtisamkhalid@gmail.com");
-  // const [password, setPassword] = useState("ibtisamkhalid");
+
 
   const validateInputs = () => {
     let isValid = true;
@@ -91,7 +90,8 @@ function useSignIn() {
 
   const googleLogin = useGoogleLogin({
     onSuccess: (tokenResponse) => {
-      navigate("/escrow/UserDashboard");
+      navigate("/loggedin/escrowhistory");
+      console.log("loggedif");
     },
     onError: () => {
       console.error("Google Signup Failed");
