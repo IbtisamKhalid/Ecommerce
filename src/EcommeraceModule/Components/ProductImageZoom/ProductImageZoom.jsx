@@ -64,7 +64,6 @@ const ProductImageZoom = ({ images }) => {
 
 export default ProductImageZoom;
 
-
 {
   /* <Grid container>
   {images.map((value,index) => (
