@@ -5,7 +5,7 @@ import Home from "../../Home";
 import {
   LayoutStore,
   HomeStore,
-  ContactMe,
+  ProductPage,
 } from "../../EcommeraceModule/pagesMine";
 import {
   Layout,
@@ -85,6 +85,7 @@ function Routes() {
           <Route path="/" element={<Home />} />
           <Route path="/store" element={<LayoutStore />}>
             <Route index element={<HomeStore />} />
+            <Route path="products" element={<ProductPage />} />
           </Route>
           <Route path="/escrow" element={<LayoutEscrow />}>
             <Route index element={<HomeEscrow />} />

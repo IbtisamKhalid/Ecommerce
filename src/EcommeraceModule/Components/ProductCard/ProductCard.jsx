@@ -47,12 +47,12 @@ const ProductCard = ({
       {/* Top-Right Icons */}
       <Box
         sx={{
-          position: "absolute",
           top: "10px",
           right: "10px",
           display: "flex",
-          flexDirection: "column",
+          position: "absolute",
           alignItems: "center",
+          flexDirection: "column",
         }}
       >
         <Box
@@ -60,14 +60,14 @@ const ProductCard = ({
             "&:hover": {
               backgroundColor: C.colorFeaturedCollectionButtonHover,
             },
-            transition: "background-color 0.5s ease-in-out",
-            borderRadius: "50%", // Fully round
             p: "0.4rem",
+            display: "flex",
+            borderRadius: "50%", // Fully round
+            alignItems: "center", // Center vertically
             width: "fit-content", // Adjust as needed for size
             height: "fit-content", // Adjust to match width for a perfect circle
-            display: "flex",
             justifyContent: "center", // Center horizontally
-            alignItems: "center", // Center vertically
+            transition: "background-color 0.5s ease-in-out",
             // marginBottom: "3px",
           }}
           onClick={() => setWishIcon(wishIcon === wish ? wishblack : wish)}
@@ -77,9 +77,9 @@ const ProductCard = ({
 
         <Box
           sx={{
+            // gap: "8px",
             display: "flex",
             flexDirection: "column",
-            // gap: "8px",
             opacity: hovered ? 1 : 0,
             transform: hovered ? "translateX(0)" : "translateX(30px)",
             transition: "opacity 0.3s ease-in-out, transform 0.3s ease-in-out",
@@ -90,14 +90,14 @@ const ProductCard = ({
               "&:hover": {
                 backgroundColor: C.colorFeaturedCollectionButtonHover,
               },
-              transition: "background-color 0.5s ease-in-out",
-              borderRadius: "50%", // Fully round
               p: "0.4rem",
+              display: "flex",
+              borderRadius: "50%", // Fully round
+              alignItems: "center", // Center vertically
               width: "fit-content", // Adjust as needed for size
               height: "fit-content", // Adjust to match width for a perfect circle
-              display: "flex",
               justifyContent: "center", // Center horizontally
-              alignItems: "center", // Center vertically
+              transition: "background-color 0.5s ease-in-out",
             }}
           >
             <img src={prodcompare} alt="Compare" style={{ width: "16px" }} />

@@ -1,32 +1,33 @@
 import "./home.css";
 import React, { useState } from "react";
 import {
+  C,
+  Box,
+  Link,
+  Grid,
+  ninth,
   first,
   sixth,
-  seventh,
-  ninth,
   tenth,
-  Link,
-  Box,
-  Grid,
+  seventh,
+  pictures,
   Typography,
-  FeaturedCollectionComponent,
-  MainProductsComponent,
+  sectionPics1,
+  useMediaQuery,
   SpecialProduct,
   RecomendedProduct,
   LogoSliderComponent,
-  C,
-  pictures,
-  sectionPics1,
-  useMediaQuery,
+  MainProductsComponent,
+  FeaturedCollectionComponent,
 } from "./ImportsHome/ImportHome.js";
-import ProductImageZoom from "../../Components/ProductImageZoom/ProductImageZoom.jsx";
-import ParallaxScroll from "./ParallaxScroll .jsx";
-
+import { useNavigate } from "react-router-dom";
 function Home() {
-  const images = [first, sixth, seventh, ninth];
   const at936 = useMediaQuery("(min-width:936px)");
   const at600 = useMediaQuery("(min-width:600px)");
+  const navigate = useNavigate();
+  const handleNavigation = () => {
+    navigate("./products");
+  };
 
   return (
     <>
@@ -293,6 +294,7 @@ function Home() {
               {sectionPics1.map((value, index) => (
                 <Grid
                   item
+                  key={index}
                   size={at600 ? 4 : 6}
                   sx={{
                     p: "1rem 1rem",
@@ -437,18 +439,6 @@ function Home() {
         <section>
           <Box>
             <RecomendedProduct />
-          </Box>
-        </section>
-        {/* Recomended Products Collection */}
-        <section>
-          <Box>
-            <ProductImageZoom images={images} />
-          </Box>
-        </section>
-        {/* Recomended Products Collection */}
-        <section>
-          <Box>
-            <ParallaxScroll />
           </Box>
         </section>
       </Box>
