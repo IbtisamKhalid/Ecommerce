@@ -7,6 +7,7 @@ import {
   HomeStore,
   ProductPage,
 } from "../../EcommeraceModule/pagesMine";
+import ProductSearchContainer from "../../EcommeraceModule/Containers/ProductSearchContainer/ProductSearchContainer";
 import {
   Layout,
   HomeEscrow,
@@ -48,6 +49,18 @@ function Routes() {
     <>
       <BrowserRouter>
         <ReactRoutes>
+          <Route path="*" element={<Home />} />
+          <Route path="/" element={<Home />} />
+          <Route path="/store" element={<LayoutStore />}>
+            <Route index element={<HomeStore />} />
+            <Route path="products" element={<ProductPage />} />
+            <Route path="search" element={<ProductSearchContainer />} />
+          </Route>
+          <Route path="/escrow" element={<LayoutEscrow />}>
+            <Route index element={<HomeEscrow />} />
+          </Route>
+          <Route path="SignIn" element={<SignIn />} />
+          <Route path="SignUp" element={<SignUP />} />
           {isUserLoggedIn && (
             <>
               <Route path="/StartEscrow" element={<StartEscrow />} />
@@ -81,17 +94,7 @@ function Routes() {
             <Route path="Help" element={<Help />} />
             <Route path="SupportCenter" element={<SupportCenter />} />
           </Route>
-          <Route path="*" element={<Home />} />
-          <Route path="/" element={<Home />} />
-          <Route path="/store" element={<LayoutStore />}>
-            <Route index element={<HomeStore />} />
-            <Route path="products" element={<ProductPage />} />
-          </Route>
-          <Route path="/escrow" element={<LayoutEscrow />}>
-            <Route index element={<HomeEscrow />} />
-          </Route>
-          <Route path="SignIn" element={<SignIn />} />
-          <Route path="SignUp" element={<SignUP />} />
+
           {/* <Route path="/Contract" element={<MakeContracts />} /> */}
         </ReactRoutes>
       </BrowserRouter>

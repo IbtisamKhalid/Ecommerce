@@ -88,26 +88,48 @@ function Home() {
                 From $999.00 or $41.62/mo. <br /> for 24 mo. Footnote*
               </Typography>
 
-              <Link className="button a">BUY NOW</Link>
+              <Link className="button a" to={"/store/products"}>
+                BUY NOW
+              </Link>
             </Box>
           </Box>
           <Grid
             container
             spacing={2}
-            sx={{ margin: "0 0 1rem", flexBasis: "50%", display: {} }}
+            sx={{ margin: "0 0 1rem", flexBasis: "50%" }}
           >
             {pictures.map((value, index) => {
               return (
-                <Grid key={index} item sx={{ position: "relative" }} size={6}>
+                <Grid
+                  key={index}
+                  item
+                  sx={{
+                    position: "relative",
+                    color: "black",
+                    overflow: "hidden", // Prevents overflow when scaling the image
+                    "&:hover img": {
+                      transform: "scale(1.1)", // Scale effect
+                      transition: "transform 0.3s ease-in-out", // Smooth animation
+                    },
+                    borderRadius: "8px",
+                  }}
+                  component={Link}
+                  to={"/store/products"}
+                  size={6}
+                >
                   <img
                     src={value.picture}
-                    alt="main banner "
+                    alt="main banner"
                     className="rounded-3"
-                    style={{ height: "100%", width: "100%" }}
+                    style={{
+                      height: "100%",
+                      width: "100%",
+                      transition: "transform 0.3s ease-in-out", // Ensures smooth transition
+                    }}
                   />
 
                   <Box
-                    className="small-banner-content "
+                    className="small-banner-content"
                     sx={{ position: "absolute", top: "15%", left: "10%" }}
                   >
                     <Typography

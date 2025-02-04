@@ -53,7 +53,7 @@ function ProductInformation({ products }) {
           wordBreak: "break-word",
         }}
       >
-        {products.Name}
+        {products.name}
       </Typography>
       <Typography
         variant="h5"
@@ -68,7 +68,7 @@ function ProductInformation({ products }) {
           padding: "5px 0 32px 0",
         }}
       >
-        {products.Price}
+        {products.price}
       </Typography>
       <Typography
         variant="h5"
@@ -86,12 +86,12 @@ function ProductInformation({ products }) {
       >
         <ReactStars
           count={5}
-          value={products.Feedback[0].Stars || 4}
+          value={products.feedback[0].stars || 4}
           size={24}
           edit={false}
           activeColor="#ffd700"
         />
-        {products.Feedback.length} Reveiws
+        {products.feedback.length} Reveiws
       </Typography>
       <Typography
         variant="h5"
@@ -119,7 +119,7 @@ function ProductInformation({ products }) {
         >
           Brand:
         </span>{" "}
-        {products.Brand}
+        {products.brand}
       </Typography>
       <Typography
         variant="h5"
@@ -148,10 +148,10 @@ function ProductInformation({ products }) {
         >
           Tags:
         </span>{" "}
-        <span style={{ marginRight: "10px" }}>{products.Tags[0]}</span>
-        <span style={{ marginRight: "10px" }}>{products.Tags[1]}</span>
-        <span style={{ marginRight: "10px" }}>{products.Tags[2]}</span>
-        <span style={{ marginRight: "10px" }}>{products.Tags[3]}</span>
+        <span style={{ marginRight: "10px" }}>{products.tags[0]}</span>
+        <span style={{ marginRight: "10px" }}>{products.tags[1]}</span>
+        <span style={{ marginRight: "10px" }}>{products.tags[2]}</span>
+        <span style={{ marginRight: "10px" }}>{products.tags[3]}</span>
       </Typography>
 
       <Box
@@ -207,9 +207,9 @@ function ProductInformation({ products }) {
           Colors:
         </Typography>
         <Box display={"flex"} gap={2}>
-          <ProductColors color={products.ProductColors[0]} />
-          <ProductColors color={products.ProductColors[1]} />
-          <ProductColors color={products.ProductColors[2]} />
+          <ProductColors color={products.productColors[0]} />
+          <ProductColors color={products.productColors[1]} />
+          <ProductColors color={products.productColors[2]} />
         </Box>
       </Box>
       <Box sx={{ m: "1rem 0" }}>

@@ -36,7 +36,7 @@ function ProductFeedback({ feedback }) {
                 mb: "0.3rem",
               }}
             >
-              {"★".repeat(review.Stars) + "☆".repeat(5 - review.Stars)}
+              {"★".repeat(review.stars) + "☆".repeat(5 - review.stars)}
             </Typography>
 
             {/* Review Text */}
@@ -48,7 +48,7 @@ function ProductFeedback({ feedback }) {
                 fontFamily: "Rubik, sans-serif",
               }}
             >
-              {review.Review}
+              {review.review}
             </Typography>
 
             {/* Divider between reviews */}

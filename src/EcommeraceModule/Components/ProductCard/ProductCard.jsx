@@ -1,26 +1,28 @@
 import React, { useState } from "react";
-import ReactStars from "react-rating-stars-component";
+import { useNavigate } from "react-router-dom";
 import { Box, Typography } from "@mui/material";
-import { ColorsEcommrace as C } from "../../Theme/EcommeraceTheme";
-import prodcompare from "../../StoreAssets/img/prodcompare.svg";
-import addcart from "../../StoreAssets/img/add-cart.svg";
 import wish from "../../StoreAssets/img/wish.svg";
-import wishblack from "../../StoreAssets/img/wishblack.svg";
 import view from "../../StoreAssets/img/view.svg";
+import ReactStars from "react-rating-stars-component";
+import addcart from "../../StoreAssets/img/add-cart.svg";
+import wishblack from "../../StoreAssets/img/wishblack.svg";
+import prodcompare from "../../StoreAssets/img/prodcompare.svg";
+import { ColorsEcommrace as C } from "../../Theme/EcommeraceTheme";
 
 const ProductCard = ({
   image,
   imageonHover,
   heading,
   price,
-  subHeading,
+  brand,
   stars,
   width,
-  height
+  height,
 }) => {
+  const navigate = useNavigate();
   const [img, setImg] = useState(image);
-  const [wishIcon, setWishIcon] = useState(wish);
   const [hovered, setHovered] = useState(false);
+  const [wishIcon, setWishIcon] = useState(wish);
 
   return (
     <Box
@@ -33,7 +35,7 @@ const ProductCard = ({
         overflow: "hidden",
         transition: "all 0.3s ease-in-out",
         justifyItems: "center",
-        textAlign:"left"
+        textAlign: "left",
       }}
       onMouseEnter={() => {
         setImg(imageonHover);
@@ -42,6 +44,9 @@ const ProductCard = ({
       onMouseLeave={() => {
         setImg(image);
         setHovered(false);
+      }}
+      onClick={() => {
+        navigate("/store/products");
       }}
     >
       {/* Top-Right Icons */}
@@ -145,17 +150,17 @@ const ProductCard = ({
           src={img}
           alt="Product"
           style={{
-            width: width || "250px",
+            width: width || "100%",
             borderRadius: "10px",
           }}
         />
       </Box>
 
-      <Box sx={{ textAlign: "left", padding: "10px 30px",width:"100%" }}>
+      <Box sx={{ textAlign: "left", padding: "10px 30px", width: "100%" }}>
         <Typography
           sx={{ color: C.colorFeaturedCollectionSubHeading, fontSize: "12px" }}
         >
-          {subHeading}
+          {brand}
         </Typography>
         <Typography
           sx={{ color: C.colorFeaturedCollectionHeading, fontWeight: "550" }}
@@ -170,7 +175,7 @@ const ProductCard = ({
           activeColor="#ffd700"
         />
         <Typography sx={{ fontWeight: "550", marginTop: "10px" }}>
-          {price}
+          ${price}
         </Typography>
       </Box>
     </Box>
