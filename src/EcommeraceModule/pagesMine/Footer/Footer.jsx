@@ -1,114 +1,354 @@
-import React from "react";
-import first from "../../StoreAssets/images/newsletter.png";
+// import { Box, Typography } from "@mui/material";
+// import { Link } from "react-router-dom";
+// import { Colors, Fonts } from "../../Theme/Theme";
+// import { footerData } from "../../../constants";
 
-import { Link } from "react-router-dom";
-import { BsLinkedin, BsYoutube, BsInstagram, BsFacebook,BsTwitter,BsGithub } from "react-icons/bs";
+import {
+  Box,
+  Container,
+  Grid2 as Grid,
+  Typography,
+  Link,
+  Button,
+} from "@mui/material";
+import { Twitter, Facebook, Instagram } from "@mui/icons-material";
+import { Colors } from "../../../EscrowModule/Theme/Theme";
+
+// import React from "react";
+// import {
+//   Box,
+//   Container,
+//   Grid2 as Grid,
+//   Typography,
+//   Button,
+//   Divider,
+// } from "@mui/material";
+// import {
+//   Facebook,
+//   Twitter,
+//   Google,
+//   Instagram,
+//   Home,
+//   Email,
+//   Phone,
+//   Print,
+// } from "@mui/icons-material";
 
 function Footer() {
-
-
-
   return (
-    <>
-      <footer className="p-5">
-        <div className="container-xxl">
-          <div className="row align-items-center">
-            <div className="col-5">
-              <div className="footer-top-data d-flex gap-30 align-items-center">
-                <img src={first} alt="NewsLetter" />
-                <p className="mb-0 text-white">Sign Up For Newsletter</p>
-              </div>
-            </div>
-            <div className="col-7">
-              <div className="input-group ">
-                <input
-                  type="text"
-                  className="form-control py-1"
-                  placeholder="Your Email"
-                  aria-label="Your Email"
-                  aria-describedby="basic-addon2"
-                />
-                <span
-                  className="input-group-text p-2-3 text-white"
-                  id="basic-addon2"
+    // <Box
+    //   sx={{
+    //     bgcolor: Colors.primary,
+    //     p: {
+    //       xs: "1rem 1.5rem 1rem",
+    //       sm: "1.5rem 3rem 2rem",
+    //       md: "4rem 9rem 3rem",
+    //     },
+    //     color: "white",
+    //   }}
+    // >
+    //   <Box
+    //     sx={{
+    //       bgcolor: Colors.primary,
+    //       display: { xs: "block", sm: "block", md: "flex" },
+    //       justifyContent: "space-between",
+    //       gap: 4,
+    //     }}
+    //   >
+    //     {footerData.map((section, index) => (
+    //       <Box
+    //         key={index}
+    //         sx={{
+    //           paddingRight: { sm: "2rem", md: "3rem" },
+    //         }}
+    //       >
+    //         <Typography
+    //           variant="h6"
+    //           sx={{
+    //             mb: 2,
+    //             fontWeight: "bold",
+    //             borderBottom: { xs: "1px solid white" },
+    //             pb: "1rem",
+    //           }}
+    //         >
+    //           {section.mainHeading}
+    //         </Typography>
+    //         {Array.isArray(section.subHeading) ? (
+    //           section.subHeading.map((sub, subIndex) => (
+    //             <Typography
+    //               component={Link}
+    //               to={sub.to}
+    //               key={subIndex}
+    //               variant="body2"
+    //               sx={{
+    //                 textDecoration: "none",
+    //                 color: "inherit",
+    //                 display: "block",
+    //                 margin: "0 0.5rem 1rem 0",
+    //                 transition: "color 0.2s",
+    //                 width:"fit-content",
+    //                 "&:hover": {
+    //                   color: "rgb(142, 153, 102)",
+
+    //                 },
+    //               }}
+    //             >
+    //               {sub.text}
+    //             </Typography>
+    //           ))
+    //         ) : (
+    //           <Typography variant="body2">{section.subHeading}</Typography>
+    //         )}
+    //       </Box>
+    //     ))}
+    //   </Box>
+    //   <Box
+    //     sx={{
+    //       p: "1rem 0 0 0",
+    //       borderTop: "1px solid white",
+    //       display: "flex",
+    //       alignContent: "center",
+    //       textAlign: "left",
+    //       justifyContent: "space-between",
+    //       m: "1rem 0 0",
+    //     }}
+    //   >
+    //     <Box>
+    //       <Typography variant="h4" sx={{ font: Fonts.primaryFont }}>
+    //         TrustBridge
+    //       </Typography>
+    //       {/*  */}
+    //       <Typography
+    //         variant="title"
+    //         sx={{ font: Fonts.primaryFont, fontSize: "13px" }}
+    //       >
+    //         Copyright © 2024-2026 TrustBridge.com, Inc. All rights reserved
+    //       </Typography>
+    //     </Box>
+    //   </Box>
+    // </Box>
+    <Box>
+      <Box sx={{bgcolor: Colors.primary, py: 10, color:"white"
+      }}>
+        <Container>
+          <Grid container justifyContent={"center"}>
+            <Grid item xs={12} textAlign={"center"}>
+              <Typography variant="h4" sx={{ mb: 2 }}>
+                <Link
+                  href="#"
+                  underline="none"
+                  sx={{ fontWeight: "bold", color: "inherit" }}
                 >
-                  Subscribe
-                </span>
-              </div>
-            </div>
-          </div>
-        </div>
-      </footer>
-      <footer className="py-5">
-        <div className="container-xxl">
-          <div className="row">
-            <div className="col-4">
-              <h4 className="text-white mb-4">Contact Us</h4>
-              <div className="footer-links d-flex flex-column">
-                <address className="text-white">
-                  Q#52 Flat 13 G9/2 Islamabad <br />
-                  Zipcode:44090
-                </address>
-                <a className="a text-white mt-4 d-block mb-3" href="tel:+923079517458">
-                  +923079517458
-                </a>
-                <a className="a text-white mt-4 d-block mb-3" href="mailto:ibtisamkhalid103@gmail">
-                  Ibtisamkhalid103@gmail.com
-                </a>
-                <div className="social-icons d-flex align-items-center gap-15 ">
-                  <a href="#" className=""><BsLinkedin /></a>
-                  <a href="#" className=""><BsGithub /></a>
-                  <a href="#" className=""><BsYoutube /></a>
-                  <a href="#" className=""><BsFacebook /></a>
-                  <a href="#" className=""><BsInstagram /></a>
-                </div>
-              </div>
-            </div>
-            <div className="col-3">
-              <h4 className="text-white mb-4">Information</h4>
-              <div className="footer-links d-flex flex-column">
-                <Link className="Links">Privacy Policy</Link>
-                <Link className="Links">Refund Policy</Link>
-                <Link className="Links">Shipping Policy</Link>
-                <Link className="Links">Terms Of Service</Link>
-                <Link className="Links">Blogs</Link>
-              </div>
-            </div>
-            <div className="col-3">
-              <h4 className="text-white mb-4">Account</h4>
-              <div className="footer-links d-flex flex-column">
-                <Link className="Links">Search</Link>
-                <Link className="Links">About Us</Link>
-                <Link className="Links">Faq</Link>
-                <Link className="Links">Contact</Link>
-                <Link className="Links">Size Chart</Link>
-              </div>
-            </div>
-            <div className="col-2">
-              <h4 className="text-white mb-4">Quick Links</h4>
-              <div className="footer-links d-flex flex-column">
-                <Link className="Links">Accessories</Link>
-                <Link className="Links">Laptops</Link>
-                <Link className="Links">Headphones</Link>
-                <Link className="Links">Tablets</Link>
-                <Link className="Links">Watches</Link>
-              </div>
-            </div>
-          </div>
-        </div>
-      </footer>
-      <footer className="py-4">
-        <div className="container-xxl">
-          <div className="row">
-            <div className="col-12">
-              <p className="text-center mb-0 text-white">
-                &copy; {new Date().getFullYear()}: Powered By Developers COrners
-              </p>
-            </div>
-          </div>
-        </div>
-      </footer>
-    </>
+                  TrustBridge
+                </Link>
+              </Typography>
+              <Box sx={{ mb: 2, display:{xs:"block", md:"flex"}}}>
+                <Typography>
+                  <Link
+                    href="#"
+                    underline="none"
+                    sx={{ mx: 1, color: "inherit" }}
+                  >
+                    Home
+                  </Link>
+                </Typography>
+                <Typography>
+                  <Link
+                    href="#"
+                    underline="none"
+                    sx={{ mx: 1, color: "inherit" }}
+                  >
+                    Faq&apos;s
+                  </Link>
+                </Typography>
+                <Typography>
+                  <Link
+                    href="#"
+                    underline="none"
+                    sx={{ mx: 1, color: "inherit" }}
+                  >
+                    About
+                  </Link>
+                </Typography>
+                <Typography>
+                  <Link
+                    href="#"
+                    underline="none"
+                    sx={{ mx: 1, color: "inherit" }}
+                  >
+                    License
+                  </Link>
+                </Typography>
+                <Typography>
+                  <Link
+                    href="/escrow"
+                    underline="none"
+                    sx={{ mx: 1, color: "inherit" }}
+                  >
+                    Escrow
+                  </Link>
+                </Typography>
+                <Typography>
+                  <Link
+                    href="#"
+                    underline="none"
+                    sx={{ mx: 1, color: "inherit" }}
+                  >
+                    Contact
+                  </Link>
+                </Typography>
+              </Box>
+
+              <Box>
+                <Button href="#" sx={{ mx: 1, color: "inherit" }}>
+                  <Twitter />
+                </Button>
+                <Button href="#" sx={{ mx: 1, color: "inherit" }}>
+                  <Facebook />
+                </Button>
+                <Button href="#" sx={{ mx: 1, color: "inherit" }}>
+                  <Instagram />
+                </Button>
+              </Box>
+            </Grid>
+          </Grid>
+          <Grid container justifyContent="center" sx={{ mt: 5 }}>
+            <Grid item xs={12} textAlign="center">
+              <Typography variant="body2" color={Colors.secondaryColor} sx={{fontSize: "13px" }}>
+                Copyright © 2024-2026 TrustBridge.com, Inc. All rights reserved
+              </Typography>
+            </Grid>
+          </Grid>
+        </Container>
+      </Box>
+    </Box>
+    // <>
+    //   <Box sx={{ backgroundColor: "#45526e", color: "white", p: 4 }}>
+    //     {/* <Container> */}
+    //     <Grid container spacing={2}>
+    //       {/* Company Name */}
+    //       <Grid item size={4}>
+    //         <Typography variant="h6" sx={{ fontWeight: "bold", mb: 2 }}>
+    //           Company name
+    //         </Typography>
+    //         <Typography variant="body2">
+    //           Here you can use rows and columns to organize your footer content.
+    //           Lorem ipsum dolor sit amet, consectetur adipisicing elit.
+    //         </Typography>
+    //       </Grid>
+    //       <Grid size={8}>
+    //         <Box display={"flex"} sx={{justifyContent:"space-around"}}>
+
+    //         {/* Products */}
+    //         <Box>
+    //           <Typography variant="h6" sx={{ fontWeight: "bold", mb: 2 }}>
+    //             Products
+    //           </Typography>
+    //           <Typography variant="body2">
+    //             <a href="#" style={{ color: "white", textDecoration: "none" }}>
+    //               MDBootstrap
+    //             </a>
+    //           </Typography>
+    //           <Typography variant="body2">
+    //             <a href="#" style={{ color: "white", textDecoration: "none" }}>
+    //               MDWordPress
+    //             </a>
+    //           </Typography>
+    //           <Typography variant="body2">
+    //             <a href="#" style={{ color: "white", textDecoration: "none" }}>
+    //               BrandFlow
+    //             </a>
+    //           </Typography>
+    //           <Typography variant="body2">
+    //             <a href="#" style={{ color: "white", textDecoration: "none" }}>
+    //               Bootstrap Angular
+    //             </a>
+    //           </Typography>
+    //         </Box>
+
+    //         {/* Useful Links */}
+    //         <Box>
+    //           <Typography variant="h6" sx={{ fontWeight: "bold", mb: 2 }}>
+    //             Useful links
+    //           </Typography>
+    //           <Typography variant="body2">
+    //             <a href="#" style={{ color: "white", textDecoration: "none" }}>
+    //               Your Account
+    //             </a>
+    //           </Typography>
+    //           <Typography variant="body2">
+    //             <a href="#" style={{ color: "white", textDecoration: "none" }}>
+    //               Become an Affiliate
+    //             </a>
+    //           </Typography>
+    //           <Typography variant="body2">
+    //             <a href="#" style={{ color: "white", textDecoration: "none" }}>
+    //               Shipping Rates
+    //             </a>
+    //           </Typography>
+    //           <Typography variant="body2">
+    //             <a href="#" style={{ color: "white", textDecoration: "none" }}>
+    //               Help
+    //             </a>
+    //           </Typography>
+    //         </Box>
+
+    //         {/* Contact */}
+    //         <Box>
+    //           <Typography variant="h6" sx={{ fontWeight: "bold", mb: 2 }}>
+    //             Contact
+    //           </Typography>
+    //           <Typography variant="body2">
+    //             <Home sx={{ mr: 1 }} /> New York, NY 10012, US
+    //           </Typography>
+    //           <Typography variant="body2">
+    //             <Email sx={{ mr: 1 }} /> info@gmail.com
+    //           </Typography>
+    //           <Typography variant="body2">
+    //             <Phone sx={{ mr: 1 }} /> + 01 234 567 88
+    //           </Typography>
+    //           <Typography variant="body2">
+    //             <Print sx={{ mr: 1 }} /> + 01 234 567 89
+    //           </Typography>
+    //         </Box>
+    //         </Box>
+
+    //       </Grid>
+    //     </Grid>
+
+    //     <Divider sx={{ my: 3, borderColor: "white" }} />
+
+    //     <Grid container alignItems="center" justifyContent="space-between">
+    //       <Grid item>
+    //         <Typography variant="body2">
+    //           &copy; 2020 Copyright:{" "}
+    //           <a
+    //             href="https://mdbootstrap.com/"
+    //             style={{ color: "white", textDecoration: "none" }}
+    //           >
+    //             MDBootstrap.com
+    //           </a>
+    //         </Typography>
+    //       </Grid>
+
+    //       <Grid item size>
+    //         <Button sx={{ color: "white" }}>
+    //           <Facebook />
+    //         </Button>
+    //         <Button sx={{ color: "white" }}>
+    //           <Twitter />
+    //         </Button>
+    //         <Button sx={{ color: "white" }}>
+    //           <Google />
+    //         </Button>
+    //         <Button sx={{ color: "white" }}>
+    //           <Instagram />
+    //         </Button>
+    //       </Grid>
+    //     </Grid>
+    //     {/* </Container> */}
+    //   </Box>
+    // </>
   );
 }
 

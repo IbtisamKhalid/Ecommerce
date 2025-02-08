@@ -43,6 +43,17 @@ import FileDispute from "../../EscrowModule/Pages/LoggedInPages/DIsputeModule/Fi
 import PaymentContainer from "../../EscrowModule/Pages/LoggedInPages/Details/ProceedToPaymentComponent/Payment/PaymenPageContainer/PaymentContainer";
 import ProductComparisonContainer from "../../EcommeraceModule/Containers/ProductComparisonContainer/ProductComparisonContainer";
 import CartContainer from "../../EcommeraceModule/Containers/CartContainer/CartContainer";
+import WishlistContainer from "../../EcommeraceModule/Containers/WishlistContainer/WishlistContainer";
+import {
+  Orders,
+  Addproduct,
+  Dashboard,
+  MianLayout,
+  Productlist,
+  EscrowPayments as SellerEscrowPayments,
+  EscrowHistory as SellerEscrowHistory,
+  EscrowDisputes as SellerEscrowDisputes,
+} from "../../Dashboard/SellerDashboard/SellerDashboardComponents/ExportSellerDashboardComponents";
 
 function Routes() {
   const { isUserLoggedIn, setIsUserLoggedIn } = useContext(IsUserLoggedIn);
@@ -57,6 +68,7 @@ function Routes() {
             <Route index element={<HomeStore />} />
             <Route path="products" element={<ProductPage />} />
             <Route path="cart" element={<CartContainer />} />
+            <Route path="wishlist" element={<WishlistContainer />} />
             <Route path="search" element={<ProductSearchContainer />} />
             <Route path="compare" element={<ProductComparisonContainer />} />
           </Route>
@@ -75,6 +87,28 @@ function Routes() {
                 <Route path="EscrowHistory" element={<EscrowHistory />} />
                 <Route path="EscrowDisputes" element={<EscrowDisputes />} />
                 <Route path="EscrowPayments" element={<EscrowPayments />} />
+                <Route path="ProfileSetting" element={<ProfileSetting />} />
+                <Route
+                  path="escrowdetails"
+                  element={<EscrowDetailsWrapper />}
+                />
+                <Route
+                  path="disputedetails"
+                  element={<DisputeDetailsWrapper />}
+                />
+              </Route>
+            </>
+          )}
+          {isUserLoggedIn && (
+            <>
+              <Route path="/dashboard" element={<MianLayout />}>
+                <Route index element={<Dashboard />} />
+                <Route path="orders" element={<Orders />} />
+                <Route path="product-list" element={<Productlist />} />
+                <Route path="product" element={<Addproduct />} />
+                <Route path="SellerEscrowHistory" element={<SellerEscrowHistory />} />
+                <Route path="SellerEscrowDisputes" element={<SellerEscrowDisputes />} />
+                <Route path="SellerEscrowPayments" element={<SellerEscrowPayments />} />
                 <Route path="ProfileSetting" element={<ProfileSetting />} />
                 <Route
                   path="escrowdetails"

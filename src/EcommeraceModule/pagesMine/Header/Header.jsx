@@ -84,7 +84,11 @@ function Header() {
       {/* First AppBar - Navigation Links */}
       <AppBar
         position="static"
-        sx={{ backgroundColor: "#131921", padding: "5px 0" }}
+        sx={{
+          backgroundColor: "#06273b",
+          p: "0 2rem",
+          borderBottom: "1px solid #677D6A",
+        }}
       >
         <Toolbar sx={{ display: "flex", justifyContent: "space-between" }}>
           <Typography
@@ -98,11 +102,11 @@ function Header() {
           </Typography>
           {!isExtraSmallScreen && (
             <Box sx={{ display: "flex", gap: 2 }}>
-              {["Home", "Products", "Blog", "Contact"].map((item) => (
+              {["Home", "Products", "Escrow", "Contact"].map((item) => (
                 <Button
                   color="inherit"
                   component={NavLink}
-                  to={`/${item.toLowerCase()}`}
+                  to={`/store/${item.toLowerCase()}`}
                   key={item}
                 >
                   {item}
@@ -120,10 +124,19 @@ function Header() {
 
       {/* Second AppBar - Search and Icons */}
       <AppBar
-        position="static"
-        sx={{ backgroundColor: "#3b4149", padding: "5px 0" }}
+        position="sticky"
+        sx={{
+          padding: "5px 0",
+          backgroundColor: "rgb(1, 47, 80)",
+        }}
       >
-        <Toolbar sx={{ display: "flex",justifyContent: isSmallScreen ? "space-between" : "center", gap:2 }}>
+        <Toolbar
+          sx={{
+            display: "flex",
+            justifyContent: isSmallScreen ? "space-between" : "center",
+            gap: 2,
+          }}
+        >
           {isSmallScreen && (
             <IconButton color="inherit" onClick={toggleDrawer(true)}>
               <MenuIcon />
@@ -134,7 +147,7 @@ function Header() {
               // flexGrow: 1,
               display: "flex",
               justifyContent: isSmallScreen ? "right" : "center",
-              width:"400px"
+              width: "400px",
             }}
           >
             <Search>
@@ -157,18 +170,26 @@ function Header() {
               }}
             >
               {[
-                { icon: <FavoriteIcon />, text: "Wishlist", link: "/wishlist" },
-                { icon: <CompareIcon />, text: "Compare", link: "/compare" },
+                {
+                  icon: <FavoriteIcon />,
+                  text: "Wishlist",
+                  link: "/store/wishlist",
+                },
+                {
+                  icon: <CompareIcon />,
+                  text: "Compare",
+                  link: "/store/compare",
+                },
                 {
                   icon: <ShoppingCartIcon />,
                   text: "Cart",
-                  link: "/cart",
+                  link: "/store/cart",
                   badge: 1,
                 },
                 {
                   icon: <AccountCircleIcon />,
                   text: "Account",
-                  link: "/account",
+                  link: "/store/account",
                 },
               ].map(({ icon, text, link, badge }) => (
                 <Tooltip title={text} key={text}>
@@ -197,12 +218,16 @@ function Header() {
       <Drawer anchor="left" open={drawerOpen} onClose={toggleDrawer(false)}>
         <List sx={{ width: 250, backgroundColor: "#131921", height: "100%" }}>
           {[
-            { icon: <FavoriteIcon />, text: "Wishlist", link: "/wishlist" },
-            { icon: <CompareIcon />, text: "Compare", link: "/compare" },
+            {
+              icon: <FavoriteIcon />,
+              text: "Wishlist",
+              link: "/store/wishlist",
+            },
+            { icon: <CompareIcon />, text: "Compare", link: "/store/compare" },
             {
               icon: <ShoppingCartIcon />,
               text: "Cart",
-              link: "/cart",
+              link: "/store/cart",
               badge: 1,
             },
             { icon: <AccountCircleIcon />, text: "Account", link: "/account" },
@@ -234,7 +259,7 @@ function Header() {
             <ListItem
               button
               component={NavLink}
-              to={`/${item.toLowerCase()}`}
+              to={`/store/${item.toLowerCase()}`}
               key={item}
             >
               <ListItemText primary={item} sx={{ color: "white" }} />
