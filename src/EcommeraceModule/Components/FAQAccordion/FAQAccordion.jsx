@@ -60,10 +60,10 @@ function FAQAccordion() {
       sx={{
         p: "1rem",
         bgcolor: "white",
-        borderRadius: "8px",
         m: "2rem 0 0 0",
         flexBasis: "45%",
         height: "fit-content",
+        borderRadius: "8px",
         boxShadow: "0 0 2px rgba(0, 0, 0, 0.3)",
 
       }}

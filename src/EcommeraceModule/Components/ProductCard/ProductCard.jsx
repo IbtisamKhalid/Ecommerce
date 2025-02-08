@@ -29,7 +29,7 @@ const ProductCard = ({
       sx={{
         bgcolor: "white",
         width: "100%",
-        height: height || "390px",
+        height: height || "100%",
         borderRadius: "10px",
         position: "relative",
         overflow: "hidden",
@@ -152,6 +152,7 @@ const ProductCard = ({
           style={{
             width: width || "100%",
             borderRadius: "10px",
+            height:"100%"
           }}
         />
       </Box>

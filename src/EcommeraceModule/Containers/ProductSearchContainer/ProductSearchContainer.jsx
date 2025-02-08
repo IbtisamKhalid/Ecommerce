@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Box } from "@mui/material";
+import { Box, Typography, useMediaQuery } from "@mui/material";
 import { products } from "../../../constants/Products";
 import ProductGrid from "../../Components/ProductSearchComponents/ProductGridComponent/ProductGrid";
 import Pagination from "../../Components/ProductSearchComponents/Pagination/Pagination";
@@ -9,12 +9,16 @@ import TagsFilter from "../../Components/ProductSearchComponents/ProductSearchSi
 import BrandsFilter from "../../Components/ProductSearchComponents/ProductSearchSideBarComponent/BrandsFilterComponent/BrandsFilter";
 
 function ProductSearchContainer() {
+  const at800 = useMediaQuery("(max-width: 820px)");
+  const isMobile = useMediaQuery("(max-width:670px)");
+
   const itemsPerPage = 15;
   const [currentPage, setCurrentPage] = useState(1);
   const [sortOption, setSortOption] = useState("featured");
   const [selectedTags, setSelectedTags] = useState([]);
   const [priceRange, setPriceRange] = useState({ from: "", to: "" });
   const [selectedBrands, setSelectedBrands] = useState([]);
+  const [open, setOpen] = useState(false);
 
   const allTags = [...new Set(products.flatMap((product) => product.tags))];
   const allBrands = [...new Set(products.map((product) => product.brand))];
@@ -75,34 +79,76 @@ function ProductSearchContainer() {
         gap: 2,
         width: "100%",
         height: "100%",
-        p: "4rem 2rem",
+        p: "4rem 1rem",
         backgroundColor: "#f5f5f7",
       }}
     >
-      <Box sx={{ display: "flex", gap: 2 }}>
-        <Box sx={{ flexBasis: "10%" }}>
-          <Box sx={{ display: "block", backgroundColor: "white" }}>
+      <Box sx={{ display: at800 ? "block" : "flex", gap: 2 }}>
+        <Box sx={{ display: at800 ? "flex" : "block", flexBasis: "30%" }}>
+          {!at800 && (
+            // Desktop Mode - Filters Always Visible
+            <Box
+              sx={{
+                display: "block",
+                borderRadius: "8px",
+                boxShadow: "0 0 2px rgba(0, 0, 0, 0.3)",
+                bgcolor: "white",
+                width: "100%",
+                padding: "1rem",
+              }}
+            >
+              <PriceFilter
+                priceRange={priceRange}
+                setPriceRange={setPriceRange}
+              />
+              <TagsFilter
+                tags={allTags}
+                selectedTags={selectedTags}
+                setSelectedTags={setSelectedTags}
+              />
+              <BrandsFilter
+                brands={allBrands}
+                selectedBrands={selectedBrands}
+                setSelectedBrands={setSelectedBrands}
+              />
+            </Box>
+          )}
+        </Box>
+        <Box sx={{ flexBasis: "120%" }}>
+          {!at800 && (
             <SortDropdown
               sortOption={sortOption}
               setSortOption={setSortOption}
-            />
-            <PriceFilter
               priceRange={priceRange}
               setPriceRange={setPriceRange}
             />
-            <TagsFilter
-              tags={allTags}
-              selectedTags={selectedTags}
-              setSelectedTags={setSelectedTags}
-            />
-            <BrandsFilter
-              brands={allBrands}
-              selectedBrands={selectedBrands}
-              setSelectedBrands={setSelectedBrands}
-            />
-          </Box>
-        </Box>
-        <Box sx={{ flexBasis: "100%" }}>
+          )}
+          {at800 && (
+            <>
+              <SortDropdown
+                sortOption={sortOption}
+                setSortOption={setSortOption}
+                priceRange={priceRange}
+                setPriceRange={setPriceRange}
+              >
+                <PriceFilter
+                  priceRange={priceRange}
+                  setPriceRange={setPriceRange}
+                />
+                <TagsFilter
+                  tags={allTags}
+                  selectedTags={selectedTags}
+                  setSelectedTags={setSelectedTags}
+                />
+                <BrandsFilter
+                  brands={allBrands}
+                  selectedBrands={selectedBrands}
+                  setSelectedBrands={setSelectedBrands}
+                />
+              </SortDropdown>
+            </>
+          )}
+
           <ProductGrid products={paginatedProducts} />
         </Box>
       </Box>

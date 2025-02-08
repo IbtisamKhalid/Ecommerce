@@ -13,16 +13,24 @@ import ProductCard from "../../Components/ProductCard/ProductCard";
 
 const FeaturedCollectionComponent = () => {
   const at1080 = useMediaQuery("(min-width:1080px)");
+  const at720 = useMediaQuery("(max-width:720px)");
+  const at520 = useMediaQuery("(max-width:520px)");
+  // const at1080 = useMediaQuery("(min-width:1080px)");
   const [count, setCount] = React.useState(0);
   const [sizeGrid, setSizeGrid] = React.useState(2.4); // Default value is 2.4
 
+  // Default value
   React.useEffect(() => {
-    if (at1080) {
-      setSizeGrid(2.4); // Set to 2.4 when at1080 is false
+    if (at520) {
+      setSizeGrid(12);
+    } else if (at720) {
+      setSizeGrid(6);
+    } else if (at1080) {
+      setSizeGrid(2.4);
     } else {
-      setSizeGrid(3); // Set to 3 when at1080 is true
+      setSizeGrid(3);
     }
-  }, [at1080]);
+  }, [at1080, at720, at520]);
 
   // Toggle products order
   const displayedProducts = count ? [...products].reverse() : products;
@@ -64,7 +72,7 @@ const FeaturedCollectionComponent = () => {
             0,
             at1080 ? displayedProducts.length : displayedProducts.length - 1
           )
-          .filter((_, index) => index < 5) // Only keep first 5 items
+          .filter((_, index) => (at1080 ? index < 5 : index < 4)) // Only keep first 5 items
           .map((product) => (
             <Grid item key={product.id} size={sizeGrid} md={sizeGrid}>
               <ProductCard

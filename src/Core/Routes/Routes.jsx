@@ -41,6 +41,8 @@ import ProfileSetting from "../../EscrowModule/Pages/LoggedInPages/ProfileSettin
 import { IsUserLoggedIn } from "../../EscrowModule/EscrowContext/Hooks/useEscrowContext";
 import FileDispute from "../../EscrowModule/Pages/LoggedInPages/DIsputeModule/FileDisputeComponent/FileDispute";
 import PaymentContainer from "../../EscrowModule/Pages/LoggedInPages/Details/ProceedToPaymentComponent/Payment/PaymenPageContainer/PaymentContainer";
+import ProductComparisonContainer from "../../EcommeraceModule/Containers/ProductComparisonContainer/ProductComparisonContainer";
+import CartContainer from "../../EcommeraceModule/Containers/CartContainer/CartContainer";
 
 function Routes() {
   const { isUserLoggedIn, setIsUserLoggedIn } = useContext(IsUserLoggedIn);
@@ -54,7 +56,9 @@ function Routes() {
           <Route path="/store" element={<LayoutStore />}>
             <Route index element={<HomeStore />} />
             <Route path="products" element={<ProductPage />} />
+            <Route path="cart" element={<CartContainer />} />
             <Route path="search" element={<ProductSearchContainer />} />
+            <Route path="compare" element={<ProductComparisonContainer />} />
           </Route>
           <Route path="/escrow" element={<LayoutEscrow />}>
             <Route index element={<HomeEscrow />} />

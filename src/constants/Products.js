@@ -1,8 +1,9 @@
-import mobile from "../EcommeraceModule/StoreAssets/img/mobile2.jpg";
+// import watch from "../EcommeraceModule/StoreAssets/img/mobile2.jpg";
 import laptop from "../EcommeraceModule/StoreAssets/img/laptop2.jpg";
 // import watch from "../EcommeraceModule/StoreAssets/img/watch2.jpg";
 // import speaker from "../EcommeraceModule/StoreAssets/img/Speaker2.jpg";
 import SP1 from "../EcommeraceModule/StoreAssets/img/SpecialProduct1/SP1.jpg";
+import watch from "../EcommeraceModule/StoreAssets/img/SpecialProduct1/SP1.jpg";
 import SP2 from "../EcommeraceModule/StoreAssets/img/SpecialProduct1/SP2.jpg";
 import SP3 from "../EcommeraceModule/StoreAssets/img/SpecialProduct1/SP3.jpg";
 // import SP4 from "../../EcommeraceModule/StoreAssets/img/SpecialProduct1.jpg";
@@ -14,7 +15,7 @@ import camera from "../EcommeraceModule/StoreAssets/img/camers.jpg";
 import headphone from "../EcommeraceModule/StoreAssets/img/headphone1.jpg";
 import speaker from "../EcommeraceModule/StoreAssets/img/speaker.jpg";
 import tab from "../EcommeraceModule/StoreAssets/images/tab.jpg";
-import watch from "../EcommeraceModule/StoreAssets/images/watch.jpg";
+// import watch from "../EcommeraceModule/StoreAssets/images/watch.jpg";
 import cameraHovered from "../EcommeraceModule/StoreAssets/img/CameraHovered.jpg";
 import headphonehover from "../EcommeraceModule/StoreAssets/img/headphonehover.jpg";
 import speakerhover from "../EcommeraceModule/StoreAssets/img/speakerhover.jpg";
@@ -24,7 +25,7 @@ import watchhover from "../EcommeraceModule/StoreAssets/img/watchhovered.jpg";
 export const products = [
   {
     id: 1,
-    category: 0,
+    category: "Camera",
     price: "100.00",
     heading: "Olympus pen, EZ lens",
     brand: "Havells",
@@ -46,11 +47,14 @@ export const products = [
       { stars: 4, review: "Very Beautiful Products" },
       { stars: 4, review: "Recomended" },
     ],
+    Availiablity:"In stock"
   },
   {
     id: 2,
     productCardImage: headphone,
     heading: "Headphones for Kids",
+    category: "Headphone",
+
     brand: "Havells",
     price: "500",
     imageonHover: headphonehover,
@@ -71,6 +75,8 @@ export const products = [
       { stars: 4, review: "Very Beautiful Products" },
       { stars: 4, review: "Recomended" },
     ],
+    Availiablity:"In stock"
+
   },
   {
     id: 3,
