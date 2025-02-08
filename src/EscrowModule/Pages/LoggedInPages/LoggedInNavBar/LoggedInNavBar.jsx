@@ -23,7 +23,7 @@ import PersonAdd from "@mui/icons-material/PersonAdd";
 import LoggedInNavBarLayout from "./LoggedInNavbarLayout/LoggedNavLayout";
 import { GetStartedButton } from "../../../Components/Reused/reusableComponents";
 
-export default function LoggedInNavBar({title = true, navColor, children,padd}) {
+export default function LoggedInNavBar({ title, navColor, children, padd }) {
   const {
     mobileOpen,
     handleDrawerToggle,
@@ -76,7 +76,12 @@ export default function LoggedInNavBar({title = true, navColor, children,padd}) 
   );
   return (
     <>
-      <LoggedInNavBarLayout handleDrawerToggle={handleDrawerToggle} Title={title} navColor={navColor} pad={padd}>
+      <LoggedInNavBarLayout
+        handleDrawerToggle={handleDrawerToggle}
+        Title={title}
+        navColor={navColor}
+        pad={padd}
+      >
         {children}
         <Box
           sx={{

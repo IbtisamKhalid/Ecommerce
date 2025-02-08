@@ -6,9 +6,9 @@ import { Colors, Fonts } from "../../../../Theme/Theme";
 export default function LoggedNavLayout({
   children,
   handleDrawerToggle,
-  Title,
-  navColor=Colors.secondNavColor,
-  pad=true
+  Title = true,
+  navColor = Colors.secondNavColor,
+  pad = true,
 }) {
   return (
     <>
