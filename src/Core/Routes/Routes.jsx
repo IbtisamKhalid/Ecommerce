@@ -50,9 +50,6 @@ import {
   Dashboard,
   MianLayout,
   Productlist,
-  EscrowPayments as SellerEscrowPayments,
-  EscrowHistory as SellerEscrowHistory,
-  EscrowDisputes as SellerEscrowDisputes,
 } from "../../Dashboard/SellerDashboard/SellerDashboardComponents/ExportSellerDashboardComponents";
 
 function Routes() {

@@ -1,7 +1,7 @@
 import { Box, Typography } from "@mui/material";
 import React from "react";
 import { products } from "../../../constants/Products";
-import WishlistComponent from "../../Components/WIshlistComponent/WIshlistComponent";
+import WishlistComponent from "../../Components/WishlistComponent/WishlistComponent";
 
 function WishlistContainer() {
   const wishlistItems = [products[0], products[1], products[2]];
