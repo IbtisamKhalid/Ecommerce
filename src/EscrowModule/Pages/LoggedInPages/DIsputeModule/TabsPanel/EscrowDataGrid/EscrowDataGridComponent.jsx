@@ -14,7 +14,7 @@ import { Colors } from "../../../../../Theme/Theme";
 
 function EscrowDataGridComponent({ tableName, status, onRendered }) {
   const isSmallScreen = useMediaQuery("(min-width:820px)");
-  const { loading, columns, rows, handleBoxClick, handleAgreement } =
+  const { loading, columns, rows, handleBoxClick, handleAgreement, user } =
     useEscrowDataGrid({
       onRendered,
     });

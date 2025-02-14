@@ -14,7 +14,7 @@ import {
   ListItemText,
   ListItemButton,
 } from "@mui/material";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import useNavBar from "./hooks/useNavBar";
 import Logout from "@mui/icons-material/Logout";
 import Settings from "@mui/icons-material/Settings";
@@ -24,15 +24,16 @@ import LoggedInNavBarLayout from "./LoggedInNavbarLayout/LoggedNavLayout";
 import { GetStartedButton } from "../../../Components/Reused/reusableComponents";
 
 export default function LoggedInNavBar({ title, navColor, children, padd }) {
+
   const {
     mobileOpen,
     handleDrawerToggle,
     userNavbarLinks,
-    user,
     open,
     handleClick,
     handleClose,
     anchorEl,
+    user,
   } = useNavBar();
   const drawer = (
     <Box
@@ -74,6 +75,7 @@ export default function LoggedInNavBar({ title, navColor, children, padd }) {
       />
     </Box>
   );
+
   return (
     <>
       <LoggedInNavBarLayout

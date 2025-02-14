@@ -1,8 +1,10 @@
 import { Box, Typography } from "@mui/material";
 import TabsPanel from "../TabsPanel/TabsPanel";
 import { Colors, Fonts } from "../../../Theme/Theme";
+import { useLocation } from "react-router-dom";
 
 const EscrowHistory = () => {
+
   const Tabs = ["All", "Completed", "Ongoing", "Cancelled"];
   return (
     <Box

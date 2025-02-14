@@ -1,11 +1,14 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
 import { useNavigate } from "react-router-dom";
-import { useEscrowHistory } from "../../../../../../EscrowContext/Hooks/useEscrowContext";
+import {
+  useEscrowHistory,
+  UserContext,
+} from "../../../../../../EscrowContext/Hooks/useEscrowContext";
 
 function useEscrowDataGrif({ onRendered }) {
   const { escrowHistory } = useEscrowHistory();
   const [loading, setLoading] = useState(true);
-
+  const { user, setUser } = useContext(UserContext);
   useEffect(() => {
     setLoading(true);
     const timer = setTimeout(() => {
@@ -25,164 +28,84 @@ function useEscrowDataGrif({ onRendered }) {
     { headerName: "STATUS", m: "", textAlign: "right" },
   ];
 
-  /*
-    {
-      id: "13075658",
-      title: "My Transaction",
-      subtitle: "Domain Name",
-      created: "Jan 12, 2025",
-      amount: "$91.00 USD",
-      role: "Buyer",
-      status: {
-        primary: "Awaiting Agreement",
-        secondary: "Requires Seller's Action",
-      },
-      agreed:true,
-      step:0,
-      contract:[],
-      dispute:false,
-      disputeDetails:[],
-    },
-    */
+  const [rows, setRows] = useState([]);
 
-    const [rows, setRows] = useState([]);
+  useEffect(() => {
+    const filteredRows = escrowHistory
+      .filter((transaction) => transaction.dispute) // Include only disputed transactions
+      .map((transaction) => {
+        let primaryStatus = "";
+        let secondaryStatus = "";
 
-    useEffect(() => {
-      const filteredRows = escrowHistory
-        .filter((transaction) => transaction.dispute) // Include only disputed transactions
-        .map((transaction) => {
-          let primaryStatus = "";
-          let secondaryStatus = "";
-  
-          // Assign values based on the step
-          switch (transaction.step) {
-            case 0:
-              primaryStatus = "Awaiting Agreement";
-              secondaryStatus = "Requires Seller's Action";
-              break;
-            case 1:
-              primaryStatus = "Agreement Reached";
-              secondaryStatus = "Awaiting Payment";
-              break;
-            case 2:
-              primaryStatus = "Payment Received";
-              secondaryStatus = "Awaiting Delivery";
-              break;
-            case 3:
-              if (transaction.dispute) {
-                primaryStatus = "In Dispute";
-                secondaryStatus = "Inspection Period";
-              } else {
-                primaryStatus = "Delivery Confirmed";
-                secondaryStatus = "Inspection Period";
-              }
-              break;
-            default:
-              primaryStatus = "Transaction Closed";
-              secondaryStatus = "Thank You for your Trust";
-          }
-  
-          return {
-            id: transaction.id,
-            title: transaction.title,
-            subtitle: transaction.subtitle,
-            created: transaction.created,
-            amount: transaction.amount,
-            role: transaction.role,
-            status: {
-              primary: primaryStatus,
-              secondary: secondaryStatus,
-            },
-            dispute: transaction.dispute,
-            disputeDetails: transaction.disputeDetails,
-            step: transaction.step,
-            currency: transaction.currency,
-            agreed: transaction.agreed,
-            contract: transaction.contract,
-            disputeStatus: {
-              primary: primaryStatus,
-            },
-          };
-        });
-  
-      // Update the state
-      setRows(filteredRows);
-    }, [escrowHistory]);
+        // Assign values based on the step
+        switch (transaction.step) {
+          case 0:
+            primaryStatus = "Awaiting Agreement";
+            secondaryStatus = "Requires Seller's Action";
+            break;
+          case 1:
+            primaryStatus = "Agreement Reached";
+            secondaryStatus = "Awaiting Payment";
+            break;
+          case 2:
+            primaryStatus = "Payment Received";
+            secondaryStatus = "Awaiting Delivery";
+            break;
+          case 3:
+            if (transaction.dispute) {
+              primaryStatus = "In Dispute";
+              secondaryStatus = "Inspection Period";
+            } else {
+              primaryStatus = "Delivery Confirmed";
+              secondaryStatus = "Inspection Period";
+            }
+            break;
+          default:
+            primaryStatus = "Transaction Closed";
+            secondaryStatus = "Thank You for your Trust";
+        }
 
+        return {
+          id: transaction.id,
+          title: transaction.title,
+          subtitle: transaction.subtitle,
+          created: transaction.created,
+          amount: transaction.amount,
+          role: transaction.role,
+          status: {
+            primary: primaryStatus,
+            secondary: secondaryStatus,
+          },
+          dispute: transaction.dispute,
+          disputeDetails: transaction.disputeDetails,
+          step: transaction.step,
+          currency: transaction.currency,
+          agreed: transaction.agreed,
+          contract: transaction.contract,
+          disputeStatus: {
+            primary: primaryStatus,
+          },
+        };
+      });
 
-
-  // useEffect(() => {
-  //  const rows = escrowHistory
-  //     .filter((transaction) => transaction.dispute) // Include only disputed transactions
-  //     .map((transaction) => {
-  //       let primaryStatus = "";
-  //       let secondaryStatus = "";
-
-  //       // Assign values based on the step
-  //       switch (transaction.step) {
-  //         case 0:
-  //           primaryStatus = "Awaiting Agreement";
-  //           secondaryStatus = "Requires Seller's Action";
-  //           break;
-  //         case 1:
-  //           primaryStatus = "Agreement Reached";
-  //           secondaryStatus = "Awaiting Payment";
-  //           break;
-  //         case 2:
-  //           primaryStatus = "Payment Received";
-  //           secondaryStatus = "Awaiting Delivery";
-  //           break;
-  //         case 3:
-  //           if (transaction.dispute) {
-  //             primaryStatus = "In Dispute";
-  //             secondaryStatus = "Inspection Period";
-  //           } else {
-  //             primaryStatus = "Delivery Confirmed";
-  //             secondaryStatus = "Inspection Period";
-  //           }
-  //           break;
-  //         default:
-  //           primaryStatus = "Transaction Closed";
-  //           secondaryStatus = "Thank You for your Trust";
-  //       }
-
-  //       return {
-  //         id: transaction.id,
-  //         title: transaction.title,
-  //         subtitle: transaction.subtitle,
-  //         created: transaction.created,
-  //         amount: transaction.amount,
-  //         role: transaction.role,
-  //         status: {
-  //           primary: primaryStatus,
-  //           secondary: secondaryStatus,
-  //         },
-  //         dispute: transaction.dispute,
-  //         disputeDetails: transaction.disputeDetails,
-  //         step: transaction.step,
-  //         currency: transaction.currency,
-  //         agreed: transaction.agreed,
-  //         contract: transaction.contract,
-  //         disputeStatus: {
-  //           primary: primaryStatus,
-  //         },
-  //       };
-  //     });
-  // });
+    // Update the state
+    setRows(filteredRows);
+  }, [escrowHistory]);
 
   const navigate = useNavigate();
 
   const handleBoxClick = (item) => {
-    navigate(`/LoggedIn/disputedetails/${item.id}`, { state: { item } });
+    navigate(`/escrowdashboard/disputedetails`, { state: { item } });
   };
   const handleAgreement = (item) => {
-    navigate(`/LoggedIn/disputedetails/${item.id}`, { state: { item } });
+    navigate(`/escrowdashboard/disputedetails`, { state: { item } });
   };
 
   return {
-    loading,
-    columns,
+    user,
     rows,
+    columns,
+    loading,
     handleBoxClick,
     handleAgreement,
   };

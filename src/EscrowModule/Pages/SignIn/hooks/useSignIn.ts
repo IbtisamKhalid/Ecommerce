@@ -19,7 +19,6 @@ function useSignIn() {
   const [passwordErrorMessage, setPasswordErrorMessage] = useState("");
   const { isUserLoggedIn, setIsUserLoggedIn } = useContext(IsUserLoggedIn);
 
-
   const validateInputs = () => {
     let isValid = true;
 
@@ -63,11 +62,16 @@ function useSignIn() {
       if (response.status === 200 && response.data) {
         const { token, user } = response.data; // Expect 'user' here
         console.log("User Logged In:", user);
-
         setIsUserLoggedIn(true);
-        setUser(email); // Update user context
+        setUser(user);
         localStorage.setItem("authToken", token);
-        navigate("/LoggedIn/EscrowHistory");
+        if (user.role == "Buyer") {
+          navigate("/escrowdashboard", { state: { isAdmin: false } });
+        } else if (user.role == "Seller") {
+          navigate("/dashboard", { state: { isAdmin: false } });
+        } else if (user.role == "Admin") {
+          navigate("/escrowdashboard", { state: { isAdmin: true } });
+        }
       }
     } catch (error) {
       console.error("Error Logging In user:", error);

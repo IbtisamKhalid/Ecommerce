@@ -38,7 +38,10 @@ import {
   SupportCenter,
 } from "../../EscrowModule/Modules/Header/index";
 import ProfileSetting from "../../EscrowModule/Pages/LoggedInPages/ProfileSetting/ProfileSetting/ProfileSetting";
-import { IsUserLoggedIn } from "../../EscrowModule/EscrowContext/Hooks/useEscrowContext";
+import {
+  IsUserLoggedIn,
+  UserContext,
+} from "../../EscrowModule/EscrowContext/Hooks/useEscrowContext";
 import FileDispute from "../../EscrowModule/Pages/LoggedInPages/DIsputeModule/FileDisputeComponent/FileDispute";
 import PaymentContainer from "../../EscrowModule/Pages/LoggedInPages/Details/ProceedToPaymentComponent/Payment/PaymenPageContainer/PaymentContainer";
 import ProductComparisonContainer from "../../EcommeraceModule/Containers/ProductComparisonContainer/ProductComparisonContainer";
@@ -54,6 +57,7 @@ import {
 
 function Routes() {
   const { isUserLoggedIn, setIsUserLoggedIn } = useContext(IsUserLoggedIn);
+  const { user, setUser } = useContext(UserContext);
 
   return (
     <>
@@ -74,14 +78,30 @@ function Routes() {
           </Route>
           <Route path="SignIn" element={<SignIn />} />
           <Route path="SignUp" element={<SignUP />} />
-          {isUserLoggedIn && (
+          {isUserLoggedIn && user.role == "Seller" && (
             <>
+              <Route path="/dashboard" element={<MianLayout />}>
+                <Route index element={<Dashboard />} />
+                <Route path="orders" element={<Orders />} />
+                <Route path="product-list" element={<Productlist />} />
+                <Route path="product" element={<Addproduct />} />
+                <Route path="ProfileSetting" element={<ProfileSetting />} />
+                <Route
+                  path="escrowdetails"
+                  element={<EscrowDetailsWrapper />}
+                />
+                <Route
+                  path="disputedetails"
+                  element={<DisputeDetailsWrapper />}
+                />
+              </Route>
+              {console.log("in first if and the user is", user)}
               <Route path="/StartEscrow" element={<StartEscrow />} />
               <Route path="/Contract" element={<MakeContracts />} />
               <Route path="/Payment" element={<PaymentContainer />} />
               <Route path="/FileDispute" element={<FileDispute />} />
-              <Route path="/LoggedIn" element={<LoggedInLayout />}>
-                <Route path="EscrowHistory" element={<EscrowHistory />} />
+              <Route path="/escrowdashboard" element={<LoggedInLayout />}>
+                <Route index element={<EscrowHistory />} />
                 <Route path="EscrowDisputes" element={<EscrowDisputes />} />
                 <Route path="EscrowPayments" element={<EscrowPayments />} />
                 <Route path="ProfileSetting" element={<ProfileSetting />} />
@@ -96,16 +116,19 @@ function Routes() {
               </Route>
             </>
           )}
-          {isUserLoggedIn && (
+
+          {console.log("in between and the user is", user)}
+          {isUserLoggedIn && user.role == "Buyer" && (
             <>
-              <Route path="/dashboard" element={<MianLayout />}>
-                <Route index element={<Dashboard />} />
-                <Route path="orders" element={<Orders />} />
-                <Route path="product-list" element={<Productlist />} />
-                <Route path="product" element={<Addproduct />} />
-                <Route path="SellerEscrowHistory" element={<SellerEscrowHistory />} />
-                <Route path="SellerEscrowDisputes" element={<SellerEscrowDisputes />} />
-                <Route path="SellerEscrowPayments" element={<SellerEscrowPayments />} />
+              {console.log("in second if")}
+              <Route path="/StartEscrow" element={<StartEscrow />} />
+              <Route path="/Contract" element={<MakeContracts />} />
+              <Route path="/Payment" element={<PaymentContainer />} />
+              <Route path="/FileDispute" element={<FileDispute />} />
+              <Route path="/escrowdashboard" element={<LoggedInLayout />}>
+                <Route index element={<EscrowHistory />} />
+                <Route path="EscrowDisputes" element={<EscrowDisputes />} />
+                <Route path="EscrowPayments" element={<EscrowPayments />} />
                 <Route path="ProfileSetting" element={<ProfileSetting />} />
                 <Route
                   path="escrowdetails"
@@ -118,6 +141,20 @@ function Routes() {
               </Route>
             </>
           )}
+          {isUserLoggedIn && user.role == "Admin" && (
+            <>
+              {console.log("in third if")}
+              <Route path="/escrowdashboard" element={<LoggedInLayout />}>
+                <Route index element={<EscrowDisputes />} />
+                <Route path="ProfileSetting" element={<ProfileSetting />} />
+                <Route
+                  path="disputedetails"
+                  element={<DisputeDetailsWrapper />}
+                />
+              </Route>
+            </>
+          )}
+
           <Route path="/queries" element={<Layout />}>
             <Route path="About" element={<About />} />
             <Route path="Careers" element={<Careers />} />

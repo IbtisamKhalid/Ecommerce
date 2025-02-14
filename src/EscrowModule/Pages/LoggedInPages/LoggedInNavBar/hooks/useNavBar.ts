@@ -1,20 +1,23 @@
 import React from "react";
+import { UserContext } from "../../../../EscrowContext/Hooks/useEscrowContext";
 
 function useNavBar() {
   const [mobileOpen, setMobileOpen] = React.useState(false);
   const handleDrawerToggle = () => {
     setMobileOpen((prevState) => !prevState);
   };
+  const { user } = React.useContext(UserContext);
   const userNavbarLinks = [
-    { name: "My Escrow", link: "/LoggedIn/EscrowHistory" },
-    { name: "Dispute", link: "/LoggedIn/EscrowDisputes" },
-    { name: "Payments", link: "/LoggedIn/escrowpayments" },
-    { name: "Help", link: "/SignIn" },
+    ...(user.role != "Admin"
+      ? [
+          { name: "My Escrow", link: "/escrowdashboard" },
+          { name: "Dispute", link: "/escrowdashboard/EscrowDisputes" },
+          { name: "Payments", link: "/escrowdashboard/escrowpayments" },
+          { name: "Help", link: "/SignIn" },
+        ]
+      : [{ name: "Dispute", link: "/escrowdashboard/EscrowDisputes" }]),
   ];
-  const user = {
-    name: "Ibtisam",
-    email: "ibtisam@gmail.com",
-  };
+
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
 
@@ -29,8 +32,8 @@ function useNavBar() {
     mobileOpen,
     handleDrawerToggle,
     userNavbarLinks,
-    user,
     open,
+    user,
     handleClick,
     handleClose,
     anchorEl,

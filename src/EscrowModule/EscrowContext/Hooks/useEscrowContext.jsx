@@ -3,11 +3,7 @@ import { useState, useContext } from "react";
 import { createContext } from "react";
 
 export const EscrowHistoryContext = createContext();
-export const DisputeHistoryContext = createContext();
-export const PaymentHistoryContext = createContext();
-export const StepperStepContext = createContext();
 export const UserContext = createContext();
-export const UserEmailContext = createContext();
 export const IsUserLoggedIn = createContext();
 export const useEscrowHistory = () => {
   return useContext(EscrowHistoryContext);
@@ -18,9 +14,9 @@ export const useDisputeHistory = () => {
 // Create contexts
 
 function useEscrowContext() {
-  const [user, setUser] = useState();
-  const [userEmail, setUserEmail] = useState();
-  const [stepperStep, setStepperStep] = useState(2);
+  const [user, setUser] = useState([
+  
+  ]);
   const [escrowHistory, setEscrowHistory] = useState([
     {
       agreed: false,
@@ -157,9 +153,7 @@ function useEscrowContext() {
       title: "My Transaction",
     },
   ]);
-  const [disputeHistory, setDisputeHistory] = useState([]);
-  const [paymentHistory, setPaymentHistory] = useState([]);
-  const [isUserLoggedIn, setIsUserLoggedIn] = useState(true);
+  const [isUserLoggedIn, setIsUserLoggedIn] = useState(false);
 
   // Add a new escrow transaction
   const addEscrowTransaction = (newTransaction) => {
@@ -185,30 +179,17 @@ function useEscrowContext() {
     );
   };
   return {
-    useEscrowHistory,
     user,
     setUser,
-    userEmail,
-    setUserEmail,
-    stepperStep,
-    setStepperStep,
     escrowHistory,
     setEscrowHistory,
-    disputeHistory,
-    setDisputeHistory,
-    paymentHistory,
-    setPaymentHistory,
     isUserLoggedIn,
     setIsUserLoggedIn,
     addEscrowTransaction,
     deleteEscrowTransaction,
     updateDisputeDetails,
     EscrowHistoryContext,
-    DisputeHistoryContext,
-    PaymentHistoryContext,
-    StepperStepContext,
     UserContext,
-    UserEmailContext,
     IsUserLoggedIn,
   };
 }

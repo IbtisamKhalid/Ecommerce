@@ -17,21 +17,22 @@ import useSignIn from "./hooks/useSignIn";
 
 export default function SignInCard() {
   const {
-    validateInputs,
-    handleSubmit,
-    handleClickOpen,
-    handleClose,
-    googleLogin,
-    emailError,
-    emailErrorMessage,
-    passwordError,
-    passwordErrorMessage,
     open,
+    emailError,
+    passwordError,
+    emailErrorMessage,
+    passwordErrorMessage,
     setEmail,
+    handleClose,
     setPassword,
+    googleLogin,
+    handleSubmit,
+    validateInputs,
+    handleClickOpen,
   } = useSignIn();
 
   return (
+    
     <Card variant="outlined">
       <Typography
         component="h1"

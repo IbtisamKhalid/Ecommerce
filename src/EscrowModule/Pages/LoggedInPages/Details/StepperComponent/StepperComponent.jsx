@@ -1,16 +1,25 @@
-/* eslint-disable no-unused-vars */
+import { useState, useEffect } from "react";
 import Stepper from "@mui/material/Stepper";
 import Step from "@mui/material/Step";
 import StepLabel from "@mui/material/StepLabel";
 import Box from "@mui/material/Box";
 import { Colors } from "../../../../Theme/Theme";
-import { StepperStepContext } from "../../../../EscrowContext/Hooks/useEscrowContext";
-import { useContext } from "react";
-function StepperComponent({step}) {
-  const steps = ["Agreement", "Payment", "Delivery", "Inspection", "Closed"];
+
+function StepperComponent({ step }) {
+  const [steps, setSteps] = useState([]);
+
+  // ✅ Use useEffect to update steps when `step` changes
+  useEffect(() => {
+    if (step === 3) {
+      setSteps(["Agreement", "Payment", "Delivery", "Inspection", "Dispute", "Closed"]);
+    } else {
+      setSteps(["Agreement", "Payment", "Delivery", "Inspection", "Closed"]);
+    }
+  }, [step]); // Runs only when `step` changes
+
   return (
     <Box sx={{ p: "0 2rem" }}>
-      <Stepper activeStep={step} alternativeLabel>
+      <Stepper activeStep={4} alternativeLabel>
         {steps.map((label) => (
           <Step
             key={label}
