@@ -1,266 +1,400 @@
-import { Box, Typography, Link } from "@mui/material";
+import {
+  Typography,
+  Box,
+  Grid,
+  Table,
+  TableBody,
+  TableCell,
+  TableContainer,
+  TableHead,
+  TableRow,
+  Paper,
+} from "@mui/material";
 import { Colors, Fonts } from "../../../../Theme/Theme";
 
 function TrustBridge() {
   return (
-    <Box sx={{ width: "70%" }}>
-      <Box
-        sx={{
-          padding: "2.5rem 1rem 2.5rem 3rem",
-          backgroundColor: "white",
-          borderRadius: "8px",
-          m: "0 5rem 0 9rem",
-        }}
-      >
-        {/* Title */}
+    <Box
+      sx={{
+        padding: "1rem 2rem 0",
+        backgroundColor: "white",
+        width: "65%",
+        borderRight: "1px solid rgb(211, 206, 206)",
+        m: "0 3rem 0 4rem",
+      }}
+    >
+      {/* Introduction Section */}
+      <Box sx={{ mb: 4 }}>
+        <Typography
+          variant="h4"
+          sx={{
+            fontFamily: Fonts.primaryFont,
+            color: "rgb(1, 66, 106)",
+            mb: 2,
+            fontWeight: 700,
+            fontSize: "34px",
+          }}
+        >
+          What is TrustBridge?
+        </Typography>
+        <Typography
+          variant="body1"
+          sx={{ fontFamily: Fonts.primaryFont, color: "rgb(79, 87, 89)", mb: 2 }}
+        >
+          TrustBridge is a secure online escrow service designed to facilitate
+          transactions safely. We act as a neutral third party to hold funds
+          until both parties are satisfied.
+        </Typography>
+      </Box>
+
+      {/* Features Section */}
+      <Box sx={{ mb: 4 }}>
+        <Grid container spacing={2} sx={{ p: "1rem 1rem" }}>
+          <Grid item xs={4}>
+            <Typography
+              variant="h6"
+              sx={{
+                fontFamily: Fonts.primaryFont,
+                color: Colors.fontColor,
+                mb: 1,
+                bgcolor: "rgb(245, 247, 249)",
+                p: "0.7rem",
+                fontSize: "1rem",
+              }}
+            >
+              Fully Licensed & Regulated
+            </Typography>
+            <Typography
+              variant="body1"
+              sx={{
+                fontFamily: Fonts.primaryFont,
+                color: "rgb(79, 87, 89)",
+                mb: 2,
+              }}
+            >
+              TrustBridge operates under strict escrow regulations to protect
+              transactions.
+            </Typography>
+          </Grid>
+
+          <Grid item xs={4}>
+            <Typography
+              variant="h6"
+              sx={{
+                fontFamily: Fonts.primaryFont,
+                color: Colors.fontColor,
+                mb: 1,
+                bgcolor: "rgb(245, 247, 249)",
+                p: "0.7rem",
+                fontSize: "1rem",
+              }}
+            >
+              Fast & Secure Transactions
+            </Typography>
+            <Typography
+              variant="body1"
+              sx={{
+                fontFamily: Fonts.primaryFont,
+                color: "rgb(79, 87, 89)",
+                mb: 2,
+              }}
+            >
+              We ensure quick and secure payments with escrow protection.
+            </Typography>
+          </Grid>
+
+          <Grid item xs={4}>
+            <Typography
+              variant="h6"
+              sx={{
+                fontFamily: Fonts.primaryFont,
+                color: Colors.fontColor,
+                mb: 1,
+                bgcolor: "rgb(245, 247, 249)",
+                p: "0.7rem",
+                fontSize: "1rem",
+              }}
+            >
+              Dispute Resolution System
+            </Typography>
+            <Typography
+              variant="body1"
+              sx={{
+                fontFamily: Fonts.primaryFont,
+                color: "rgb(79, 87, 89)",
+                mb: 2,
+              }}
+            >
+              If conflicts arise, our system provides structured dispute
+              resolution.
+            </Typography>
+          </Grid>
+        </Grid>
+      </Box>
+
+      
+
+      {/* How TrustBridge Works Section */}
+      <Box sx={{ mb: 4 }}>
+        <Typography
+          variant="h4"
+          sx={{
+            fontFamily: Fonts.primaryFont,
+            color: "rgb(1, 66, 106)",
+            mb: 2,
+            fontWeight: 700,
+            fontSize: "34px",
+          }}
+        >
+          How does TrustBridge work?
+        </Typography>
+        <Typography
+          variant="body1"
+          sx={{ fontFamily: Fonts.primaryFont, color: "rgb(79, 87, 89)", mb: 2 }}
+        >
+          The process follows these secure steps:
+        </Typography>
+        <ul>
+          <li>Buyer and seller agree to terms.</li>
+          <li>Buyer submits payment to TrustBridge.</li>
+          <li>Seller ships goods/services to the buyer.</li>
+          <li>Buyer confirms receipt.</li>
+          <li>TrustBridge releases payment to seller.</li>
+        </ul>
+      </Box>
+{/* TrustBridge in Numbers Section */}
+<Box sx={{ mb: 4 }}>
+        <Typography
+          variant="h5"
+          sx={{
+            fontWeight: "bold",
+            color: "rgb(1, 66, 106)",
+            fontFamily: Fonts.primaryFont,
+            mb: 2,
+          }}
+        >
+          TrustBridge in Numbers
+        </Typography>
+        <TableContainer component={Paper}>
+          <Table>
+            <TableHead>
+              <TableRow sx={{ backgroundColor: Colors.tableHeader }}>
+                <TableCell>
+                  <strong>Statistic</strong>
+                </TableCell>
+                <TableCell>
+                  <strong>Value</strong>
+                </TableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              <TableRow>
+                <TableCell>Successful Transactions</TableCell>
+                <TableCell>Over 1 million</TableCell>
+              </TableRow>
+              <TableRow>
+                <TableCell>Fraud Prevention Success Rate</TableCell>
+                <TableCell>99.9%</TableCell>
+              </TableRow>
+              <TableRow>
+                <TableCell>Verified Buyers & Sellers</TableCell>
+                <TableCell>More than 500,000</TableCell>
+              </TableRow>
+            </TableBody>
+          </Table>
+        </TableContainer>
+      </Box>
+      {/* Real-Life Use Cases Section */}
+      <Box sx={{ mb: 4 }}>
+        <Typography
+          variant="h5"
+          sx={{
+            fontWeight: "bold",
+            color: "rgb(1, 66, 106)",
+            fontFamily: Fonts.primaryFont,
+            mb: 2,
+          }}
+        >
+          How TrustBridge Works in Real Life
+        </Typography>
+        <Typography
+          variant="body1"
+          sx={{ color: Colors.fontColor, fontFamily: Fonts.primaryFont, mt: 2 }}
+        >
+          <strong>Freelancer Protection</strong>
+        </Typography>
+        <Typography
+          variant="body2"
+          sx={{ color: Colors.fontColor, fontFamily: Fonts.primaryFont }}
+        >
+          TrustBridge ensures that freelancers get paid only after they
+          successfully deliver the project. The client deposits the payment in
+          escrow, which is released once the work is approved.
+        </Typography>
+        <Typography
+          variant="body1"
+          sx={{ color: Colors.fontColor, fontFamily: Fonts.primaryFont, mt: 2 }}
+        >
+          <strong>Real Estate Transactions</strong>
+        </Typography>
+        <Typography
+          variant="body2"
+          sx={{ color: Colors.fontColor, fontFamily: Fonts.primaryFont }}
+        >
+          Buying or renting a property is safer with TrustBridge. Funds remain
+          securely held in escrow until all paperwork and legal formalities are
+          verified by both parties.
+        </Typography>
+        <Typography
+          variant="body1"
+          sx={{ color: Colors.fontColor, fontFamily: Fonts.primaryFont, mt: 2 }}
+        >
+          <strong>Luxury Goods Purchase</strong>
+        </Typography>
+        <Typography
+          variant="body2"
+          sx={{ color: Colors.fontColor, fontFamily: Fonts.primaryFont }}
+        >
+          When purchasing high-value items, TrustBridge ensures that the buyer
+          can inspect and approve the goods before the seller receives payment,
+          reducing fraud risks.
+        </Typography>
+      </Box>
+
+      {/* Benefits Section */}
+      <Box sx={{ mb: 4 }}>
         <Typography
           variant="h4"
           sx={{
             fontWeight: "bold",
-            marginBottom: "1rem",
-            color: Colors.fontColor,
+            color: "rgb(1, 66, 106)",
             fontFamily: Fonts.primaryFont,
+            mb: 2,
           }}
         >
           Benefits of Using TrustBridge
         </Typography>
+        <Typography
+          variant="body1"
+          sx={{ fontFamily: Fonts.primaryFont, color: "rgb(79, 87, 89)", mb: 2 }}
+        >
+          TrustBridge offers a range of benefits to ensure secure and hassle-free
+          transactions.
+        </Typography>
+      </Box>
 
-        {/* Intro */}
-        <Typography
-          variant="body1"
-          sx={{ color: Colors.fontColor, fontFamily: Fonts.primaryFont }}
-        >
-          TrustBridge protects equally all parties involved in a transaction.
-        </Typography>
-        <br />
-        <Typography
-          variant="body1"
-          sx={{ color: Colors.fontColor, fontFamily: Fonts.primaryFont }}
-        >
-          People resort to TrustBridge when they need to buy or sell something
-          of value but don’t know the other party, regardless of where the
-          transaction takes place. Customers have used our service to complete
-          transactions for everything from classified ad sites and online
-          merchants to auction sites and B2B e-commerce sites.
-        </Typography>
-        <br />
-        <Typography
-          variant="body1"
-          sx={{ color: Colors.fontColor, fontFamily: Fonts.primaryFont }}
-        >
-          Using a regulated and licensed service like TrustBridge ensures you
-          have the critical protection you need when buying or selling online.
-        </Typography>
-
-        {/* Suitable for a Range of Goods */}
+      {/* Comparison Table Section */}
+      <Box sx={{ mb: 4 }}>
         <Typography
           variant="h5"
           sx={{
             fontWeight: "bold",
-            marginTop: "1.5rem",
-            color: Colors.fontColor,
+            color: "rgb(1, 66, 106)",
             fontFamily: Fonts.primaryFont,
+            mb: 2,
           }}
         >
-          Suitable for a Range of Goods
+          Why Choose TrustBridge Over Other Payment Methods?
         </Typography>
-        <Typography
-          variant="body1"
-          sx={{ color: Colors.fontColor, fontFamily: Fonts.primaryFont }}
-        >
-          TrustBridge allows customers to buy and sell a variety of goods and
-          services. We’ve helped our customers buy and/or sell physical and
-          non-physical products, including vehicles, jewelry, domains, and
-          artwork, as well as services.
-        </Typography>
-        <br />
-        <Typography
-          variant="body1"
-          sx={{ color: Colors.fontColor, fontFamily: Fonts.primaryFont }}
-        >
-          If you own an e-commerce store, a marketplace, an auction site, or any
-          other platform, our service is a great way to protect you and your
-          customers, regardless of the transaction`&apos;`s value.
-        </Typography>
+        <TableContainer component={Paper}>
+          <Table>
+            <TableHead>
+              <TableRow>
+                <TableCell>
+                  <strong>Feature</strong>
+                </TableCell>
+                <TableCell>
+                  <strong>TrustBridge</strong>
+                </TableCell>
+                <TableCell>
+                  <strong>Bank Transfer</strong>
+                </TableCell>
+                <TableCell>
+                  <strong>Credit Card</strong>
+                </TableCell>
+              </TableRow>
+            </TableHead>
+            <TableBody>
+              <TableRow>
+                <TableCell>Transaction Security</TableCell>
+                <TableCell>High</TableCell>
+                <TableCell>Medium</TableCell>
+                <TableCell>Medium</TableCell>
+              </TableRow>
+              <TableRow>
+                <TableCell>Dispute Resolution</TableCell>
+                <TableCell>Built-in</TableCell>
+                <TableCell>Limited</TableCell>
+                <TableCell>Chargeback Only</TableCell>
+              </TableRow>
+              <TableRow>
+                <TableCell>Buyer & Seller Protection</TableCell>
+                <TableCell>Yes</TableCell>
+                <TableCell>No</TableCell>
+                <TableCell>Partial</TableCell>
+              </TableRow>
+              <TableRow>
+                <TableCell>Ease of Use</TableCell>
+                <TableCell>Very Easy</TableCell>
+                <TableCell>Moderate</TableCell>
+                <TableCell>Easy</TableCell>
+              </TableRow>
+            </TableBody>
+          </Table>
+        </TableContainer>
+      </Box>
 
-        {/* Buyer Protection */}
+      {/* Security Measures Section */}
+      <Box sx={{ mb: 4 }}>
         <Typography
           variant="h5"
           sx={{
             fontWeight: "bold",
-            marginTop: "1.5rem",
-            color: Colors.fontColor,
+            color: "rgb(1, 66, 106)",
             fontFamily: Fonts.primaryFont,
+            mb: 2,
           }}
         >
-          Buyer Protection
+          Our Security Measures
         </Typography>
         <Typography
           variant="body1"
+          sx={{ color: Colors.fontColor, fontFamily: Fonts.primaryFont, mt: 2 }}
+        >
+          <strong>Two-Factor Authentication</strong>
+        </Typography>
+        <Typography
+          variant="body2"
           sx={{ color: Colors.fontColor, fontFamily: Fonts.primaryFont }}
         >
-          Buying a high-value item or service online from an entity you don’t
-          know comes with a lot of risk. You can’t ascertain how trustworthy the
-          entity is, and you run the risk of being defrauded.
-        </Typography>
-        <br />
-        <Typography
-          variant="body1"
-          sx={{ color: Colors.fontColor, fontFamily: Fonts.primaryFont }}
-        >
-          TrustBridge offers you the peace of mind you need to make any
-          purchase. We’ll not release the funds to the Seller until you have
-          received the item and are satisfied with the transaction. We also make
-          sure the Seller provides tracking information, when applicable, for
-          the transaction.
-        </Typography>
-        <br />
-        <Typography variant="body1">
-          Discover exactly how we protect you when you make high-value purchases
-          online by checking out our{" "}
-          <Link href="/buyer-protection" underline="hover">
-            Buyer Protection Page
-          </Link>
-          .
-        </Typography>
-
-        {/* Seller Protection */}
-        <Typography
-          variant="h5"
-          sx={{
-            fontWeight: "bold",
-            marginTop: "1.5rem",
-            color: Colors.fontColor,
-            fontFamily: Fonts.primaryFont,
-          }}
-        >
-          Seller Protection
+          Secure login process with an additional layer of protection to prevent
+          unauthorized access.
         </Typography>
         <Typography
           variant="body1"
+          sx={{ color: Colors.fontColor, fontFamily: Fonts.primaryFont, mt: 2 }}
+        >
+          <strong>SSL Encryption</strong>
+        </Typography>
+        <Typography
+          variant="body2"
           sx={{ color: Colors.fontColor, fontFamily: Fonts.primaryFont }}
         >
-          Selling goods or services can be risky, especially if they’re highly
-          valuable, because you’ll generally be dealing with people you don’t
-          know or trust.
-        </Typography>
-        <br />
-        <Typography
-          variant="body1"
-          sx={{ color: Colors.fontColor, fontFamily: Fonts.primaryFont }}
-        >
-          Using TrustBridge, we verify the Buyer’s identity and verify the
-          funding during the transaction. After the funds are secured, we will
-          notify you when you can ship the item to the Buyer. During this
-          process, you are required to provide us with tracking information. We
-          use this information to make sure the Buyer receives their item and
-          can’t claim otherwise. After the Buyer receives and accepts the item,
-          TrustBridge releases the funds to you.
-        </Typography>
-        <br />
-        <Typography
-          variant="body1"
-          sx={{ color: Colors.fontColor, fontFamily: Fonts.primaryFont }}
-        >
-          To learn more about how we protect you from fraud when making
-          high-value sales, please check out our{" "}
-          <Link href="/seller-protection" underline="hover">
-            Seller Protection Page
-          </Link>
-          .
-        </Typography>
-
-        {/* Broker Protection */}
-        <Typography
-          variant="h5"
-          sx={{
-            fontWeight: "bold",
-            marginTop: "1.5rem",
-            color: Colors.fontColor,
-            fontFamily: Fonts.primaryFont,
-          }}
-        >
-          Broker Protection
+          TrustBridge uses advanced SSL encryption to protect sensitive user and
+          transaction data from cyber threats.
         </Typography>
         <Typography
           variant="body1"
+          sx={{ color: Colors.fontColor, fontFamily: Fonts.primaryFont, mt: 2 }}
+        >
+          <strong>Dispute Resolution System</strong>
+        </Typography>
+        <Typography
+          variant="body2"
           sx={{ color: Colors.fontColor, fontFamily: Fonts.primaryFont }}
         >
-          If you’re a broker, you can enjoy full protection from TrustBridge
-          through our three-party transaction process, so you can be confident
-          that your broker fees are secured.
-        </Typography>
-        <br />
-        <Typography
-          variant="body1"
-          sx={{ color: Colors.fontColor, fontFamily: Fonts.primaryFont }}
-        >
-          Considering the affordability of our service, using TrustBridge is the
-          most effective way to manage your sales. Using TrustBridge, you can
-          easily open, manage, and close all your sales in complete privacy
-          while maintaining full control throughout the process.
-        </Typography>
-
-        {/* Positive Customer Reviews */}
-        <Typography
-          variant="h5"
-          sx={{
-            fontWeight: "bold",
-            marginTop: "1.5rem",
-            color: Colors.fontColor,
-            fontFamily: Fonts.primaryFont,
-          }}
-        >
-          Positive Customer Reviews
-        </Typography>
-        <Typography
-          variant="body1"
-          sx={{ color: Colors.fontColor, fontFamily: Fonts.primaryFont }}
-        >
-          TrustBridge has been rated highly by customers for its seamless and
-          secure transaction process, providing peace of mind for large
-          purchases.
-        </Typography>
-
-        {/* Trusted Partnerships */}
-        <Typography
-          variant="h5"
-          sx={{
-            fontWeight: "bold",
-            marginTop: "1.5rem",
-            color: Colors.fontColor,
-            fontFamily: Fonts.primaryFont,
-          }}
-        >
-          Trusted Partnerships
-        </Typography>
-        <Typography
-          variant="body1"
-          sx={{ color: Colors.fontColor, fontFamily: Fonts.primaryFont }}
-        >
-          TrustBridge partners with various online marketplaces to ensure the
-          protection of all parties involved in high-value transactions.
-        </Typography>
-
-        {/* Additional Support */}
-        <Typography
-          variant="h5"
-          sx={{
-            fontWeight: "bold",
-            marginTop: "1.5rem",
-            color: Colors.fontColor,
-            fontFamily: Fonts.primaryFont,
-          }}
-        >
-          Additional Support
-        </Typography>
-        <Typography
-          variant="body1"
-          sx={{ color: Colors.fontColor, fontFamily: Fonts.primaryFont }}
-        >
-          If you still have questions regarding how TrustBridge can help you, or
-          if you need more help understanding how the process works and setting
-          up a transaction, please don’t hesitate to contact us.
+          A structured process to resolve conflicts fairly, ensuring both buyers
+          and sellers have a secure and transparent experience.
         </Typography>
       </Box>
     </Box>

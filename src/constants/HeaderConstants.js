@@ -1,7 +1,6 @@
 export const navItems = [
   { index: 0, name: "Comsumer" },
-  { index: 1, name: "About" },
-  { index: 2, name: "Help" },
+  { index: 1, name: "Help" },
 ];
 export const submenuData = [
   [
@@ -21,27 +20,7 @@ export const submenuData = [
       index: 2,
       mainHeading: "Learn More",
       subHeading: "How It Works",
-      Link: "/queries/LearnMore",
-    },
-  ],
-  [
-    {
-      index: 0,
-      mainHeading: "About",
-      subHeading: "Company History",
-      Link: "/queries/About",
-    },
-    {
-      index: 1,
-      mainHeading: "Team",
-      subHeading: "Leadership Team",
-      Link: "/queries/Team",
-    },
-    {
-      index: 2,
-      mainHeading: "Careers",
-      subHeading: "Find Jobs",
-      Link: "/queries/Careers",
+      Link: "/queries/Benefits",
     },
   ],
   [

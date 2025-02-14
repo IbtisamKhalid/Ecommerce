@@ -31,10 +31,10 @@ import {
   Careers,
   Team,
   Escrow,
-  LearnMore,
+  Benefits,
   TrustBridge,
   Contact,
-  Help,
+  FAQ,
   SupportCenter,
 } from "../../EscrowModule/Modules/Header/index";
 import ProfileSetting from "../../EscrowModule/Pages/LoggedInPages/ProfileSetting/ProfileSetting/ProfileSetting";
@@ -59,6 +59,13 @@ import {
   AdminLayout,
 } from "../../Dashboard/AdminDashboard/SellerDashboardComponents/ExportAdminDashboardComponents";
 import UpdateDispute from "../../Dashboard/AdminDashboard/UpdateDispute/UpdateDispute";
+import {
+  AllowedGoodsServices,
+  CurrencyOptions,
+  Disputes,
+  PaymentOptions,
+  Security,
+} from "../../EscrowModule/Pages/SideBarLinksPages/Index";
 
 function Routes() {
   const { isUserLoggedIn } = useContext(IsUserLoggedIn);
@@ -168,12 +175,22 @@ function Routes() {
             <Route path="Careers" element={<Careers />} />
             <Route path="Team" element={<Team />} />
             <Route path="Escrow" element={<Escrow />} />
-            <Route path="LearnMore" element={<LearnMore />} />
+            <Route path="Benefits" element={<Benefits />} />
             <Route path="TrustBridge" element={<TrustBridge />} />
             <Route path="Contact" element={<Contact />} />
-            <Route path="Help" element={<Help />} />
+            <Route path="Help" element={<FAQ />} />
             <Route path="SupportCenter" element={<SupportCenter />} />
+            <Route
+              path="AllowedGoodsServices"
+              element={<AllowedGoodsServices />}
+            />
+            <Route path="CurrencyOptions" element={<CurrencyOptions />} />
+            <Route path="Disputes" element={<Disputes />} />
+            <Route path="PaymentOptions" element={<PaymentOptions />} />
+            <Route path="PaymentOptions" element={<PaymentOptions />} />
+            <Route path="Security" element={<Security />} />
           </Route>
+            <Route path="/PaymentOptions" element={<PaymentOptions />} />
 
           {/* <Route path="/Contract" element={<MakeContracts />} /> */}
         </ReactRoutes>

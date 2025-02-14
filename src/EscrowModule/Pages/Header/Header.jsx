@@ -28,6 +28,7 @@ function Header({
   atTopTextColor = "",
   hoverBGColor = "",
   hoverTextColor = "",
+  queries = false,
 }) {
   const {
     handleDrawerToggle,
@@ -84,6 +85,7 @@ function Header({
           "& :hover:": {
             color: "white",
           },
+          borderBottom: queries ? "1px solid rgba(0, 0, 0, 0.1)" : "none",
         }}
       >
         <CssBaseline />
