@@ -21,7 +21,6 @@ function Layout() {
         />
         <Box
           sx={{
-            width:"100vw",
             display: "flex",
             p: "2rem 0 5rem",
             backgroundColor: "white",

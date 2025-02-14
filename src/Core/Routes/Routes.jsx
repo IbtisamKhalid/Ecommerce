@@ -27,9 +27,6 @@ import {
 import DisputeDetailsWrapper from "../../EscrowModule/Pages/LoggedInPages/Details/DetailsWrapper/DisputeDetailsWrapper/DisputeDetailsWrapper";
 import EscrowDetailsWrapper from "../../EscrowModule/Pages/LoggedInPages/Details/DetailsWrapper/EscrowDetailsWrapper/EscrowDetailsWrapper";
 import {
-  About,
-  Careers,
-  Team,
   Escrow,
   Benefits,
   TrustBridge,
@@ -171,9 +168,6 @@ function Routes() {
           )}
 
           <Route path="/queries" element={<Layout />}>
-            <Route path="About" element={<About />} />
-            <Route path="Careers" element={<Careers />} />
-            <Route path="Team" element={<Team />} />
             <Route path="Escrow" element={<Escrow />} />
             <Route path="Benefits" element={<Benefits />} />
             <Route path="TrustBridge" element={<TrustBridge />} />
