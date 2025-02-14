@@ -52,7 +52,7 @@ const MianLayout = ({ user }) => {
             if (key === "EscrowHistory") {
               navigate(`/loggedin/${key}`);
             } else {
-              navigate(key.startsWith("/") ? key : `/dashboard/${key}`);
+              navigate(key.startsWith("/") ? key : `/Admindashboard/${key}`);
             }
           }}
           items={[
@@ -60,6 +60,11 @@ const MianLayout = ({ user }) => {
               key: "/dashboard",
               icon: <RxDashboard className="fs-4" />,
               label: "Dashboard",
+            },
+            {
+              key: "disputes",
+              icon: <RxDashboard className="fs-4" />,
+              label: "Dispute",
             },
             {
               key: "catalog",
@@ -93,7 +98,12 @@ const MianLayout = ({ user }) => {
       </Sider>
       <Layout>
         <Header style={{ padding: "0.2rem 1.5rem 0.5rem 0.75rem" }}>
-          <LoggedInNavBar title={false} navColor={"inherit"} padd={false}>
+          <LoggedInNavBar
+            title={false}
+            navColor={"inherit"}
+            padd={false}
+            isAdmin={true}
+          >
             <Button
               type="text"
               icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}

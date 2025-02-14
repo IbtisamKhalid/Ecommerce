@@ -35,7 +35,8 @@ function useEscrowContext() {
       title: "My Transaction",
       timeBounded: true,
       sellerID:"1111737915",
-      buyerID:"2221737915"
+      buyerID:"2221737915",
+      adminRemarks:["This Issue is casued By this indiviual","",""]
     },
     {
       agreed: false,
@@ -56,7 +57,9 @@ function useEscrowContext() {
       title: "My Transaction",
       timeBounded: false,
       sellerID:"1111737915",
-      buyerID:"2221737915"
+      buyerID:"2221737915",
+      adminRemarks:[]
+
     },
     {
       agreed: false,
@@ -77,7 +80,9 @@ function useEscrowContext() {
       title: "My Transaction",
       timeBounded: false,
       sellerID:"1111737915",
-      buyerID:"2221737915"
+      buyerID:"2221737915",
+      adminRemarks:[]
+
     },
     {
       agreed: true,
@@ -98,7 +103,9 @@ function useEscrowContext() {
       title: "LOLOLOLO",
       timeBounded: false,
       sellerID:"1111737915",
-      buyerID:"2221737915"
+      buyerID:"2221737915",
+      adminRemarks:[]
+
     },
     {
       agreed: false,
@@ -119,7 +126,9 @@ function useEscrowContext() {
       title: "My Transaction",
       timeBounded: false,
       sellerID:"1111737915",
-      buyerID:"2221737915"
+      buyerID:"2221737915",
+      adminRemarks:[]
+
     },
     {
       agreed: false,
@@ -140,7 +149,9 @@ function useEscrowContext() {
       title: "My Transaction",
       timeBounded: false,
       sellerID:"1111737915",
-      buyerID:"2221737915"
+      buyerID:"2221737915",
+      adminRemarks:[]
+
     },
     {
       agreed: true,
@@ -167,7 +178,9 @@ function useEscrowContext() {
       title: "My Disputee",
       timeBounded: false,
       sellerID:"1111737915",
-      buyerID:"2221737915"
+      buyerID:"2221737915",
+      adminRemarks:[]
+
     },
     {
       agreed: false,
@@ -188,10 +201,12 @@ function useEscrowContext() {
       title: "My Transaction",
       timeBounded: false,
       sellerID:"1111737915",
-      buyerID:"2221737915"
+      buyerID:"2221737915",
+      adminRemarks:[]
+
     },
   ]);
-  const [isUserLoggedIn, setIsUserLoggedIn] = useState(true);
+  const [isUserLoggedIn, setIsUserLoggedIn] = useState(false);
 
   // Add a new escrow transaction
   const addEscrowTransaction = (newTransaction) => {

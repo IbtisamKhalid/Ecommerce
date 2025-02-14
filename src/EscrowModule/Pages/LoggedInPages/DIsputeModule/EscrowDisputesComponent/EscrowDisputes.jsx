@@ -5,7 +5,7 @@ import { UserContext } from "../../../../EscrowContext/Hooks/useEscrowContext";
 import { useContext } from "react";
 
 const EscrowDisputes = () => {
-  const {user,setUser} = useContext(UserContext);
+  const {user} = useContext(UserContext);
   const Tabs = ["All", "Completed", "Ongoing", "Cancelled"];
   return (
     <Box

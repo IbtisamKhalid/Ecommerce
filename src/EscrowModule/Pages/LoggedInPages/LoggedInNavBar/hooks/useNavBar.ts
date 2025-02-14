@@ -1,8 +1,11 @@
 import React from "react";
-import { UserContext } from "../../../../EscrowContext/Hooks/useEscrowContext";
+import { UserContext, IsUserLoggedIn } from "../../../../EscrowContext/Hooks/useEscrowContext";
+import { useNavigate } from "react-router-dom";
 
 function useNavBar() {
   const [mobileOpen, setMobileOpen] = React.useState(false);
+  const navigate = useNavigate();
+  const { isUserLoggedIn, setIsUserLoggedIn } = React.useContext(IsUserLoggedIn);
   const handleDrawerToggle = () => {
     setMobileOpen((prevState) => !prevState);
   };
@@ -28,6 +31,11 @@ function useNavBar() {
   const handleClose = () => {
     setAnchorEl(null);
   };
+  const handleLogout = () => {
+    setIsUserLoggedIn(false);
+    console.log("isUserLoggedIn?", isUserLoggedIn);
+    navigate("/SignIn");
+  };
   return {
     mobileOpen,
     handleDrawerToggle,
@@ -39,6 +47,7 @@ function useNavBar() {
     anchorEl,
     setAnchorEl,
     setMobileOpen,
+    handleLogout
   };
 }
 

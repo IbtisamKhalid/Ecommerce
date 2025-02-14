@@ -7,7 +7,7 @@ import {
   UserContext,
 } from "../../../EscrowContext/Hooks/useEscrowContext";
 
-function useSignIn() {
+function useSignIn() { 
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [open, setOpen] = useState(false);
@@ -70,7 +70,7 @@ function useSignIn() {
         } else if (user.role == "Seller") {
           navigate("/dashboard", { state: { isAdmin: false } });
         } else if (user.role == "Admin") {
-          navigate("/escrowdashboard", { state: { isAdmin: true } });
+          navigate("/Admindashboard", { state: { isAdmin: true } });
         }
       }
     } catch (error) {
@@ -114,6 +114,9 @@ function useSignIn() {
     open,
     setEmail,
     setPassword,
+    isUserLoggedIn,
+    navigate,
+    user
   };
 }
 

@@ -5,7 +5,7 @@ import { Colors, Fonts } from "../../../../Theme/Theme";
 
 export default function LoggedNavLayout({
   children,
-  handleDrawerToggle,
+  // handleDrawerToggle,
   Title = true,
   navColor = Colors.secondNavColor,
   pad = true,
@@ -29,24 +29,6 @@ export default function LoggedNavLayout({
             gap: 1,
           }}
         >
-          {children && (
-            <IconButton
-              color="inherit"
-              aria-label="open drawer"
-              edge="start"
-              onClick={handleDrawerToggle}
-              sx={{
-                display: { xs: "block" },
-                "@media (min-width:910px)": { display: "none" },
-                color: "white",
-                p: 0,
-                mt: -1, // Remove top margin to align with text
-              }}
-            >
-              <MenuIcon />
-            </IconButton>
-          )}
-
           {Title && (
             <Typography
               variant="h6"

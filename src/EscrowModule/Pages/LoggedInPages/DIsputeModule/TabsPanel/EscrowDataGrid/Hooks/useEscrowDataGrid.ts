@@ -8,7 +8,7 @@ import {
 function useEscrowDataGrif({ onRendered }) {
   const { escrowHistory } = useEscrowHistory();
   const [loading, setLoading] = useState(true);
-  const { user, setUser } = useContext(UserContext);
+  const { user } = useContext(UserContext);
   useEffect(() => {
     setLoading(true);
     const timer = setTimeout(() => {
@@ -95,10 +95,12 @@ function useEscrowDataGrif({ onRendered }) {
   const navigate = useNavigate();
 
   const handleBoxClick = (item) => {
-    navigate(`/escrowdashboard/disputedetails`, { state: { item } });
-  };
-  const handleAgreement = (item) => {
-    navigate(`/escrowdashboard/disputedetails`, { state: { item } });
+    console.log(user.role)
+    if (user.role === "Admin") {
+      navigate(`/Admindashboard/disputedetails`, { state: { item } });
+    } else {
+      navigate(`/escrowdashboard/disputedetails`, { state: { item } });
+    }
   };
 
   return {
@@ -107,7 +109,6 @@ function useEscrowDataGrif({ onRendered }) {
     columns,
     loading,
     handleBoxClick,
-    handleAgreement,
   };
 }
 

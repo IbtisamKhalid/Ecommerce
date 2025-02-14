@@ -54,16 +54,21 @@ import {
   MianLayout,
   Productlist,
 } from "../../Dashboard/SellerDashboard/SellerDashboardComponents/ExportSellerDashboardComponents";
+import {
+  AdminDashboard,
+  AdminLayout,
+} from "../../Dashboard/AdminDashboard/SellerDashboardComponents/ExportAdminDashboardComponents";
+import UpdateDispute from "../../Dashboard/AdminDashboard/UpdateDispute/UpdateDispute";
 
 function Routes() {
-  const { isUserLoggedIn, setIsUserLoggedIn } = useContext(IsUserLoggedIn);
-  const { user, setUser } = useContext(UserContext);
+  const { isUserLoggedIn } = useContext(IsUserLoggedIn);
+  const { user } = useContext(UserContext);
 
   return (
     <>
       <BrowserRouter>
         <ReactRoutes>
-          <Route path="*" element={<Home />} />
+          {/* <Route path="*" element={<Home />} /> */}
           <Route path="/store" element={<LayoutStore />}>
             <Route index element={<HomeStore />} />
             <Route path="products" element={<ProductPage />} />
@@ -72,7 +77,7 @@ function Routes() {
             <Route path="search" element={<ProductSearchContainer />} />
             <Route path="compare" element={<ProductComparisonContainer />} />
           </Route>
-          <Route path="/escrow" element={<LayoutEscrow />}>
+          <Route path="*" element={<LayoutEscrow />}>
             <Route index element={<HomeEscrow />} />
           </Route>
           <Route path="SignIn" element={<SignIn />} />
@@ -142,14 +147,18 @@ function Routes() {
           )}
           {isUserLoggedIn && user.role == "Admin" && (
             <>
-              {console.log("in third if")}
-              <Route path="/escrowdashboard" element={<LoggedInLayout />}>
-                <Route index element={<EscrowDisputes />} />
+              <Route path="/Admindashboard" element={<AdminLayout />}>
+                <Route index element={<AdminDashboard />} />
+                <Route path="orders" element={<Orders />} />
+                <Route path="product-list" element={<Productlist />} />
+                <Route path="product" element={<Addproduct />} />
                 <Route path="ProfileSetting" element={<ProfileSetting />} />
                 <Route
                   path="disputedetails"
                   element={<DisputeDetailsWrapper />}
                 />
+                <Route path="disputes" element={<EscrowDisputes />} />
+                <Route path="updatedisputes" element={<UpdateDispute />} />
               </Route>
             </>
           )}
