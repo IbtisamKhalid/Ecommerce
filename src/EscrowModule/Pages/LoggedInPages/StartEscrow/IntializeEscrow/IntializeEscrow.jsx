@@ -59,9 +59,6 @@ function IntializeEscrow() {
   } = useStartEscrow();
 
   const Price = watch("Price");
-  // const MyRole = watch("MyRole");
-  // const Currency = watch("Currency");
-  // const ItemName = watch("ItemName");
   const ItemCategory = watch("ItemCategory");
   const ItemDescription = watch("ItemDescription");
   const TransactionTitle = watch("TransactionTitle");

@@ -1,7 +1,11 @@
 import { Box, Typography } from "@mui/material";
 import TabsPanel from "../TabsPanel/TabsPanel";
 import { Colors,Fonts } from "../../../../Theme/Theme";
+import { UserContext } from "../../../../EscrowContext/Hooks/useEscrowContext";
+import { useContext } from "react";
+
 const EscrowDisputes = () => {
+  const {user} = useContext(UserContext);
   const Tabs = ["All", "Completed", "Ongoing", "Cancelled"];
   return (
     <Box
@@ -17,9 +21,12 @@ const EscrowDisputes = () => {
           p: { xs: "2rem 1rem", sm: "2rem", md: "3rem 2.5rem" },
         }}
       >
-        <Typography variant="h4" sx={{ fontWeight: 600, mb: 2 ,color:Colors.secondary,font:Fonts.secondaryFont}}>
+        {user.role=="Admin" ? (<Typography variant="h4" sx={{ fontWeight: 600, mb: 2 ,color:Colors.secondary,font:Fonts.secondaryFont}}>
+          Filed Disputes
+        </Typography>):
+        (<Typography variant="h4" sx={{ fontWeight: 600, mb: 2 ,color:Colors.secondary,font:Fonts.secondaryFont}}>
           My Disputes
-        </Typography>
+        </Typography>)}
         <TabsPanel tabsName={Tabs} tableName="this Table" status={Tabs} />
       </Box>
     </Box>

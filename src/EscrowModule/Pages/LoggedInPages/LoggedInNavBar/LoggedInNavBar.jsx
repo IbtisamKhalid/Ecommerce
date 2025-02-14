@@ -14,7 +14,7 @@ import {
   ListItemText,
   ListItemButton,
 } from "@mui/material";
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import useNavBar from "./hooks/useNavBar";
 import Logout from "@mui/icons-material/Logout";
 import Settings from "@mui/icons-material/Settings";
@@ -22,17 +22,25 @@ import { Colors, Fonts } from "../../../Theme/Theme";
 import PersonAdd from "@mui/icons-material/PersonAdd";
 import LoggedInNavBarLayout from "./LoggedInNavbarLayout/LoggedNavLayout";
 import { GetStartedButton } from "../../../Components/Reused/reusableComponents";
+import MenuIcon from "@mui/icons-material/Menu";
 
-export default function LoggedInNavBar() {
+export default function LoggedInNavBar({
+  title,
+  navColor,
+  children,
+  padd,
+  isAdmin = false,
+}) {
   const {
     mobileOpen,
     handleDrawerToggle,
     userNavbarLinks,
-    user,
     open,
     handleClick,
     handleClose,
     anchorEl,
+    user,
+    handleLogout,
   } = useNavBar();
   const drawer = (
     <Box
@@ -74,57 +82,87 @@ export default function LoggedInNavBar() {
       />
     </Box>
   );
+
   return (
     <>
-      <LoggedInNavBarLayout handleDrawerToggle={handleDrawerToggle}>
+      <LoggedInNavBarLayout
+        // handleDrawerToggle={handleDrawerToggle}
+        Title={title}
+        navColor={navColor}
+        pad={padd}
+      >
+        {!isAdmin && children}
+        {!isAdmin && (
+          <IconButton
+            color="inherit"
+            aria-label="open drawer"
+            edge="start"
+            onClick={handleDrawerToggle}
+            sx={{
+              display: { xs: "block" },
+              "@media (min-width:910px)": { display: "none" },
+              color: "white",
+              p: 0,
+              mt: -1, // Remove top margin to align with text
+            }}
+          >
+            <MenuIcon />
+          </IconButton>
+        )}
         <Box
           sx={{
             width: "100%",
             display: "flex",
             justifyContent: "space-between",
             alignItems: "center",
-            "@media (max-width:910px)": { justifyContent: "flex-end" },
+            "@media (max-width:910px)": { justifyContent: isAdmin ? "space-between" : "flex-end" },
           }}
         >
-          <Box
-            sx={{
-              display: { xs: "none", md: "flex" },
-              "@media (max-width:910px)": { display: "none" },
-              justifyContent: "space-between",
-            }}
-          >
-            {userNavbarLinks.map((item, index) => (
-              <Typography
-                component={Link}
-                to={item.link}
-                key={index}
-                sx={{
-                  textDecoration: "none",
-                  color: "white",
-                  "&:hover": { color: "green" },
-                  paddingRight: "0.5rem",
-                  fontFamily: Fonts.primaryFont,
-                  // fontWeight:550,
-                  fontSize: "16px",
-                }}
-              >
-                {" "}
-                {item.name}
-              </Typography>
-            ))}
-          </Box>
-          <Box display={"flex"}>
-            <GetStartedButton
-              additionalStyles={{
-                color: "white",
-                fontWeight: "500",
-                p: "0.5rem",
-                "@media (max-width:560px)": {
-                  display: "none",
-                },
+          {isAdmin && children}
+
+          {!isAdmin && (
+            <Box
+              sx={{
+                display: { xs: "none", md: "flex" },
+                "@media (max-width:910px)": { display: "none" },
+                justifyContent: "space-between",
               }}
-              Text="Start A Transaction"
-            />
+            >
+              {userNavbarLinks.map((item, index) => (
+                <Typography
+                  component={Link}
+                  to={item.link}
+                  key={index}
+                  sx={{
+                    textDecoration: "none",
+                    color: "white",
+                    "&:hover": { color: "green" },
+                    paddingRight: "0.5rem",
+                    fontFamily: Fonts.primaryFont,
+                    // fontWeight:550,
+                    fontSize: "16px",
+                  }}
+                >
+                  {" "}
+                  {item.name}
+                </Typography>
+              ))}
+            </Box>
+          )}
+          <Box display={"flex"}>
+            {!isAdmin && (
+              <GetStartedButton
+                additionalStyles={{
+                  color: "white",
+                  fontWeight: "500",
+                  p: "0.5rem",
+                  "@media (max-width:560px)": {
+                    display: "none",
+                  },
+                }}
+                Text="Start A Transaction"
+              />
+            )}
             <Box
               display={"flex"}
               sx={{
@@ -299,7 +337,7 @@ export default function LoggedInNavBar() {
                     Settings
                   </MenuItem>
                 </Tooltip>
-                <Tooltip title="Logout">
+                <Tooltip title="Logout" onClick={handleLogout}>
                   <MenuItem
                     component={Link}
                     to="/SignIn"

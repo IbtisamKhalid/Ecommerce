@@ -41,8 +41,8 @@ function useInputGathering({ item, forContract, addingTerms }) {
     ? "Add the terms and conditions that will be upheld by both parties to ensure no issues occur when the transaction is done."
     : "Provide the necessary information about the dispute, including details that will help in resolution.";
   const navigateTO = isContract
-    ? `/LoggedIn/Escrowdetails`
-    : `/LoggedIn/disputedetails`;
+    ? `/escrowdashboard/Escrowdetails`
+    : `/escrowdashboard/disputedetails`;
   const label = isContract ? "Terms" : "Dispute Details";
 
   const deleteTerm = (index) => {
@@ -113,6 +113,9 @@ function useInputGathering({ item, forContract, addingTerms }) {
         itemName: item.ItemName,
         secondPersonEmail: item.secondPersonEmail,
         secondPersonNumber: item.secondPersonNumber,
+        timeBounded: false,
+        sellerID: "1111737915",
+        buyerID: "2221737915",
       };
 
       console.log("New transaction:", transaction);
@@ -132,6 +135,9 @@ function useInputGathering({ item, forContract, addingTerms }) {
         disputeDetails: [],
         created: Date.now().toString(),
         id: Date.now().toString(),
+        timeBounded: false,
+        sellerID: "1111737915",
+        buyerID: "2221737915",
       };
 
       navigate(navigateTO, { state: { item: updatedItem } });

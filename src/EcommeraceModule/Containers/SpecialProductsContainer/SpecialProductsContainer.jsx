@@ -1,11 +1,18 @@
 import React from "react";
 import Slider from "../../Components/Slider/Slider";
-import { Box, Typography, Grid2 as Grid, Button , useMediaQuery} from "@mui/material";
+import {
+  Box,
+  Typography,
+  Grid2 as Grid,
+  Button,
+  useMediaQuery,
+} from "@mui/material";
 import ReactStars from "react-rating-stars-component";
 import { ColorsEcommrace as C } from "../../Theme/EcommeraceTheme";
+import { Link } from "react-router-dom";
 
 function SpecialProductsContainer({ pData = [] }) {
-  const at780 = useMediaQuery('(min-width:800px)')
+  const at780 = useMediaQuery("(min-width:800px)");
   return (
     <Grid
       container
@@ -53,17 +60,23 @@ function SpecialProductsContainer({ pData = [] }) {
                 fontWeight: "650",
                 fontSize: "20px",
                 mb: "1rem",
+                textDecoration: "none",
+                "&:hover": {
+                  textDecoration: "underline", // Ensures no underline on hover
+                },
               }}
+              component={Link}
+              to={"/store/products"}
             >
               {product.heading}
             </Typography>
-              <ReactStars
-                count={5}
-                value={product.stars || 4}
-                size={20}
-                edit={false}
-                activeColor="#ffd700"
-              />
+            <ReactStars
+              count={5}
+              value={product.stars || 4}
+              size={20}
+              edit={false}
+              activeColor="#ffd700"
+            />
             <Typography sx={{ fontWeight: "650", marginTop: "4px" }}>
               {product.price}
             </Typography>
@@ -73,6 +86,8 @@ function SpecialProductsContainer({ pData = [] }) {
                 color: "white",
                 mt: "2rem",
               }}
+              component={Link}
+              to={"/store/products"}
             >
               View Product
             </Button>

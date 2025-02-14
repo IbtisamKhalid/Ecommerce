@@ -3,11 +3,7 @@ import { useState, useContext } from "react";
 import { createContext } from "react";
 
 export const EscrowHistoryContext = createContext();
-export const DisputeHistoryContext = createContext();
-export const PaymentHistoryContext = createContext();
-export const StepperStepContext = createContext();
 export const UserContext = createContext();
-export const UserEmailContext = createContext();
 export const IsUserLoggedIn = createContext();
 export const useEscrowHistory = () => {
   return useContext(EscrowHistoryContext);
@@ -18,10 +14,30 @@ export const useDisputeHistory = () => {
 // Create contexts
 
 function useEscrowContext() {
-  const [user, setUser] = useState();
-  const [userEmail, setUserEmail] = useState();
-  const [stepperStep, setStepperStep] = useState(2);
+  const [user, setUser] = useState([]);
   const [escrowHistory, setEscrowHistory] = useState([
+    {
+      agreed: true,
+      amount: "10",
+      contract: ["hehehhehe", "heheheh"],
+      created: "1737915881575",
+      currency: "USD",
+      dispute: false,
+      disputeDetails: [],
+      id: "1737915",
+      role: "Buyer",
+      step: 4,
+      status: {
+        primary: "Awaiting Agreement",
+        secondary: "Requires Seller's Action",
+      },
+      subtitle: "Domain Name",
+      title: "My Transaction",
+      timeBounded: true,
+      sellerID:"1111737915",
+      buyerID:"2221737915",
+      adminRemarks:["This Issue is casued By this indiviual","",""]
+    },
     {
       agreed: false,
       amount: "10",
@@ -39,6 +55,11 @@ function useEscrowContext() {
       },
       subtitle: "Domain Name",
       title: "My Transaction",
+      timeBounded: false,
+      sellerID:"1111737915",
+      buyerID:"2221737915",
+      adminRemarks:[]
+
     },
     {
       agreed: false,
@@ -57,6 +78,11 @@ function useEscrowContext() {
       },
       subtitle: "Domain Name",
       title: "My Transaction",
+      timeBounded: false,
+      sellerID:"1111737915",
+      buyerID:"2221737915",
+      adminRemarks:[]
+
     },
     {
       agreed: true,
@@ -75,8 +101,12 @@ function useEscrowContext() {
       },
       subtitle: "Domain Name",
       title: "LOLOLOLO",
-    },
+      timeBounded: false,
+      sellerID:"1111737915",
+      buyerID:"2221737915",
+      adminRemarks:[]
 
+    },
     {
       agreed: false,
       amount: "10",
@@ -94,6 +124,11 @@ function useEscrowContext() {
       },
       subtitle: "Domain Name",
       title: "My Transaction",
+      timeBounded: false,
+      sellerID:"1111737915",
+      buyerID:"2221737915",
+      adminRemarks:[]
+
     },
     {
       agreed: false,
@@ -112,6 +147,11 @@ function useEscrowContext() {
       },
       subtitle: "Domain Name",
       title: "My Transaction",
+      timeBounded: false,
+      sellerID:"1111737915",
+      buyerID:"2221737915",
+      adminRemarks:[]
+
     },
     {
       agreed: true,
@@ -136,8 +176,12 @@ function useEscrowContext() {
       },
       subtitle: "Domain Name",
       title: "My Disputee",
-    },
+      timeBounded: false,
+      sellerID:"1111737915",
+      buyerID:"2221737915",
+      adminRemarks:[]
 
+    },
     {
       agreed: false,
       amount: "10",
@@ -155,11 +199,14 @@ function useEscrowContext() {
       },
       subtitle: "Domain Name",
       title: "My Transaction",
+      timeBounded: false,
+      sellerID:"1111737915",
+      buyerID:"2221737915",
+      adminRemarks:[]
+
     },
   ]);
-  const [disputeHistory, setDisputeHistory] = useState([]);
-  const [paymentHistory, setPaymentHistory] = useState([]);
-  const [isUserLoggedIn, setIsUserLoggedIn] = useState(true);
+  const [isUserLoggedIn, setIsUserLoggedIn] = useState(false);
 
   // Add a new escrow transaction
   const addEscrowTransaction = (newTransaction) => {
@@ -185,30 +232,17 @@ function useEscrowContext() {
     );
   };
   return {
-    useEscrowHistory,
     user,
     setUser,
-    userEmail,
-    setUserEmail,
-    stepperStep,
-    setStepperStep,
     escrowHistory,
     setEscrowHistory,
-    disputeHistory,
-    setDisputeHistory,
-    paymentHistory,
-    setPaymentHistory,
     isUserLoggedIn,
     setIsUserLoggedIn,
     addEscrowTransaction,
     deleteEscrowTransaction,
     updateDisputeDetails,
     EscrowHistoryContext,
-    DisputeHistoryContext,
-    PaymentHistoryContext,
-    StepperStepContext,
     UserContext,
-    UserEmailContext,
     IsUserLoggedIn,
   };
 }

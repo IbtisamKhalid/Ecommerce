@@ -27,9 +27,9 @@ function SideBarEscrow() {
     <>
       <Box
         sx={{
-          width: "75%",
-          backgroundColor: Colors.backColor,
-          p: "3rem 2.5rem",
+          width: "100%",
+          backgroundColor: "#f9f9f9",
+          p: "1.5rem 2rem",
           borderRadius: "8px",
         }}
       >
@@ -101,6 +101,7 @@ function SideBarEscrow() {
             color: "white",
             fontWeight: "700",
             fontSize: "0.75rem",
+            width: "100%",
           }}
         />
       </Box>

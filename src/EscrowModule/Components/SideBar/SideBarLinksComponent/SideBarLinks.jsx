@@ -1,45 +1,44 @@
 import React from "react";
 import { Box, Typography, List, ListItem, Link } from "@mui/material";
 import { Link as RouterLink } from "react-router-dom"; // Import React Router Link for navigation
-import {Colors} from "../../../Theme/Theme";
+import { Colors } from "../../../Theme/Theme";
 function SideBarLinks() {
   const sideBarLinks = [
     {
       mainHeading: { text: "What Is Escrow?", link: "/what-is-escrow" },
       subHeading: [
-        { text: "What Is Escrow?", link: "/what-is-escrow-details" },
-        { text: "Allowed goods and services", link: "/allowed-goods-services" },
-        { text: "Currency Options", link: "/currency-options" },
-        { text: "Payment Options", link: "/payment-options" },
-        { text: "Disbursements Methods", link: "/disbursements-methods" },
-        { text: "Benefits", link: "/benefits" },
-        { text: "Buyer, Seller, & Broker Protection", link: "/protection" },
-        { text: "How it Works: Broker", link: "/how-it-works-broker" },
-        { text: "Security", link: "/security" },
-        { text: "Inspection Period", link: "/inspection-period" },
-        { text: "Fraud Prevention", link: "/fraud-prevention" },
-        { text: "Disputes", link: "/disputes" },
-        { text: "Approved Carriers", link: "/approved-carriers" },
+        { text: "What Is Escrow?", link: "/queries/escrow" },
+        {
+          text: "Allowed goods and services",
+          link: "/queries/Allowedgoodsservices",
+        },
+        { text: "Currency Options", link: "/queries/currencyoptions" },
+        { text: "Payment Options", link: "/queries/paymentoptions" },
+        { text: "Security", link: "/queries/security" },
+        { text: "Disputes", link: "/queries/disputes" },
       ],
     },
-    { text: "Fee Calculator", link: "/fee-calculator" },
-    { text: "Escrow Accounts", link: "/escrow-accounts" },
-    { text: "Services", link: "/services" },
-    { text: "Help Center", link: "/help-center" },
-    { text: "Partners", link: "/partners" },
-    { text: "Learn More", link: "/learn-more" },
-    { text: "Contact Us", link: "/contact-us" },
+    { text: "Help Center", link: "/queries/SupportCenter" },
+    { text: "Benefits", link: "/queries/benefits" },
+    { text: "Contact Us", link: "/queries/contact" },
   ];
 
   return (
-    <Box sx={{ padding: "2rem 3rem",borderRadius: "8px" }}>
+    <Box sx={{ padding: "2rem 0", borderRadius: "8px" }}>
       <List>
         {sideBarLinks.map((link, index) =>
           link.mainHeading ? (
             // Render links with subHeadings
             <Box key={index} sx={{ marginBottom: "1rem" }}>
-              <Typography variant="h6" sx={{ fontWeight: "bold", marginBottom: "0.5rem" }}>
-                <Link component={RouterLink} to={link.mainHeading.link} underline="none">
+              <Typography
+                variant="h6"
+                sx={{ fontWeight: "bold", marginBottom: "0.5rem" }}
+              >
+                <Link
+                  component={RouterLink}
+                  to={link.mainHeading.link}
+                  underline="none"
+                >
                   {link.mainHeading.text}
                 </Link>
               </Typography>
@@ -50,11 +49,18 @@ function SideBarLinks() {
                     sx={{
                       padding: "0.3rem 1rem",
                       fontSize: "0.9rem",
-                      "&:hover": { backgroundColor: "#e0e0e0", cursor: "pointer" },
-
+                      "&:hover": {
+                        backgroundColor: "#e0e0e0",
+                        cursor: "pointer",
+                      },
                     }}
                   >
-                    <Link component={RouterLink} to={subLink.link} underline="none" color="black">
+                    <Link
+                      component={RouterLink}
+                      to={subLink.link}
+                      underline="none"
+                      color="rgb(79, 87, 89)"
+                    >
                       {subLink.text}
                     </Link>
                   </ListItem>

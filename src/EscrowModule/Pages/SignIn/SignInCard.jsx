@@ -14,23 +14,39 @@ import { Card } from "../../../constants/SignInConstants";
 import ForgotPassword from "./ForgotPassword";
 import { GoogleIcon, FacebookIcon } from "./CustomIcons";
 import useSignIn from "./hooks/useSignIn";
+import { useEffect } from "react";
+
 
 export default function SignInCard() {
   const {
-    validateInputs,
-    handleSubmit,
-    handleClickOpen,
-    handleClose,
-    googleLogin,
-    emailError,
-    emailErrorMessage,
-    passwordError,
-    passwordErrorMessage,
     open,
+    emailError,
+    passwordError,
+    emailErrorMessage,
+    passwordErrorMessage,
     setEmail,
+    handleClose,
     setPassword,
+    googleLogin,
+    handleSubmit,
+    validateInputs,
+    handleClickOpen,
+    navigate,
+    user,
+    isUserLoggedIn
   } = useSignIn();
-
+  useEffect(() => {
+    if (isUserLoggedIn) {
+      if (user.role === "Buyer") {
+        navigate("/escrowdashboard");
+      } else if (user.role === "Seller") {
+        navigate("/dashboard"); // Redirect the user programmatically
+      } else if (user.role === "admin") {
+        navigate("/Admindashboard"); // Redirect the user programmatically
+      }
+    }
+    console.log(isUserLoggedIn)
+  }, [isUserLoggedIn, navigate]);
   return (
     <Card variant="outlined">
       <Typography

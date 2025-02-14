@@ -14,7 +14,7 @@ import { Colors } from "../../../../../Theme/Theme";
 
 function EscrowDataGridComponent({ tableName, status, onRendered }) {
   const isSmallScreen = useMediaQuery("(min-width:820px)");
-  const { loading, columns, rows, handleBoxClick, handleAgreement } =
+  const { loading, columns, rows, handleBoxClick,user } =
     useEscrowDataGrid({
       onRendered,
     });
@@ -99,7 +99,7 @@ function EscrowDataGridComponent({ tableName, status, onRendered }) {
                 justifyContent: "space-between",
               }}
               onClick={() =>
-                item.agreed ? handleBoxClick(item) : handleAgreement(item)
+                handleBoxClick(item)
               }
               key={index}
             >

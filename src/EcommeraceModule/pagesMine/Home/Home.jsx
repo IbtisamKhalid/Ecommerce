@@ -1,62 +1,77 @@
 import "./home.css";
 import React, { useState } from "react";
 import {
+  C,
+  Box,
+  Link,
+  Grid,
+  ninth,
   first,
   sixth,
-  seventh,
-  ninth,
   tenth,
-  Link,
-  Box,
-  Grid,
+  seventh,
+  pictures,
   Typography,
-  FeaturedCollectionComponent,
-  MainProductsComponent,
+  sectionPics1,
+  useMediaQuery,
   SpecialProduct,
   RecomendedProduct,
   LogoSliderComponent,
-  C,
-  pictures,
-  sectionPics1,
-  useMediaQuery,
+  MainProductsComponent,
+  FeaturedCollectionComponent,
 } from "./ImportsHome/ImportHome.js";
-import ProductImageZoom from "../../Components/ProductImageZoom/ProductImageZoom.jsx";
-import ParallaxScroll from "./ParallaxScroll .jsx";
-
+import { useNavigate } from "react-router-dom";
 function Home() {
-  const images = [first, sixth, seventh, ninth];
+  const at1150 = useMediaQuery("(min-width:1150px)");
+  const at1060 = useMediaQuery("(min-width:1060px)");
+  const at1000 = useMediaQuery("(min-width:1000px)");
+  const at980 = useMediaQuery("(min-width:980px)");
+  const at960 = useMediaQuery("(min-width:960px)");
   const at936 = useMediaQuery("(min-width:936px)");
+  const at900 = useMediaQuery("(min-width:900px)");
+  const at880 = useMediaQuery("(min-width:980px)");
   const at600 = useMediaQuery("(min-width:600px)");
+  const navigate = useNavigate();
+  const handleNavigation = () => {
+    navigate("./products");
+  };
 
   return (
     <>
-      {/* Main Pictures Section */}
       <section>
         <Box
           display={{ xs: "block", md: "flex" }}
-          sx={{ margin: "2rem 2rem 0", gap: 2 }}
+          sx={{ margin: at936 ? "2rem" : "1rem", gap: at936 ? 2 : 1 }}
         >
+          {/* Left Section */}
           <Box
             sx={{
               position: "relative",
               flexBasis: "50%",
-              marginBottom: "1rem",
+              marginBottom: at936 ? "1rem" : "0.5rem",
+              height: at900 ? "100%" : "40%",
             }}
           >
             <img
               src={first}
               className="image-fluid rounded-3"
               alt="main banner"
-              style={{ height: "100%", width: "100%" }}
+              style={{ height: at900 ? "100%" : "40%", width: "100%" }}
             />
             <Box position={"absolute"} sx={{ top: "15%", left: "10%" }}>
               <Typography
                 sx={{
-                  fontSize: "15px",
+                  fontSize: at1150
+                    ? "15px"
+                    : at936
+                    ? "14px"
+                    : at600
+                    ? "13px"
+                    : "12px",
                   fontWeight: 400,
                   lineHeight: "24px",
-                  color: "#bf4800", // Using CSS variable syntax
-                  margin: "0 0 0.3rem",
+                  color: "#bf4800",
+                  marginBottom: at936 ? "0.3rem" : "0.2rem",
                   letterSpacing: "0.3px",
                 }}
               >
@@ -65,11 +80,20 @@ function Home() {
 
               <Typography
                 sx={{
-                  fontSize: "42px",
-                  lineHeight: "64px",
+                  fontSize: at1150
+                    ? "42px"
+                    :  at1060
+                    ? "34px"
+                    : at936
+                    ? "30px"
+                    : at600
+                    ? "32px"
+                    : "24px",
+                  lineHeight: at936 ? "64px" : "48px",
                   letterSpacing: "-2px",
                   fontWeight: 500,
                   textTransform: "none",
+                  wordWrap: "break-word",
                 }}
               >
                 IPAD S13+ Pro.
@@ -77,79 +101,112 @@ function Home() {
 
               <Typography
                 sx={{
-                  fontSize: "16px",
+                  fontSize:   at1150
+                  ? "16px"
+                  :  at1060
+                  ? "14px"
+                  : at936 ? "12px" : at900 ? "16px" : "16px",
                   lineHeight: "28px",
                   letterSpacing: "0.4px",
-                  margin: "0 0 36px",
-                  color: "#131921", // Using CSS variable syntax
+                  marginBottom: at936 ? "36px" : "24px",
+                  color: "#131921",
                 }}
               >
                 From $999.00 or $41.62/mo. <br /> for 24 mo. Footnote*
               </Typography>
 
-              <Link className="button a">BUY NOW</Link>
+              <Link
+                className="button a"
+                to={"/store/products"}
+                style={{
+                  fontSize: at936 ? "16px" : at600 ? "14px" : "12px",
+                  padding: at936 ? "10px 20px" : "8px 16px",
+                }}
+              >
+                BUY NOW
+              </Link>
             </Box>
           </Box>
+
+          {/* Right Section (Grid of Pictures) */}
           <Grid
             container
             spacing={2}
-            sx={{ margin: "0 0 1rem", flexBasis: "50%", display: {} }}
+            sx={{ marginBottom: at936 ? "1rem" : "0.5rem", flexBasis: "50%" }}
           >
-            {pictures.map((value, index) => {
-              return (
-                <Grid key={index} item sx={{ position: "relative" }} size={6}>
-                  <img
-                    src={value.picture}
-                    alt="main banner "
-                    className="rounded-3"
-                    style={{ height: "100%", width: "100%" }}
-                  />
+            {pictures.map((value, index) => (
+              <Grid
+                key={index}
+                item
+                sx={{
+                  position: "relative",
+                  color: "black",
+                  overflow: "hidden",
+                  "&:hover img": {
+                    transform: "scale(1.1)",
+                    transition: "transform 0.3s ease-in-out",
+                  },
+                  borderRadius: "8px",
+                }}
+                component={Link}
+                to={"/store/products"}
+                size={6}
+              >
+                <img
+                  src={value.picture}
+                  alt="main banner"
+                  className="rounded-3"
+                  style={{
+                    height: "100%",
+                    width: "100%",
+                    transition: "transform 0.3s ease-in-out",
+                  }}
+                />
 
-                  <Box
-                    className="small-banner-content "
-                    sx={{ position: "absolute", top: "15%", left: "10%" }}
+                <Box
+                  className="small-banner-content"
+                  sx={{ position: "absolute", top: "15%", left: "10%" }}
+                >
+                  <Typography
+                    sx={{
+                      fontSize: at936 ? "12px" : at600 ? "10px" : "9px",
+                      lineHeight: "16px",
+                      marginBottom: at936 ? "12px" : "8px",
+                      letterSpacing: "0.3px",
+                      color: "#bf4800",
+                    }}
                   >
-                    <Typography
-                      sx={{
-                        fontSize: "12px",
-                        lineHeight: "16px",
-                        margin: "0 0 12px",
-                        letterSpacing: "0.3px",
-                        color: "#bf4800",
-                      }}
-                    >
-                      {value.subHeading}
-                    </Typography>
+                    {value.subHeading}
+                  </Typography>
 
-                    <Typography
-                      sx={{
-                        fontSize: "19px",
-                        margin: "5px 0 7px",
-                        letterSpacing: "0px",
-                        lineHeight: "32px",
-                        fontWeight: 500,
-                        textTransform: "none",
-                      }}
-                    >
-                      {value.mainHeading}
-                    </Typography>
+                  <Typography
+                    sx={{
+                      fontSize: at936 ? "19px" : at600 ? "16px" : "14px",
+                      marginBottom: at936 ? "7px" : "5px",
+                      letterSpacing: "0px",
+                      lineHeight: "32px",
+                      fontWeight: 500,
+                      textTransform: "none",
+                    }}
+                  >
+                    {value.mainHeading}
+                  </Typography>
 
-                    <Typography
-                      sx={{
-                        fontSize: "12px",
-                        lineHeight: "18px",
-                        width: "64%",
-                        letterSpacing: "0.2px",
-                        margin: "0 0 36px",
-                        color: "#131921",
-                      }}
-                    >
-                      {value.desc}
-                    </Typography>
-                  </Box>
-                </Grid>
-              );
-            })}
+                  <Typography
+                    sx={{
+                      fontSize: at936 ? "12px" : at600 ? "10px" : "9px",
+                      lineHeight: "18px",
+                      width: "64%",
+                      letterSpacing: "0.2px",
+                      marginBottom: at936 ? "36px" : "24px",
+                      color: "#131921",
+                    }}
+                  >
+                    {value.desc}
+                  </Typography>
+                </Box>
+              </Grid>
+            ))}
           </Grid>
         </Box>
       </section>
@@ -293,6 +350,7 @@ function Home() {
               {sectionPics1.map((value, index) => (
                 <Grid
                   item
+                  key={index}
                   size={at600 ? 4 : 6}
                   sx={{
                     p: "1rem 1rem",
@@ -437,18 +495,6 @@ function Home() {
         <section>
           <Box>
             <RecomendedProduct />
-          </Box>
-        </section>
-        {/* Recomended Products Collection */}
-        <section>
-          <Box>
-            <ProductImageZoom images={images} />
-          </Box>
-        </section>
-        {/* Recomended Products Collection */}
-        <section>
-          <Box>
-            <ParallaxScroll />
           </Box>
         </section>
       </Box>

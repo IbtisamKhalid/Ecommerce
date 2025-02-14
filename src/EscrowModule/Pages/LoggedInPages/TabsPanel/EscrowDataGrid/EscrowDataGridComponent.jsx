@@ -14,7 +14,7 @@ import useEscrowDataGrid from "./Hooks/useEscrowDataGrid";
 
 function EscrowDataGridComponent({ tableName, status, onRendered }) {
   const isSmallScreen = useMediaQuery("(min-width:820px)");
-  const { loading, columns, rows, handleBoxClick, handleAgreement } =
+  const { loading, columns, rows, handleBoxClick, handleDispute } =
     useEscrowDataGrid({
       onRendered,
     });
@@ -102,7 +102,7 @@ function EscrowDataGridComponent({ tableName, status, onRendered }) {
                 justifyContent: "space-between",
               }}
               onClick={() =>
-                item.agreed ? handleBoxClick(item) : handleAgreement(item)
+                item.dispute ? handleDispute(item) :  handleBoxClick(item) 
               }
               key={index}
             >

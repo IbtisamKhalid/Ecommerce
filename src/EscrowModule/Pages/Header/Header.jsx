@@ -26,8 +26,9 @@ function Header({
   atTopColor = "",
   txtColor = "",
   atTopTextColor = "",
-  hoverBGColor="",
-  hoverTextColor="",
+  hoverBGColor = "",
+  hoverTextColor = "",
+  queries = false,
 }) {
   const {
     handleDrawerToggle,
@@ -43,6 +44,7 @@ function Header({
     name,
   } = useHeader({ backColor, atTopTextColor, atTopColor });
 
+  // for mobile
   const drawer = (
     <Box onClick={handleDrawerToggle} sx={{ textAlign: "center" }}>
       <Typography variant="h6" sx={{ my: 2 }}>
@@ -59,7 +61,7 @@ function Header({
         ))}
         <Button
           component={Link}
-          to={"#"}
+          to={"/store"}
           sx={{ textAlign: "center", color: "inherit" }}
         >
           Our Store
@@ -80,9 +82,10 @@ function Header({
           top: 0,
           backgroundColor: backgroundColor,
           zIndex: zIndex,
-          "& :hover:":{
-            color:"white"
-          }
+          "& :hover:": {
+            color: "white",
+          },
+          borderBottom: queries ? "1px solid rgba(0, 0, 0, 0.1)" : "none",
         }}
       >
         <CssBaseline />
@@ -93,7 +96,7 @@ function Header({
             alignItems: "center",
             p: { xs: "0 1.5rem", sm: "0 3rem", md: "0 6rem", lg: "0 8rem" },
             backgroundColor: isAtTop ? backColor : backgroundColor,
-            color:isAtTop ? textColor : "white",
+            color: isAtTop ? textColor : "white",
             zIndex: 1100,
             // "& :hover": {
             //   bgcolor: "rgb(1, 66, 106)",
@@ -128,8 +131,7 @@ function Header({
               }}
             >
               {navItems.map((item) => (
-                <Box key={item.name}
-                 onMouseLeave={handleMouseLeave}>
+                <Box key={item.name} onMouseLeave={handleMouseLeave}>
                   <Button
                     sx={{
                       // transition: "all 0.4s ease",
@@ -162,6 +164,8 @@ function Header({
                   m: "0.4rem 0",
                   color: textColor,
                 }}
+                component={Link}
+                to={"/store"}
               >
                 Our Store
               </Button>

@@ -1,148 +1,272 @@
-import React from "react";
-import { NavLink, Link } from "react-router-dom";
+import {
+  AppBar,
+  Toolbar,
+  Box,
+  Typography,
+  IconButton,
+  Tooltip,
+  Badge,
+  Drawer,
+  List,
+  ListItem,
+  ListItemText,
+  ListItemIcon,
+  InputBase,
+  Button,
+} from "@mui/material";
+import {
+  Menu as MenuIcon,
+  Favorite as FavoriteIcon,
+  Compare as CompareIcon,
+  ShoppingCart as ShoppingCartIcon,
+  AccountCircle as AccountCircleIcon,
+} from "@mui/icons-material";
+import React, { useState } from "react";
 import { BsSearch } from "react-icons/bs";
-import first from "../../StoreAssets/images/compare.svg";
-import second from "../../StoreAssets/images/wishlist.svg";
-import third from "../../StoreAssets/images/user.svg";
-import fourth from "../../StoreAssets/images/cart.svg";
-import fifth from "../../StoreAssets/images/menu.svg";
+import { styled } from "@mui/material/styles";
+import { NavLink, Link } from "react-router-dom";
+import useMediaQuery from "@mui/material/useMediaQuery";
+
+const Search = styled("div")(({ theme }) => ({
+  position: "relative",
+  borderRadius: theme.shape.borderRadius,
+  backgroundColor: "#ffffff",
+  display: "flex",
+  alignItems: "center",
+  width: "100%",
+  maxWidth: "400px",
+  [theme.breakpoints.down("500")]: {
+    maxWidth: "90%",
+  },
+}));
+
+const SearchIconWrapper = styled("div")(({ theme }) => ({
+  padding: theme.spacing(1),
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+  backgroundColor: "#febd69",
+  borderRadius: "4px",
+}));
+
+const StyledInputBase = styled(InputBase)(({ theme }) => ({
+  marginLeft: theme.spacing(1),
+  flex: 1,
+}));
 
 function Header() {
+  const [drawerOpen, setDrawerOpen] = useState(false);
+  const [navDrawerOpen, setNavDrawerOpen] = useState(false);
+  const isMediumScreen = useMediaQuery("(max-width:1000px)");
+  const isSmallScreen = useMediaQuery("(max-width:820px)");
+  const isExtraSmallScreen = useMediaQuery("(max-width:475px)");
+
+  const toggleDrawer = (open) => (event) => {
+    if (
+      event.type === "keydown" &&
+      (event.key === "Tab" || event.key === "Shift")
+    )
+      return;
+    setDrawerOpen(open);
+  };
+
+  const toggleNavDrawer = (open) => (event) => {
+    if (
+      event.type === "keydown" &&
+      (event.key === "Tab" || event.key === "Shift")
+    )
+      return;
+    setNavDrawerOpen(open);
+  };
+
   return (
     <>
-      <header className="header-top-strip py-2">
-        <div className="container-xxl">
-          <div className="row">
-            <div className="col-6">
-              <p className="text-white mb-0">Free shipping over $1000</p>
-            </div>
-            <div className="col-6">
-              <p className="text-end text-white mb-0">
-                Hotline:{" "}
-                <a className="a text-white" href="tel:+923079517458">
-                  +923079517458
-                </a>
-              </p>
-            </div>
-          </div>
-        </div>
-      </header>
-      <header className="header-upper py-3">
-        <div className="container-xxl">
-          <div className="row align-item-center">
-            <div className="col-2">
-              <h2>
-                <Link className="dev text-white">MY Store</Link>
-              </h2>
-            </div>
-            <div className="col-5">
-              <div className="input-group ">
-                <input
-                  type="text"
-                  className="form-control py-2"
-                  placeholder="Search Product Here... "
-                  aria-label="Search Product Here... "
-                  aria-describedby="basic-addon2"
-                />
-                <span className="input-group-text p-3" id="basic-addon2">
-                  <BsSearch className="fs-6" />
-                </span>
-              </div>
-            </div>
-            <div className="col-5">
-              <div className="header-upper-links d-flex align-items-center justify-content-between">
-                <div>
-                  <Link className="d-flex align-items-center gap-10 text-white a">
-                    <img src={first} alt="Compare" />
-                    <p className="mb-0">
-                      Compare <br /> Products
-                    </p>
-                  </Link>
-                </div>
-                <div>
-                  <Link className="d-flex align-items-center gap-10 text-white a">
-                    <img src={second} alt="Wishlist" />
-                    <p className="mb-0">
-                      Favourite <br /> Wishlist
-                    </p>
-                  </Link>
-                </div>
-                <div>
-                  <Link className="d-flex align-items-center gap-10 text-white a">
-                    <img src={third} alt="User" />
-                    <p className="mb-0">
-                      Log in <br /> My Account
-                    </p>
-                  </Link>
-                </div>
-                <div>
-                  <Link className="d-flex align-items-center gap-10 text-white a">
-                    <img src={fourth} alt="" />
-                    <div className="d-flex flex-column">
-                      <span className="badge bg-white text-dark">0</span>
-                      <p className="mb-0">$500</p>
-                    </div>
-                  </Link>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </header>
-      <header className="header-bottom py-3">
-        <div className="container-xxl">
-          <div className="row">
-            <div className="col-12">
-              <div className="menu-bottom d-flex align-items-center gap-30">
-                <div>
-                  <div className="dropdown">
-                    <button
-                      className="btn btn-secondary dropdown-toggle d-flex gap-15 align-items-center border-0"
-                      type="button"
-                      id="dropdownMenuButton1"
-                      data-bs-toggle="dropdown"
-                      aria-expanded="false"
-                    >
-                      <img src={fifth} alt="menuicon" />
-                      <span className="me-5 d-inline-block">
-                        Shop Categories
-                      </span>
-                    </button>
-                    <ul
-                      className="dropdown-menu"
-                      aria-labelledby="dropdownMenuButton1"
-                    >
-                      <li>
-                        <Link className="dropdown-item text-white" to="#">
-                          Action
-                        </Link>
-                      </li>
-                      <li>
-                        <Link className="dropdown-item text-white" to="#">
-                          Another action
-                        </Link>
-                      </li>
-                      <li>
-                        <Link className="dropdown-item text-white" to="#">
-                          Something else here
-                        </Link>
-                      </li>
-                    </ul>
-                  </div>
-                </div>
-                <div className="menu-links">
-                  <div className="d-flex align-items-center gap-15">
-                    <NavLink className="navlink " to="/home">Home</NavLink>
-                    <NavLink className="navlink " to="/">Products</NavLink>
-                    <NavLink className="navlink " to="/">Blog</NavLink>
-                    <NavLink className="navlink " to="/contact">Contact</NavLink>
-                  </div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </header>
+      {/* First AppBar - Navigation Links */}
+      <AppBar
+        position="static"
+        sx={{
+          backgroundColor: "#06273b",
+          p: "0 2rem",
+          borderBottom: "1px solid #677D6A",
+        }}
+      >
+        <Toolbar sx={{ display: "flex", justifyContent: "space-between" }}>
+          <Typography
+            variant="h6"
+            component={Link}
+            to="/"
+            color="white"
+            sx={{ textDecoration: "none" }}
+          >
+            MY Store
+          </Typography>
+          {!isExtraSmallScreen && (
+            <Box sx={{ display: "flex", gap: 2 }}>
+              {["Home", "Products", "Escrow", "Contact"].map((item) => (
+                <Button
+                  color="inherit"
+                  component={NavLink}
+                  to={`/store/${item.toLowerCase()}`}
+                  key={item}
+                >
+                  {item}
+                </Button>
+              ))}
+            </Box>
+          )}
+          {isExtraSmallScreen && (
+            <IconButton color="inherit" onClick={toggleNavDrawer(true)}>
+              <MenuIcon />
+            </IconButton>
+          )}
+        </Toolbar>
+      </AppBar>
+
+      {/* Second AppBar - Search and Icons */}
+      <AppBar
+        position="sticky"
+        sx={{
+          padding: "5px 0",
+          backgroundColor: "rgb(1, 47, 80)",
+        }}
+      >
+        <Toolbar
+          sx={{
+            display: "flex",
+            justifyContent: isSmallScreen ? "space-between" : "center",
+            gap: 2,
+          }}
+        >
+          {isSmallScreen && (
+            <IconButton color="inherit" onClick={toggleDrawer(true)}>
+              <MenuIcon />
+            </IconButton>
+          )}
+          <Box
+            sx={{
+              // flexGrow: 1,
+              display: "flex",
+              justifyContent: isSmallScreen ? "right" : "center",
+              width: "400px",
+            }}
+          >
+            <Search>
+              <StyledInputBase
+                placeholder="Search Product Here..."
+                aria-label="search"
+              />
+              <SearchIconWrapper>
+                <BsSearch size={30} />
+              </SearchIconWrapper>
+            </Search>
+          </Box>
+          {!isSmallScreen && (
+            <Box
+              sx={{
+                display: "flex",
+                alignItems: "center",
+                gap: 2,
+                justifyContent: "left",
+              }}
+            >
+              {[
+                {
+                  icon: <FavoriteIcon />,
+                  text: "Wishlist",
+                  link: "/store/wishlist",
+                },
+                {
+                  icon: <CompareIcon />,
+                  text: "Compare",
+                  link: "/store/compare",
+                },
+                {
+                  icon: <ShoppingCartIcon />,
+                  text: "Cart",
+                  link: "/store/cart",
+                  badge: 1,
+                },
+                {
+                  icon: <AccountCircleIcon />,
+                  text: "Account",
+                  link: "/store/account",
+                },
+              ].map(({ icon, text, link, badge }) => (
+                <Tooltip title={text} key={text}>
+                  <IconButton color="inherit" component={Link} to={link}>
+                    {badge ? (
+                      <Badge badgeContent={badge} color="error">
+                        {icon}
+                      </Badge>
+                    ) : (
+                      icon
+                    )}
+                    {!isMediumScreen && (
+                      <Typography variant="body2" sx={{ marginLeft: 1 }}>
+                        {text}
+                      </Typography>
+                    )}
+                  </IconButton>
+                </Tooltip>
+              ))}
+            </Box>
+          )}
+        </Toolbar>
+      </AppBar>
+
+      {/* Drawer for Icons */}
+      <Drawer anchor="left" open={drawerOpen} onClose={toggleDrawer(false)}>
+        <List sx={{ width: 250, backgroundColor: "#131921", height: "100%" }}>
+          {[
+            {
+              icon: <FavoriteIcon />,
+              text: "Wishlist",
+              link: "/store/wishlist",
+            },
+            { icon: <CompareIcon />, text: "Compare", link: "/store/compare" },
+            {
+              icon: <ShoppingCartIcon />,
+              text: "Cart",
+              link: "/store/cart",
+              badge: 1,
+            },
+            { icon: <AccountCircleIcon />, text: "Account", link: "/account" },
+          ].map(({ icon, text, link, badge }) => (
+            <ListItem button component={Link} to={link} key={text}>
+              <ListItemIcon>
+                {badge ? (
+                  <Badge badgeContent={badge} color="error">
+                    {icon}
+                  </Badge>
+                ) : (
+                  icon
+                )}
+              </ListItemIcon>
+              <ListItemText primary={text} sx={{ color: "white" }} />
+            </ListItem>
+          ))}
+        </List>
+      </Drawer>
+
+      {/* Drawer for Navigation Links */}
+      <Drawer
+        anchor="right"
+        open={navDrawerOpen}
+        onClose={toggleNavDrawer(false)}
+      >
+        <List sx={{ width: 250, backgroundColor: "#131921", height: "100%" }}>
+          {["Home", "Products", "Blog", "Contact"].map((item) => (
+            <ListItem
+              button
+              component={NavLink}
+              to={`/store/${item.toLowerCase()}`}
+              key={item}
+            >
+              <ListItemText primary={item} sx={{ color: "white" }} />
+            </ListItem>
+          ))}
+        </List>
+      </Drawer>
     </>
   );
 }

@@ -1,4 +1,3 @@
-import React from "react";
 import {
   Typography,
   Box,
@@ -6,79 +5,32 @@ import {
   IconButton,
   useMediaQuery,
 } from "@mui/material";
-import ProductCard from "../../Components/ProductCard/ProductCard";
-import camera from "../../StoreAssets/img/camers.jpg";
-import headphone from "../../StoreAssets/img/headphone1.jpg";
-import speaker from "../../StoreAssets/img/speaker.jpg";
-import tab from "../../StoreAssets/images/tab.jpg";
-import watch from "../../StoreAssets/images/watch.jpg";
-import cameraHovered from "../../StoreAssets/img/CameraHovered.jpg";
-import headphonehover from "../../StoreAssets/img/headphonehover.jpg";
-import speakerhover from "../../StoreAssets/img/speakerhover.jpg";
-import tabhover from "../../StoreAssets/images/tab1.jpg";
-import watchhover from "../../StoreAssets/img/watchhovered.jpg";
-import { ColorsEcommrace as C } from "../../Theme/EcommeraceTheme";
+import React from "react";
 import RefreshIcon from "@mui/icons-material/Refresh";
+import { products } from "../../../constants/Products";
+import { ColorsEcommrace as C } from "../../Theme/EcommeraceTheme";
+import ProductCard from "../../Components/ProductCard/ProductCard";
 
-function FeaturedCollectionComponent() {
+const FeaturedCollectionComponent = () => {
   const at1080 = useMediaQuery("(min-width:1080px)");
+  const at720 = useMediaQuery("(max-width:720px)");
+  const at520 = useMediaQuery("(max-width:520px)");
+  // const at1080 = useMediaQuery("(min-width:1080px)");
   const [count, setCount] = React.useState(0);
   const [sizeGrid, setSizeGrid] = React.useState(2.4); // Default value is 2.4
 
+  // Default value
   React.useEffect(() => {
-    if (at1080) {
-      setSizeGrid(2.4); // Set to 2.4 when at1080 is false
+    if (at520) {
+      setSizeGrid(12);
+    } else if (at720) {
+      setSizeGrid(6);
+    } else if (at1080) {
+      setSizeGrid(2.4);
     } else {
-      setSizeGrid(3); // Set to 3 when at1080 is true
+      setSizeGrid(3);
     }
-  }, [at1080]);
-  const products = [
-    {
-      id: 1,
-      image: camera,
-      heading: "Olympus pen, EZ lens",
-      subHeading: "Sony",
-      stars: 5,
-      price: "$200",
-      imageonHover: cameraHovered,
-    },
-    {
-      id: 2,
-      image: headphone,
-      heading: "Headphones from Havells",
-      subHeading: "Havells",
-      stars: 5,
-      price: "$200",
-      imageonHover: headphonehover,
-    },
-    {
-      id: 3,
-      image: speaker,
-      heading: "Portable Speakers",
-      subHeading: "Bajaj",
-      stars: 5,
-      price: "$200",
-      imageonHover: speakerhover,
-    },
-    {
-      id: 4,
-      image: tab,
-      heading: "Tab from Havells",
-      subHeading: "Havells",
-      stars: 5,
-      price: "$200",
-      imageonHover: tabhover,
-    },
-    {
-      id: 5,
-      image: watch,
-      heading: "Watch from Sony",
-      subHeading: "Sony",
-      stars: 5,
-      price: "$200",
-      imageonHover: watchhover,
-    },
-  ];
+  }, [at1080, at720, at520]);
 
   // Toggle products order
   const displayedProducts = count ? [...products].reverse() : products;
@@ -119,14 +71,15 @@ function FeaturedCollectionComponent() {
           .slice(
             0,
             at1080 ? displayedProducts.length : displayedProducts.length - 1
-          ) // Exclude last product if at1080 is true
+          )
+          .filter((_, index) => (at1080 ? index < 5 : index < 4)) // Only keep first 5 items
           .map((product) => (
-            <Grid item key={product.id} size={{ xs: 6, md: sizeGrid }}>
+            <Grid item key={product.id} size={sizeGrid} md={sizeGrid}>
               <ProductCard
-                image={product.image}
+                image={product.productCardImage}
                 heading={product.heading}
-                subHeading={product.subHeading}
-                stars={product.stars}
+                brand={product.brand}
+                stars={product.feedback[0].stars}
                 price={product.price}
                 imageonHover={product.imageonHover}
               />
@@ -135,6 +88,6 @@ function FeaturedCollectionComponent() {
       </Grid>
     </section>
   );
-}
+};
 
 export default FeaturedCollectionComponent;

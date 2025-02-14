@@ -1,39 +1,41 @@
 import React, { useState } from "react";
-import ReactStars from "react-rating-stars-component";
+import { useNavigate } from "react-router-dom";
 import { Box, Typography } from "@mui/material";
-import { ColorsEcommrace as C } from "../../Theme/EcommeraceTheme";
-import prodcompare from "../../StoreAssets/img/prodcompare.svg";
-import addcart from "../../StoreAssets/img/add-cart.svg";
 import wish from "../../StoreAssets/img/wish.svg";
-import wishblack from "../../StoreAssets/img/wishblack.svg";
 import view from "../../StoreAssets/img/view.svg";
+import ReactStars from "react-rating-stars-component";
+import addcart from "../../StoreAssets/img/add-cart.svg";
+import wishblack from "../../StoreAssets/img/wishblack.svg";
+import prodcompare from "../../StoreAssets/img/prodcompare.svg";
+import { ColorsEcommrace as C } from "../../Theme/EcommeraceTheme";
 
 const ProductCard = ({
   image,
   imageonHover,
   heading,
   price,
-  subHeading,
+  brand,
   stars,
   width,
-  height
+  height,
 }) => {
+  const navigate = useNavigate();
   const [img, setImg] = useState(image);
-  const [wishIcon, setWishIcon] = useState(wish);
   const [hovered, setHovered] = useState(false);
+  const [wishIcon, setWishIcon] = useState(wish);
 
   return (
     <Box
       sx={{
         bgcolor: "white",
         width: "100%",
-        height: height || "390px",
+        height: height || "100%",
         borderRadius: "10px",
         position: "relative",
         overflow: "hidden",
         transition: "all 0.3s ease-in-out",
         justifyItems: "center",
-        textAlign:"left"
+        textAlign: "left",
       }}
       onMouseEnter={() => {
         setImg(imageonHover);
@@ -43,16 +45,19 @@ const ProductCard = ({
         setImg(image);
         setHovered(false);
       }}
+      onClick={() => {
+        navigate("/store/products");
+      }}
     >
       {/* Top-Right Icons */}
       <Box
         sx={{
-          position: "absolute",
           top: "10px",
           right: "10px",
           display: "flex",
-          flexDirection: "column",
+          position: "absolute",
           alignItems: "center",
+          flexDirection: "column",
         }}
       >
         <Box
@@ -60,14 +65,14 @@ const ProductCard = ({
             "&:hover": {
               backgroundColor: C.colorFeaturedCollectionButtonHover,
             },
-            transition: "background-color 0.5s ease-in-out",
-            borderRadius: "50%", // Fully round
             p: "0.4rem",
+            display: "flex",
+            borderRadius: "50%", // Fully round
+            alignItems: "center", // Center vertically
             width: "fit-content", // Adjust as needed for size
             height: "fit-content", // Adjust to match width for a perfect circle
-            display: "flex",
             justifyContent: "center", // Center horizontally
-            alignItems: "center", // Center vertically
+            transition: "background-color 0.5s ease-in-out",
             // marginBottom: "3px",
           }}
           onClick={() => setWishIcon(wishIcon === wish ? wishblack : wish)}
@@ -77,9 +82,9 @@ const ProductCard = ({
 
         <Box
           sx={{
+            // gap: "8px",
             display: "flex",
             flexDirection: "column",
-            // gap: "8px",
             opacity: hovered ? 1 : 0,
             transform: hovered ? "translateX(0)" : "translateX(30px)",
             transition: "opacity 0.3s ease-in-out, transform 0.3s ease-in-out",
@@ -90,14 +95,14 @@ const ProductCard = ({
               "&:hover": {
                 backgroundColor: C.colorFeaturedCollectionButtonHover,
               },
-              transition: "background-color 0.5s ease-in-out",
-              borderRadius: "50%", // Fully round
               p: "0.4rem",
+              display: "flex",
+              borderRadius: "50%", // Fully round
+              alignItems: "center", // Center vertically
               width: "fit-content", // Adjust as needed for size
               height: "fit-content", // Adjust to match width for a perfect circle
-              display: "flex",
               justifyContent: "center", // Center horizontally
-              alignItems: "center", // Center vertically
+              transition: "background-color 0.5s ease-in-out",
             }}
           >
             <img src={prodcompare} alt="Compare" style={{ width: "16px" }} />
@@ -145,17 +150,18 @@ const ProductCard = ({
           src={img}
           alt="Product"
           style={{
-            width: width || "250px",
+            width: width || "100%",
             borderRadius: "10px",
+            height:"100%"
           }}
         />
       </Box>
 
-      <Box sx={{ textAlign: "left", padding: "10px 30px",width:"100%" }}>
+      <Box sx={{ textAlign: "left", padding: "10px 30px", width: "100%" }}>
         <Typography
           sx={{ color: C.colorFeaturedCollectionSubHeading, fontSize: "12px" }}
         >
-          {subHeading}
+          {brand}
         </Typography>
         <Typography
           sx={{ color: C.colorFeaturedCollectionHeading, fontWeight: "550" }}
@@ -170,7 +176,7 @@ const ProductCard = ({
           activeColor="#ffd700"
         />
         <Typography sx={{ fontWeight: "550", marginTop: "10px" }}>
-          {price}
+          ${price}
         </Typography>
       </Box>
     </Box>

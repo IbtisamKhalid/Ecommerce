@@ -3,13 +3,20 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Box, Typography } from "@mui/material";
 import { Fonts, Colors } from "../../../../../../Theme/Theme";
 import CircleIcon from "@mui/icons-material/Circle";
+import { UserContext } from "../../../../../../EscrowContext/Hooks/useEscrowContext";
+import { useContext } from "react";
+
 
 function DisputeDetails() {
   const navigate = useNavigate();
   const location = useLocation();
   const { item } = location.state; // Access passed data
+  const {user, setUser} = useContext(UserContext);
   const handleAddDisputeTermClick = () => {
     navigate("/FileDispute", { state: { item , addingTerms:true } });
+  };
+  const handleUpdateDispute = () => {
+    navigate("/Admindashboard/updatedisputes", { state: { item , addingTerms:true } });
   };
   return (
     <>
@@ -86,9 +93,9 @@ function DisputeDetails() {
             },
             // textAlign:"right"
           }}
-          onClick={handleAddDisputeTermClick}
+          onClick={!user.role == "Admin" ? handleAddDisputeTermClick : handleUpdateDispute}
         >
-          Add more details to the Dispute?
+          {!user.role == "Admin" ? "Add more details to the Dispute?" : "Resolve Dispute"}
         </Typography>
       </Box>
     </>

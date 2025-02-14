@@ -30,7 +30,6 @@ function DisputeDetailsWrapper() {
               bgcolor: "#EEF7FE",
               borderRadius: "8px",
               border: `1px solid ${Colors.borderColor}`,
-              "@media (max-width:1060px)": { display: "none" },
               remmb: "0.8",
             }}
           >

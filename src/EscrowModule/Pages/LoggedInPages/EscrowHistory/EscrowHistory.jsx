@@ -3,6 +3,7 @@ import TabsPanel from "../TabsPanel/TabsPanel";
 import { Colors, Fonts } from "../../../Theme/Theme";
 
 const EscrowHistory = () => {
+
   const Tabs = ["All", "Completed", "Ongoing", "Cancelled"];
   return (
     <Box
