@@ -11,7 +11,7 @@ function EscrowMainDetails() {
   const location = useLocation();
   const { item } = location.state; // Access passed data
   // const stepp = 0;
-  console.log("item in EscrowMainDetail",item);
+  console.log("item in EscrowMainDetail", item);
   const handleProceedToPayment = () => {
     navigate("/payment", { state: { item } });
   };
@@ -49,209 +49,62 @@ function EscrowMainDetails() {
               color: Colors.secondary,
             }}
           >
-            {item.title}
+            {item.title || item.TransactionTitle}
           </Typography>
           <Typography variant="body1" sx={{ m: "0.6rem 0 1rem 0" }}>
             Transaction #{item.id}
           </Typography>
           <Typography variant="body1" sx={{ m: "0 0 1rem 0" }}>
-            <span style={{ color: "blue" }}>UserId1</span> is buying/selling
-            general merchandise from{" "}
-            <span style={{ color: "blue" }}>UserId2</span>. The inspection
-            period for this transaction is 1 calendar day.
+            <span style={{ color: "blue" }}>User {item.sellerID}</span> is
+            buying/selling general merchandise from{" "}
+            <span style={{ color: "blue" }}>User {item.buyerID}</span>. The
+            inspection period for this transaction is 1 calendar day.
           </Typography>
-          <Typography
-            sx={{
-              fontSize: "14px",
-              fontWeight: 450,
-              fontFamily: "Roboto, serif",
-              fontStyle: "normal",
-              fontVariationSettings: "wdth 100",
-              bgcolor: "#fff1a8",
-              color: "#677702",
-              p: "0.3rem 0.7rem 0.3rem 0.5rem",
-              borderRadius: "12px",
-              mb: "1rem",
-              width: "fit-content",
-            }}
-          >
-            <CircleIcon sx={{ fontSize: "10px", marginRight: "0.4rem" }} />
-            {item.status.primary}
-          </Typography>
+          <Box sx={{ display: "flex", gap: 2 }}>
+            <Typography
+              sx={{
+                fontSize: "14px",
+                fontWeight: 450,
+                fontFamily: "Roboto, serif",
+                fontStyle: "normal",
+                fontVariationSettings: "wdth 100",
+                bgcolor: "#fff1a8",
+                color: "#677702",
+                p: "0.3rem 0.7rem 0.3rem 0.5rem",
+                borderRadius: "12px",
+                mb: "1rem",
+                width: "fit-content",
+              }}
+            >
+              <CircleIcon sx={{ fontSize: "10px", marginRight: "0.4rem" }} />
+              {item.status.primary}
+            </Typography>
+            <Typography
+              sx={{
+                fontSize: "14px",
+                fontWeight: 450,
+                fontFamily: "Roboto, serif",
+                fontStyle: "normal",
+                fontVariationSettings: "wdth 100",
+                bgcolor: "#ebebeb",
+                color: " #4f4f4f",
+                p: "0.3rem 0.7rem 0.3rem 0.5rem",
+                borderRadius: "12px",
+                mb: "1rem",
+                width: "fit-content",
+              }}
+            >
+              <CircleIcon sx={{ fontSize: "10px", marginRight: "0.4rem" }} />
+              {item.status.secondary}
+            </Typography>
+          </Box>
         </Box>
         <Box>
-          <StepperComponent step={item.step} />
+          <StepperComponent
+            item ={ item }
+          />
         </Box>
-        {item.role == "Buyer" && item.agreed == true && item.step == 1 && (
-          <Box>
-            <ProceedToPayment>
-              {" "}
-              <Button
-                sx={{
-                  p: "0.4rem 0.5rem",
-                  fontFamily: Fonts.primaryFont,
-                  bgcolor: "rgb(34, 92, 171)",
-                  fontWeight: 500,
-                  color: "white",
-                  "&:hover": {
-                    bgcolor: "rgb(1, 66, 106)",
-                  },
-                  fontSize: "12px",
-                }}
-                onClick={handleProceedToPayment}
-              >
-                Proceed To Payment
-              </Button>
-            </ProceedToPayment>
-          </Box>
-        )}
-        {item.step == 3 && !item.dispute && (
-          <Box
-            sx={{
-              border: "0.5px solid rgb(34, 92, 171)",
-              p: "1rem 1rem",
-              mt: "1.5rem",
-              borderRadius: "10px",
-            }}
-          >
-            <Typography
-              variant="h6"
-              sx={{
-                p: "0.5rem 0",
-                color: Colors.EscrowDetailsColor,
-                fontSize: "20px",
-                fontWeight: 550,
-                fontFamily: "Roboto, serif",
-                fontStyle: "normal",
-              }}
-            >
-              Issue with the Product?
-            </Typography>
-            <Typography
-              variant="h6"
-              sx={{
-                color: Colors.fontColor,
-                fontSize: "14px",
-                fontWeight: 450,
-                fontFamily: "Roboto, serif",
-                fontStyle: "normal",
-              }}
-            >
-              If you have any issue with the product or service you can file for
-              dispute. our team will help you resolve it.
-            </Typography>
-            <Typography
-              variant="h6"
-              sx={{
-                p: "0.5rem",
-                bgcolor: Colors.EscrowDetailsColor,
-                textDecoration: "none",
-                cursor: "pointer",
-                "&:hover": {
-                  bgcolor: Colors.secondNavColor,
-                },
-                color: "white",
-                mt: "0.5rem",
-                fontSize: "14px",
-                fontWeight: 550,
-                fontFamily: "Roboto, serif",
-                fontStyle: "normal",
-                width: "fit-content",
-                justifySelf: "right",
-                borderRadius: "9px",
-              }}
-              onClick={handleFileDispute}
-            >
-              File Dispute?
-            </Typography>
-            <Typography
-              variant="h6"
-              sx={{
-                p: "0.5rem",
-                bgcolor: Colors.EscrowDetailsColor,
-                textDecoration: "none",
-                cursor: "pointer",
-                "&:hover": {
-                  bgcolor: Colors.secondNavColor,
-                },
-                color: "white",
-                mt: "0.5rem",
-                fontSize: "14px",
-                fontWeight: 550,
-                fontFamily: "Roboto, serif",
-                fontStyle: "normal",
-                width: "fit-content",
-                justifySelf: "right",
-                borderRadius: "9px",
-              }}
-              onClick={handleSatisfied}
-            >
-              Satisfied
-            </Typography>
-          </Box>
-        )}
-        {item.step == 2 && item.role == "Seller" && (
-          <Box
-            sx={{
-              border: "0.5px solid rgb(34, 92, 171)",
-              p: "1rem 1rem",
-              mt: "1.5rem",
-              borderRadius: "10px",
-            }}
-          >
-            <Typography
-              variant="h6"
-              sx={{
-                p: "0.5rem 0",
-                color: Colors.EscrowDetailsColor,
-                fontSize: "20px",
-                fontWeight: 550,
-                fontFamily: "Roboto, serif",
-                fontStyle: "normal",
-              }}
-            >
-              Please Deliver the Product to the Buyer
-            </Typography>
-            <Typography
-              variant="h6"
-              sx={{
-                color: Colors.fontColor,
-                fontSize: "14px",
-                fontWeight: 450,
-                fontFamily: "Roboto, serif",
-                fontStyle: "normal",
-              }}
-            >
-              Please go to your near courier servive and deliver the product to
-              the buyer. if it is a service then please complete it.
-            </Typography>
-            <Typography
-              variant="h6"
-              sx={{
-                p: "0.5rem",
-                bgcolor: Colors.EscrowDetailsColor,
-                textDecoration: "none",
-                cursor: "pointer",
-                "&:hover": {
-                  bgcolor: Colors.secondNavColor,
-                },
-                color: "white",
-                mt: "0.5rem",
-                fontSize: "14px",
-                fontWeight: 550,
-                fontFamily: "Roboto, serif",
-                fontStyle: "normal",
-                width: "fit-content",
-                justifySelf: "right",
-                borderRadius: "9px",
-              }}
-              onClick={handleDelivery}
-            >
-              Delivered
-            </Typography>
-          </Box>
-        )}
-        {item.step == 2 && item.role == "Buyer" && (
+        {item.step == 0 && item.role == "Buyer" && item.agreed == false && (
           <Typography
             sx={{
               borderTop: `1px solid ${Colors.borderColor}`,
@@ -265,9 +118,9 @@ function EscrowMainDetails() {
               },
             }}
           >
-            The Seller has been asked to deliver the product to you. You will
-            receive the product very soon. <br /> Your Patience is highly
-            appreciated.
+            The Transaction is not yet accepted buy the seller. Please ask the
+            seller to accept it. <br /> You can move forward only when the
+            seller accept the terms.
           </Typography>
         )}
         {item.step == 0 && item.role == "Seller" && item.agreed == false && (
@@ -357,7 +210,91 @@ function EscrowMainDetails() {
             </Box>
           </Box>
         )}
-        {item.step == 0 && item.role == "Buyer" && item.agreed == false && (
+        {item.step == 1 && item.role == "Buyer" && item.agreed == true && (
+          <Box>
+            <ProceedToPayment>
+              {" "}
+              <Button
+                sx={{
+                  p: "0.4rem 0.5rem",
+                  fontFamily: Fonts.primaryFont,
+                  bgcolor: "rgb(34, 92, 171)",
+                  fontWeight: 500,
+                  color: "white",
+                  "&:hover": {
+                    bgcolor: "rgb(1, 66, 106)",
+                  },
+                  fontSize: "12px",
+                }}
+                onClick={handleProceedToPayment}
+              >
+                Proceed To Payment
+              </Button>
+            </ProceedToPayment>
+          </Box>
+        )}
+        {item.step == 2 && item.role == "Seller" && (
+          <Box
+            sx={{
+              border: "0.5px solid rgb(34, 92, 171)",
+              p: "1rem 1rem",
+              mt: "1.5rem",
+              borderRadius: "10px",
+            }}
+          >
+            <Typography
+              variant="h6"
+              sx={{
+                p: "0.5rem 0",
+                color: Colors.EscrowDetailsColor,
+                fontSize: "20px",
+                fontWeight: 550,
+                fontFamily: "Roboto, serif",
+                fontStyle: "normal",
+              }}
+            >
+              Please Deliver the Product to the Buyer
+            </Typography>
+            <Typography
+              variant="h6"
+              sx={{
+                color: Colors.fontColor,
+                fontSize: "14px",
+                fontWeight: 450,
+                fontFamily: "Roboto, serif",
+                fontStyle: "normal",
+              }}
+            >
+              Please go to your near courier servive and deliver the product to
+              the buyer. if it is a service then please complete it.
+            </Typography>
+            <Typography
+              variant="h6"
+              sx={{
+                p: "0.5rem",
+                bgcolor: Colors.EscrowDetailsColor,
+                textDecoration: "none",
+                cursor: "pointer",
+                "&:hover": {
+                  bgcolor: Colors.secondNavColor,
+                },
+                color: "white",
+                mt: "0.5rem",
+                fontSize: "14px",
+                fontWeight: 550,
+                fontFamily: "Roboto, serif",
+                fontStyle: "normal",
+                width: "fit-content",
+                justifySelf: "right",
+                borderRadius: "9px",
+              }}
+              onClick={handleDelivery}
+            >
+              Delivered
+            </Typography>
+          </Box>
+        )}
+        {item.step == 2 && item.role == "Buyer" && (
           <Typography
             sx={{
               borderTop: `1px solid ${Colors.borderColor}`,
@@ -371,11 +308,206 @@ function EscrowMainDetails() {
               },
             }}
           >
-            The Transaction is not yet accepted buy the seller. Please ask the
-            seller to accept it. <br /> You can move forward only when the
-            seller accept the terms.
+            The Seller has been asked to deliver the product to you. You will
+            receive the product very soon. <br /> Your Patience is highly
+            appreciated.
           </Typography>
         )}
+        {(item.step == 3 && !item.dispute && item.role) ||
+          (item.MyRole == "Buyer" && (
+            <Box
+              sx={{
+                border: "0.5px solid rgb(34, 92, 171)",
+                p: "1rem 1rem",
+                mt: "1.5rem",
+                borderRadius: "10px",
+              }}
+            >
+              <Typography
+                variant="h6"
+                sx={{
+                  p: "0.5rem 0",
+                  color: Colors.EscrowDetailsColor,
+                  fontSize: "20px",
+                  fontWeight: 550,
+                  fontFamily: "Roboto, serif",
+                  fontStyle: "normal",
+                }}
+              >
+                Issue with the Product?
+              </Typography>
+              <Typography
+                variant="h6"
+                sx={{
+                  color: Colors.fontColor,
+                  fontSize: "14px",
+                  fontWeight: 450,
+                  fontFamily: "Roboto, serif",
+                  fontStyle: "normal",
+                }}
+              >
+                If you have any issue with the product or service you can file
+                for dispute. our team will help you resolve it.
+              </Typography>
+              <Typography
+                variant="h6"
+                sx={{
+                  p: "0.5rem",
+                  bgcolor: Colors.EscrowDetailsColor,
+                  textDecoration: "none",
+                  cursor: "pointer",
+                  "&:hover": {
+                    bgcolor: Colors.secondNavColor,
+                  },
+                  color: "white",
+                  mt: "0.5rem",
+                  fontSize: "14px",
+                  fontWeight: 550,
+                  fontFamily: "Roboto, serif",
+                  fontStyle: "normal",
+                  width: "fit-content",
+                  justifySelf: "right",
+                  borderRadius: "9px",
+                }}
+                onClick={handleFileDispute}
+              >
+                File Dispute?
+              </Typography>
+              <Typography
+                variant="h6"
+                sx={{
+                  p: "0.5rem",
+                  bgcolor: Colors.EscrowDetailsColor,
+                  textDecoration: "none",
+                  cursor: "pointer",
+                  "&:hover": {
+                    bgcolor: Colors.secondNavColor,
+                  },
+                  color: "white",
+                  mt: "0.5rem",
+                  fontSize: "14px",
+                  fontWeight: 550,
+                  fontFamily: "Roboto, serif",
+                  fontStyle: "normal",
+                  width: "fit-content",
+                  justifySelf: "right",
+                  borderRadius: "9px",
+                }}
+                onClick={handleSatisfied}
+              >
+                Satisfied
+              </Typography>
+            </Box>
+          ))}
+        {item.step == 4 && item.role == "Buyer" && item.timeBounded == true && (
+          <Box
+            sx={{
+              border: "0.5px solid rgb(34, 92, 171)",
+              p: "1rem 1rem",
+              mt: "1.5rem",
+              borderRadius: "10px",
+            }}
+          >
+            <Typography
+              variant="h6"
+              sx={{
+                p: "0.5rem 0",
+                color: Colors.EscrowDetailsColor,
+                fontSize: "20px",
+                fontWeight: 550,
+                fontFamily: "Roboto, serif",
+                fontStyle: "normal",
+              }}
+            >
+              Approve for the next cycle
+            </Typography>
+            <Typography
+              variant="h6"
+              sx={{
+                color: Colors.fontColor,
+                fontSize: "14px",
+                fontWeight: 450,
+                fontFamily: "Roboto, serif",
+                fontStyle: "normal",
+              }}
+            >
+              The last cycle has been completed. Please allow for the next cycle
+              if there is no issue, so that the transaction can move forward. If
+              there is issue, you can file for a Dispute.
+            </Typography>
+            <Box sx={{ display: "flex", gap: 2, justifyContent: "flex-end" }}>
+              <Typography
+                variant="h6"
+                sx={{
+                  p: "0.5rem 1rem",
+                  bgcolor: Colors.EscrowDetailsColor,
+                  textDecoration: "none",
+                  cursor: "pointer",
+                  "&:hover": {
+                    bgcolor: Colors.secondNavColor,
+                  },
+                  color: "white",
+                  mt: "0.5rem",
+                  fontSize: "14px",
+                  fontWeight: 550,
+                  fontFamily: "Roboto, serif",
+                  fontStyle: "normal",
+                  width: "fit-content",
+                  justifySelf: "right",
+                  borderRadius: "9px",
+                }}
+                onClick={handleAcceptTransaction}
+              >
+                Allow
+              </Typography>
+              <Typography
+                variant="h6"
+                sx={{
+                  p: "0.5rem 1rem",
+                  bgcolor: Colors.EscrowDetailsColor,
+                  textDecoration: "none",
+                  cursor: "pointer",
+                  "&:hover": {
+                    bgcolor: Colors.secondNavColor,
+                  },
+                  color: "white",
+                  mt: "0.5rem",
+                  fontSize: "14px",
+                  fontWeight: 550,
+                  fontFamily: "Roboto, serif",
+                  fontStyle: "normal",
+                  width: "fit-content",
+                  justifySelf: "right",
+                  borderRadius: "9px",
+                }}
+                onClick={handleRejectTransaction}
+              >
+                Dispute
+              </Typography>
+            </Box>
+          </Box>
+        )}
+        {item.step == 4 &&
+          item.role == "Seller" &&
+          item.timeBounded == true && (
+            <Typography
+              sx={{
+                borderTop: `1px solid ${Colors.borderColor}`,
+                mt: "1.2rem",
+                p: "1.5rem 0 0",
+                textAlign: "center",
+                fontSize: "15px",
+                color: Colors.EscrowDetailsColor,
+                "&:hover": {
+                  color: "black",
+                },
+              }}
+            >
+              The Next Cycle is not yet Approved buy the Buyer. Please ask the
+              Buyer to Approve it. <br /> You can move forward only when the
+              Buyer Approves it.
+            </Typography>
+          )}
       </Box>
       <Box
         sx={{

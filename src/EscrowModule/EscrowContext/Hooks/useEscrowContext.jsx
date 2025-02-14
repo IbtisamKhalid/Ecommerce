@@ -14,10 +14,29 @@ export const useDisputeHistory = () => {
 // Create contexts
 
 function useEscrowContext() {
-  const [user, setUser] = useState([
-  
-  ]);
+  const [user, setUser] = useState([]);
   const [escrowHistory, setEscrowHistory] = useState([
+    {
+      agreed: true,
+      amount: "10",
+      contract: ["hehehhehe", "heheheh"],
+      created: "1737915881575",
+      currency: "USD",
+      dispute: false,
+      disputeDetails: [],
+      id: "1737915",
+      role: "Buyer",
+      step: 4,
+      status: {
+        primary: "Awaiting Agreement",
+        secondary: "Requires Seller's Action",
+      },
+      subtitle: "Domain Name",
+      title: "My Transaction",
+      timeBounded: true,
+      sellerID:"1111737915",
+      buyerID:"2221737915"
+    },
     {
       agreed: false,
       amount: "10",
@@ -35,6 +54,9 @@ function useEscrowContext() {
       },
       subtitle: "Domain Name",
       title: "My Transaction",
+      timeBounded: false,
+      sellerID:"1111737915",
+      buyerID:"2221737915"
     },
     {
       agreed: false,
@@ -53,6 +75,9 @@ function useEscrowContext() {
       },
       subtitle: "Domain Name",
       title: "My Transaction",
+      timeBounded: false,
+      sellerID:"1111737915",
+      buyerID:"2221737915"
     },
     {
       agreed: true,
@@ -71,8 +96,10 @@ function useEscrowContext() {
       },
       subtitle: "Domain Name",
       title: "LOLOLOLO",
+      timeBounded: false,
+      sellerID:"1111737915",
+      buyerID:"2221737915"
     },
-
     {
       agreed: false,
       amount: "10",
@@ -90,6 +117,9 @@ function useEscrowContext() {
       },
       subtitle: "Domain Name",
       title: "My Transaction",
+      timeBounded: false,
+      sellerID:"1111737915",
+      buyerID:"2221737915"
     },
     {
       agreed: false,
@@ -108,6 +138,9 @@ function useEscrowContext() {
       },
       subtitle: "Domain Name",
       title: "My Transaction",
+      timeBounded: false,
+      sellerID:"1111737915",
+      buyerID:"2221737915"
     },
     {
       agreed: true,
@@ -132,8 +165,10 @@ function useEscrowContext() {
       },
       subtitle: "Domain Name",
       title: "My Disputee",
+      timeBounded: false,
+      sellerID:"1111737915",
+      buyerID:"2221737915"
     },
-
     {
       agreed: false,
       amount: "10",
@@ -151,9 +186,12 @@ function useEscrowContext() {
       },
       subtitle: "Domain Name",
       title: "My Transaction",
+      timeBounded: false,
+      sellerID:"1111737915",
+      buyerID:"2221737915"
     },
   ]);
-  const [isUserLoggedIn, setIsUserLoggedIn] = useState(false);
+  const [isUserLoggedIn, setIsUserLoggedIn] = useState(true);
 
   // Add a new escrow transaction
   const addEscrowTransaction = (newTransaction) => {

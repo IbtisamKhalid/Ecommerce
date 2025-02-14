@@ -87,7 +87,7 @@ function EscrowMainDetails() {
           </Box>
         </Box>
         <Box>
-          <StepperComponent step={item.step} />
+          <StepperComponent item={item} />
         </Box>
 
         

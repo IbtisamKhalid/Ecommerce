@@ -64,7 +64,6 @@ function Routes() {
       <BrowserRouter>
         <ReactRoutes>
           <Route path="*" element={<Home />} />
-          <Route path="/" element={<Home />} />
           <Route path="/store" element={<LayoutStore />}>
             <Route index element={<HomeStore />} />
             <Route path="products" element={<ProductPage />} />
