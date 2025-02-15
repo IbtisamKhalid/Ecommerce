@@ -1,82 +1,107 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState } from "react";
 
-const useHeader = ({backColor, atTopTextColor, atTopColor}) => {
-    const [mobileOpen, setMobileOpen] = useState(false);
-    const [hoveredButton, setHoveredButton] = useState(null);
-    const [name, setName] = useState(null);
-    const [itemIndex, setItemIndex] = useState(null);
-    const [backgroundColor, setBackgroundColor] = useState(backColor);
-    const [textColor, setTextColor] = useState(atTopTextColor);
-    const [isAtTop, setIsAtTop] = useState(true);
-    const [zIndex, setZIndex] = useState(12);
-
-    // Monitor scroll position
-    const scrolledToTop = window.scrollY === 0;
-    useEffect(() => {
-      const checkScrollPosition = () => {
-        if (typeof window !== "undefined") {
-          const scrolledToTop = window.scrollY === 0;
-          setIsAtTop(scrolledToTop);
-  
-          if (scrolledToTop) {
-            // At the top of the page
-            setBackgroundColor(atTopColor);
-            setTextColor(atTopTextColor);
-          } else {
-            // Scrolled down
-            setBackgroundColor("white");
-            setTextColor("black");
-            console.log(scrolledToTop)
-          }
-        }
-      };
-  
-      // Check on initial render
-      checkScrollPosition();
-  
-      // Listen for scroll events
-      window.addEventListener("scroll", checkScrollPosition);
-  
-      // Cleanup event listener
-      return () => {
-        window.removeEventListener("scroll", checkScrollPosition);
-      };
-    }, [scrolledToTop, hoveredButton]);
-  
-    const handleMouseEnter = (index, name) => {
-      setHoveredButton(name);
-      setName(name);
-      setItemIndex(index);
-      // setBackgroundColor("rgb(1, 66, 106)");
-      setZIndex(12)
-      
-    };
-  
-    const handleMouseLeave = () => {
-      setHoveredButton(null);
-      setName(null);
-      setZIndex(12)
-    };
-  
-    const handleDrawerToggle = () => {
-      setMobileOpen((prevState) => !prevState);
-    };
+const useHeader = ({ queries }) => {
+  const scrolledToTop = window.scrollY === 0;
+  const [mobileOpen, setMobileOpen] = useState(false);
+  const [hoveredButton, setHoveredButton] = useState(null);
+  const [isHovered, setIsHovered] = useState(false);
+  const [name, setName] = useState(null);
+  const [itemIndex, setItemIndex] = useState(null);
+  const [isAtTop, setIsAtTop] = useState(true);
+  const [zIndex, setZIndex] = useState(12);
+  const [topTextColor, setTopTextColor] = useState("");
+  const [scrollTextColor, setScrollTextColor] = useState("");
+  const [topBGColor, setTopBGColor] = useState("");
+  const [scrollBGColor, setScrollBGColor] = useState("");
+  const [onHoverBGColor, setOnHoverBGColor] = useState("");
+  const [onHoverTextColor, setOnHoverTextColor] = useState("");
 
 
-    return {
-        handleDrawerToggle,
-        handleMouseEnter,
-        handleMouseLeave,
-        backgroundColor,
-        isAtTop,
-        textColor,
-        hoveredButton,
-        mobileOpen,
-        itemIndex,
-        zIndex,
-        name,
-        setBackgroundColor
+  useEffect(()=>{
+    if(queries){
+      setTopBGColor("white")
+      setTopTextColor("black")
+      setScrollBGColor("white")
+      setOnHoverBGColor("rgb(1, 66, 106)")
+      setScrollTextColor("black")
+      setOnHoverTextColor("white")
     }
-}
+    else{
+      setTopBGColor("rgb(1, 66, 106)")
+      setTopTextColor("white")
+      setScrollBGColor("white")
+      setOnHoverBGColor("rgb(1, 66, 106)")
+      setScrollTextColor("black")
+      setOnHoverTextColor("white")
 
-export default useHeader
+    }
+  })
+
+
+  // Monitor scroll position
+  useEffect(() => {
+    const checkScrollPosition = () => {
+      if (typeof window !== "undefined") {
+        const scrolledToTop = window.scrollY === 0;
+        if (scrolledToTop) {
+          // At the top of the page
+          setIsAtTop(true);
+        } else {
+          // Scrolled down
+          setIsAtTop(false);
+        }
+      }
+    };
+
+    // Check on initial render
+    checkScrollPosition();
+
+    // Listen for scroll events
+    window.addEventListener("scroll", checkScrollPosition);
+
+    // Cleanup event listener
+    return () => {
+      window.removeEventListener("scroll", checkScrollPosition);
+    };
+  }, [scrolledToTop, hoveredButton]);
+
+  const handleMouseEnter = (index, name) => {
+    setHoveredButton(name);
+    setName(name);
+    setItemIndex(index);
+    setZIndex(12);
+    setIsHovered(true)
+  };
+  
+  const handleMouseLeave = () => {
+    setHoveredButton(null);
+    setName(null);
+    setZIndex(12);
+    setIsHovered(false)
+  };
+
+  const handleDrawerToggle = () => {
+    setMobileOpen((prevState) => !prevState);
+  };
+
+  return {
+    handleDrawerToggle,
+    handleMouseEnter,
+    handleMouseLeave,
+    isAtTop,
+    hoveredButton,
+    mobileOpen,
+    itemIndex,
+    zIndex,
+    name,
+    topTextColor,
+    scrollTextColor,
+    topBGColor,
+    scrollBGColor,
+    onHoverBGColor,
+    onHoverTextColor,
+    isHovered
+  };
+};
+
+export default useHeader;

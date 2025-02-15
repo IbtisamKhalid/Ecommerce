@@ -11,7 +11,7 @@ function LayoutEscrow() {
   return (
     <>
       <Box>
-        <Header backColor="rgb(1, 66, 106)" atTopTextColor="white" />
+        <Header />
         <Outlet />
         <Footer />
       </Box>

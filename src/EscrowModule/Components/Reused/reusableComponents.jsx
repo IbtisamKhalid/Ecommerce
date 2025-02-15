@@ -416,6 +416,7 @@ export function StartHome() {
               display: "block",
               justifyItems: "center",
             },
+            justifyContent:"center"
           }}
         >
           <Box sx={{ p: "0 1rem 0", position: "relative" }}>

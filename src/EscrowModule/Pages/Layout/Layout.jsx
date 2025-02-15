@@ -5,7 +5,6 @@ import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
 import { Box, Divider, useMediaQuery } from "@mui/material";
 import { SideBar } from "../../Components";
-import { Colors } from "../../Theme/Theme";
 Divider;
 
 function Layout() {
@@ -13,12 +12,7 @@ function Layout() {
   return (
     <>
       <Box>
-        <Header
-          atTopTextColor="black"
-          backColor="white"
-          atTopColor="white"
-          queries={true}
-        />
+        <Header queries={true} />
         <Box
           sx={{
             display: "flex",

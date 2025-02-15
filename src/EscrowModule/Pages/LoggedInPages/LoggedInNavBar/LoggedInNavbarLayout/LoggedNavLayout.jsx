@@ -1,11 +1,11 @@
 /* eslint-disable react/prop-types */
 import { Box, Typography, IconButton } from "@mui/material";
-import MenuIcon from "@mui/icons-material/Menu";
 import { Colors, Fonts } from "../../../../Theme/Theme";
+import AtTopLogo from "../../../../EscrowAssets/TBWhiteGreenLogo.svg";
+import { Link } from "react-router-dom";
 
 export default function LoggedNavLayout({
   children,
-  // handleDrawerToggle,
   Title = true,
   navColor = Colors.secondNavColor,
   pad = true,
@@ -32,17 +32,22 @@ export default function LoggedNavLayout({
           {Title && (
             <Typography
               variant="h6"
+              component={Link}
+              to="/"
               sx={{
-                color: "white",
-                fontWeight: 700,
-                textAlign: "center",
-                lineHeight: "normal", // Adjust line-height for better alignment
                 mr: 2,
                 display: "flex",
                 alignItems: "center", // Vertically centers the text
+                cursor: "pointer",
+                textDecoration: "none",
+                mt: "0.5rem",
               }}
             >
-              TrustBridge
+              <img
+                src={AtTopLogo}
+                alt="heheheh"
+                height={45}
+              />
             </Typography>
           )}
         </Box>
