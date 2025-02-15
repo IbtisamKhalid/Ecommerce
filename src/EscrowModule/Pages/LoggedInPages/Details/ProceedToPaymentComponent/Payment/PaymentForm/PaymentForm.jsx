@@ -1,4 +1,3 @@
-/* eslint-disable react/prop-types */
 import { useState } from "react";
 import {
   TextField,
@@ -33,11 +32,11 @@ function PaymentForm({ item }) {
 
   const validateForm = () => {
     const newErrors = {};
-    if (!form.cardNumber.match(/^\d{4} {4} {4} {4}$/)) {
+    if (!form.cardNumber.match(/^\d{4} \d{4} \d{4} \d{4}$/)) {
       newErrors.cardNumber =
         "Invalid card number format. Use 1234 1234 1234 1234.";
     }
-    if (!form.expiry.match(/^\d{2} {2}$/)) {
+    if (!form.expiry.match(/^\d{2}\/\d{2}$/)) {
       newErrors.expiry = "Invalid expiry date format. Use MM/YY.";
     }
     if (!form.cvc.match(/^\d{3}$/)) {
@@ -59,7 +58,7 @@ function PaymentForm({ item }) {
   };
 
   const handleCloseDialog = () => {
-    navigate(`/LoggedIn/escrowdetails/${item.id}`, { state: { item } });
+    navigate(`/escrowdashboard`);
   };
 
   return (
@@ -70,106 +69,134 @@ function PaymentForm({ item }) {
         paddingRight: "2rem",
       }}
     >
-      <Box>
-        <Grid container spacing={2}>
-          <Grid item size={12}>
-            <Typography variant="h6">Payment</Typography>
-            <Grid container spacing={2}>
-              <Grid item size={6}>
-                <Button
-                  fullWidth
-                  variant="outlined"
-                  startIcon={<CardIcon />}
-                  sx={{ p: "1.5rem", fontSize: "20px" }}
-                >
-                  Card
-                </Button>
-              </Grid>
-              <Grid item size={6}>
-                <Button
-                  fullWidth
-                  variant="outlined"
-                  startIcon={<BankIcon />}
-                  sx={{ p: "1.5rem", fontSize: "20px" }}
-                >
-                  Bank
-                </Button>
-              </Grid>
+      <Typography variant="h6" sx={{ mb: 2, fontWeight: "bold" }}>
+        Payment Method
+      </Typography>
+      <Grid container spacing={2}>
+        <Grid item size={12}>
+          <Grid container spacing={2}>
+            <Grid item size={6}>
+              <Button
+                fullWidth
+                variant="outlined"
+                startIcon={<CardIcon />}
+                sx={{
+                  p: "1.5rem",
+                  fontSize: "16px",
+                  border: `2px solid ${Colors.EscrowDetailsColor}`,
+                  color: Colors.EscrowDetailsColor,
+                  "&:hover": {
+                    border: `2px solid ${Colors.EscrowDetailsColor}`,
+                    bgcolor: Colors.EscrowDetailsColor,
+                    color: "white",
+                  },
+                }}
+              >
+                Credit/Debit Card
+              </Button>
+            </Grid>
+            <Grid item size={6}>
+              <Button
+                fullWidth
+                variant="outlined"
+                startIcon={<BankIcon />}
+                sx={{
+                  p: "1.5rem",
+                  fontSize: "16px",
+                  border: `2px solid ${Colors.EscrowDetailsColor}`,
+                  color: Colors.EscrowDetailsColor,
+                  "&:hover": {
+                    border: `2px solid ${Colors.EscrowDetailsColor}`,
+                    bgcolor: Colors.EscrowDetailsColor,
+                    color: "white",
+                  },
+                }}
+              >
+                Bank Transfer
+              </Button>
             </Grid>
           </Grid>
-
-          {/* Card Number */}
-          <Grid item size={12}>
-            <TextField
-              fullWidth
-              label="Card number"
-              variant="outlined"
-              placeholder="1234 1234 1234 1234"
-              name="cardNumber"
-              value={form.cardNumber}
-              onChange={handleInputChange}
-              error={!!errors.cardNumber}
-              helperText={errors.cardNumber}
-            />
-          </Grid>
-
-          {/* Expiry and CVC */}
-          <Grid item size={6}>
-            <TextField
-              fullWidth
-              label="Expiry (MM/YY)"
-              variant="outlined"
-              name="expiry"
-              value={form.expiry}
-              onChange={handleInputChange}
-              error={!!errors.expiry}
-              helperText={errors.expiry}
-            />
-          </Grid>
-          <Grid item size={6}>
-            <TextField
-              fullWidth
-              label="CVC"
-              variant="outlined"
-              name="cvc"
-              value={form.cvc}
-              onChange={handleInputChange}
-              error={!!errors.cvc}
-              helperText={errors.cvc}
-            />
-          </Grid>
-
-          {/* Checkbox */}
-          <Grid item size={12}>
-            <FormControlLabel
-              control={
-                <Checkbox
-                  checked={form.billingSameAsShipping}
-                  onChange={(e) =>
-                    setForm({
-                      ...form,
-                      billingSameAsShipping: e.target.checked,
-                    })
-                  }
-                />
-              }
-              label="Billing is the same as shipping information"
-            />
-          </Grid>
-
-          {/* Save Button */}
-
-            <Button
-              variant="contained"
-              sx={{
-                bgcolor:Colors.EscrowDetailsColor,
-              }}
-              onClick={handleSave}
-            >
-              Save
-            </Button>
         </Grid>
-      </Box>
+
+        {/* Card Number */}
+        <Grid item size={12}>
+          <TextField
+            fullWidth
+            label="Card number"
+            variant="outlined"
+            placeholder="1234 1234 1234 1234"
+            name="cardNumber"
+            value={form.cardNumber}
+            onChange={handleInputChange}
+            error={!!errors.cardNumber}
+            helperText={errors.cardNumber}
+            sx={{ mb: 2 }}
+          />
+        </Grid>
+
+        {/* Expiry and CVC */}
+        <Grid item size={6}>
+          <TextField
+            fullWidth
+            label="Expiry (MM/YY)"
+            variant="outlined"
+            name="expiry"
+            value={form.expiry}
+            onChange={handleInputChange}
+            error={!!errors.expiry}
+            helperText={errors.expiry}
+            sx={{ mb: 2 }}
+          />
+        </Grid>
+        <Grid item size={6}>
+          <TextField
+            fullWidth
+            label="CVC"
+            variant="outlined"
+            name="cvc"
+            value={form.cvc}
+            onChange={handleInputChange}
+            error={!!errors.cvc}
+            helperText={errors.cvc}
+            sx={{ mb: 2 }}
+          />
+        </Grid>
+
+        {/* Checkbox */}
+        <Grid item size={12}>
+          <FormControlLabel
+            control={
+              <Checkbox
+                checked={form.billingSameAsShipping}
+                onChange={(e) =>
+                  setForm({
+                    ...form,
+                    billingSameAsShipping: e.target.checked,
+                  })
+                }
+                sx={{ color: Colors.EscrowDetailsColor }}
+              />
+            }
+            label="Billing is the same as shipping information"
+          />
+        </Grid>
+
+        {/* Save Button */}
+        <Grid item size={12}>
+          <Button
+            variant="contained"
+            sx={{
+              bgcolor: Colors.EscrowDetailsColor,
+              p: "1rem",
+              fontSize: "16px",
+              "&:hover": { bgcolor: Colors.EscrowDetailsColor },
+            }}
+            onClick={handleSave}
+          >
+            Save
+          </Button>
+        </Grid>
+      </Grid>
 
       {/* Dialog */}
       <Dialog

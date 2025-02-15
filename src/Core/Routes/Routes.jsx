@@ -149,6 +149,7 @@ function Routes() {
               </Route>
             </>
           )}
+          
           {isUserLoggedIn && user.role == "Admin" && (
             <>
               <Route path="/Admindashboard" element={<AdminLayout />}>
@@ -180,7 +181,6 @@ function Routes() {
             />
             <Route path="CurrencyOptions" element={<CurrencyOptions />} />
             <Route path="Disputes" element={<Disputes />} />
-            <Route path="PaymentOptions" element={<PaymentOptions />} />
             <Route path="PaymentOptions" element={<PaymentOptions />} />
             <Route path="Security" element={<Security />} />
           </Route>

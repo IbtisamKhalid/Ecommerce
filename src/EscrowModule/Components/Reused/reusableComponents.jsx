@@ -285,8 +285,11 @@ export function StartHome() {
       <Box
         sx={{
           backgroundColor: "rgb(1, 66, 106)",
-          display: { xs: "block" },
-          "@media (min-width:720px)": { display: "flex" },
+          display: "flex",
+          "@media (max-width:700px)": {
+            display: "block",
+            justifyItems: "center",
+          },
           flexDirection: {},
           gap: 2,
           p: "1rem 0 9rem",
@@ -392,94 +395,98 @@ export function StartHome() {
               />
             </Box>
           </Box>
-          <GetStartedButton additionalStyles={{ mt: "0.5rem" }} />
+          <GetStartedButton
+            additionalStyles={{
+              mt: "0.5rem",
+              "@media (max-width:700px)": { width: "100%" },
+            }}
+          />
         </Box>
 
         {/* Second Box (Dynamic Content) */}
         <Box
           sx={{
             flex: 1,
-            display: "block",
-            // "@media (min-width:800)": {display:"block"} ,
+            display: "flex",
             color: "white",
             textAlign: "Left",
             animation: "slideFromTop 1s ease-out",
-            // p:"0 1.2rem 0 0"
+            pt: 7,
+            "@media (max-width:1080px)": {
+              display: "block",
+              justifyItems: "center",
+            },
           }}
         >
-          <Box sx={{ display: { sm: "block", md: "flex" }, zIndex: 1100 }}>
-            <Box sx={{ p: "0 1rem 0 1rem" }}>
-              <img
-                src={myobj[currentIndex].picture}
-                alt=""
-                height={192}
-                width={200}
-                style={imgStyle}
-              />
-              <Circles />
-            </Box>
-            <Box sx={{ p: "2.5rem 0 0 0" }}>
-              {myobj[currentIndex].MainHeading.map((item, index) => (
+          <Box sx={{ p: "0 1rem 0", position: "relative" }}>
+            <img
+              src={myobj[currentIndex].picture}
+              alt=""
+              height={192}
+              width={200}
+              style={{
+                position: "absolute",
+                left: "60px",
+              }}
+            />
+            <Circles />
+          </Box>
+          <Box>
+            {myobj[currentIndex].MainHeading.map((item, index) => (
+              <Typography
+                key={index}
+                variant="h5"
+                sx={{
+                  fontWeight: "bold",
+                  lineHeight: "1.4",
+                  fontFamily:
+                    "Montserrat, Helvetica, Arial, 'Microsoft Yahei', STXihei, sans-serif",
+                  p: "0 0 0 2rem",
+                  "@media (max-width:1080px)": { p: "0" },
+
+                  position: "relative",
+                }}
+              >
+                {item}
+              </Typography>
+            ))}
+
+            {myobj[currentIndex].subheading.map((item, index) => (
+              <Box
+                key={index}
+                sx={{
+                  display: "flex",
+                  alignItems: "center",
+                  mb: "0.5rem",
+                  position: "relative", // Ensure the tick pictures are positioned relative to their container
+                }}
+              >
+                <img
+                  src={activeIndex == index ? TickSvg : unTickSvg}
+                  alt=""
+                  style={{
+                    height: "30px",
+                    width: "30px",
+                    transform: activeIndex === index ? "scale(1.1)" : "none",
+                    transition: "transform 0.3s",
+                    marginRight: activeIndex === index ? "10px" : 0,
+                  }}
+                />
                 <Typography
-                  key={index}
-                  variant="h5"
                   sx={{
-                    fontWeight: "bold",
-                    lineHeight: "1.4",
                     fontFamily:
                       "Montserrat, Helvetica, Arial, 'Microsoft Yahei', STXihei, sans-serif",
+                    color: activeIndex === index ? "white" : "#46d1ff",
+                    marginLeft: activeIndex === index ? "0" : "none",
+                    transform: activeIndex === index ? "scale(1.1)" : "none",
+                    transition: "transform 0.3s, color 0.3s",
+                    fontSize: "14px",
                   }}
                 >
-                  {item}
+                  {item.text}
                 </Typography>
-              ))}
-            </Box>
-          </Box>
-          <Box sx={{ display: "flex", justifyContent: "space-between" }}>
-            <Box sx={{ width: "30%" }}></Box>
-            {/* Subheadings */}
-            <Box sx={{ width: "65%" }}>
-              <span style={spanStyle1}></span>
-              {myobj[currentIndex].subheading.map((item, index) => (
-                <Box
-                  key={index}
-                  sx={{
-                    display: "flex",
-                    alignItems: "center",
-                    mb: "0.5rem",
-                    p: "0 0 0 2.7rem",
-                    // transform: activeIndex === index ? "scale(1.1)" : "none", // Transform for both
-                    // transition: "transform 0.3s",
-                  }}
-                >
-                  <img
-                    src={activeIndex == index ? TickSvg : unTickSvg}
-                    alt=""
-                    style={{
-                      height: "30px",
-                      width: "30px",
-                      transform: activeIndex === index ? "scale(1.1)" : "none",
-                      transition: "transform 0.3s",
-                      marginRight: activeIndex === index ? "10px" : 0,
-                    }}
-                  />
-                  <Typography
-                    sx={{
-                      fontFamily:
-                        "Montserrat, Helvetica, Arial, 'Microsoft Yahei', STXihei, sans-serif",
-                      color: activeIndex === index ? "white" : "#46d1ff",
-                      marginLeft: activeIndex === index ? "0" : "none",
-                      transform: activeIndex === index ? "scale(1.1)" : "none",
-                      transition: "transform 0.3s, color 0.3s",
-                      fontSize: "14px",
-                    }}
-                  >
-                    {item.text}
-                  </Typography>
-                </Box>
-              ))}
-              <span style={spanStyle2}></span>
-            </Box>
+              </Box>
+            ))}
           </Box>
         </Box>
       </Box>

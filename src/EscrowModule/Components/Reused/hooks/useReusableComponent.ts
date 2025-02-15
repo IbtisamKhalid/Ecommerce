@@ -6,39 +6,14 @@ function useReusableComponent({ BoxIcon, CarIcon, ServiceIcon }) {
   const [value, setValue] = useState("Domains");
   const [currentIndex, setCurrentIndex] = useState(0);
   const selectOptions2 = ["PKR", "USD", "CAD", "UK"];
-  const spanStyle1 = {
-    position: "relative",
-    display: "block",
-    height: "1px",
-    // width: "150%" /* Adjust the width as needed */,
-    backgroundColor: "rgb(224, 221, 221)",
-    transform: "rotate(270deg)",
-    right: "123px",
-    // right: "33.5%",
-    bottom: "182px",
-  };
-  const spanStyle2 = {
-    position: "relative",
-    display: "block",
-    height: "1px",
-    // width: "55%" /* Adjust the width as needed */,
-    backgroundColor: "#fff",
-    transform: "rotate(270deg)",
-    right: "33.5%",
-    top: "170px",
-  };
+  const spanStyle1 = {};
+  const spanStyle2 = {};
 
-  const imgStyle = {
-    position: "absolute",
-    right: "405px",
-    zIndex: 5,
-    top: "96px",
-    animation: "slideFromTopimg 1s ease-out",
-  };
+  const imgStyle = {};
   const myobj = [
     {
       picture: BoxIcon,
-      MainHeading: ["Complete", "protection", "for merchandise"],
+      MainHeading: ["Complete protection for ", "merchandise"],
       subheading: [
         { text: "Buyer and seller agree on terms" },
         { text: "Buyer pays TrustBridge" },
@@ -51,10 +26,9 @@ function useReusableComponent({ BoxIcon, CarIcon, ServiceIcon }) {
     {
       picture: CarIcon,
       MainHeading: [
-        "Buy or sell ",
-        "your vehicle",
-        "safely and",
-        "confidently",
+        "Buy or sell your",
+        "vehicle safely",
+        "and confidently",
       ],
       subheading: [
         { text: " Buyer and seller agree on terms" },
@@ -68,10 +42,10 @@ function useReusableComponent({ BoxIcon, CarIcon, ServiceIcon }) {
     {
       picture: ServiceIcon,
       MainHeading: [
-        "Pay for services",
-        "as you go with ",
-        "milestone",
-        "payments",
+        "Pay for services as",
+        "you go with",
+        "milestone payments",
+        // "",
       ],
       subheading: [
         { text: "Buyer and seller agree on terms" },

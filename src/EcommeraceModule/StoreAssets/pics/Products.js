@@ -1,27 +1,31 @@
+import mobile from "../EcommeraceModule/StoreAssets/img/mobile2.jpg";
+import laptop from "../EcommeraceModule/StoreAssets/img/laptop2.jpg";
+// import watch from "../EcommeraceModule/StoreAssets/img/watch2.jpg";
+// import speaker from "../EcommeraceModule/StoreAssets/img/Speaker2.jpg";
 import SP1 from "../EcommeraceModule/StoreAssets/img/SpecialProduct1/SP1.jpg";
-import watch from "../EcommeraceModule/StoreAssets/img/SpecialProduct1/SP1.jpg";
 import SP2 from "../EcommeraceModule/StoreAssets/img/SpecialProduct1/SP2.jpg";
 import SP3 from "../EcommeraceModule/StoreAssets/img/SpecialProduct1/SP3.jpg";
+// import SP4 from "../../EcommeraceModule/StoreAssets/img/SpecialProduct1.jpg";
+import sp1 from "../EcommeraceModule/StoreAssets/img/SpecialProduct2/sp1.jpg";
+import sp2 from "../EcommeraceModule/StoreAssets/img/SpecialProduct2/sp2.jpg";
+import sp3 from "../EcommeraceModule/StoreAssets/img/SpecialProduct2/sp3.jpg";
+
 import camera from "../EcommeraceModule/StoreAssets/img/camers.jpg";
 import headphone from "../EcommeraceModule/StoreAssets/img/headphone1.jpg";
 import speaker from "../EcommeraceModule/StoreAssets/img/speaker.jpg";
 import tab from "../EcommeraceModule/StoreAssets/images/tab.jpg";
+import watch from "../EcommeraceModule/StoreAssets/images/watch.jpg";
 import cameraHovered from "../EcommeraceModule/StoreAssets/img/CameraHovered.jpg";
 import headphonehover from "../EcommeraceModule/StoreAssets/img/headphonehover.jpg";
 import speakerhover from "../EcommeraceModule/StoreAssets/img/speakerhover.jpg";
 import tabhover from "../EcommeraceModule/StoreAssets/images/tab1.jpg";
 import watchhover from "../EcommeraceModule/StoreAssets/img/watchhovered.jpg";
 
-import p151 from "../EcommeraceModule/StoreAssets/pics/P15/p1.jpg"
-import p152 from "../EcommeraceModule/StoreAssets/pics/P15/p2.jpg"
-import p153 from "../EcommeraceModule/StoreAssets/pics/P15/p3.jpg"
-
-
 export const products = [
   {
     id: 1,
-    category: "Camera",
-    price: "100.00",
+    category: 0,
+    price: "$100.00",
     heading: "Olympus pen, EZ lens",
     brand: "Havells",
     productCardImage: camera,
@@ -42,16 +46,13 @@ export const products = [
       { stars: 4, review: "Very Beautiful Products" },
       { stars: 4, review: "Recomended" },
     ],
-    Availiablity:"In stock"
   },
   {
     id: 2,
     productCardImage: headphone,
     heading: "Headphones for Kids",
-    category: "Headphone",
-
     brand: "Havells",
-    price: "500",
+    price: "$500",
     imageonHover: headphonehover,
     category: 0,
     images: [SP1, SP2, SP3],
@@ -70,15 +71,13 @@ export const products = [
       { stars: 4, review: "Very Beautiful Products" },
       { stars: 4, review: "Recomended" },
     ],
-    Availiablity:"In stock"
-
   },
   {
     id: 3,
     productCardImage: speaker,
     heading: "Portable Speakers",
     brand: "Bajaj",
-    price: "200",
+    price: "$200",
     imageonHover: speakerhover,
     category: 0,
     images: [SP1, SP2, SP3],
@@ -103,7 +102,7 @@ export const products = [
     productCardImage: tab,
     heading: "Tab from Havells",
     brand: "Havells",
-    price: "200",
+    price: "$200",
     imageonHover: tabhover,
     category: 0,
     images: [SP1, SP2, SP3],
@@ -128,7 +127,7 @@ export const products = [
     productCardImage: watch,
     heading: "Watch from Sony",
     brand: "Sony",
-    price: "200",
+    price: "$200",
     imageonHover: watchhover,
     category: 0,
     images: [SP1, SP2, SP3],
@@ -152,8 +151,8 @@ export const products = [
     id: 6,
     productCardImage: watch,
     heading: "Watch from Sony",
-    brand: "Sony",
-    price: "200",
+    brand: "Havells",
+    price: "$250.00",
     imageonHover: watchhover,
     category: 0,
     images: [SP1, SP2, SP3],
@@ -163,7 +162,7 @@ export const products = [
       "rgb(243, 203, 196)",
     ],
     tags: ["laptop", "oppo", "speaker", "tablet"],
-    name: "Honor T1 7.0 1 GB RAM 8 GB ROM 7 inch with Wi-Fi+3G Tablet",
+    name: "Smart Watch with Advanced Health Monitoring, Fitness Tracking",
     description:
       "Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of de Finibus Bonorum et Malorum (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, Lorem ipsum dolor sit amet.., comes from a line in section 1.10.32.The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from de Finibus Bonorum et Malorum by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham.",
     feedback: [
@@ -175,11 +174,11 @@ export const products = [
   },
   {
     id: 7,
-    productCardImage: watch,
-    heading: "Watch from Sony",
-    brand: "Sony",
-    price: "200",
-    imageonHover: watchhover,
+    productCardImage: mobile,
+    heading: "Mobile from Havells",
+    brand: "Havells",
+    price: "$30",
+    imageonHover: mobilehover,
     category: 0,
     images: [SP1, SP2, SP3],
     productColors: [
@@ -187,8 +186,8 @@ export const products = [
       "rgb(186, 183, 186)",
       "rgb(243, 203, 196)",
     ],
-    tags: ["laptop", "oppo", "speaker", "tablet"],
-    name: "Honor T1 7.0 1 GB RAM 8 GB ROM 7 inch with Wi-Fi+3G Tablet",
+    tags: ["speaker", "vivo", "mobile", "wire"],
+    name: "Samsung Galaxy A23 128GB 6GB RAM Purple Color",
     description:
       "Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of de Finibus Bonorum et Malorum (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, Lorem ipsum dolor sit amet.., comes from a line in section 1.10.32.The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from de Finibus Bonorum et Malorum by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham.",
     feedback: [
@@ -200,11 +199,11 @@ export const products = [
   },
   {
     id: 8,
-    productCardImage: watch,
-    heading: "Watch from Sony",
-    brand: "Sony",
-    price: "200",
-    imageonHover: watchhover,
+    productCardImage: Webcam,
+    heading: "Webcam from Bajaj",
+    brand: "Bajaj",
+    price: "$20.00",
+    imageonHover: Webcamhover,
     category: 0,
     images: [SP1, SP2, SP3],
     productColors: [
@@ -212,8 +211,8 @@ export const products = [
       "rgb(186, 183, 186)",
       "rgb(243, 203, 196)",
     ],
-    tags: ["laptop", "oppo", "speaker", "tablet"],
-    name: "Honor T1 7.0 1 GB RAM 8 GB ROM 7 inch with Wi-Fi+3G Tablet",
+    tags: ["oppo", "vivo", "speaker", "wire"],
+    name: "New Upgraded 2K 1080P Streaming Webcam with Ring Light",
     description:
       "Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of de Finibus Bonorum et Malorum (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, Lorem ipsum dolor sit amet.., comes from a line in section 1.10.32.The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from de Finibus Bonorum et Malorum by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham.",
     feedback: [
@@ -225,11 +224,11 @@ export const products = [
   },
   {
     id: 9,
-    productCardImage: watch,
-    heading: "Watch from Sony",
-    brand: "Sony",
-    price: "200",
-    imageonHover: watchhover,
+    productCardImage: laptop,
+    heading: "Laptop from Bajaj",
+    brand: "Bajaj",
+    price: "$60.00",
+    imageonHover: laptophover,
     category: 0,
     images: [SP1, SP2, SP3],
     productColors: [
@@ -237,8 +236,8 @@ export const products = [
       "rgb(186, 183, 186)",
       "rgb(243, 203, 196)",
     ],
-    tags: ["laptop", "oppo", "speaker", "tablet"],
-    name: "Honor T1 7.0 1 GB RAM 8 GB ROM 7 inch with Wi-Fi+3G Tablet",
+    tags: ["laptop", "oppo", "speaker", "wire"],
+    name: "HD Resolution Indoor Wi-Fi Security Camera, White",
     description:
       "Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of de Finibus Bonorum et Malorum (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, Lorem ipsum dolor sit amet.., comes from a line in section 1.10.32.The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from de Finibus Bonorum et Malorum by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham.",
     feedback: [
@@ -250,10 +249,10 @@ export const products = [
   },
   {
     id: 10,
-    productCardImage: watch,
-    heading: "Watch from Sony",
+    productCardImage: camera,
+    heading: "Camera from Sony",
     brand: "Sony",
-    price: "200",
+    price: "$20.00",
     imageonHover: watchhover,
     category: 0,
     images: [SP1, SP2, SP3],
@@ -262,8 +261,8 @@ export const products = [
       "rgb(186, 183, 186)",
       "rgb(243, 203, 196)",
     ],
-    tags: ["laptop", "oppo", "speaker", "tablet"],
-    name: "Honor T1 7.0 1 GB RAM 8 GB ROM 7 inch with Wi-Fi+3G Tablet",
+    tags: ["camera", "oppo", "wire", "mobile"],
+    name: "JBL Link Music Bluetooth Lautsprecher, Brown",
     description:
       "Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of de Finibus Bonorum et Malorum (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, Lorem ipsum dolor sit amet.., comes from a line in section 1.10.32.The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from de Finibus Bonorum et Malorum by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham.",
     feedback: [
@@ -275,11 +274,11 @@ export const products = [
   },
   {
     id: 11,
-    productCardImage: watch,
-    heading: "Watch from Sony",
-    brand: "Sony",
-    price: "200",
-    imageonHover: watchhover,
+    productCardImage: tablet,
+    heading: "Tablet from Havells",
+    brand: "Havells",
+    price: "$26.00",
+    imageonHover: tablethover,
     category: 0,
     images: [SP1, SP2, SP3],
     productColors: [
@@ -287,8 +286,8 @@ export const products = [
       "rgb(186, 183, 186)",
       "rgb(243, 203, 196)",
     ],
-    tags: ["laptop", "oppo", "speaker", "tablet"],
-    name: "Honor T1 7.0 1 GB RAM 8 GB ROM 7 inch with Wi-Fi+3G Tablet",
+    tags: ["mobile", "oppo", "speaker", "tablet"],
+    name: "BoAt Rockerz 400 Bluetooth Headset Pink",
     description:
       "Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of de Finibus Bonorum et Malorum (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, Lorem ipsum dolor sit amet.., comes from a line in section 1.10.32.The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from de Finibus Bonorum et Malorum by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham.",
     feedback: [
@@ -303,7 +302,7 @@ export const products = [
     productCardImage: watch,
     heading: "Watch from Sony",
     brand: "Sony",
-    price: "200",
+    price: "$10.00",
     imageonHover: watchhover,
     category: 0,
     images: [SP1, SP2, SP3],
@@ -312,8 +311,8 @@ export const products = [
       "rgb(186, 183, 186)",
       "rgb(243, 203, 196)",
     ],
-    tags: ["laptop", "oppo", "speaker", "tablet"],
-    name: "Honor T1 7.0 1 GB RAM 8 GB ROM 7 inch with Wi-Fi+3G Tablet",
+    tags: ["laptop", "oppo", "wire", "tablet"],
+    name: "Milanese Loop Watch Band for 42mm/44mm Apple Watch ",
     description:
       "Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of de Finibus Bonorum et Malorum (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, Lorem ipsum dolor sit amet.., comes from a line in section 1.10.32.The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from de Finibus Bonorum et Malorum by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham.",
     feedback: [
@@ -325,11 +324,11 @@ export const products = [
   },
   {
     id: 13,
-    productCardImage: watch,
-    heading: "Watch from Sony",
-    brand: "Sony",
-    price: "200",
-    imageonHover: watchhover,
+    productCardImage: camera,
+    heading: "Camera from Bajaj",
+    brand: "Bajaj",
+    price: "$200",
+    imageonHover: camerahover,
     category: 0,
     images: [SP1, SP2, SP3],
     productColors: [
@@ -337,8 +336,8 @@ export const products = [
       "rgb(186, 183, 186)",
       "rgb(243, 203, 196)",
     ],
-    tags: ["laptop", "oppo", "speaker", "tablet"],
-    name: "Honor T1 7.0 1 GB RAM 8 GB ROM 7 inch with Wi-Fi+3G Tablet",
+    tags: ["camera", "oppo", "speaker", "tablet"],
+    name: "Hero Session Action Camera with 8MP Photos",
     description:
       "Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of de Finibus Bonorum et Malorum (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, Lorem ipsum dolor sit amet.., comes from a line in section 1.10.32.The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from de Finibus Bonorum et Malorum by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham.",
     feedback: [
@@ -350,11 +349,11 @@ export const products = [
   },
   {
     id: 14,
-    productCardImage: watch,
-    heading: "Watch from Sony",
-    brand: "Sony",
-    price: "200",
-    imageonHover: watchhover,
+    productCardImage: speaker,
+    heading: "Speaker from Bajaj",
+    brand: "Bajaj",
+    price: "$220.00",
+    imageonHover: speakerhoverhover,
     category: 0,
     images: [SP1, SP2, SP3],
     productColors: [
@@ -362,8 +361,8 @@ export const products = [
       "rgb(186, 183, 186)",
       "rgb(243, 203, 196)",
     ],
-    tags: ["laptop", "oppo", "speaker", "tablet"],
-    name: "Honor T1 7.0 1 GB RAM 8 GB ROM 7 inch with Wi-Fi+3G Tablet",
+    tags: ["laptop", "oppo", "speaker", "headphone"],
+    name: "Sony EXTRA BASS Portable Splash-proof Wireless Speaker",
     description:
       "Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of de Finibus Bonorum et Malorum (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, Lorem ipsum dolor sit amet.., comes from a line in section 1.10.32.The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from de Finibus Bonorum et Malorum by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham.",
     feedback: [
@@ -375,11 +374,11 @@ export const products = [
   },
   {
     id: 15,
-    productCardImage: watch,
-    heading: "Watch from Sony",
+    productCardImage: headphone,
+    heading: "Headphone from Sony",
     brand: "Sony",
-    price: "200",
-    imageonHover: watchhover,
+    price: "$41.00",
+    imageonHover: headphonehover,
     category: 0,
     images: [SP1, SP2, SP3],
     productColors: [
@@ -387,8 +386,8 @@ export const products = [
       "rgb(186, 183, 186)",
       "rgb(243, 203, 196)",
     ],
-    tags: ["laptop", "oppo", "speaker", "tablet"],
-    name: "Honor T1 7.0 1 GB RAM 8 GB ROM 7 inch with Wi-Fi+3G Tablet",
+    tags: ["Headphone", "oppo", "speaker", "tablet"],
+    name: "Bang & Olufsen Beoplay H9i Wireless Over-Ear Headphones",
     description:
       "Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of de Finibus Bonorum et Malorum (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, Lorem ipsum dolor sit amet.., comes from a line in section 1.10.32.The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from de Finibus Bonorum et Malorum by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham.",
     feedback: [
@@ -400,11 +399,11 @@ export const products = [
   },
   {
     id: 16,
-    productCardImage: watch,
-    heading: "Watch from Sony",
-    brand: "Sony",
-    price: "200",
-    imageonHover: watchhover,
+    productCardImage: laptop,
+    heading: "Laptop from Bajaj",
+    brand: "Bajaj",
+    price: "$150",
+    imageonHover: laptophover,
     category: 0,
     images: [SP1, SP2, SP3],
     productColors: [
@@ -412,8 +411,8 @@ export const products = [
       "rgb(186, 183, 186)",
       "rgb(243, 203, 196)",
     ],
-    tags: ["laptop", "oppo", "speaker", "tablet"],
-    name: "Honor T1 7.0 1 GB RAM 8 GB ROM 7 inch with Wi-Fi+3G Tablet",
+    tags: ["laptop", "headphone", "speaker", "tablet"],
+    name: "Apple MacBook Air Laptop: M1 chip, 13.3-inch/33.74 cm",
     description:
       "Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of de Finibus Bonorum et Malorum (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, Lorem ipsum dolor sit amet.., comes from a line in section 1.10.32.The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from de Finibus Bonorum et Malorum by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham.",
     feedback: [
@@ -425,11 +424,11 @@ export const products = [
   },
   {
     id: 17,
-    productCardImage: watch,
-    heading: "Watch from Sony",
-    brand: "Sony",
-    price: "200",
-    imageonHover: watchhover,
+    productCardImage: headphone,
+    heading: "Headphone from Bajaj",
+    brand: "Bajaj",
+    price: "$100",
+    imageonHover: headphonehover,
     category: 0,
     images: [SP1, SP2, SP3],
     productColors: [
@@ -437,8 +436,8 @@ export const products = [
       "rgb(186, 183, 186)",
       "rgb(243, 203, 196)",
     ],
-    tags: ["laptop", "oppo", "speaker", "tablet"],
-    name: "Honor T1 7.0 1 GB RAM 8 GB ROM 7 inch with Wi-Fi+3G Tablet",
+    tags: ["headphone", "oppo", "speaker", "tablet"],
+    name: "Apple AirPods Max 2020 with Smart Case – Blue",
     description:
       "Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of de Finibus Bonorum et Malorum (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, Lorem ipsum dolor sit amet.., comes from a line in section 1.10.32.The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from de Finibus Bonorum et Malorum by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham.",
     feedback: [
@@ -450,11 +449,11 @@ export const products = [
   },
   {
     id: 18,
-    productCardImage: watch,
-    heading: "Watch from Sony",
-    brand: "Sony",
-    price: "200",
-    imageonHover: watchhover,
+    productCardImage: tv,
+    heading: "Monitor from Bajaj",
+    brand: "Baja",
+    price: "$200",
+    imageonHover: tvhover,
     category: 0,
     images: [SP1, SP2, SP3],
     productColors: [
@@ -462,8 +461,8 @@ export const products = [
       "rgb(186, 183, 186)",
       "rgb(243, 203, 196)",
     ],
-    tags: ["laptop", "oppo", "speaker", "tablet"],
-    name: "Honor T1 7.0 1 GB RAM 8 GB ROM 7 inch with Wi-Fi+3G Tablet",
+    tags: ["laptop", "tv", "led", "monitor"],
+    name: "Dell S27QC 27 inch 4K UHD Monitor – Grey",
     description:
       "Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of de Finibus Bonorum et Malorum (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, Lorem ipsum dolor sit amet.., comes from a line in section 1.10.32.The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from de Finibus Bonorum et Malorum by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham.",
     feedback: [
@@ -475,11 +474,11 @@ export const products = [
   },
   {
     id: 19,
-    productCardImage: watch,
-    heading: "Watch from Sony",
+    productCardImage: mobile,
+    heading: "Mobile from Sony",
     brand: "Sony",
-    price: "200",
-    imageonHover: watchhover,
+    price: "$30.00",
+    imageonHover: mobilehover,
     category: 0,
     images: [SP1, SP2, SP3],
     productColors: [
@@ -487,8 +486,8 @@ export const products = [
       "rgb(186, 183, 186)",
       "rgb(243, 203, 196)",
     ],
-    tags: ["laptop", "oppo", "speaker", "tablet"],
-    name: "Honor T1 7.0 1 GB RAM 8 GB ROM 7 inch with Wi-Fi+3G Tablet",
+    tags: ["mobile", "oppo", "phone", "tablet"],
+    name: "Smart Watch for Android iPhone, Bluetooth Phone Calls",
     description:
       "Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of de Finibus Bonorum et Malorum (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, Lorem ipsum dolor sit amet.., comes from a line in section 1.10.32.The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from de Finibus Bonorum et Malorum by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham.",
     feedback: [
@@ -500,11 +499,11 @@ export const products = [
   },
   {
     id: 20,
-    productCardImage: watch,
-    heading: "Watch from Sony",
+    productCardImage: tablet,
+    heading: "Tablet from Sony",
     brand: "Sony",
-    price: "200",
-    imageonHover: watchhover,
+    price: "$11.00",
+    imageonHover: tablethover,
     category: 0,
     images: [SP1, SP2, SP3],
     productColors: [
@@ -512,8 +511,8 @@ export const products = [
       "rgb(186, 183, 186)",
       "rgb(243, 203, 196)",
     ],
-    tags: ["laptop", "oppo", "speaker", "tablet"],
-    name: "Honor T1 7.0 1 GB RAM 8 GB ROM 7 inch with Wi-Fi+3G Tablet",
+    tags: ["tablet", "oppo", "mobile", "vivo"],
+    name: "Samsung Galaxy Tab A SM-T295, 4G Factory Unlocked",
     description:
       "Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of de Finibus Bonorum et Malorum (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, Lorem ipsum dolor sit amet.., comes from a line in section 1.10.32.The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from de Finibus Bonorum et Malorum by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham.",
     feedback: [
@@ -525,11 +524,11 @@ export const products = [
   },
   {
     id: 21,
-    productCardImage: watch,
-    heading: "Watch from Sony",
-    brand: "Sony",
-    price: "200",
-    imageonHover: watchhover,
+    productCardImage: mobile,
+    heading: "Mobile from Havells",
+    brand: "Havells",
+    price: "$200",
+    imageonHover: mobilehover,
     category: 0,
     images: [SP1, SP2, SP3],
     productColors: [
@@ -537,8 +536,8 @@ export const products = [
       "rgb(186, 183, 186)",
       "rgb(243, 203, 196)",
     ],
-    tags: ["laptop", "oppo", "speaker", "tablet"],
-    name: "Honor T1 7.0 1 GB RAM 8 GB ROM 7 inch with Wi-Fi+3G Tablet",
+    tags: ["laptop", "oppo", "mobile", "tablet"],
+    name: "Samsung Galaxy Note10+ Mobile Phone; Sim Free Smartphone",
     description:
       "Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of de Finibus Bonorum et Malorum (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, Lorem ipsum dolor sit amet.., comes from a line in section 1.10.32.The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from de Finibus Bonorum et Malorum by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham.",
     feedback: [
@@ -553,7 +552,7 @@ export const products = [
     productCardImage: watch,
     heading: "Watch from Sony",
     brand: "Sony",
-    price: "200",
+    price: "$200",
     imageonHover: watchhover,
     category: 0,
     images: [SP1, SP2, SP3],
@@ -578,7 +577,7 @@ export const products = [
     productCardImage: watch,
     heading: "Watch from Sony",
     brand: "Sony",
-    price: "200",
+    price: "$200",
     imageonHover: watchhover,
     category: 0,
     images: [SP1, SP2, SP3],
@@ -603,7 +602,7 @@ export const products = [
     productCardImage: watch,
     heading: "Watch from Sony",
     brand: "Sony",
-    price: "200",
+    price: "$200",
     imageonHover: watchhover,
     category: 0,
     images: [SP1, SP2, SP3],
@@ -628,7 +627,7 @@ export const products = [
     productCardImage: watch,
     heading: "Watch from Sony",
     brand: "Sony",
-    price: "200",
+    price: "$200",
     imageonHover: watchhover,
     category: 0,
     images: [SP1, SP2, SP3],
@@ -653,7 +652,7 @@ export const products = [
     productCardImage: watch,
     heading: "Watch from Sony",
     brand: "Sony",
-    price: "200",
+    price: "$200",
     imageonHover: watchhover,
     category: 0,
     images: [SP1, SP2, SP3],
@@ -678,7 +677,7 @@ export const products = [
     productCardImage: watch,
     heading: "Watch from Sony",
     brand: "Sony",
-    price: "200",
+    price: "$200",
     imageonHover: watchhover,
     category: 0,
     images: [SP1, SP2, SP3],
@@ -703,7 +702,7 @@ export const products = [
     productCardImage: watch,
     heading: "Watch from Sony",
     brand: "Sony",
-    price: "200",
+    price: "$200",
     imageonHover: watchhover,
     category: 0,
     images: [SP1, SP2, SP3],
@@ -728,7 +727,7 @@ export const products = [
     productCardImage: watch,
     heading: "Watch from Sony",
     brand: "Sony",
-    price: "200",
+    price: "$200",
     imageonHover: watchhover,
     category: 0,
     images: [SP1, SP2, SP3],
@@ -753,7 +752,7 @@ export const products = [
     productCardImage: watch,
     heading: "Watch from Sony",
     brand: "Sony",
-    price: "200",
+    price: "$200",
     imageonHover: watchhover,
     category: 0,
     images: [SP1, SP2, SP3],
@@ -775,20 +774,20 @@ export const products = [
   },
   {
     id: 31,
-    productCardImage: p151,
-    heading: "APPLE Watch Series 2 – 42 mm Stainless Steel Case",
+    productCardImage: watch,
+    heading: "Watch from Sony",
     brand: "Sony",
-    price: "100.00",
-    imageonHover: p152,
+    price: "$200",
+    imageonHover: watchhover,
     category: 0,
-    images: [p151, p152, p153],
+    images: [SP1, SP2, SP3],
     productColors: [
       "rgb(181, 206, 222)",
       "rgb(186, 183, 186)",
       "rgb(243, 203, 196)",
     ],
     tags: ["laptop", "oppo", "speaker", "tablet"],
-    name: "APPLE Watch Series 2 – 42 mm Stainless Steel Case",
+    name: "Honor T1 7.0 1 GB RAM 8 GB ROM 7 inch with Wi-Fi+3G Tablet",
     description:
       "Lorem Ipsum passage, and going through the cites of the word in classical literature, discovered the undoubtable source. Lorem Ipsum comes from sections 1.10.32 and 1.10.33 of de Finibus Bonorum et Malorum (The Extremes of Good and Evil) by Cicero, written in 45 BC. This book is a treatise on the theory of ethics, very popular during the Renaissance. The first line of Lorem Ipsum, Lorem ipsum dolor sit amet.., comes from a line in section 1.10.32.The standard chunk of Lorem Ipsum used since the 1500s is reproduced below for those interested. Sections 1.10.32 and 1.10.33 from de Finibus Bonorum et Malorum by Cicero are also reproduced in their exact original form, accompanied by English versions from the 1914 translation by H. Rackham.",
     feedback: [
@@ -799,9 +798,3 @@ export const products = [
     ],
   },
 ];
-
-
-
-
-
-// import p1 from "./pics/P15/p1.jpg"
