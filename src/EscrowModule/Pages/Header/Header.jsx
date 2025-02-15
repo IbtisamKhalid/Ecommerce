@@ -98,10 +98,6 @@ function Header({
             backgroundColor: isAtTop ? backColor : backgroundColor,
             color: isAtTop ? textColor : "white",
             zIndex: 1100,
-            // "& :hover": {
-            //   bgcolor: "rgb(1, 66, 106)",
-            //   zIndex: 1200,
-            // },
           }}
         >
           <Box sx={{ display: "flex", alignItems: "center", gap: 2 }}>
@@ -122,6 +118,7 @@ function Header({
               component="div"
               sx={{ p: "0.8rem 0 1rem", color: textColor }}
             >
+
               TrustBridge
             </Typography>
             <Box

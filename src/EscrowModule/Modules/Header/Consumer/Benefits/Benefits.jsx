@@ -49,9 +49,8 @@ const Benefits = () => {
       sx={{
         padding: "1rem 2rem 0",
         backgroundColor: "white",
-        width: "65%",
         borderRight: "1px solid rgb(211, 206, 206)",
-        m: "0 3rem 0 4rem",
+        m: {xs:"0 1rem 0 0.5rem",sm:"0 2rem 0 1.5rem",md:"0 3rem 0 4rem"},
       }}
     >
       {/* Introduction Section */}

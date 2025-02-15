@@ -1,3 +1,4 @@
+import License from "../../Components/License/License";
 import {
   StartHome,
   EscrowMethod,
@@ -17,9 +18,15 @@ function HomeEscrow() {
       <Box
         p={{ xs: "0 1.5rem", sm: "0 3rem", md: "0 6rem", lg: "0 8rem" }}
         sx={{
-          borderTop: `0.5px solid rgb(185, 194, 196)`,
           borderBottom: `0.5px solid rgb(185, 194, 196)`,
-          m: "8rem 0 0 0",
+          m: "2rem 0 ",
+        }}
+      >
+        <License />
+      </Box>
+      <Box
+        p={{ xs: "0 1.5rem", sm: "0 3rem", md: "0 6rem", lg: "0 8rem" }}
+        sx={{
         }}
       >
         <EscrowMethod />
