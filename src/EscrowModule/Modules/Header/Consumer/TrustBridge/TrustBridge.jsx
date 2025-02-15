@@ -18,9 +18,12 @@ function TrustBridge() {
       sx={{
         padding: "1rem 2rem 0",
         backgroundColor: "white",
-        width: "65%",
         borderRight: "1px solid rgb(211, 206, 206)",
-        m: "0 3rem 0 4rem",
+        m: {
+          xs: "0 1rem 0 0.5rem",
+          sm: "0 2rem 0 1.5rem",
+          md: "0 3rem 0 4rem",
+        },
       }}
     >
       {/* Introduction Section */}
@@ -39,7 +42,11 @@ function TrustBridge() {
         </Typography>
         <Typography
           variant="body1"
-          sx={{ fontFamily: Fonts.primaryFont, color: "rgb(79, 87, 89)", mb: 2 }}
+          sx={{
+            fontFamily: Fonts.primaryFont,
+            color: "rgb(79, 87, 89)",
+            mb: 2,
+          }}
         >
           TrustBridge is a secure online escrow service designed to facilitate
           transactions safely. We act as a neutral third party to hold funds
@@ -132,8 +139,6 @@ function TrustBridge() {
         </Grid>
       </Box>
 
-      
-
       {/* How TrustBridge Works Section */}
       <Box sx={{ mb: 4 }}>
         <Typography
@@ -150,7 +155,11 @@ function TrustBridge() {
         </Typography>
         <Typography
           variant="body1"
-          sx={{ fontFamily: Fonts.primaryFont, color: "rgb(79, 87, 89)", mb: 2 }}
+          sx={{
+            fontFamily: Fonts.primaryFont,
+            color: "rgb(79, 87, 89)",
+            mb: 2,
+          }}
         >
           The process follows these secure steps:
         </Typography>
@@ -162,8 +171,8 @@ function TrustBridge() {
           <li>TrustBridge releases payment to seller.</li>
         </ul>
       </Box>
-{/* TrustBridge in Numbers Section */}
-<Box sx={{ mb: 4 }}>
+      {/* TrustBridge in Numbers Section */}
+      <Box sx={{ mb: 4 }}>
         <Typography
           variant="h5"
           sx={{
@@ -276,10 +285,14 @@ function TrustBridge() {
         </Typography>
         <Typography
           variant="body1"
-          sx={{ fontFamily: Fonts.primaryFont, color: "rgb(79, 87, 89)", mb: 2 }}
+          sx={{
+            fontFamily: Fonts.primaryFont,
+            color: "rgb(79, 87, 89)",
+            mb: 2,
+          }}
         >
-          TrustBridge offers a range of benefits to ensure secure and hassle-free
-          transactions.
+          TrustBridge offers a range of benefits to ensure secure and
+          hassle-free transactions.
         </Typography>
       </Box>
 

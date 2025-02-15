@@ -18,9 +18,12 @@ function Escrow() {
       sx={{
         padding: "1rem 2rem 0",
         backgroundColor: "white",
-        width: "65%",
         borderRight: "1px solid rgb(211, 206, 206)",
-        m: "0 3rem 0 4rem",
+        m: {
+          xs: "0 1rem 0 0.5rem",
+          sm: "0 2rem 0 1.5rem",
+          md: "0 3rem 0 4rem",
+        },
       }}
     >
       {/* Introduction Section */}
@@ -39,11 +42,15 @@ function Escrow() {
         </Typography>
         <Typography
           variant="body1"
-          sx={{ fontFamily: Fonts.primaryFont, color: "rgb(79, 87, 89)", mb: 2 }}
+          sx={{
+            fontFamily: Fonts.primaryFont,
+            color: "rgb(79, 87, 89)",
+            mb: 2,
+          }}
         >
-          Escrow is a financial arrangement where a third party holds funds or assets 
-          on behalf of transacting parties until predefined conditions are met. This 
-          ensures security and trust in transactions.
+          Escrow is a financial arrangement where a third party holds funds or
+          assets on behalf of transacting parties until predefined conditions
+          are met. This ensures security and trust in transactions.
         </Typography>
       </Box>
 
@@ -63,16 +70,28 @@ function Escrow() {
         </Typography>
         <Typography
           variant="body1"
-          sx={{ fontFamily: Fonts.primaryFont, color: "rgb(79, 87, 89)", mb: 2 }}
+          sx={{
+            fontFamily: Fonts.primaryFont,
+            color: "rgb(79, 87, 89)",
+            mb: 2,
+          }}
         >
-          TrustBridge acts as a neutral intermediary, ensuring funds are securely held
-          and only released when transaction terms are met.
+          TrustBridge acts as a neutral intermediary, ensuring funds are
+          securely held and only released when transaction terms are met.
         </Typography>
       </Box>
 
       {/* Steps of an Escrow Transaction */}
       <Box sx={{ mb: 4 }}>
-        <Typography variant="h5" sx={{ fontWeight: "bold", color: "rgb(1, 66, 106)", fontFamily: Fonts.primaryFont, mb: 2 }}>
+        <Typography
+          variant="h5"
+          sx={{
+            fontWeight: "bold",
+            color: "rgb(1, 66, 106)",
+            fontFamily: Fonts.primaryFont,
+            mb: 2,
+          }}
+        >
           Steps in an Escrow Transaction
         </Typography>
         <ul>
@@ -86,17 +105,33 @@ function Escrow() {
 
       {/* Additional Box - Comparison Table */}
       <Box sx={{ mb: 4 }}>
-        <Typography variant="h5" sx={{ fontWeight: "bold", color: "rgb(1, 66, 106)", fontFamily: Fonts.primaryFont, mb: 2 }}>
+        <Typography
+          variant="h5"
+          sx={{
+            fontWeight: "bold",
+            color: "rgb(1, 66, 106)",
+            fontFamily: Fonts.primaryFont,
+            mb: 2,
+          }}
+        >
           Comparison of Payment Methods
         </Typography>
         <TableContainer component={Paper}>
           <Table>
             <TableHead>
               <TableRow sx={{ backgroundColor: Colors.tableHeader }}>
-                <TableCell><strong>Feature</strong></TableCell>
-                <TableCell><strong>TrustBridge Escrow</strong></TableCell>
-                <TableCell><strong>Direct Bank Transfer</strong></TableCell>
-                <TableCell><strong>PayPal</strong></TableCell>
+                <TableCell>
+                  <strong>Feature</strong>
+                </TableCell>
+                <TableCell>
+                  <strong>TrustBridge Escrow</strong>
+                </TableCell>
+                <TableCell>
+                  <strong>Direct Bank Transfer</strong>
+                </TableCell>
+                <TableCell>
+                  <strong>PayPal</strong>
+                </TableCell>
               </TableRow>
             </TableHead>
             <TableBody>
@@ -125,11 +160,27 @@ function Escrow() {
 
       {/* Additional Box - Fraud Prevention Measures */}
       <Box sx={{ mb: 4 }}>
-        <Typography variant="h5" sx={{ fontWeight: "bold", color: "rgb(1, 66, 106)", fontFamily: Fonts.primaryFont, mb: 2 }}>
+        <Typography
+          variant="h5"
+          sx={{
+            fontWeight: "bold",
+            color: "rgb(1, 66, 106)",
+            fontFamily: Fonts.primaryFont,
+            mb: 2,
+          }}
+        >
           TrustBridge Fraud Prevention Measures
         </Typography>
-        <Typography variant="body1" sx={{ fontFamily: Fonts.primaryFont, color: "rgb(79, 87, 89)", mb: 2 }}>
-          TrustBridge employs the following security measures to prevent fraudulent transactions:
+        <Typography
+          variant="body1"
+          sx={{
+            fontFamily: Fonts.primaryFont,
+            color: "rgb(79, 87, 89)",
+            mb: 2,
+          }}
+        >
+          TrustBridge employs the following security measures to prevent
+          fraudulent transactions:
         </Typography>
         <ul>
           <li>Multi-factor authentication for users.</li>

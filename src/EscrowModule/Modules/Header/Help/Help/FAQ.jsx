@@ -49,9 +49,12 @@ const FAQ = () => {
       sx={{
         padding: "1rem 2rem 0",
         backgroundColor: "white",
-        width: "65%",
         borderRight: "1px solid rgb(211, 206, 206)",
-        m: "0 3rem 0 4rem",
+        m: {
+          xs: "0 1rem 0 0.5rem",
+          sm: "0 2rem 0 1.5rem",
+          md: "0 3rem 0 4rem",
+        },
       }}
     >
       {/* Introduction Section */}
@@ -70,11 +73,15 @@ const FAQ = () => {
         </Typography>
         <Typography
           variant="body1"
-          sx={{ fontFamily: Fonts.primaryFont, color: "rgb(79, 87, 89)", mb: 2 }}
+          sx={{
+            fontFamily: Fonts.primaryFont,
+            color: "rgb(79, 87, 89)",
+            mb: 2,
+          }}
         >
-          Find answers to common questions about TrustBridge and escrow services.
-          If you have additional questions, feel free to contact our support
-          team.
+          Find answers to common questions about TrustBridge and escrow
+          services. If you have additional questions, feel free to contact our
+          support team.
         </Typography>
       </Box>
 
@@ -93,7 +100,11 @@ const FAQ = () => {
         </Typography>
         <Typography
           variant="body1"
-          sx={{ fontFamily: Fonts.primaryFont, color: "rgb(79, 87, 89)", mb: 2 }}
+          sx={{
+            fontFamily: Fonts.primaryFont,
+            color: "rgb(79, 87, 89)",
+            mb: 2,
+          }}
         >
           TrustBridge offers several advantages over other escrow services.
           Here’s why you should choose us:
@@ -153,7 +164,11 @@ const FAQ = () => {
         </Typography>
         <Typography
           variant="body1"
-          sx={{ fontFamily: Fonts.primaryFont, color: "rgb(79, 87, 89)", mb: 2 }}
+          sx={{
+            fontFamily: Fonts.primaryFont,
+            color: "rgb(79, 87, 89)",
+            mb: 2,
+          }}
         >
           TrustBridge uses advanced security measures to protect your
           transactions. Here’s a breakdown of our security features:
@@ -189,7 +204,11 @@ const FAQ = () => {
         </Typography>
         <Typography
           variant="body1"
-          sx={{ fontFamily: Fonts.primaryFont, color: "rgb(79, 87, 89)", mb: 2 }}
+          sx={{
+            fontFamily: Fonts.primaryFont,
+            color: "rgb(79, 87, 89)",
+            mb: 2,
+          }}
         >
           TrustBridge supports a wide range of transactions. Here’s a breakdown
           of the types of transactions we handle:
@@ -233,7 +252,11 @@ const FAQ = () => {
         </Typography>
         <Typography
           variant="body1"
-          sx={{ fontFamily: Fonts.primaryFont, color: "rgb(79, 87, 89)", mb: 2 }}
+          sx={{
+            fontFamily: Fonts.primaryFont,
+            color: "rgb(79, 87, 89)",
+            mb: 2,
+          }}
         >
           TrustBridge has seen significant growth in the number of transactions
           over the years. Here’s a visual representation:
@@ -266,7 +289,11 @@ const FAQ = () => {
         </Typography>
         <Typography
           variant="body1"
-          sx={{ fontFamily: Fonts.primaryFont, color: "rgb(79, 87, 89)", mb: 2 }}
+          sx={{
+            fontFamily: Fonts.primaryFont,
+            color: "rgb(79, 87, 89)",
+            mb: 2,
+          }}
         >
           For more details about TrustBridge, please visit our{" "}
           <a href="/help" style={{ color: Colors.fontColor }}>

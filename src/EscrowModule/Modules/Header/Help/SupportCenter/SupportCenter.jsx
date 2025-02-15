@@ -38,9 +38,12 @@ function SupportCenter() {
       sx={{
         padding: "1rem 2rem 0",
         backgroundColor: "white",
-        width: "65%",
         borderRight: "1px solid rgb(211, 206, 206)",
-        m: "0 3rem 0 4rem",
+        m: {
+          xs: "0 1rem 0 0.5rem",
+          sm: "0 2rem 0 1.5rem",
+          md: "0 3rem 0 4rem",
+        },
       }}
     >
       {/* Introduction Section */}
@@ -59,7 +62,11 @@ function SupportCenter() {
         </Typography>
         <Typography
           variant="body1"
-          sx={{ fontFamily: Fonts.primaryFont, color: "rgb(79, 87, 89)", mb: 2 }}
+          sx={{
+            fontFamily: Fonts.primaryFont,
+            color: "rgb(79, 87, 89)",
+            mb: 2,
+          }}
         >
           Welcome to the TrustBridge Support Center. Here, you can submit your
           queries, browse FAQs, or contact our support team for assistance.
@@ -235,8 +242,8 @@ function SupportCenter() {
                 variant="body1"
                 sx={{ fontFamily: Fonts.primaryFont, color: "rgb(79, 87, 89)" }}
               >
-                <strong>Address:</strong> 123 TrustBridge Lane, San Francisco, CA
-                94107, USA
+                <strong>Address:</strong> 123 TrustBridge Lane, San Francisco,
+                CA 94107, USA
               </Typography>
             </Grid>
           </Grid>
