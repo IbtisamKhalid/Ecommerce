@@ -57,17 +57,18 @@ const columns = [
 const sampleProducts = [
   {
     name: "Smartphone",
-    image: "https://via.placeholder.com/50",
+    image: "https://dummyimage.com/50x50/000/fff&text=Img",
   },
   {
     name: "Laptop",
-    image: "https://via.placeholder.com/50",
+    image: "https://dummyimage.com/50x50/000/fff&text=Img",
   },
   {
     name: "Headphones",
-    image: "https://via.placeholder.com/50",
+    image: "https://dummyimage.com/50x50/000/fff&text=Img",
   },
 ];
+
 
 const data = [];
 for (let i = 1; i <= 10; i++) {

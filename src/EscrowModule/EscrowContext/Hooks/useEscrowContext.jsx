@@ -15,7 +15,8 @@ export const useDisputeHistory = () => {
 
 function useEscrowContext() {
   const [user, setUser] = useState([]);
-  const [escrowHistory, setEscrowHistory] = useState([
+  const [escrowHistory, setEscrowHistory] = useState(
+    [
     {
       agreed: true,
       amount: "10",
@@ -205,7 +206,8 @@ function useEscrowContext() {
       adminRemarks:[]
 
     },
-  ]);
+  ]
+);
   const [isUserLoggedIn, setIsUserLoggedIn] = useState(false);
 
   // Add a new escrow transaction

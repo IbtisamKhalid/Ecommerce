@@ -122,7 +122,7 @@ export const products = [
     heading: "Headphones for Kids",
     category: "Headphone",
 
-    brand: "Havells",
+    brand: "Apple",
     price: "500",
     imageonHover: headphonehover,
     category: 0,
@@ -152,7 +152,7 @@ export const products = [
     brand: "Bajaj",
     price: "200",
     imageonHover: speakerhover,
-    category: 0,
+    category: "Speakers",
     images: [SP1, SP2, SP3],
     productColors: [
       "rgb(181, 206, 222)",
@@ -177,7 +177,7 @@ export const products = [
     brand: "Havells",
     price: "200",
     imageonHover: tabhover,
-    category: 0,
+    category: "Tablet",
     images: [SP1, SP2, SP3],
     productColors: [
       "rgb(181, 206, 222)",
@@ -202,7 +202,7 @@ export const products = [
     brand: "Sony",
     price: "200",
     imageonHover: watchhover,
-    category: 0,
+    category: "Watch",
     images: [SP1, SP2, SP3],
     productColors: [
       "rgb(181, 206, 222)",
@@ -227,7 +227,7 @@ export const products = [
     brand: "Redmi",
     price: "45.00",
     imageonHover: p2,
-    category: 0,
+    category: "Mobile",
     images: [p1, p3, p4],
     productColors: [
       "rgb(181, 206, 222)",
@@ -252,7 +252,7 @@ export const products = [
     brand: "MOMAX",
     price: "35",
     imageonHover: p5,
-    category: 0,
+    category: "PowerBank",
     images: [p5, p5, p5],
     productColors: [
       "rgb(181, 206, 222)",

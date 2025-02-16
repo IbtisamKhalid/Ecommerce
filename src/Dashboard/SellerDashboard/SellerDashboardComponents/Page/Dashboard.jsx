@@ -118,7 +118,7 @@ const Dashboard = () => {
             </div>
 
             {/* Radar Chart */}
-            <div style={{ textAlign: "center" }}>
+            {/* <div style={{ textAlign: "center" }}>
               <h3
                 style={{
                   fontSize: "18px",
@@ -155,7 +155,7 @@ const Dashboard = () => {
                   <Legend />
                 </RadarChart>
               </ResponsiveContainer>
-            </div>
+            </div> */}
           </div>
         </div>
 

@@ -13,7 +13,7 @@ import {
   ListItemIcon,
   Tooltip,
 } from "@mui/material";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { Colors, Fonts } from "../../Theme/Theme";
 import {
   UserContext,
@@ -38,6 +38,7 @@ function AccountAvatar() {
     navigate("/SignIn");
     setIsUserLoggedIn(false);
   };
+  const navigate = useNavigate()
 
   return (
     <>
@@ -169,9 +170,11 @@ function AccountAvatar() {
               My Profile
             </MenuItem>
           </Tooltip>
-          <Tooltip title="Add Account">
+          
+          {user.role == "Seller" &&
+           <Tooltip title="DashBoard">
             <MenuItem
-              onClick={handleClose}
+              onClick={() => {navigate('/dashboard')} }
               sx={{
                 p: "0.5rem 1.75rem",
                 color: "#0088FF",
@@ -182,9 +185,28 @@ function AccountAvatar() {
               <ListItemIcon>
                 <PersonAdd fontSize="small" />
               </ListItemIcon>
-              Add another account
+              Dashboard
             </MenuItem>
           </Tooltip>
+          }
+          {user.role == "Admin" &&
+           <Tooltip title="DashBoard">
+            <MenuItem
+              onClick={() => navigate('/Admindashboard') }
+              sx={{
+                p: "0.5rem 1.75rem",
+                color: "#0088FF",
+                fontWeight: "600",
+                fontFamily: Fonts.primaryFont,
+              }}
+            >
+              <ListItemIcon>
+                <PersonAdd fontSize="small" />
+              </ListItemIcon>
+              Dashboard
+            </MenuItem>
+          </Tooltip>
+          }
           <Tooltip title="Open Setting">
             <MenuItem
               onClick={handleClose}

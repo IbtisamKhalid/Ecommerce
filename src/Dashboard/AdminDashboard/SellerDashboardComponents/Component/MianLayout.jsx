@@ -88,11 +88,6 @@ const MianLayout = ({ user }) => {
               icon: <LuClipboardList className="fs-4" />,
               label: "Orders",
             },
-            // {
-            //   key: "EscrowHistory",
-            //   icon: <MdVerified className="fs-4" />,
-            //   label: "Escrow",
-            // },
           ]}
         />
       </Sider>

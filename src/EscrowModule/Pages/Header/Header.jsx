@@ -181,7 +181,17 @@ function Header({ queries = false }) {
             >
               <img
                 src={
-                  isAtTop ? (queries ? AtScrollLogo : AtTopLogo) : AtScrollLogo
+                  queries
+                    ? isHovered
+                      ? AtTopLogo
+                      : AtScrollLogo
+                    : isAtTop
+                    ? isHovered
+                      ? AtTopLogo
+                      : AtTopLogo
+                    : isHovered
+                    ? AtTopLogo
+                    : AtScrollLogo
                 }
                 alt="heheheh"
                 height={45}

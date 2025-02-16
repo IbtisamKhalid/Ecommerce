@@ -63,6 +63,9 @@ import {
   PaymentOptions,
   Security,
 } from "../../EscrowModule/Pages/SideBarLinksPages/Index";
+import DisputeAdmin from "../../Dashboard/AdminDashboard/SellerDashboardComponents/Page/Dispute/DisputeAdmin";
+import DisputeSeller from "../../Dashboard/SellerDashboard/SellerDashboardComponents/Page/Dispute/DisputeSeller";
+import EscrowSeller from "../../Dashboard/SellerDashboard/SellerDashboardComponents/Page/Escrow/EscrowSeller";
 
 function Routes() {
   const { isUserLoggedIn } = useContext(IsUserLoggedIn);
@@ -94,34 +97,13 @@ function Routes() {
                 <Route path="product-list" element={<Productlist />} />
                 <Route path="product" element={<Addproduct />} />
                 <Route path="ProfileSetting" element={<ProfileSetting />} />
-                <Route
-                  path="escrowdetails"
-                  element={<EscrowDetailsWrapper />}
-                />
-                <Route
-                  path="disputedetails"
-                  element={<DisputeDetailsWrapper />}
-                />
+                <Route path="dispute" element={<DisputeSeller />} />
+                <Route path="escrow" element={<EscrowSeller />} />
               </Route>
-              {console.log("in first if and the user is", user)}
               <Route path="/StartEscrow" element={<StartEscrow />} />
               <Route path="/Contract" element={<MakeContracts />} />
               <Route path="/Payment" element={<PaymentContainer />} />
               <Route path="/FileDispute" element={<FileDispute />} />
-              <Route path="/escrowdashboard" element={<LoggedInLayout />}>
-                <Route index element={<EscrowHistory />} />
-                <Route path="EscrowDisputes" element={<EscrowDisputes />} />
-                <Route path="EscrowPayments" element={<EscrowPayments />} />
-                <Route path="ProfileSetting" element={<ProfileSetting />} />
-                <Route
-                  path="escrowdetails"
-                  element={<EscrowDetailsWrapper />}
-                />
-                <Route
-                  path="disputedetails"
-                  element={<DisputeDetailsWrapper />}
-                />
-              </Route>
             </>
           )}
 
@@ -149,7 +131,7 @@ function Routes() {
               </Route>
             </>
           )}
-          
+
           {isUserLoggedIn && user.role == "Admin" && (
             <>
               <Route path="/Admindashboard" element={<AdminLayout />}>
@@ -158,12 +140,8 @@ function Routes() {
                 <Route path="product-list" element={<Productlist />} />
                 <Route path="product" element={<Addproduct />} />
                 <Route path="ProfileSetting" element={<ProfileSetting />} />
-                <Route
-                  path="disputedetails"
-                  element={<DisputeDetailsWrapper />}
-                />
-                <Route path="disputes" element={<EscrowDisputes />} />
-                <Route path="updatedisputes" element={<UpdateDispute />} />
+                <Route path="dispute" element={<DisputeAdmin />} />
+                <Route path="updatedispute" element={<UpdateDispute />} />
               </Route>
             </>
           )}

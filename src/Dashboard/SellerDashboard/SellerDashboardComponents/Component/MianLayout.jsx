@@ -10,7 +10,7 @@ import LoggedInNavBar from "../../../../EscrowModule/Pages/LoggedInPages/LoggedI
 
 const { Header, Sider, Content } = Layout;
 
-const MianLayout = ({ user }) => {
+const MianLayout = () => {
   const [collapsed, setCollapsed] = useState(false);
   const [anchorEl, setAnchorEl] = useState(null);
   const navigate = useNavigate();
@@ -83,6 +83,21 @@ const MianLayout = ({ user }) => {
               icon: <LuClipboardList className="fs-4" />,
               label: "Orders",
             },
+            {
+              key: "Dispute",
+              icon: <RxDashboard className="fs-4" />,
+              label: "Disputes",
+            },
+            {
+              key: "escrow",
+              icon: <RxDashboard className="fs-4" />,
+              label: "Escrow",
+            },
+            {
+              key: "payments",
+              icon: <RxDashboard className="fs-4" />,
+              label: "Payments",
+            },
             // {
             //   key: "EscrowHistory",
             //   icon: <MdVerified className="fs-4" />,
@@ -93,19 +108,24 @@ const MianLayout = ({ user }) => {
       </Sider>
       <Layout>
         <Header style={{ padding: "0.2rem 1.5rem 0.5rem 0.75rem" }}>
-          <LoggedInNavBar title={false} navColor={"inherit"} padd={false}>
-            <Button
-              type="text"
-              icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
-              onClick={() => setCollapsed(!collapsed)}
-              style={{
-                fontSize: "16px",
-                width: 64,
-                height: 56,
-                color: "white",
-              }}
-            />
-          </LoggedInNavBar>
+          <LoggedInNavBar
+                      title={false}
+                      navColor={"inherit"}
+                      padd={false}
+                      isAdmin={true}
+                    >
+                      <Button
+                        type="text"
+                        icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
+                        onClick={() => setCollapsed(!collapsed)}
+                        style={{
+                          fontSize: "16px",
+                          width: 64,
+                          height: 56,
+                          color: "white",
+                        }}
+                      />
+                    </LoggedInNavBar>
           {/*  */}
         </Header>
         <Content
