@@ -1,4 +1,3 @@
-/* eslint-disable react/prop-types */
 import {
   Box,
   FormControl,
@@ -15,6 +14,8 @@ import { Controller } from "react-hook-form";
 import { Colors, Fonts } from "../../../../Theme/Theme";
 import useStartEscrow from "./Hooks/useStartEscrow";
 import LoggedInNavbarLayout from "../../LoggedInNavBar/LoggedInNavbarLayout/LoggedNavLayout.jsx";
+import { useLocation } from "react-router-dom";
+import { useState } from "react";
 
 export const SelectComponent = ({ name, control, label, options = [] }) => {
   return (
@@ -45,6 +46,14 @@ export const SelectComponent = ({ name, control, label, options = [] }) => {
 };
 
 function IntializeEscrow() {
+  const location = useLocation();
+  const { item, forUpdate } = location.state || {
+    item: null,
+    forUpdate: false,
+  };
+  console.log("item in intialize escrow ", item);
+  const [update, setUpdate] = useState(forUpdate);
+
   const {
     watch,
     errors,
@@ -56,7 +65,7 @@ function IntializeEscrow() {
     handleSubmit,
     selectRoleOption,
     selecCurrencyOption,
-  } = useStartEscrow();
+  } = useStartEscrow(update ? item : {});
 
   const Price = watch("Price");
   const ItemCategory = watch("ItemCategory");
@@ -73,37 +82,12 @@ function IntializeEscrow() {
           sx={{
             margin: {
               xs: "3rem 3rem 0",
-              // sm: "2rem 7rem 2rem",
               md: "3rem 15rem 0",
             },
             boxShadow: "0 4px 8px hsla(185, 8%, 67%, .5)",
             borderRadius: "8px",
             backgroundColor: "#fff",
-            // p: "5rem 5rem",
-            p: { xs: "1rem 1rem", sm: "3rem 5rem", md: "4rem 10rem" },
-            // "@media (min-width:660px)": {
-            //   margin: " 3rem 3rem 4rem",
-            // },
-            "@media (min-width:760px)": {
-              margin: " 3rem 3rem 0",
-              p: "2rem 1rem",
-            },
-            "@media (min-width:900px)": {
-              margin: " 3rem 5rem 0",
-              p: "2rem 1rem",
-            },
-            "@media (min-width:950px)": {
-              margin: " 3rem 8.5rem 0",
-              p: "3rem 2rem",
-            },
-            "@media (min-width:1000px)": {
-              margin: " 3rem 10rem 0",
-              p: "3rem 3rem",
-            },
-            "@media (min-width:1100px)": {
-              margin: " 3rem 15rem 0",
-              p: "3rem 5rem",
-            },
+            p: { xs: "1rem 1rem", sm: "3rem 5rem", md: "4rem 5rem" },
           }}
         >
           <Typography
@@ -166,7 +150,16 @@ function IntializeEscrow() {
                   options={selecCurrencyOption}
                 />
               </Grid>
-              <Grid item size={{ xs: 12, sm: 4, md: 4 }} xs={4}>
+              <Grid
+                item
+                size={{ xs: 12, sm: 4, md: 4 }}
+                xs={4}
+                sx={{
+                  "@media (min-width:660px)": {
+                    size: 12,
+                  },
+                }}
+              >
                 <TextField
                   variant="outlined"
                   label="Inspection Period (Days)"
@@ -203,7 +196,7 @@ function IntializeEscrow() {
             {!showBox && (
               <Box>
                 <Grid container spacing={{ xs: 1, sm: 2, md: 3 }}>
-                  <Grid item size={{ xs: 12, sm: 6 }} xs={6}>
+                  <Grid item size={{ xs: 12, sm: 6 }}>
                     <TextField
                       variant="outlined"
                       label="Item Name"
@@ -214,7 +207,7 @@ function IntializeEscrow() {
                       sx={{ mt: "0.3rem" }}
                     />
                   </Grid>
-                  <Grid item size={{ xs: 12, sm: 6 }} xs={6}>
+                  <Grid item size={{ xs: 12, sm: 6 }}>
                     <TextField
                       variant="outlined"
                       label="Price"
@@ -222,14 +215,13 @@ function IntializeEscrow() {
                       defaultValue="0"
                       {...register("Price", {
                         required: "Required",
-                        // valueAsNumber: true, // ensures it's treated as a number
                         min: {
                           value: 0,
                           message: "Price must be greater than 0",
                         },
                         pattern: {
-                          value: /^[0-9]+$/, // Regular expression for integer validation
-                          message: "Inspection Period must be an integer", // Error message
+                          value: /^[0-9]+$/,
+                          message: "Inspection Period must be an integer",
                         },
                       })}
                       error={!!errors.Price}
@@ -261,177 +253,184 @@ function IntializeEscrow() {
                   error={!!errors.ItemDescription}
                   helperText={errors.ItemDescription?.message || " "}
                 />
-                <Button
-                  variant="contained"
-                  type="submit"
-                  sx={{ mt: "0.3rem", float: "right", bgcolor: Colors.button }}
-                >
-                  Add Item
-                </Button>
+                {!update && (
+                  <Button
+                    variant="contained"
+                    type="submit"
+                    sx={{
+                      mt: "0.3rem",
+                      float: "right",
+                      bgcolor: Colors.button,
+                    }}
+                  >
+                    Add Item
+                  </Button>
+                )}
               </Box>
             )}
-            {showBox && (
-              <Box>
-                <Box
-                  sx={{
-                    p: "2rem 2rem",
-                    border: `1px solid ${Colors.borderColor}`,
-                    boxShadow: "0 1px 1px hsla(185, 8%, 67%, .5)",
-                    borderRadius: "8px",
-                    m: "1rem 0 2rem 0",
-                  }}
-                >
+            {showBox ||
+              (update && (
+                <Box>
                   <Box
-                    sx={{ display: "flex", justifyContent: "space-between" }}
+                    sx={{
+                      p: "2rem 2rem",
+                      border: `1px solid ${Colors.borderColor}`,
+                      boxShadow: "0 1px 1px hsla(185, 8%, 67%, .5)",
+                      borderRadius: "8px",
+                      m: "1rem 0 2rem 0",
+                    }}
+                  >
+                    <Box
+                      sx={{ display: "flex", justifyContent: "space-between" }}
+                    >
+                      <Typography
+                        variant="h6"
+                        sx={{
+                          fontWeight: "600",
+                          fontFamily: Fonts.primaryFont,
+                          fontSize: "14px",
+                        }}
+                      >
+                        {TransactionTitle}
+                      </Typography>
+                      <Typography
+                        variant="body1"
+                        sx={{ color: Colors.fontColor }}
+                      >
+                        ${Price}
+                      </Typography>
+                    </Box>
+                    <Typography
+                      variant="body1"
+                      sx={{
+                        color: Colors.fontColor,
+                        fontFamily: Fonts.primaryFont,
+                        fontStyle: "italic",
+                      }}
+                    >
+                      {ItemCategory}
+                    </Typography>
+                    <Typography
+                      variant="body1"
+                      sx={{
+                        color: Colors.fontColor,
+                        fontFamily: Fonts.primaryFont,
+                      }}
+                    >
+                      {ItemDescription}
+                    </Typography>
+                    <Typography variant="body1" sx={{ m: "1rem 0 0 0 " }}>
+                      Inspection Period is {InspectionPeriod}
+                    </Typography>
+                  </Box>
+
+                  <Box
+                    sx={{
+                      p: "4rem 0.5rem",
+                      borderTop: `0.5px solid ${Colors.borderColor}`,
+                    }}
                   >
                     <Typography
                       variant="h6"
                       sx={{
-                        fontWeight: "600",
+                        fontSize: "17px",
                         fontFamily: Fonts.primaryFont,
-                        fontSize: "14px",
+                        fontWeight: 600,
+                        mb: "1rem",
+                        color: Colors.button,
                       }}
                     >
-                      {TransactionTitle}
+                      Transaction Summary
                     </Typography>
-                    <Typography
-                      variant="body1"
-                      sx={{ color: Colors.fontColor }}
-                    >
-                      ${Price}
-                    </Typography>
-                  </Box>
-                  <Typography
-                    variant="body1"
-                    sx={{
-                      color: Colors.fontColor,
-                      fontFamily: Fonts.primaryFont,
-                      fontStyle: "italic",
-                    }}
-                  >
-                    {ItemCategory}
-                  </Typography>
-                  <Typography
-                    variant="body1"
-                    sx={{
-                      color: Colors.fontColor,
-                      fontFamily: Fonts.primaryFont,
-                    }}
-                  >
-                    {ItemDescription}
-                  </Typography>
-                  <Typography variant="body1" sx={{ m: "1rem 0 0 0 " }}>
-                    Inspection Period is {InspectionPeriod}
-                  </Typography>
-                </Box>
-
-                <Box
-                  sx={{
-                    p: "4rem 0.5rem",
-                    borderTop: `0.5px solid ${Colors.borderColor}`,
-                  }}
-                >
-                  <Typography
-                    variant="h6"
-                    sx={{
-                      fontSize: "17px",
-                      fontFamily: Fonts.primaryFont,
-                      fontWeight: 600,
-                      mb: "1rem",
-                      color: Colors.button,
-                    }}
-                  >
-                    Transaction Summary
-                  </Typography>
-                  <Box
-                    sx={{
-                      display: "flex",
-                      justifyContent: "space-between",
-                      p: "0.5rem 0 1.5rem 0",
-                      borderBottom: `1px solid ${Colors.borderColor}`,
-                    }}
-                  >
-                    <Typography
-                      variant="body1"
+                    <Box
                       sx={{
-                        color: Colors.fontColor,
-                        fontSize: "15px",
-                        fontFamily: Fonts.primaryFont,
+                        display: "flex",
+                        justifyContent: "space-between",
+                        p: "0.5rem 0 1.5rem 0",
+                        borderBottom: `1px solid ${Colors.borderColor}`,
                       }}
                     >
-                      Subtotal:
-                    </Typography>
-                    <Typography
-                      variant="body1"
+                      <Typography
+                        variant="body1"
+                        sx={{
+                          color: Colors.fontColor,
+                          fontSize: "15px",
+                          fontFamily: Fonts.primaryFont,
+                        }}
+                      >
+                        Subtotal:
+                      </Typography>
+                      <Typography
+                        variant="body1"
+                        sx={{
+                          color: Colors.fontColor,
+                          fontSize: "15px",
+                          fontFamily: Fonts.primaryFont,
+                        }}
+                      >
+                        ${Price}
+                      </Typography>
+                    </Box>
+                    <Divider />
+                    <Box
                       sx={{
-                        color: Colors.fontColor,
-                        fontSize: "15px",
-                        fontFamily: Fonts.primaryFont,
+                        display: "flex",
+                        justifyContent: "space-between",
+                        mt: "1rem",
                       }}
                     >
-                      ${Price}
-                    </Typography>
-                  </Box>
-                  <Divider />
-                  <Box
-                    sx={{
-                      display: "flex",
-                      justifyContent: "space-between",
-                      mt: "1rem",
-                    }}
-                  >
-                    <Typography
-                      variant="body1"
-                      sx={{
-                        color: Colors.fontColor,
-                        fontSize: "15px",
-                        fontFamily: Fonts.primaryFont,
-                      }}
+                      <Typography
+                        variant="body1"
+                        sx={{
+                          color: Colors.fontColor,
+                          fontSize: "15px",
+                          fontFamily: Fonts.primaryFont,
+                        }}
+                      >
+                        Fee:
+                      </Typography>
+                      <Typography
+                        variant="body1"
+                        sx={{
+                          color: Colors.fontColor,
+                          fontSize: "15px",
+                          fontFamily: Fonts.primaryFont,
+                        }}
+                      >
+                        $0
+                      </Typography>
+                    </Box>
+                    <Box
+                      sx={{ display: "flex", justifyContent: "space-between" }}
                     >
-                      Fee:
-                    </Typography>
-                    <Typography
-                      variant="body1"
-                      sx={{
-                        color: Colors.fontColor,
-                        fontSize: "15px",
-                        fontFamily: Fonts.primaryFont,
-                      }}
-                    >
-                      $0
-                    </Typography>
-                  </Box>
-                  <Box
-                    sx={{ display: "flex", justifyContent: "space-between" }}
-                  >
-                    <Typography
-                      variant="body1"
-                      sx={{
-                        color: Colors.fontColor,
-                        fontSize: "15px",
-                        fontFamily: Fonts.primaryFont,
-                      }}
-                    >
-                      Total:
-                    </Typography>
-                    <Typography
-                      variant="body1"
-                      sx={{
-                        color: Colors.fontColor,
-                        fontSize: "15px",
-                        fontFamily: Fonts.primaryFont,
-                      }}
-                    >
-                      ${Price}
-                    </Typography>
+                      <Typography
+                        variant="body1"
+                        sx={{
+                          color: Colors.fontColor,
+                          fontSize: "15px",
+                          fontFamily: Fonts.primaryFont,
+                        }}
+                      >
+                        Total:
+                      </Typography>
+                      <Typography
+                        variant="body1"
+                        sx={{
+                          color: Colors.fontColor,
+                          fontSize: "15px",
+                          fontFamily: Fonts.primaryFont,
+                        }}
+                      >
+                        ${Price}
+                      </Typography>
+                    </Box>
                   </Box>
                 </Box>
-              </Box>
-            )}
+              ))}
 
             <Box
               sx={{
-                display: showBox ? "block" : "none",
+                display: showBox || update ? "block" : "none",
                 borderTop: `1px solid ${Colors.borderColor}`,
               }}
             >
@@ -455,7 +454,7 @@ function IntializeEscrow() {
                   {...register("secondPersonEmail", {
                     required: showBox
                       ? `${secondPerson} Email is required`
-                      : false, // Only required if showBox is true
+                      : false,
                     pattern: {
                       value: /^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,4}$/i,
                       message: "Invalid email format",

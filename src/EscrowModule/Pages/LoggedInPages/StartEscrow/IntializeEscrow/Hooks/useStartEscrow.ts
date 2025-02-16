@@ -1,22 +1,30 @@
 import { useState } from "react";
-import { useForm} from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { useNavigate } from "react-router-dom";
-function useStartEscrow() {
+
+function useStartEscrow(defaultValues) {
   const selecCurrencyOption = ["PK", "USD", "CAD"];
   const selectRoleOption = ["Buyer", "Seller", "Both"];
   const [showBox, setShowBox] = useState(false);
   const [secondPerson, setSecondPerson] = useState("");
-  const navigate = useNavigate()
+  const navigate = useNavigate();
+
   const {
     control,
     register,
     handleSubmit,
     formState: { errors },
-    watch
+    watch,
   } = useForm({
     defaultValues: {
-      MyRole: "Buyer", // Default value for MyRole
-      Currency: "USD", // Default value for Currency
+      MyRole: defaultValues.role || "Buyer", // Default value for MyRole
+      Currency: defaultValues.currency || "USD", // Default value for Currency
+      TransactionTitle: defaultValues.title || "",
+      InspectionPeriod: defaultValues ? "2" : "",
+      ItemName: defaultValues ? "Iphone" : "",
+      Price: defaultValues.amount || "0",
+      ItemCategory: defaultValues ? "Electronic" : "",
+      ItemDescription: defaultValues ? "Iphone selliing ": "",
     },
   });
 
@@ -33,15 +41,11 @@ function useStartEscrow() {
         setSecondPerson("Buyer");
         console.log("Buyer");
       }
+    } else if (showBox) {
+      navigate("/contract", { state: { item, addingTerms: false } });
+      console.log("Form Submitted: ", item);
     }
-    else if(showBox){
-        navigate("/contract", { state: { item, addingTerms:false } })
-        console.log("Form Submitted: ", item);
-    }
-
   };
-    
-
 
   return {
     control,
@@ -53,7 +57,7 @@ function useStartEscrow() {
     selectRoleOption,
     showBox,
     secondPerson,
-    watch
+    watch,
   };
 }
 

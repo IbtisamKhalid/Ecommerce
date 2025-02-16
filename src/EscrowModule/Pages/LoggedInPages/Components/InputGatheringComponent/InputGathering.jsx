@@ -39,7 +39,7 @@ function InputGathering({ item, forContract, addingTerms }) {
     isContract,
     handleSave,
   } = useInputGathering({ item, forContract, addingTerms });
-console.log("Item in input fathering?",item);
+console.log("Item in input gathering?",item);
   return (
     <>
       <Box

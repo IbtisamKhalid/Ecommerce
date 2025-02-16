@@ -176,11 +176,13 @@ function Header({ queries = false }) {
               sx={{
                 cursor: "pointer",
                 textDecoration: "none",
-                mt: "0.5rem",
+                // mt: "0.5rem",
               }}
             >
               <img
-                src={isAtTop ? AtTopLogo : AtScrollLogo}
+                src={
+                  isAtTop ? (queries ? AtScrollLogo : AtTopLogo) : AtScrollLogo
+                }
                 alt="heheheh"
                 height={45}
               />
@@ -195,7 +197,6 @@ function Header({ queries = false }) {
                 <Box key={item.name} onMouseLeave={handleMouseLeave}>
                   <Button
                     sx={{
-                      // transition: "all 0.4s ease",
                       color: isAtTop
                         ? isHovered
                           ? onHoverTextColor

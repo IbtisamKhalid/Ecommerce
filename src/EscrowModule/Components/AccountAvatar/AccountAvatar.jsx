@@ -19,9 +19,9 @@ import {
   UserContext,
   IsUserLoggedIn,
 } from "../../EscrowContext/Hooks/useEscrowContext";
+import { AccountCircle as AccountCircleIcon } from "@mui/icons-material";
 function AccountAvatar() {
-  const {setIsUserLoggedIn } =
-    React.useContext(IsUserLoggedIn);
+  const { setIsUserLoggedIn } = React.useContext(IsUserLoggedIn);
   const { user } = React.useContext(UserContext);
 
   const [anchorEl, setAnchorEl] = React.useState(null);
@@ -35,8 +35,8 @@ function AccountAvatar() {
     setAnchorEl(null);
   };
   const handleLogout = () => {
-      navigate("/SignIn");
-      setIsUserLoggedIn(false);
+    navigate("/SignIn");
+    setIsUserLoggedIn(false);
   };
 
   return (
@@ -70,6 +70,11 @@ function AccountAvatar() {
             >
               {!user.profilePicture && user.name.charAt(0).toUpperCase()}
             </Avatar>
+            <Typography sx={{fontWeight:600, fontSize:"15px", color:"white"}}>
+              {!user.profilePicture && user.name.toUpperCase()}
+            </Typography>
+
+            {/* <AccountCircleIcon /> */}
           </IconButton>
         </Tooltip>
         <Menu

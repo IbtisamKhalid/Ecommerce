@@ -184,7 +184,6 @@ function Routes() {
             <Route path="PaymentOptions" element={<PaymentOptions />} />
             <Route path="Security" element={<Security />} />
           </Route>
-            <Route path="/PaymentOptions" element={<PaymentOptions />} />
 
           {/* <Route path="/Contract" element={<MakeContracts />} /> */}
         </ReactRoutes>

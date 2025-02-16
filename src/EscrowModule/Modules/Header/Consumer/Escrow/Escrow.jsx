@@ -184,7 +184,7 @@ function Escrow() {
         </Typography>
         <ul>
           <li>Multi-factor authentication for users.</li>
-          <li>AI-based fraud detection and monitoring.</li>
+          <li>fraud detection and monitoring.</li>
           <li>Secure SSL encryption to protect sensitive data.</li>
           <li>Strict KYC (Know Your Customer) verification.</li>
         </ul>

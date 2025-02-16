@@ -12,9 +12,7 @@ function EscrowMainDetails() {
   const { item } = location.state; // Access passed data
   // const stepp = 0;
   console.log("item in EscrowMainDetail", item);
-  const handleProceedToPayment = () => {
-    navigate("/payment", { state: { item } });
-  };
+  
   const handleAddContractTerms = () => {
     navigate("/Contract", { state: { item, addingTerms: true } });
   };
@@ -212,25 +210,7 @@ function EscrowMainDetails() {
         )}
         {item.step == 1 && item.role == "Buyer" && item.agreed == true && (
           <Box>
-            <ProceedToPayment>
-              {" "}
-              <Button
-                sx={{
-                  p: "0.4rem 0.5rem",
-                  fontFamily: Fonts.primaryFont,
-                  bgcolor: "rgb(34, 92, 171)",
-                  fontWeight: 500,
-                  color: "white",
-                  "&:hover": {
-                    bgcolor: "rgb(1, 66, 106)",
-                  },
-                  fontSize: "12px",
-                }}
-                onClick={handleProceedToPayment}
-              >
-                Proceed To Payment
-              </Button>
-            </ProceedToPayment>
+            <ProceedToPayment item={item} />
           </Box>
         )}
         {item.step == 2 && item.role == "Seller" && (

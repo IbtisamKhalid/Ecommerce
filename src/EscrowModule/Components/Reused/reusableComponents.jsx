@@ -591,7 +591,7 @@ export const EscrowMethod = () => {
         <GetStartedButton additionalStyles={{ color: "white" }} />
         <Typography
           component={Link}
-          to={"#"}
+          to={"/queries/Escrow"}
           sx={{
             display: "block",
             m: "1rem 0 5rem 0",
@@ -614,46 +614,46 @@ export const EscrowMethod = () => {
 export const EscrowProducts = () => {
   const escrowProducts = [
     {
-      Link: "#",
+      Link: "/queries/Allowedgoodsservices",
       Img: Domain,
       Heading: "Domain Names",
       description:
-        "Escrow.com is the dominant payment method for the buying & selling of domain names, with transactions including uber.com, snapchat.com, spacex.com, twitter.com, instagram.com, freelancer.com, gmail.com, slack.com, wechat.com, chrome.com and wordpress.com.",
+        "TrustBridge is the dominant payment method for the buying & selling of domain names, with transactions including uber.com, snapchat.com, spacex.com, twitter.com, instagram.com, freelancer.com, gmail.com, slack.com, wechat.com, chrome.com and wordpress.com.",
     },
     {
-      Link: "#",
+      Link: "/queries/Allowedgoodsservices",
       Img: Vehicle,
       Heading: "Motor Vehicles",
       description:
-        "When buying classic cars, a used sailboat or even an aircraft engine Escrow.com ensures money transfer and vehicle delivery with every sale. Our experienced personnel can even help you with shipping documentation, titles, liens and more.",
+        "When buying classic cars, a used sailboat or even an aircraft engine TrustBridge ensures money transfer and vehicle delivery with every sale. Our experienced personnel can even help you with shipping documentation, titles, liens and more.",
     },
     {
-      Link: "#",
+      Link: "/queries/Allowedgoodsservices",
       Img: Electronic,
       Heading: "Electronics",
       description:
-        "Escrow.com handles the buying and selling large scale computer setups, professional sound systems and all manner of electronic equipment both big and small.",
+        "TrustBridge handles the buying and selling large scale computer setups, professional sound systems and all manner of electronic equipment both big and small.",
     },
     {
-      Link: "#",
+      Link: "/queries/Allowedgoodsservices",
       Img: Merchandise,
       Heading: "General Merchandise",
       description:
-        "From computer hardware to luxury goods, you can safely and easily buy and sell merchandise all over the world with the protection of Escrow.com.",
+        "From computer hardware to luxury goods, you can safely and easily buy and sell merchandise all over the world with the protection of TrustBridge.",
     },
     {
-      Link: "#",
+      Link: "/queries/Allowedgoodsservices",
       Img: Milestone,
       Heading: "Milestone Transactions",
       description:
         "Paying for a good or service and want money released only at certain stages? Use Escrow to assure that money is released only when you're happy with each step.",
     },
     {
-      Link: "#",
+      Link: "/queries/Allowedgoodsservices",
       Img: Item,
       Heading: "Jewelry, Watches, and Fashion",
       description:
-        "Buying and selling expensive jewelry online can be difficult, as it is extremely difficult to spot a scam. Escrow.com's simple 5-step process ensures money transfer and jewelry delivery with every sale.",
+        "Buying and selling expensive jewelry online can be difficult, as it is extremely difficult to spot a scam. TrustBridge's simple 5-step process ensures money transfer and jewelry delivery with every sale.",
     },
   ];
   return (
