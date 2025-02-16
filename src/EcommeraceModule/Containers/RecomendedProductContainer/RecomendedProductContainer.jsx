@@ -8,25 +8,10 @@ function RecomendedProductContainer({ spData = [] }) {
 
   return (
     <>
-      <Box display={"flex"} sx={{ width: "100%", height: "100%" }}>
+      <Box display={"flex"} sx={{ width: "100%", height: "100%",m : "1rem" }}>
         <Box></Box>
         <Box>
           <Grid container spacing={2}>
-            <Grid item size={{ xs: 12, sm: 6, md: 3 }}>
-              {typeof spData[0] === "string" && (
-                <img
-                  src={spData[0]}
-                  alt="Banner"
-                  style={{
-                    width: "200px",
-                    height: "300px",
-                    margin: "0 1rem 0 1rem",
-                    borderRadius: "12px",
-                  }}
-                />
-              )}
-            </Grid>
-
             {products.map((product) => (
               <Grid item size={{ xs: 12, sm: 6, md: 3 }} key={product.id}>
                 <ProductCard
@@ -41,6 +26,20 @@ function RecomendedProductContainer({ spData = [] }) {
                 />
               </Grid>
             ))}
+            <Grid item size={{ xs: 12, sm: 6, md: 3 }}>
+              {typeof spData[0] === "string" && (
+                <img
+                  src={spData[0]}
+                  alt="Banner"
+                  style={{
+                    width: "100%",
+                    height: "420px",
+                    // margin: "0 1rem 0 1rem",
+                    borderRadius: "12px",
+                  }}
+                />
+              )}
+            </Grid>
           </Grid>
         </Box>
       </Box>

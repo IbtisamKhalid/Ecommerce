@@ -20,7 +20,7 @@ function RecomendedSpeakers() {
       heading: "Olympus pen, EZ lens",
       subHeading: "Sony",
       stars: 5,
-      price: "$200",
+      price: "200",
       imageonHover: cameraHovered,
     },
     {
@@ -29,7 +29,7 @@ function RecomendedSpeakers() {
       heading: "Headphones from Havells",
       subHeading: "Havells",
       stars: 5,
-      price: "$200",
+      price: "200",
       imageonHover: headphonehover,
     },
     {
@@ -38,7 +38,7 @@ function RecomendedSpeakers() {
       heading: "Portable Speakers",
       subHeading: "Bajaj",
       stars: 5,
-      price: "$200",
+      price: "200",
       imageonHover: speakerhover,
     },
   ];

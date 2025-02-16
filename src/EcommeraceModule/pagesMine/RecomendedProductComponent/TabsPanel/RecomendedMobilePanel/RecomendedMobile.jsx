@@ -11,16 +11,17 @@ import speakerhover from "../../../../StoreAssets/img/speakerhover.jpg";
 import tabhover from "../../../../StoreAssets/images/tab1.jpg";
 import watchhover from "../../../../StoreAssets/img/watchhovered.jpg";
 import RP3 from "../../../../StoreAssets/img/RP3.jpg";
+import RP1 from "../../../../StoreAssets/img/RP1.jpg";
 function RecomendedMobile() {
   const products = [
-    RP3,
+    RP1,
     {
       id: 1,
       image: camera,
       heading: "Olympus pen, EZ lens",
       subHeading: "Sony",
       stars: 5,
-      price: "$200",
+      price: "200",
       imageonHover: cameraHovered,
     },
     {
@@ -29,7 +30,7 @@ function RecomendedMobile() {
       heading: "Headphones from Havells",
       subHeading: "Havells",
       stars: 5,
-      price: "$200",
+      price: "200",
       imageonHover: headphonehover,
     },
     {
@@ -38,7 +39,7 @@ function RecomendedMobile() {
       heading: "Portable Speakers",
       subHeading: "Bajaj",
       stars: 5,
-      price: "$200",
+      price: "200",
       imageonHover: speakerhover,
     },
   ];

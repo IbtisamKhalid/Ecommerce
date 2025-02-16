@@ -12,7 +12,7 @@ function ProductSearchContainer() {
   const at800 = useMediaQuery("(max-width: 820px)");
   const isMobile = useMediaQuery("(max-width:670px)");
 
-  const itemsPerPage = 15;
+  const itemsPerPage = 20;
   const [currentPage, setCurrentPage] = useState(1);
   const [sortOption, setSortOption] = useState("featured");
   const [selectedTags, setSelectedTags] = useState([]);
@@ -22,7 +22,8 @@ function ProductSearchContainer() {
 
   const allTags = [...new Set(products.flatMap((product) => product.tags))];
   const allBrands = [...new Set(products.map((product) => product.brand))];
-
+  console.log("Tags are", allTags);
+  console.log("brands are:", allBrands);
   // Handle sorting logic
   const sortProducts = (products, option) => {
     switch (option) {
@@ -46,15 +47,17 @@ function ProductSearchContainer() {
 
   if (selectedTags.length > 0) {
     filteredProducts = filteredProducts.filter((product) =>
-      selectedTags.every((tag) => product.tags.includes(tag))
+      product.tags.some((tag) => selectedTags.includes(tag))
     );
   }
+  
 
   if (selectedBrands.length > 0) {
     filteredProducts = filteredProducts.filter((product) =>
-      selectedBrands.includes(product.brand)
+      selectedBrands.some((brand) => product.brand.trim().toLowerCase() === brand.trim().toLowerCase())
     );
   }
+  
 
   if (priceRange.from !== "" || priceRange.to !== "") {
     filteredProducts = filteredProducts.filter((product) => {

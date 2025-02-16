@@ -45,7 +45,6 @@ function TabsPanel({ tabsName = [], tableName, status }) {
     <RecomendedCamera />,
     <RecomendedMobile />,
     <RecomendedHeadphones />,
-    <RecomendedSpeakers />,
   ];
 
   const tabImg = [Watch, Speaker, Mobile, Laptop];
@@ -74,10 +73,6 @@ function TabsPanel({ tabsName = [], tableName, status }) {
             display: "flex",
             flexDirection: at1000 ? "column" : "row",
             borderRadius: "8px",
-            // width: "100%",
-            // height: "100%",
-            // minHeight: "400px",
-            // pt:""
           }}
         >
           {/* Tabs */}
@@ -89,7 +84,7 @@ function TabsPanel({ tabsName = [], tableName, status }) {
             sx={{
               borderRadius: "20px",
               bgcolor: "white",
-              alignItems: "flex-start", // Ensure tabs are left-aligned
+              // alignItems:at1000 ? "center" : "flex-start", // Ensure tabs are left-aligned
               boxShadow: "0 0 1px rgba(0, 0, 0, 0.3)",
             }}
             TabIndicatorProps={{
@@ -112,8 +107,8 @@ function TabsPanel({ tabsName = [], tableName, status }) {
                       textAlign: "left",
                       p: "0.5rem 1rem 0.5rem 0.5rem", // Reduce extra padding
                       whiteSpace: "nowrap", // Prevents text from breaking into two lines
-                      // overflow: "hidden",
-                      textOverflow: "ellipsis", // Add ellipsis if text overflows
+                      // textOverflow: "ellipsis", // Add ellipsis if text overflows
+
                     }}
                   >
                     <img
@@ -156,7 +151,7 @@ function TabsPanel({ tabsName = [], tableName, status }) {
           {/* Tab Content */}
           <Box
             sx={{
-              flexGrow: 1,
+              // flexGrow: 1,
               // padding: "0.6rem", // Add padding to the content
             }}
           >

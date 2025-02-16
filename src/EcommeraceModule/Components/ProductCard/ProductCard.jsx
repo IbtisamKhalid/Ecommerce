@@ -151,8 +151,9 @@ const ProductCard = ({
           alt="Product"
           style={{
             width: width || "100%",
+            height: "200px", // Fixed height for all images
+            objectFit: "contain", // Ensures images fit within the space without distortion
             borderRadius: "10px",
-            height:"100%"
           }}
         />
       </Box>
@@ -164,10 +165,19 @@ const ProductCard = ({
           {brand}
         </Typography>
         <Typography
-          sx={{ color: C.colorFeaturedCollectionHeading, fontWeight: "550" }}
+          sx={{
+            color: C.colorFeaturedCollectionHeading,
+            fontWeight: "550",
+            height: "50px", // Fixed height to keep uniformity
+            overflow: "hidden",
+            display: "-webkit-box",
+            WebkitLineClamp: 2, // Show 2 lines max, add "..."
+            WebkitBoxOrient: "vertical",
+          }}
         >
           {heading}
         </Typography>
+
         <ReactStars
           count={5}
           value={stars || 4}

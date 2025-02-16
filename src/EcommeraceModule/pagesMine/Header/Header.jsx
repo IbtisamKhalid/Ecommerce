@@ -24,7 +24,7 @@ import {
 import React, { useState } from "react";
 import { BsSearch } from "react-icons/bs";
 import { styled } from "@mui/material/styles";
-import { NavLink, Link } from "react-router-dom";
+import { NavLink, Link, useNavigate } from "react-router-dom";
 import useMediaQuery from "@mui/material/useMediaQuery";
 
 const Search = styled("div")(({ theme }) => ({
@@ -60,7 +60,7 @@ function Header() {
   const isMediumScreen = useMediaQuery("(max-width:1000px)");
   const isSmallScreen = useMediaQuery("(max-width:820px)");
   const isExtraSmallScreen = useMediaQuery("(max-width:475px)");
-
+  const navigate = useNavigate()
   const toggleDrawer = (open) => (event) => {
     if (
       event.type === "keydown" &&
@@ -155,7 +155,7 @@ function Header() {
                 placeholder="Search Product Here..."
                 aria-label="search"
               />
-              <SearchIconWrapper>
+              <SearchIconWrapper onClick={()=>{navigate("/store/search")}}>
                 <BsSearch size={30} />
               </SearchIconWrapper>
             </Search>
