@@ -7,7 +7,7 @@ import AllIcon from '@mui/icons-material/AllInbox';
 import CompletedIcon from '@mui/icons-material/CheckCircle';
 import OngoingIcon from '@mui/icons-material/Loop';
 import CancelledIcon from '@mui/icons-material/Cancel';
-function TabsPanel({ tabsName = [], tableName, status, }) {
+function TabsPanel({ tabsName = [], tableName, status, forPayment = false }) {
   const { value, handleTabChange, handleDataGridRendered } = useTabsPanel();
 
   const isSmallScreen = useMediaQuery("(max-width:450px)"); // Check if screen width is <= 650px
@@ -59,6 +59,7 @@ function TabsPanel({ tabsName = [], tableName, status, }) {
             tableName={tableName}
             status={status[value]}
             onRendered={handleDataGridRendered} // Passing callback for reset loading
+            forPayment={forPayment}
           />
         </CustomTabsPanel>
       )}

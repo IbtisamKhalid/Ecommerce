@@ -21,7 +21,7 @@ const EscrowPayments = () => {
       <Typography variant="h4" sx={{ fontWeight: 600, mb: 2 ,color:Colors.secondary,font:Fonts.secondaryFont}}>
         My Payments
       </Typography>
-      <TabsPanel tabsName={Tabs} tableName="this Table" status={Tabs} />
+      <TabsPanel tabsName={Tabs} tableName="this Table" status={Tabs}forPayment={true} />
     </Box>
   </Box>
   );
