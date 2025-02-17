@@ -22,9 +22,9 @@ export default function LoggedInNavBar({
   navColor,
   children,
   padd,
-  isAdmin,
+  isAdmin
 }) {
-  const { mobileOpen, handleDrawerToggle, userNavbarLinks } = useNavBar({isAdmin});
+  const { mobileOpen, handleDrawerToggle, userNavbarLinks } = useNavBar();
   const drawer = (
     <Box
       onClick={handleDrawerToggle}
@@ -95,16 +95,66 @@ export default function LoggedInNavBar({
           sx={{
             width: "100%",
             display: "flex",
-            justifyContent: "flex-end",
+            justifyContent: "space-between",
             alignItems: "center",
             "@media (max-width:910px)": {
               justifyContent: isAdmin ? "space-between" : "flex-end",
             },
           }}
         >
-          {isAdmin && children}
-            {isAdmin && 
-            (<Box
+          {!isAdmin && children}
+          {/* {isAdmin && (
+            <Box>
+              <Typography
+                  component={Link}
+                  to={"/Admindashboard"}
+                  sx={{
+                    textDecoration: "none",
+                    color: "white",
+                    "&:hover": { color: "green" },
+                    paddingRight: "0.5rem",
+                    fontFamily: Fonts.primaryFont,
+                    // fontWeight:550,
+                    fontSize: "16px",
+                  }}
+                >
+                  Dashboard                  
+                </Typography>
+              <Typography
+                  component={Link}
+                  to={"/Admindashboard/dispute"}
+                  sx={{
+                    textDecoration: "none",
+                    color: "white",
+                    "&:hover": { color: "green" },
+                    paddingRight: "0.5rem",
+                    fontFamily: Fonts.primaryFont,
+                    // fontWeight:550,
+                    fontSize: "16px",
+                  }}
+                >
+                  Dispute                  
+                </Typography>
+              <Typography
+                  component={Link}
+                  to={"/Admindashboard/AdminGuidance"}
+                  sx={{
+                    textDecoration: "none",
+                    color: "white",
+                    "&:hover": { color: "green" },
+                    paddingRight: "0.5rem",
+                    fontFamily: Fonts.primaryFont,
+                    // fontWeight:550,
+                    fontSize: "16px",
+                  }}
+                >
+                  FAQ's                  
+                </Typography>
+            </Box>
+          )} */}
+          
+          {!isAdmin && (
+            <Box
               sx={{
                 display: { xs: "none", md: "flex" },
                 "@media (max-width:910px)": { display: "none" },
@@ -130,9 +180,8 @@ export default function LoggedInNavBar({
                   {item.name}
                 </Typography>
               ))}
-            </Box>)
-            }
-          
+            </Box>
+          )}
           <Box display={"flex"}>
             {!isAdmin && (
               <GetStartedButton

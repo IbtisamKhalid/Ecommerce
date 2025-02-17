@@ -34,9 +34,8 @@ function HomeEscrow() {
       <Box
         p={{ xs: "0 1.5rem", sm: "0 3rem", md: "0 6rem", lg: "0 8rem" }}
         sx={{
-          borderBottom: `0.5px solid rgb(185, 194, 196)`,
           justifyContent: "center",
-          mb:"2rem"
+          mb:"2rem",
         }}
       >
         <EscrowProducts />

@@ -15,9 +15,11 @@ import ForgotPassword from "./ForgotPassword";
 import { GoogleIcon, FacebookIcon } from "./CustomIcons";
 import useSignIn from "./hooks/useSignIn";
 import { useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 
 
 export default function SignInCard() {
+  
   const {
     open,
     emailError,
@@ -121,17 +123,7 @@ export default function SignInCard() {
         >
           Sign in
         </Button>
-        <Typography sx={{ textAlign: "center" }}>
-          Don&apos;t have an account?{" "}
-          <Link
-            component="button"
-            onClick={() => console.log("Redirecting to Sign Up")}
-            variant="body2"
-            sx={{ alignSelf: "center" }}
-          >
-            Sign up
-          </Link>
-        </Typography>
+        
       </Box>
       <Divider>or</Divider>
       <Box
@@ -142,7 +134,18 @@ export default function SignInCard() {
           alignItems: "center",
         }}
       >
-        <Button
+        <Typography sx={{ textAlign: "center" }}>
+          Don&apos;t have an account?{" "}
+          <Link
+            component="button"
+            onClick={() => navigate('/signup')}
+            variant="body2"
+            sx={{ alignSelf: "center" }}
+          >
+            Sign up
+          </Link>
+        </Typography>
+        {/* <Button
           component={Link}
           fullWidth
           variant="outlined"
@@ -158,7 +161,7 @@ export default function SignInCard() {
           startIcon={<FacebookIcon />}
         >
           Sign in with Facebook
-        </Button>
+        </Button> */}
       </Box>
     </Card>
   );

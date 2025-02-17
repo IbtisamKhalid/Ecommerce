@@ -9,12 +9,13 @@ import {
   Stepper,
   Step,
   StepLabel,
-  Typography,
   Box,
   CircularProgress,
+  Typography,
+  Grid,
+  Paper
 } from "@mui/material";
-import { CreditCard, LocalShipping, CheckCircle } from "@mui/icons-material";
-import { Colors,Fonts } from "../../../../../../Theme/Theme";
+import { CheckCircle } from "@mui/icons-material"; // Import CheckCircle
 
 const PaymentContainer = ({ open, onClose }) => {
   const [activeStep, setActiveStep] = useState(0);
@@ -29,31 +30,32 @@ const PaymentContainer = ({ open, onClose }) => {
     expiryDate: "",
     cvv: "",
   });
-  const [errors, setErrors] = useState({});
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
 
   const steps = ["Shipping Address", "Credit Card Details", "Confirm Payment"];
 
-  const validateFields = () => {
-    const newErrors = {};
-    if (activeStep === 0) {
-      if (!shippingAddress.name) newErrors.name = "Name is required";
-      if (!shippingAddress.address) newErrors.address = "Address is required";
-      if (!shippingAddress.city) newErrors.city = "City is required";
-      if (!shippingAddress.state) newErrors.state = "State is required";
-      if (!shippingAddress.zip) newErrors.zip = "ZIP code is required";
-    } else if (activeStep === 1) {
-      if (!creditCardDetails.cardNumber) newErrors.cardNumber = "Card number is required";
-      if (!creditCardDetails.expiryDate) newErrors.expiryDate = "Expiry date is required";
-      if (!creditCardDetails.cvv) newErrors.cvv = "CVV is required";
+  const handleCardInput = (e) => {
+    let value = e.target.value.replace(/\D/g, "");
+    value = value.slice(0, 16).replace(/(\d{4})/g, "$1 ").trim();
+    setCreditCardDetails({ ...creditCardDetails, cardNumber: value });
+  };
+
+  const handleExpiryInput = (e) => {
+    let value = e.target.value.replace(/\D/g, "");
+    value = value.slice(0, 4);
+    if (value.length > 2) {
+      value = value.slice(0, 2) + "/" + value.slice(2);
     }
-    setErrors(newErrors);
-    return Object.keys(newErrors).length === 0;
+    setCreditCardDetails({ ...creditCardDetails, expiryDate: value });
+  };
+
+  const handleCVVInput = (e) => {
+    let value = e.target.value.replace(/\D/g, "");
+    setCreditCardDetails({ ...creditCardDetails, cvv: value.slice(0, 3) });
   };
 
   const handleNext = () => {
-    if (!validateFields()) return;
     setActiveStep((prevStep) => prevStep + 1);
   };
 
@@ -63,191 +65,146 @@ const PaymentContainer = ({ open, onClose }) => {
 
   const handleSubmit = () => {
     setLoading(true);
+    // Simulate payment processing
     setTimeout(() => {
       setLoading(false);
       setSuccess(true);
-      setTimeout(() => {
-        setSuccess(false);
-        onClose();
-      }, 2000);
-    }, 2000);
+      onClose(); // Close the dialog after success
+    }, 5000);
+  };
+
+  const handleShippingAddressChange = (e) => {
+    const { name, value } = e.target;
+    setShippingAddress((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
   };
 
   return (
-    <Dialog
-      open={open}
-      onClose={onClose}
-      maxWidth="sm"
-      fullWidth
-      PaperProps={{
-        sx: {
-          borderRadius: "6px",
-          height:"90vh"
-        },
-      }}
-    >
-      <DialogTitle
-        sx={{
-          textAlign: "center",
-          bgcolor: "rgb(3, 116, 186)",
-          py: 1,
-          borderBottom: "1px solid #e0e0e0",
-        }}
-      >
-        <Typography variant="h5" fontWeight="bold" color={"white"}>
-          Payment Details
-        </Typography>
-      </DialogTitle>
-      <DialogContent
-        sx={{
-          py: 4,
-          mt: 2,
-          // maxHeight: "calc(80vh - 150px)", // Adjust height to fit content
-          overflowY: "auto",
-          "&::-webkit-scrollbar": {
-            width: "8px",
-          },
-          "&::-webkit-scrollbar-thumb": {
-            backgroundColor: "#1976d2",
-            borderRadius: "4px",
-          },
-          "&::-webkit-scrollbar-track": {
-            backgroundColor: "#f5f5f5",
-          },
-        }}
-      >
-        <Stepper activeStep={activeStep} alternativeLabel sx={{ mb: 4 }}>
+    <Dialog open={open} onClose={onClose} maxWidth="sm" fullWidth>
+      <DialogTitle>Payment Details</DialogTitle>
+      <DialogContent>
+        <Stepper activeStep={activeStep} alternativeLabel>
           {steps.map((label) => (
             <Step key={label}>
               <StepLabel>{label}</StepLabel>
             </Step>
           ))}
         </Stepper>
-
-        {!loading && !success && (
-          <Box>
-            {activeStep === 0 && (
-              <Box>
-                <Typography variant="h6" fontWeight="bold" sx={{ mb: 3, display: "flex", alignItems: "center" }}>
-                  <LocalShipping sx={{ mr: 1, color: "#1976d2" }} />
-                  Shipping Address
-                </Typography>
-                {Object.keys(shippingAddress).map((field) => (
-                  <TextField
-                    key={field}
-                    label={field.charAt(0).toUpperCase() + field.slice(1)}
-                    fullWidth
-                    margin="normal"
-                    value={shippingAddress[field]}
-                    onChange={(e) => setShippingAddress({ ...shippingAddress, [field]: e.target.value })}
-                    error={!!errors[field]}
-                    helperText={errors[field]}
-                    sx={{
-                      mb: 2,
-                      "& .MuiOutlinedInput-root": {
-                        borderRadius: "8px",
-                        "&.Mui-focused fieldset": {
-                          borderColor: "#1976d2",
-                          boxShadow: "0 0 0 2px rgba(25, 118, 210, 0.2)",
-                        },
-                      },
-                    }}
-                  />
-                ))}
-              </Box>
-            )}
-
-            {activeStep === 1 && (
-              <Box>
-                <Typography variant="h6" fontWeight="bold" sx={{ mb: 3, display: "flex", alignItems: "center" }}>
-                  <CreditCard sx={{ mr: 1, color: "#1976d2" }} />
-                  Credit Card Details
-                </Typography>
-                {Object.keys(creditCardDetails).map((field) => (
-                  <TextField
-                    key={field}
-                    label={field.charAt(0).toUpperCase() + field.slice(1)}
-                    fullWidth
-                    margin="normal"
-                    value={creditCardDetails[field]}
-                    onChange={(e) => setCreditCardDetails({ ...creditCardDetails, [field]: e.target.value })}
-                    error={!!errors[field]}
-                    helperText={errors[field]}
-                    sx={{
-                      mb: 2,
-                      "& .MuiOutlinedInput-root": {
-                        borderRadius: "8px",
-                        "&.Mui-focused fieldset": {
-                          borderColor: "#1976d2",
-                          boxShadow: "0 0 0 2px rgba(25, 118, 210, 0.2)",
-                        },
-                      },
-                    }}
-                  />
-                ))}
-              </Box>
-            )}
-          </Box>
-        )}
-
-        {loading && (
-          <Box display="flex" justifyContent="center" alignItems="center" height="100px">
-            <CircularProgress />
-          </Box>
-        )}
-
-        {success && (
-          <Box display="flex" flexDirection="column" alignItems="center" justifyContent="center" height="100px">
-            <CheckCircle sx={{ fontSize: 60, color: "green" }} />
-            <Typography variant="h6" sx={{ mt: 2, color: "green" }}>
-              Payment Successful!
-            </Typography>
-          </Box>
-        )}
+        <Box>
+          {activeStep === 0 && !loading && (
+            <Box>
+              <TextField
+                label="Name"
+                placeholder="John Doe"
+                fullWidth
+                margin="normal"
+                name="name"
+                value={shippingAddress.name}
+                onChange={handleShippingAddressChange}
+              />
+              <TextField
+                label="Address"
+                placeholder="123 Main St"
+                fullWidth
+                margin="normal"
+                name="address"
+                value={shippingAddress.address}
+                onChange={handleShippingAddressChange}
+              />
+              <TextField
+                label="City"
+                placeholder="New York"
+                fullWidth
+                margin="normal"
+                name="city"
+                value={shippingAddress.city}
+                onChange={handleShippingAddressChange}
+              />
+              <TextField
+                label="ZIP"
+                placeholder="10001"
+                fullWidth
+                margin="normal"
+                name="zip"
+                value={shippingAddress.zip}
+                onChange={handleShippingAddressChange}
+              />
+            </Box>
+          )}
+          {activeStep === 1 && !loading && (
+            <Box>
+              <TextField
+                label="Card Number"
+                placeholder="1234 5678 9012 3456"
+                fullWidth
+                margin="normal"
+                value={creditCardDetails.cardNumber}
+                onChange={handleCardInput}
+              />
+              <TextField
+                label="Expiry Date"
+                placeholder="MM/YY"
+                fullWidth
+                margin="normal"
+                value={creditCardDetails.expiryDate}
+                onChange={handleExpiryInput}
+              />
+              <TextField
+                label="CVV"
+                placeholder="123"
+                fullWidth
+                margin="normal"
+                value={creditCardDetails.cvv}
+                onChange={handleCVVInput}
+              />
+            </Box>
+          )}
+          {activeStep === 2 && !loading && !success && (
+            <Box>
+              <Typography variant="h6" sx={{ mb: 2 }}>
+                Review your payment details
+              </Typography>
+              <Grid container spacing={2}>
+                <Grid item xs={12} md={6}>
+                  <Paper sx={{ p: 2 }}>
+                    <Typography variant="body1"><strong>Name:</strong> {shippingAddress.name}</Typography>
+                    <Typography variant="body1"><strong>Address:</strong> {shippingAddress.address}</Typography>
+                    <Typography variant="body1"><strong>City:</strong> {shippingAddress.city}</Typography>
+                    <Typography variant="body1"><strong>ZIP:</strong> {shippingAddress.zip}</Typography>
+                  </Paper>
+                </Grid>
+                <Grid item xs={12} md={6}>
+                  <Paper sx={{ p: 2 }}>
+                    <Typography variant="body1"><strong>Card Number:</strong> {creditCardDetails.cardNumber}</Typography>
+                    <Typography variant="body1"><strong>Expiry Date:</strong> {creditCardDetails.expiryDate}</Typography>
+                  </Paper>
+                </Grid>
+              </Grid>
+            </Box>
+          )}
+        </Box>
       </DialogContent>
       {!loading && !success && (
-        <DialogActions
-          sx={{
-            px: 3,
-            py: 0.5,
-            bgcolor: "rgb(3, 116, 186)",
-            borderTop: "1px solid #e0e0e0",
-          }}
-        >
-          <Button
-            onClick={handleBack}
-            disabled={activeStep === 0}
-            sx={{
-              color: "white",
-              fontWeight: "bold",
-              borderRadius: "8px",
-              px: 5,
-              // py: 1,
-              // bgcolor: "rgb(34, 92, 171)",
-              "&:hover": {
-                bgcolor: "#e3f2fd",
-              },
-            }}
-          >
+        <DialogActions sx={{ justifyContent: "space-between", px: 3, py: 2 }}>
+          <Button onClick={handleBack} disabled={activeStep === 0} variant="outlined" sx={{ px: 4 }}>
             Back
           </Button>
-          <Button
-            onClick={activeStep === steps.length - 1 ? handleSubmit : handleNext}
-            variant="contained"
-            sx={{
-              bgcolor: "#1976d2",
-              color: "#fff",
-              fontWeight: "bold",
-              borderRadius: "8px",
-              px: 5,
-              // py: 1,
-              "&:hover": {
-                bgcolor: "#1565c0",
-              },
-            }}
-          >
+          <Button onClick={activeStep === steps.length - 1 ? handleSubmit : handleNext} variant="contained" sx={{ px: 4 }}>
             {activeStep === steps.length - 1 ? "Pay Now" : "Next"}
           </Button>
+        </DialogActions>
+      )}
+      {loading && (
+        <DialogActions sx={{ justifyContent: "center", py: 2 }}>
+          <CircularProgress size={60} sx={{ color: "green" }} />
+        </DialogActions>
+      )}
+      {success && (
+        <DialogActions sx={{ justifyContent: "center", py: 2 }}>
+          <CheckCircle color="success" sx={{ fontSize: 50 }} />
+          <Typography variant="h6">Payment Successful!</Typography>
         </DialogActions>
       )}
     </Dialog>

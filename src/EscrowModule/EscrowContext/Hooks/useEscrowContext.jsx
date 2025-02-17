@@ -1,5 +1,5 @@
 /* eslint-disable react-refresh/only-export-components */
-import { useState, useContext } from "react";
+import { useState, useContext,useEffect } from "react";
 import { createContext } from "react";
 
 export const EscrowHistoryContext = createContext();
@@ -14,7 +14,6 @@ export const useDisputeHistory = () => {
 // Create contexts
 
 function useEscrowContext() {
-  const [user, setUser] = useState([]);
   const [escrowHistory, setEscrowHistory] = useState(
     [
     {
@@ -208,7 +207,27 @@ function useEscrowContext() {
     },
   ]
 );
-  const [isUserLoggedIn, setIsUserLoggedIn] = useState(false);
+
+// Retrieve data from localStorage on initial load
+const storedUser = JSON.parse(localStorage.getItem("user"));
+const storedIsUserLoggedIn = JSON.parse(localStorage.getItem("isUserLoggedIn"));
+
+const [user, setUser] = useState(storedUser || []);
+const [isUserLoggedIn, setIsUserLoggedIn] = useState(storedIsUserLoggedIn || false);
+
+useEffect(() => {
+  // If the user is logged in, store them in localStorage
+  if (isUserLoggedIn && user) {
+    localStorage.setItem("isUserLoggedIn", JSON.stringify(true));
+    localStorage.setItem("user", JSON.stringify(user));
+  } else {
+    localStorage.removeItem("isUserLoggedIn");
+    localStorage.removeItem("user");
+  }
+}, [isUserLoggedIn, user]);
+
+
+
 
   // Add a new escrow transaction
   const addEscrowTransaction = (newTransaction) => {

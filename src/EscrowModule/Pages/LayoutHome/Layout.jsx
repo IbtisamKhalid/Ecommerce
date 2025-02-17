@@ -5,7 +5,7 @@ import Header from "../Header/Header";
 import Footer from "../Footer/Footer";
 import { Box } from "@mui/material";
 
-function LayoutEscrow() {
+function LayoutEscrow({isHome=true}) {
   // const
 
   return (
@@ -13,7 +13,7 @@ function LayoutEscrow() {
       <Box>
         <Header />
         <Outlet />
-        <Footer />
+        <Footer isHome={isHome} />
       </Box>
     </>
   );

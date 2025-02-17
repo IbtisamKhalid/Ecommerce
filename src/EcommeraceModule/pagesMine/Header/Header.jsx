@@ -21,11 +21,14 @@ import {
   ShoppingCart as ShoppingCartIcon,
   AccountCircle as AccountCircleIcon,
 } from "@mui/icons-material";
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { BsSearch } from "react-icons/bs";
 import { styled } from "@mui/material/styles";
 import { NavLink, Link, useNavigate } from "react-router-dom";
 import useMediaQuery from "@mui/material/useMediaQuery";
+import AccountAvatar from "../../../EscrowModule/Components/AccountAvatar/AccountAvatar";
+import { IsUserLoggedIn } from "../../../EscrowModule/EscrowContext/Hooks/useEscrowContext";
+import atTopLogo from "../../StoreAssets/TBWhiteGreenLogo.svg"
 
 const Search = styled("div")(({ theme }) => ({
   position: "relative",
@@ -60,7 +63,8 @@ function Header() {
   const isMediumScreen = useMediaQuery("(max-width:1000px)");
   const isSmallScreen = useMediaQuery("(max-width:820px)");
   const isExtraSmallScreen = useMediaQuery("(max-width:475px)");
-  const navigate = useNavigate()
+  const { isUserLoggedIn } = useContext(IsUserLoggedIn);
+  const navigate = useNavigate();
   const toggleDrawer = (open) => (event) => {
     if (
       event.type === "keydown" &&
@@ -98,11 +102,11 @@ function Header() {
             color="white"
             sx={{ textDecoration: "none" }}
           >
-            MY Store
+            <img src={atTopLogo} alt="" style={{height:"45px"}} />
           </Typography>
           {!isExtraSmallScreen && (
             <Box sx={{ display: "flex", gap: 2 }}>
-              {["Home", "Products", "Escrow", "Contact"].map((item) => (
+              {["Home", "Product", "Escrow", "Contact"].map((item) => (
                 <Button
                   color="inherit"
                   component={NavLink}
@@ -155,7 +159,11 @@ function Header() {
                 placeholder="Search Product Here..."
                 aria-label="search"
               />
-              <SearchIconWrapper onClick={()=>{navigate("/store/search")}}>
+              <SearchIconWrapper
+                onClick={() => {
+                  navigate("/store/search");
+                }}
+              >
                 <BsSearch size={30} />
               </SearchIconWrapper>
             </Search>
@@ -186,13 +194,19 @@ function Header() {
                   link: "/store/cart",
                   badge: 1,
                 },
-                {
-                  icon: <AccountCircleIcon />,
-                  text: "Account",
-                  link: "/store/account",
-                },
-              ].map(({ icon, text, link, badge }) => (
-                <Tooltip title={text} key={text}>
+                isUserLoggedIn
+                  ? {
+                      icon: <AccountAvatar />,
+                      text: "", // No extra text for AccountAvatar
+                      link: "",
+                    }
+                  : {
+                      icon: <AccountCircleIcon />,
+                      text: "Login",
+                      link: "/Signin",
+                    },
+              ].map(({ icon, text, link, badge }, index) => (
+                <Tooltip title={text} key={index}>
                   <IconButton color="inherit" component={Link} to={link}>
                     {badge ? (
                       <Badge badgeContent={badge} color="error">
@@ -201,11 +215,12 @@ function Header() {
                     ) : (
                       icon
                     )}
-                    {!isMediumScreen && (
-                      <Typography variant="body2" sx={{ marginLeft: 1 }}>
-                        {text}
-                      </Typography>
-                    )}
+                    {!isMediumScreen &&
+                      text && ( // Only show text if there is any
+                        <Typography variant="body2" sx={{ marginLeft: 1 }}>
+                          {text}
+                        </Typography>
+                      )}
                   </IconButton>
                 </Tooltip>
               ))}

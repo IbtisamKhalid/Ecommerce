@@ -35,9 +35,18 @@ function AccountAvatar() {
     setAnchorEl(null);
   };
   const handleLogout = () => {
-    navigate("/SignIn");
+    // Remove data from localStorage
+    localStorage.removeItem("authToken");
+    localStorage.removeItem("user");
+    localStorage.removeItem("isUserLoggedIn");
+  
+    // Update the context
     setIsUserLoggedIn(false);
+    setUser([]);
+    
+    navigate("/SignIn");
   };
+  
   const navigate = useNavigate()
 
   return (

@@ -7,7 +7,7 @@ import { Box, Divider, useMediaQuery } from "@mui/material";
 import { SideBar } from "../../Components";
 Divider;
 
-function Layout() {
+function Layout({isHome}) {
   const at850 = useMediaQuery("(min-width:850px)");
   return (
     <>
@@ -35,7 +35,7 @@ function Layout() {
             </Box>
           )}
         </Box>
-        <Footer />
+        <Footer isHome={isHome} />
       </Box>
     </>
   );

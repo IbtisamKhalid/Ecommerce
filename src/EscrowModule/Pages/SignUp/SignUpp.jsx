@@ -137,14 +137,14 @@ export default function SignUp({ isEscrow }) {
             <Typography sx={{ color: "text.secondary" }}>or</Typography>
           </Divider>
           <Box sx={{ display: "flex", flexDirection: "column", gap: 2 }}>
-            <Button
+            {/* <Button
               fullWidth
               variant="outlined"
               // onClick={googleLogin} // Show Google login when clicked
               startIcon={<GoogleIcon />}
             >
               Sign up with Google
-            </Button>
+            </Button> */}
 
             {/* Google Login component is conditionally rendered */}
           

@@ -3,23 +3,29 @@ import {
   UserContext,
 } from "../../../../EscrowContext/Hooks/useEscrowContext";
 
-function useNavBar() {
+function useNavBar({isAdmin}) {
   const [mobileOpen, setMobileOpen] = React.useState(false);
   const handleDrawerToggle = () => {
     setMobileOpen((prevState) => !prevState);
   };
   const { user } = React.useContext(UserContext);
-
+console.log(user.role)
   const userNavbarLinks = [
-    ...(user.role != "Admin"
+    ...(!isAdmin
       ? [
           { name: "My Escrow", link: "/escrowdashboard" },
           { name: "Dispute", link: "/escrowdashboard/EscrowDisputes" },
           { name: "Payments", link: "/escrowdashboard/escrowpayments" },
           { name: "Help", link: "/SignIn" },
         ]
-      : [{ name: "Dispute", link: "/escrowdashboard/EscrowDisputes" }]),
+      : [
+        { name: "Dashboard", link: "/admindashboard" },
+        { name: "Dispute", link: "/admindashboard/dispute" },
+        { name: "FAQ's", link: "/admindashboard/Adminguidance" },
+
+      ]),
   ];
+  console.log(userNavbarLinks)
   return {
     mobileOpen,
     handleDrawerToggle,

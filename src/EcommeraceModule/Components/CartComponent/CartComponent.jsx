@@ -1,8 +1,22 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Box, Typography, Button, Divider, IconButton } from "@mui/material";
 import { Add, Remove, Delete } from "@mui/icons-material";
+import PaymentContainer from "../../../EscrowModule/Pages/LoggedInPages/Details/ProceedToPaymentComponent/Payment/PaymenPageContainer/PaymentContainer";
+import { IsUserLoggedIn } from "../../../EscrowModule/EscrowContext/Hooks/useEscrowContext";
+
+import { useNavigate } from "react-router-dom";
 
 const CartComponent = ({ initialCartItems }) => {
+  const navigate = useNavigate();
+  const [dialogOpen, setDialogOpen] = useState(false);
+  const { isUserLoggedIn } = useContext(IsUserLoggedIn);
+  const handleOpenDialog = () => {
+    setDialogOpen(true);
+  };
+
+  const handleCloseDialog = () => {
+    setDialogOpen(false);
+  };
   const [cartItems, setCartItems] = useState(
     initialCartItems.map((item) => ({ ...item, quantity: 1 })) // Add quantity to each item
   );
@@ -165,9 +179,13 @@ const CartComponent = ({ initialCartItems }) => {
             color="primary"
             fullWidth
             sx={{ mt: 2, py: 1.5, fontWeight: "bold" }}
+            onClick={() => {
+              isUserLoggedIn ? handleOpenDialog : navigate("/signin");
+            }}
           >
             Proceed to Checkout
           </Button>
+          <PaymentContainer open={dialogOpen} onClose={handleCloseDialog} />
         </Box>
       </Box>
     </Box>

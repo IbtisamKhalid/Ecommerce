@@ -109,23 +109,23 @@ const MianLayout = () => {
       <Layout>
         <Header style={{ padding: "0.2rem 1.5rem 0.5rem 0.75rem" }}>
           <LoggedInNavBar
-                      title={false}
-                      navColor={"inherit"}
-                      padd={false}
-                      isAdmin={true}
-                    >
-                      <Button
-                        type="text"
-                        icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
-                        onClick={() => setCollapsed(!collapsed)}
-                        style={{
-                          fontSize: "16px",
-                          width: 64,
-                          height: 56,
-                          color: "white",
-                        }}
-                      />
-                    </LoggedInNavBar>
+            title={false}
+            navColor={"inherit"}
+            padd={false}
+            isAdmin={false}
+          >
+            <Button
+              type="text"
+              icon={collapsed ? <MenuUnfoldOutlined /> : <MenuFoldOutlined />}
+              onClick={() => setCollapsed(!collapsed)}
+              style={{
+                fontSize: "16px",
+                width: 64,
+                height: 56,
+                color: "white",
+              }}
+            />
+          </LoggedInNavBar>
           {/*  */}
         </Header>
         <Content

@@ -22,6 +22,7 @@ import {
   EscrowDisputes,
   EscrowPayments,
   MakeContracts,
+  LoggedInNavBar,
 } from "../../EscrowModule/Pages/LoggedInPages";
 
 import DisputeDetailsWrapper from "../../EscrowModule/Pages/LoggedInPages/Details/DetailsWrapper/DisputeDetailsWrapper/DisputeDetailsWrapper";
@@ -53,7 +54,6 @@ import {
 } from "../../Dashboard/SellerDashboard/SellerDashboardComponents/ExportSellerDashboardComponents";
 import {
   AdminDashboard,
-  AdminLayout,
 } from "../../Dashboard/AdminDashboard/SellerDashboardComponents/ExportAdminDashboardComponents";
 import UpdateDispute from "../../Dashboard/AdminDashboard/UpdateDispute/UpdateDispute";
 import {
@@ -66,10 +66,11 @@ import {
 import DisputeAdmin from "../../Dashboard/AdminDashboard/SellerDashboardComponents/Page/Dispute/DisputeAdmin";
 import DisputeSeller from "../../Dashboard/SellerDashboard/SellerDashboardComponents/Page/Dispute/DisputeSeller";
 import EscrowSeller from "../../Dashboard/SellerDashboard/SellerDashboardComponents/Page/Escrow/EscrowSeller";
+import AdminGuidance from "../../Dashboard/AdminDashboard/AdminGuidance/AdminGuidance";
 
 function Routes() {
   const { isUserLoggedIn } = useContext(IsUserLoggedIn);
-  const { user } = useContext(UserContext);
+  const { user, setUser } = useContext(UserContext);
 
   return (
     <>
@@ -78,17 +79,19 @@ function Routes() {
           {/* <Route path="*" element={<Home />} /> */}
           <Route path="/store" element={<LayoutStore />}>
             <Route index element={<HomeStore />} />
-            <Route path="products" element={<ProductPage />} />
+            <Route path="Products" element={<ProductPage />} />
             <Route path="cart" element={<CartContainer />} />
             <Route path="wishlist" element={<WishlistContainer />} />
-            <Route path="search" element={<ProductSearchContainer />} />
+            <Route path="product" element={<ProductSearchContainer />} />
             <Route path="compare" element={<ProductComparisonContainer />} />
           </Route>
           <Route path="*" element={<LayoutEscrow />}>
             <Route index element={<HomeEscrow />} />
           </Route>
-          <Route path="SignIn" element={<SignIn />} />
-          <Route path="SignUp" element={<SignUP />} />
+          <Route path="/" element={<LayoutEscrow isHome={false} />}>
+            <Route path="SignIn" element={<SignIn />} />
+            <Route path="SignUp" element={<SignUP />} />
+          </Route>
           {isUserLoggedIn && user.role == "Seller" && (
             <>
               <Route path="/dashboard" element={<MianLayout />}>
@@ -134,19 +137,18 @@ function Routes() {
 
           {isUserLoggedIn && user.role == "Admin" && (
             <>
-              <Route path="/Admindashboard" element={<AdminLayout />}>
+              <Route path="/Admindashboard" element={<LoggedInLayout isAdmin={true}/>}>
                 <Route index element={<AdminDashboard />} />
-                <Route path="orders" element={<Orders />} />
-                <Route path="product-list" element={<Productlist />} />
-                <Route path="product" element={<Addproduct />} />
                 <Route path="ProfileSetting" element={<ProfileSetting />} />
                 <Route path="dispute" element={<DisputeAdmin />} />
                 <Route path="updatedispute" element={<UpdateDispute />} />
+                <Route path="adminGuidance" element={<AdminGuidance />} />
+
               </Route>
             </>
           )}
 
-          <Route path="/queries" element={<Layout />}>
+          <Route path="/queries" element={<Layout isHome={true}/>}>
             <Route path="Escrow" element={<Escrow />} />
             <Route path="Benefits" element={<Benefits />} />
             <Route path="TrustBridge" element={<TrustBridge />} />
@@ -163,7 +165,6 @@ function Routes() {
             <Route path="Security" element={<Security />} />
           </Route>
 
-          {/* <Route path="/Contract" element={<MakeContracts />} /> */}
         </ReactRoutes>
       </BrowserRouter>
     </>

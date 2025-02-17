@@ -11,8 +11,10 @@ import {
   Cell,
 } from "recharts";
 import { Table } from "antd";
-import Orders from "./Orders";
 import { Typography, Card } from "@mui/material";
+import DisputeAdmin from "./Dispute/DisputeAdmin";
+
+
 
 // Dispute Table Columns
 const disputeColumns = [
@@ -79,14 +81,9 @@ const Dashboard = () => {
         </Card>
       </div>
 
-      {/* Dispute Table */}
-      <Card sx={{ p: 3, borderRadius: 2, boxShadow: 3, mb: 3 }}>
-        <Typography variant="h6" gutterBottom>Ongoing Disputes</Typography>
-        <Table columns={disputeColumns} dataSource={disputeData} pagination={{ pageSize: 5 }} bordered />
-      </Card>
+      
 
-      {/* Orders Component (Kept Unchanged) */}
-      <Orders />
+      <DisputeAdmin ongoing = {true}/>
     </div>
   );
 };

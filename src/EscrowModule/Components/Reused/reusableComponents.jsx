@@ -658,7 +658,7 @@ export const EscrowProducts = () => {
   ];
   return (
     <>
-      <Box sx={{ justifyItems: "center" }}>
+      <Box sx={{ justifyItems: "center", }}>
         <Typography
           variant="h4"
           sx={{
