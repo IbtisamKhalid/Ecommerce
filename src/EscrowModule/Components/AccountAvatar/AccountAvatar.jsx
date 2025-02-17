@@ -80,7 +80,7 @@ function AccountAvatar() {
             >
               {!user.profilePicture && user.name.charAt(0).toUpperCase()}
             </Avatar>
-            <Typography sx={{fontWeight:600, fontSize:"15px", color:"white"}}>
+            <Typography sx={{fontWeight:600, fontSize:"15px", color:"white",ml:0.5}}>
               {!user.profilePicture && user.name.toUpperCase()}
             </Typography>
 
@@ -216,11 +216,31 @@ function AccountAvatar() {
             </MenuItem>
           </Tooltip>
           }
+          {user.role == "Buyer" &&
+           <Tooltip title="DashBoard">
+            <MenuItem
+              onClick={() => navigate('/escrowdashboard') }
+              sx={{
+                p: "0.5rem 1.75rem",
+                color: "#0088FF",
+                fontWeight: "600",
+                fontFamily: Fonts.primaryFont,
+              }}
+            >
+              <ListItemIcon>
+                <PersonAdd fontSize="small" />
+              </ListItemIcon>
+              Dashboard
+            </MenuItem>
+          </Tooltip>
+          }
+          
+          {user.role != "Admin" && 
           <Tooltip title="Open Setting">
             <MenuItem
               onClick={handleClose}
               component={Link} // Add Link as the component
-              to="/loggedin/profilesetting" // Define the route
+              to={user.role == "Buyer" ? "/escrowdashboard/profilesetting":"/dashboard/profilesetting"} // Define the route
               sx={{
                 p: "0.5rem 1.8rem",
                 color: "#0088FF",
@@ -244,7 +264,7 @@ function AccountAvatar() {
               </ListItemIcon>
               Settings
             </MenuItem>
-          </Tooltip>
+          </Tooltip>}
           <Tooltip title="Logout" onClick={handleLogout}>
             <MenuItem
               component={Link}

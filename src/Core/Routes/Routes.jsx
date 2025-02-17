@@ -67,6 +67,7 @@ import DisputeAdmin from "../../Dashboard/AdminDashboard/SellerDashboardComponen
 import DisputeSeller from "../../Dashboard/SellerDashboard/SellerDashboardComponents/Page/Dispute/DisputeSeller";
 import EscrowSeller from "../../Dashboard/SellerDashboard/SellerDashboardComponents/Page/Escrow/EscrowSeller";
 import AdminGuidance from "../../Dashboard/AdminDashboard/AdminGuidance/AdminGuidance";
+import PaymentHistory from "../../Dashboard/SellerDashboard/SellerDashboardComponents/Page/Payment/PaymentHistory";
 
 function Routes() {
   const { isUserLoggedIn } = useContext(IsUserLoggedIn);
@@ -102,6 +103,8 @@ function Routes() {
                 <Route path="ProfileSetting" element={<ProfileSetting />} />
                 <Route path="dispute" element={<DisputeSeller />} />
                 <Route path="escrow" element={<EscrowSeller />} />
+              <Route path="ProfileSetting" element={<ProfileSetting />} />
+              <Route path="paymenthistory" element={<PaymentHistory />} />
               </Route>
               <Route path="/StartEscrow" element={<StartEscrow />} />
               <Route path="/Contract" element={<MakeContracts />} />
@@ -118,7 +121,7 @@ function Routes() {
               <Route path="/Contract" element={<MakeContracts />} />
               <Route path="/Payment" element={<PaymentContainer />} />
               <Route path="/FileDispute" element={<FileDispute />} />
-              <Route path="/escrowdashboard" element={<LoggedInLayout />}>
+              <Route path="/escrowdashboard" element={<LoggedInLayout isAdmin={false} />}>
                 <Route index element={<EscrowHistory />} />
                 <Route path="EscrowDisputes" element={<EscrowDisputes />} />
                 <Route path="EscrowPayments" element={<EscrowPayments />} />

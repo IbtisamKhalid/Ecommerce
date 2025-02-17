@@ -11,7 +11,7 @@ function useNavBar({isAdmin}) {
   const { user } = React.useContext(UserContext);
 console.log(user.role)
   const userNavbarLinks = [
-    ...(!isAdmin
+    ...(!isAdmin || user.role == "Buyer"
       ? [
           { name: "My Escrow", link: "/escrowdashboard" },
           { name: "Dispute", link: "/escrowdashboard/EscrowDisputes" },
@@ -30,6 +30,7 @@ console.log(user.role)
     mobileOpen,
     handleDrawerToggle,
     userNavbarLinks,
+    user
   };
 }
 

@@ -506,7 +506,7 @@ export const EscrowMethod = () => {
     { Img: EscrowIcon4, caption: "4. Buyer approves goods or services " },
     {
       Img: EscrowIcon5,
-      caption: "5. TrustBridge.com releases payment to seller ",
+      caption: "5. TrustBridge releases payment to seller ",
     },
   ];
 

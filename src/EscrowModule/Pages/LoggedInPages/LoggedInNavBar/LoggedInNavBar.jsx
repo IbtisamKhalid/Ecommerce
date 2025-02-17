@@ -24,7 +24,7 @@ export default function LoggedInNavBar({
   padd,
   isAdmin,
 }) {
-  const { mobileOpen, handleDrawerToggle, userNavbarLinks } = useNavBar({isAdmin});
+  const { mobileOpen, handleDrawerToggle, userNavbarLinks,user } = useNavBar({isAdmin});
   const drawer = (
     <Box
       onClick={handleDrawerToggle}
@@ -73,8 +73,8 @@ export default function LoggedInNavBar({
         navColor={navColor}
         pad={padd}
       >
-        {!isAdmin && children}
-        {!isAdmin && (
+        {!isAdmin || user.role == "Buyer" && children}
+        {!isAdmin || user.role == "Buyer" && (
           <IconButton
             color="inherit"
             aria-label="open drawer"
@@ -95,7 +95,7 @@ export default function LoggedInNavBar({
           sx={{
             width: "100%",
             display: "flex",
-            justifyContent: "flex-end",
+            justifyContent: isAdmin ? "flex-end":"space-between",
             alignItems: "center",
             "@media (max-width:910px)": {
               justifyContent: isAdmin ? "space-between" : "flex-end",
@@ -103,7 +103,7 @@ export default function LoggedInNavBar({
           }}
         >
           {isAdmin && children}
-            {isAdmin && 
+            {isAdmin || user.role == "Buyer" && 
             (<Box
               sx={{
                 display: { xs: "none", md: "flex" },
@@ -134,7 +134,7 @@ export default function LoggedInNavBar({
             }
           
           <Box display={"flex"}>
-            {!isAdmin && (
+            {!isAdmin || user.role == "Buyer" && (
               <GetStartedButton
                 additionalStyles={{
                   color: "white",

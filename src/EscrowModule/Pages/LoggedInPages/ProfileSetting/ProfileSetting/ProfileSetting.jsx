@@ -4,7 +4,6 @@ function ProfileSetting() {
     "Profile",
     "Edit Password",
     "Billing Address",
-    "2FA",
     "Notification",
   ];
   return (

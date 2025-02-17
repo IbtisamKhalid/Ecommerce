@@ -14,10 +14,8 @@ import {
   Avatar,
   LinearProgress,
   Chip,
-  Badge,
 } from "@mui/material";
 import { useLocation } from "react-router-dom";
-import { Grid2 } from "@mui/material"; 
 import {
   AttachMoney,
   Description,
@@ -28,9 +26,6 @@ import {
   Person,
   CalendarToday,
   Assignment,
-  ThumbUp,
-  ThumbDown,
-  Chat,
   History,
 } from "@mui/icons-material";
 
@@ -49,7 +44,7 @@ function UpdateDispute() {
   return (
     <Box
       sx={{
-        p: 2, // Reduced padding
+        p: 2,
         maxWidth: 1200,
         margin: "auto",
         bgcolor: "#f4f6f8",
@@ -62,20 +57,24 @@ function UpdateDispute() {
           fontWeight: "bold",
           textAlign: "center",
           color: "#3f51b5",
-          mb: 2, // Reduced margin
+          mb: 2,
         }}
       >
         Resolve Dispute - {item.title}
       </Typography>
 
-      <Grid2 container spacing={2}> {/* Use Grid2 with spacing */}
-        <Grid2 size={{ xs: 12, md: 6 }}> {/* Use size prop */}
+      {/* Main Container with Flex Layout */}
+      <Box sx={{ display:{xs:"block" , md: "flex"}, gap: 3 }}>
+        {/* Left Section - Main Content */}
+        <Box sx={{ flex: 2 }}>
+          {/* Escrow Details */}
           <Card
             elevation={3}
             sx={{
-              p: 2, // Reduced padding
+              p: 2,
               borderRadius: 2,
               bgcolor: "#ffffff",
+              mb: 3,
             }}
           >
             <CardContent>
@@ -96,9 +95,6 @@ function UpdateDispute() {
                   Escrow Details
                 </Typography>
               </Box>
-              <Typography variant="body2" color="textSecondary" sx={{ mb: 2 }}>
-                Below are the details of the escrow transaction related to this dispute. Review the amount, status, and parties involved.
-              </Typography>
               <List>
                 <ListItem>
                   <ListItemText
@@ -166,15 +162,168 @@ function UpdateDispute() {
               </List>
             </CardContent>
           </Card>
-        </Grid2>
 
-        <Grid2 size={{ xs: 12, md: 6 }}> {/* Use size prop */}
+          {/* Contract Details */}
+          <Paper
+            elevation={3}
+            sx={{
+              p: 2,
+              borderRadius: 2,
+              bgcolor: "#ffffff",
+              mb: 3,
+            }}
+          >
+            <Box
+              sx={{
+                display: "flex",
+                alignItems: "center",
+                mb: 2,
+              }}
+            >
+              <Avatar sx={{ bgcolor: "#3f51b5", mr: 2 }}>
+                <Description />
+              </Avatar>
+              <Typography
+                variant="h6"
+                sx={{ fontWeight: "bold", color: "#3f51b5" }}
+              >
+                Contract Details
+              </Typography>
+            </Box>
+            <List>
+              {item.contract.map((contract, index) => (
+                <ListItem key={index}>
+                  <ListItemText
+                    primary={`Clause ${index + 1}`}
+                    secondary={contract}
+                    slotProps={{
+                      primary: { fontWeight: "medium" },
+                      secondary: { color: "text.secondary" },
+                    }}
+                  />
+                </ListItem>
+              ))}
+            </List>
+          </Paper>
+
+          {/* Dispute Details */}
+          <Paper
+            elevation={3}
+            sx={{
+              p: 2,
+              borderRadius: 2,
+              bgcolor: "#ffffff",
+              mb: 3,
+            }}
+          >
+            <Box
+              sx={{
+                display: "flex",
+                alignItems: "center",
+                mb: 2,
+              }}
+            >
+              <Avatar sx={{ bgcolor: "#3f51b5", mr: 2 }}>
+                <Warning />
+              </Avatar>
+              <Typography
+                variant="h6"
+                sx={{ fontWeight: "bold", color: "#3f51b5" }}
+              >
+                Dispute Details
+              </Typography>
+            </Box>
+            <List>
+              {item.disputeDetails.map((detail, index) => (
+                <ListItem key={index}>
+                  <ListItemText
+                    primary={`Issue ${index + 1}`}
+                    secondary={detail}
+                    slotProps={{
+                      primary: { fontWeight: "medium" },
+                      secondary: { color: "text.secondary" },
+                    }}
+                  />
+                </ListItem>
+              ))}
+            </List>
+          </Paper>
+
+          {/* Admin Remarks */}
+          <Paper
+            elevation={3}
+            sx={{
+              p: 2,
+              borderRadius: 2,
+              bgcolor: "#ffffff",
+            }}
+          >
+            <Box
+              sx={{
+                display: "flex",
+                alignItems: "center",
+                mb: 2,
+              }}
+            >
+              <Avatar sx={{ bgcolor: "#3f51b5", mr: 2 }}>
+                <Comment />
+              </Avatar>
+              <Typography
+                variant="h6"
+                sx={{ fontWeight: "bold", color: "#3f51b5" }}
+              >
+                Admin Remarks
+              </Typography>
+            </Box>
+            <List>
+              {remarksList.map((remark, index) => (
+                <ListItem key={index}>
+                  <ListItemText
+                    primary={`Remark ${index + 1}`}
+                    secondary={remark}
+                    slotProps={{
+                      primary: { fontWeight: "medium" },
+                      secondary: { color: "text.secondary" },
+                    }}
+                  />
+                </ListItem>
+              ))}
+            </List>
+            <Box sx={{ display: "flex", gap: 2, mt: 2 }}>
+              <TextField
+                fullWidth
+                label="Add Remark"
+                variant="outlined"
+                value={adminRemarks}
+                onChange={(e) => setAdminRemarks(e.target.value)}
+                sx={{ bgcolor: "#f9f9f9" }}
+              />
+              <Button
+                variant="contained"
+                color="primary"
+                onClick={handleAddRemark}
+                sx={{
+                  height: "56px",
+                  fontWeight: "bold",
+                  "&:hover": { bgcolor: "#303f9f" },
+                }}
+              >
+                Add
+              </Button>
+            </Box>
+          </Paper>
+        </Box>
+
+        {/* Right Section - Supplementary Information */}
+        <Box sx={{ flex: 1 }}>
+          {/* Admin Guidelines */}
           <Card
             elevation={3}
             sx={{
-              p: 2, // Reduced padding
+              p: 2,
               borderRadius: 2,
               bgcolor: "#ffffff",
+              mb: 3,
             }}
           >
             <CardContent>
@@ -196,7 +345,7 @@ function UpdateDispute() {
                 </Typography>
               </Box>
               <Typography variant="body2" color="textSecondary" sx={{ mb: 2 }}>
-                As an admin, your role is to ensure fair resolution of disputes. Follow these guidelines:
+                Follow these guidelines to resolve disputes effectively:
               </Typography>
               <List>
                 <ListItem>
@@ -230,253 +379,75 @@ function UpdateDispute() {
                   />
                 </ListItem>
               </List>
-              <Box sx={{ mt: 2 }}>
-                <Chip
-                  icon={<CalendarToday />}
-                  label={`Created: ${item.createdDate}`}
-                  variant="outlined"
-                  sx={{ mr: 1 }}
-                />
-                <Chip
-                  icon={<Assignment />}
-                  label={`Last Updated: ${item.updatedDate}`}
-                  variant="outlined"
-                />
-              </Box>
             </CardContent>
           </Card>
-        </Grid2>
-      </Grid2>
 
-      <Divider sx={{ my: 2, bgcolor: "#e0e0e0" }} /> {/* Reduced margin */}
-
-      <Paper
-        elevation={3}
-        sx={{
-          p: 2, // Reduced padding
-          borderRadius: 2,
-          bgcolor: "#ffffff",
-        }}
-      >
-        <Box
-          sx={{
-            display: "flex",
-            alignItems: "center",
-            mb: 2,
-          }}
-        >
-          <Avatar sx={{ bgcolor: "#3f51b5", mr: 2 }}>
-            <Description />
-          </Avatar>
-          <Typography
-            variant="h6"
-            sx={{ fontWeight: "bold", color: "#3f51b5" }}
+          {/* Dispute History */}
+          <Card
+            elevation={3}
+            sx={{
+              p: 2,
+              borderRadius: 2,
+              bgcolor: "#ffffff",
+            }}
           >
-            Contract Details
-          </Typography>
-        </Box>
-        <Typography variant="body2" color="textSecondary" sx={{ mb: 2 }}>
-          Review the contract clauses related to this dispute. Ensure all terms are adhered to.
-        </Typography>
-        <List>
-          {item.contract.map((contract, index) => (
-            <ListItem key={index}>
-              <ListItemText
-                primary={`Clause ${index + 1}`}
-                secondary={contract}
-                slotProps={{
-                  primary: { fontWeight: "medium" },
-                  secondary: { color: "text.secondary" },
+            <CardContent>
+              <Box
+                sx={{
+                  display: "flex",
+                  alignItems: "center",
+                  mb: 2,
                 }}
-              />
-            </ListItem>
-          ))}
-        </List>
-      </Paper>
-
-      <Divider sx={{ my: 2, bgcolor: "#e0e0e0" }} /> {/* Reduced margin */}
-
-      <Paper
-        elevation={3}
-        sx={{
-          p: 2, // Reduced padding
-          borderRadius: 2,
-          bgcolor: "#ffffff",
-        }}
-      >
-        <Box
-          sx={{
-            display: "flex",
-            alignItems: "center",
-            mb: 2,
-          }}
-        >
-          <Avatar sx={{ bgcolor: "#3f51b5", mr: 2 }}>
-            <Warning />
-          </Avatar>
-          <Typography
-            variant="h6"
-            sx={{ fontWeight: "bold", color: "#3f51b5" }}
-          >
-            Dispute Details
-          </Typography>
+              >
+                <Avatar sx={{ bgcolor: "#3f51b5", mr: 2 }}>
+                  <History />
+                </Avatar>
+                <Typography
+                  variant="h6"
+                  sx={{ fontWeight: "bold", color: "#3f51b5" }}
+                >
+                  Dispute History
+                </Typography>
+              </Box>
+              <Typography variant="body2" color="textSecondary" sx={{ mb: 2 }}>
+                Track the history of actions taken on this dispute.
+              </Typography>
+              <List>
+                <ListItem>
+                  <ListItemText
+                    primary="Dispute Raised"
+                    secondary="2024-01-01 10:00 AM"
+                    slotProps={{
+                      primary: { fontWeight: "medium" },
+                      secondary: { color: "text.secondary" },
+                    }}
+                  />
+                </ListItem>
+                <ListItem>
+                  <ListItemText
+                    primary="Admin Remarks Added"
+                    secondary="2024-01-02 02:30 PM"
+                    slotProps={{
+                      primary: { fontWeight: "medium" },
+                      secondary: { color: "text.secondary" },
+                    }}
+                  />
+                </ListItem>
+                <ListItem>
+                  <ListItemText
+                    primary="Dispute Resolved"
+                    secondary="2024-01-03 11:15 AM"
+                    slotProps={{
+                      primary: { fontWeight: "medium" },
+                      secondary: { color: "text.secondary" },
+                    }}
+                  />
+                </ListItem>
+              </List>
+            </CardContent>
+          </Card>
         </Box>
-        <Typography variant="body2" color="textSecondary" sx={{ mb: 2 }}>
-          Below are the issues raised by the parties involved in this dispute.
-        </Typography>
-        <List>
-          {item.disputeDetails.map((detail, index) => (
-            <ListItem key={index}>
-              <ListItemText
-                primary={`Issue ${index + 1}`}
-                secondary={detail}
-                slotProps={{
-                  primary: { fontWeight: "medium" },
-                  secondary: { color: "text.secondary" },
-                }}
-              />
-            </ListItem>
-          ))}
-        </List>
-      </Paper>
-
-      <Divider sx={{ my: 2, bgcolor: "#e0e0e0" }} /> {/* Reduced margin */}
-
-      <Paper
-        elevation={3}
-        sx={{
-          p: 2, // Reduced padding
-          borderRadius: 2,
-          bgcolor: "#ffffff",
-        }}
-      >
-        <Box
-          sx={{
-            display: "flex",
-            alignItems: "center",
-            mb: 2,
-          }}
-        >
-          <Avatar sx={{ bgcolor: "#3f51b5", mr: 2 }}>
-            <Comment />
-          </Avatar>
-          <Typography
-            variant="h6"
-            sx={{ fontWeight: "bold", color: "#3f51b5" }}
-          >
-            Admin Remarks
-          </Typography>
-        </Box>
-        <Typography variant="body2" color="textSecondary" sx={{ mb: 2 }}>
-          Add remarks or notes to document your actions and decisions regarding this dispute.
-        </Typography>
-        <List>
-          {remarksList.map((remark, index) => (
-            <ListItem key={index}>
-              <ListItemText
-                primary={`Remark ${index + 1}`}
-                secondary={remark}
-                slotProps={{
-                  primary: { fontWeight: "medium" },
-                  secondary: { color: "text.secondary" },
-                }}
-              />
-            </ListItem>
-          ))}
-        </List>
-
-        <Grid2 container spacing={2} alignItems="center" sx={{ mt: 2 }}>
-          <Grid2 size={{ xs: 9 }}> {/* Use size prop */}
-            <TextField
-              fullWidth
-              label="Add Remark"
-              variant="outlined"
-              value={adminRemarks}
-              onChange={(e) => setAdminRemarks(e.target.value)}
-              sx={{ bgcolor: "#f9f9f9" }}
-            />
-          </Grid2>
-          <Grid2 size={{ xs: 3 }}> {/* Use size prop */}
-            <Button
-              variant="contained"
-              color="primary"
-              fullWidth
-              onClick={handleAddRemark}
-              sx={{
-                height: "56px",
-                fontWeight: "bold",
-                "&:hover": { bgcolor: "#303f9f" },
-              }}
-            >
-              Add
-            </Button>
-          </Grid2>
-        </Grid2>
-      </Paper>
-
-      <Divider sx={{ my: 2, bgcolor: "#e0e0e0" }} /> {/* Reduced margin */}
-
-      <Paper
-        elevation={3}
-        sx={{
-          p: 2, // Reduced padding
-          borderRadius: 2,
-          bgcolor: "#ffffff",
-        }}
-      >
-        <Box
-          sx={{
-            display: "flex",
-            alignItems: "center",
-            mb: 2,
-          }}
-        >
-          <Avatar sx={{ bgcolor: "#3f51b5", mr: 2 }}>
-            <History />
-          </Avatar>
-          <Typography
-            variant="h6"
-            sx={{ fontWeight: "bold", color: "#3f51b5" }}
-          >
-            Dispute History
-          </Typography>
-        </Box>
-        <Typography variant="body2" color="textSecondary" sx={{ mb: 2 }}>
-          Track the history of actions taken on this dispute.
-        </Typography>
-        <List>
-          <ListItem>
-            <ListItemText
-              primary="Dispute Raised"
-              secondary="2024-01-01 10:00 AM"
-              slotProps={{
-                primary: { fontWeight: "medium" },
-                secondary: { color: "text.secondary" },
-              }}
-            />
-          </ListItem>
-          <ListItem>
-            <ListItemText
-              primary="Admin Remarks Added"
-              secondary="2024-01-02 02:30 PM"
-              slotProps={{
-                primary: { fontWeight: "medium" },
-                secondary: { color: "text.secondary" },
-              }}
-            />
-          </ListItem>
-          <ListItem>
-            <ListItemText
-              primary="Dispute Resolved"
-              secondary="2024-01-03 11:15 AM"
-              slotProps={{
-                primary: { fontWeight: "medium" },
-                secondary: { color: "text.secondary" },
-              }}
-            />
-          </ListItem>
-        </List>
-      </Paper>
+      </Box>
     </Box>
   );
 }

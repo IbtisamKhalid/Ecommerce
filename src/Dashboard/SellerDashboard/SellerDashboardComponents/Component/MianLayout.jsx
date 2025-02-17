@@ -3,6 +3,7 @@ import { CiBoxList } from "react-icons/ci";
 import { RxDashboard } from "react-icons/rx";
 import { IoCartOutline } from "react-icons/io5";
 import { LuClipboardList } from "react-icons/lu";
+import { MdOutlineGavel, MdOutlineSecurity, MdOutlinePayment, MdHistory } from "react-icons/md"; // New icons
 import { Button, Layout, Menu, theme } from "antd";
 import { Outlet, useNavigate } from "react-router-dom";
 import { MenuFoldOutlined, MenuUnfoldOutlined } from "@ant-design/icons";
@@ -12,16 +13,7 @@ const { Header, Sider, Content } = Layout;
 
 const MianLayout = () => {
   const [collapsed, setCollapsed] = useState(false);
-  const [anchorEl, setAnchorEl] = useState(null);
   const navigate = useNavigate();
-
-  const handleMenuOpen = (event) => {
-    setAnchorEl(event.currentTarget);
-  };
-
-  const handleMenuClose = () => {
-    setAnchorEl(null);
-  };
 
   const {
     token: { colorBgContainer, borderRadiusLG },
@@ -85,24 +77,19 @@ const MianLayout = () => {
             },
             {
               key: "Dispute",
-              icon: <RxDashboard className="fs-4" />,
+              icon: <MdOutlineGavel className="fs-4" />,
               label: "Disputes",
             },
             {
               key: "escrow",
-              icon: <RxDashboard className="fs-4" />,
+              icon: <MdOutlineSecurity className="fs-4" />,
               label: "Escrow",
             },
             {
-              key: "payments",
-              icon: <RxDashboard className="fs-4" />,
+              key: "PaymentHistory",
+              icon: <MdOutlinePayment className="fs-4" />,
               label: "Payments",
             },
-            // {
-            //   key: "EscrowHistory",
-            //   icon: <MdVerified className="fs-4" />,
-            //   label: "Escrow",
-            // },
           ]}
         />
       </Sider>
@@ -126,7 +113,6 @@ const MianLayout = () => {
               }}
             />
           </LoggedInNavBar>
-          {/*  */}
         </Header>
         <Content
           style={{

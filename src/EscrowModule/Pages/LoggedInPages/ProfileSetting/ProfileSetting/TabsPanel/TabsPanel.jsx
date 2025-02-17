@@ -41,7 +41,7 @@ function TabsPanel({ tabsName = [], tableName, status }) {
     <ProfileInformation />,
     <EditPassword />,
     <BillingAddress />,
-    <TWOFA />,
+    // <TWOFA />,
     <NotificationSetting />,
   ];
 
