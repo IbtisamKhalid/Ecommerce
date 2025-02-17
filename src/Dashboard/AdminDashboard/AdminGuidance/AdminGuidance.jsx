@@ -1,4 +1,4 @@
-import { Typography, Box, Grid2 as Grid, Paper } from "@mui/material";
+import { Typography, Box, Grid, Paper } from "@mui/material";
 import { Fonts } from "../../../EscrowModule/Theme/Theme";
 
 function AdminGuidance() {
@@ -59,11 +59,30 @@ function AdminGuidance() {
               <li>Communicating resolutions effectively to all parties involved.</li>
             </ul>
           </Box>
+
+          {/* Additional Content */}
+          <Box sx={{ mb: 4 }}>
+            <Typography
+              variant="h5"
+              sx={{ fontWeight: "bold", color: "rgb(1, 66, 106)", fontFamily: Fonts.primaryFont, mb: 2 }}
+            >
+              Additional Resources
+            </Typography>
+            <Typography variant="body1" sx={{ mb: 2 }}>
+              Here are some additional resources to help you in your role:
+            </Typography>
+            <ul>
+              <li>Access the <strong>Admin Handbook</strong> for detailed guidelines on dispute resolution.</li>
+              <li>Use the <strong>Fraud Detection Toolkit</strong> to identify and prevent fraudulent activities.</li>
+              <li>Attend monthly <strong>Admin Training Sessions</strong> to stay updated on platform policies.</li>
+              <li>Refer to the <strong>Escrow Policy Manual</strong> for compliance requirements.</li>
+            </ul>
+          </Box>
         </Grid>
 
-        {/* Right Side - FAQs */}
+        {/* Right Side - FAQs and More */}
         <Grid item xs={12} md={4}>
-          <Paper sx={{ padding: "1.5rem", backgroundColor: "#f9f9f9" }}>
+          <Paper sx={{ padding: "1.5rem", backgroundColor: "#f9f9f9", mb: 4 }}>
             <Typography
               variant="h5"
               sx={{ fontWeight: "bold", color: "rgb(1, 66, 106)", fontFamily: Fonts.primaryFont, mb: 2 }}
@@ -98,6 +117,46 @@ function AdminGuidance() {
             <Typography variant="body1" sx={{ mb: 2 }}>
               If fraud is suspected, gather all relevant evidence and take necessary action, such as freezing accounts or escalating the case.
             </Typography>
+          </Paper>
+
+          {/* Additional Section */}
+          <Paper sx={{ padding: "1.5rem", backgroundColor: "#f9f9f9" }}>
+            <Typography
+              variant="h5"
+              sx={{ fontWeight: "bold", color: "rgb(1, 66, 106)", fontFamily: Fonts.primaryFont, mb: 2 }}
+            >
+              Quick Links
+            </Typography>
+            <ul>
+              <li>
+                <Typography variant="body1" sx={{ mb: 1 }}>
+                  <a href="/admin-handbook" style={{ color: "rgb(1, 66, 106)", textDecoration: "none" }}>
+                    Admin Handbook
+                  </a>
+                </Typography>
+              </li>
+              <li>
+                <Typography variant="body1" sx={{ mb: 1 }}>
+                  <a href="/fraud-toolkit" style={{ color: "rgb(1, 66, 106)", textDecoration: "none" }}>
+                    Fraud Detection Toolkit
+                  </a>
+                </Typography>
+              </li>
+              <li>
+                <Typography variant="body1" sx={{ mb: 1 }}>
+                  <a href="/training-sessions" style={{ color: "rgb(1, 66, 106)", textDecoration: "none" }}>
+                    Admin Training Sessions
+                  </a>
+                </Typography>
+              </li>
+              <li>
+                <Typography variant="body1" sx={{ mb: 1 }}>
+                  <a href="/policy-manual" style={{ color: "rgb(1, 66, 106)", textDecoration: "none" }}>
+                    Escrow Policy Manual
+                  </a>
+                </Typography>
+              </li>
+            </ul>
           </Paper>
         </Grid>
       </Grid>

@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext, useState } from "react";
 import { useGoogleLogin } from "@react-oauth/google";
 import { useNavigate } from "react-router-dom";
 
@@ -10,7 +10,16 @@ function useSignUp({ isEscrow, role }) {
   const [passwordErrorMessage, setPasswordErrorMessage] = React.useState("");
   const [nameError, setNameError] = React.useState(false);
   const [nameErrorMessage, setNameErrorMessage] = React.useState("");
+  const [open, setOpen] = React.useState(false);
+  const [msg, setMsg] = React.useState("");
 
+  const handleClickOpen = () => {
+    setOpen(true);
+  };
+
+  const handleClose = () => {
+    setOpen(false);
+  };
   const validateInputs = () => {
     const email = document.getElementById("email");
     const password = document.getElementById("password");
@@ -71,16 +80,22 @@ function useSignUp({ isEscrow, role }) {
 
       const result = await response.json();
       if (response.ok) {
-        alert("User registered successfully!");
+        handleClickOpen();
+        const timer = setTimeout(() => {
+          handleClose();
+          navigate("/signin");
+        }, 4000);
+        return () => clearTimeout(timer);
       } else {
-        console.log("Msg Is ", result.message || result.error);  // Handle both 'message' and 'error'
+        console.log("Msg Is ", result.message || result.error); // Handle both 'message' and 'error'
+        setMsg(result.message || result.error);
+        handleClickOpen();
       }
     } catch (error) {
       console.error("Error:", error);
       alert("Failed to register user.");
     }
   };
-
 
   // const handleGoogleSignup = async (credential) => {
   //   console.log("Sending token to backend:", credential);  // Add this log to verify the token
@@ -131,6 +146,10 @@ function useSignUp({ isEscrow, role }) {
     passwordErrorMessage,
     emailError,
     emailErrorMessage,
+    handleClickOpen,
+    handleClose,
+    open,
+    msg,
     // googleLogin,
   };
 }

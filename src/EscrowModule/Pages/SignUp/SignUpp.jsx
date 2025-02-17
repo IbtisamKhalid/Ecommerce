@@ -21,10 +21,9 @@ import { GoogleIcon, FacebookIcon } from "./CustomIcons.jsx";
 import { Card, SignUpContainer } from "../../../constants/SignUpConstants";
 import Link from "@mui/material/Link";
 import { useState } from "react";
+import ForgotPassword from "../SignIn/ForgotPassword.jsx";
 
 export default function SignUp({ isEscrow }) {
- 
-
   const [role, setRole] = React.useState("");
   const {
     handleSubmit,
@@ -35,6 +34,9 @@ export default function SignUp({ isEscrow }) {
     passwordErrorMessage,
     emailError,
     emailErrorMessage,
+    handleClose,
+    open,
+    msg,
     // googleLogin
   } = useSignUp({ isEscrow, role });
 
@@ -132,6 +134,12 @@ export default function SignUp({ isEscrow }) {
             >
               Sign up
             </Button>
+            <ForgotPassword
+              open={open}
+              handleClose={handleClose}
+              isPass={false}
+              msg={msg == null ? null : msg}
+            />
           </Box>
           <Divider>
             <Typography sx={{ color: "text.secondary" }}>or</Typography>
@@ -147,7 +155,6 @@ export default function SignUp({ isEscrow }) {
             </Button> */}
 
             {/* Google Login component is conditionally rendered */}
-          
 
             <Typography sx={{ textAlign: "center" }}>
               Already have an account?{" "}

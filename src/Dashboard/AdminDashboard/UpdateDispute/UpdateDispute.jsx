@@ -28,6 +28,10 @@ import {
   Person,
   CalendarToday,
   Assignment,
+  ThumbUp,
+  ThumbDown,
+  Chat,
+  History,
 } from "@mui/icons-material";
 
 function UpdateDispute() {
@@ -92,6 +96,9 @@ function UpdateDispute() {
                   Escrow Details
                 </Typography>
               </Box>
+              <Typography variant="body2" color="textSecondary" sx={{ mb: 2 }}>
+                Below are the details of the escrow transaction related to this dispute. Review the amount, status, and parties involved.
+              </Typography>
               <List>
                 <ListItem>
                   <ListItemText
@@ -188,10 +195,41 @@ function UpdateDispute() {
                   Admin Guidelines
                 </Typography>
               </Box>
-              <Typography variant="body2" color="textSecondary">
-                Ensure all contract terms are reviewed before resolving the
-                dispute. Communicate with both parties and document key points.
+              <Typography variant="body2" color="textSecondary" sx={{ mb: 2 }}>
+                As an admin, your role is to ensure fair resolution of disputes. Follow these guidelines:
               </Typography>
+              <List>
+                <ListItem>
+                  <ListItemText
+                    primary="Review Contract Terms"
+                    secondary="Ensure all contract terms are reviewed before resolving the dispute."
+                    slotProps={{
+                      primary: { fontWeight: "medium" },
+                      secondary: { color: "text.secondary" },
+                    }}
+                  />
+                </ListItem>
+                <ListItem>
+                  <ListItemText
+                    primary="Communicate with Parties"
+                    secondary="Engage with both parties to gather all necessary information."
+                    slotProps={{
+                      primary: { fontWeight: "medium" },
+                      secondary: { color: "text.secondary" },
+                    }}
+                  />
+                </ListItem>
+                <ListItem>
+                  <ListItemText
+                    primary="Document Key Points"
+                    secondary="Keep a record of all communications and decisions made."
+                    slotProps={{
+                      primary: { fontWeight: "medium" },
+                      secondary: { color: "text.secondary" },
+                    }}
+                  />
+                </ListItem>
+              </List>
               <Box sx={{ mt: 2 }}>
                 <Chip
                   icon={<CalendarToday />}
@@ -237,6 +275,9 @@ function UpdateDispute() {
             Contract Details
           </Typography>
         </Box>
+        <Typography variant="body2" color="textSecondary" sx={{ mb: 2 }}>
+          Review the contract clauses related to this dispute. Ensure all terms are adhered to.
+        </Typography>
         <List>
           {item.contract.map((contract, index) => (
             <ListItem key={index}>
@@ -280,6 +321,9 @@ function UpdateDispute() {
             Dispute Details
           </Typography>
         </Box>
+        <Typography variant="body2" color="textSecondary" sx={{ mb: 2 }}>
+          Below are the issues raised by the parties involved in this dispute.
+        </Typography>
         <List>
           {item.disputeDetails.map((detail, index) => (
             <ListItem key={index}>
@@ -323,6 +367,9 @@ function UpdateDispute() {
             Admin Remarks
           </Typography>
         </Box>
+        <Typography variant="body2" color="textSecondary" sx={{ mb: 2 }}>
+          Add remarks or notes to document your actions and decisions regarding this dispute.
+        </Typography>
         <List>
           {remarksList.map((remark, index) => (
             <ListItem key={index}>
@@ -366,129 +413,72 @@ function UpdateDispute() {
           </Grid2>
         </Grid2>
       </Paper>
+
+      <Divider sx={{ my: 2, bgcolor: "#e0e0e0" }} /> {/* Reduced margin */}
+
+      <Paper
+        elevation={3}
+        sx={{
+          p: 2, // Reduced padding
+          borderRadius: 2,
+          bgcolor: "#ffffff",
+        }}
+      >
+        <Box
+          sx={{
+            display: "flex",
+            alignItems: "center",
+            mb: 2,
+          }}
+        >
+          <Avatar sx={{ bgcolor: "#3f51b5", mr: 2 }}>
+            <History />
+          </Avatar>
+          <Typography
+            variant="h6"
+            sx={{ fontWeight: "bold", color: "#3f51b5" }}
+          >
+            Dispute History
+          </Typography>
+        </Box>
+        <Typography variant="body2" color="textSecondary" sx={{ mb: 2 }}>
+          Track the history of actions taken on this dispute.
+        </Typography>
+        <List>
+          <ListItem>
+            <ListItemText
+              primary="Dispute Raised"
+              secondary="2024-01-01 10:00 AM"
+              slotProps={{
+                primary: { fontWeight: "medium" },
+                secondary: { color: "text.secondary" },
+              }}
+            />
+          </ListItem>
+          <ListItem>
+            <ListItemText
+              primary="Admin Remarks Added"
+              secondary="2024-01-02 02:30 PM"
+              slotProps={{
+                primary: { fontWeight: "medium" },
+                secondary: { color: "text.secondary" },
+              }}
+            />
+          </ListItem>
+          <ListItem>
+            <ListItemText
+              primary="Dispute Resolved"
+              secondary="2024-01-03 11:15 AM"
+              slotProps={{
+                primary: { fontWeight: "medium" },
+                secondary: { color: "text.secondary" },
+              }}
+            />
+          </ListItem>
+        </List>
+      </Paper>
     </Box>
   );
 }
 
 export default UpdateDispute;
-
-
-
-
-
-
-
-
-// import React, { useState } from "react";
-// import {
-//   Card,
-//   CardContent,
-//   Typography,
-//   TextField,
-//   Button,
-//   List,
-//   ListItem,
-//   ListItemText,
-//   Divider,
-// } from "@mui/material";
-// import { styled } from "@mui/material/styles";
-
-// const StyledCard = styled(Card)(({ theme }) => ({
-//   maxWidth: 600,
-//   margin: "auto",
-//   padding: theme.spacing(2),
-//   boxShadow: "0px 4px 10px rgba(0, 0, 0, 0.1)",
-//   borderRadius: 12,
-// }));
-
-// const UpdateDispute = ({ escrow }) => {
-//   const [adminRemarks, setAdminRemarks] = useState("");
-//   const [remarksList, setRemarksList] = useState(escrow.adminRemarks || []);
-
-//   const handleAddRemark = () => {
-//     if (adminRemarks.trim() !== "") {
-//       setRemarksList([...remarksList, adminRemarks]);
-//       setAdminRemarks("");
-//     }
-//   };
-
-//   return (
-//     <StyledCard>
-//       <CardContent>
-//         <Typography variant="h5" gutterBottom>
-//           Dispute Resolution - {escrow.title}
-//         </Typography>
-//         <Typography variant="subtitle1" color="textSecondary">
-//           {escrow.subtitle}
-//         </Typography>
-
-//         <Divider sx={{ my: 2 }} />
-
-//         <Typography variant="body1" gutterBottom>
-//           <strong>Amount:</strong> {escrow.amount} {escrow.currency}
-//         </Typography>
-//         <Typography variant="body1" gutterBottom>
-//           <strong>Status:</strong> {escrow.status.primary} - {escrow.status.secondary}
-//         </Typography>
-//         <Typography variant="body1" gutterBottom>
-//           <strong>Dispute Status:</strong> {escrow.disputeStatus.primary}
-//         </Typography>
-
-//         <Divider sx={{ my: 2 }} />
-
-//         <Typography variant="h6">Contract Details</Typography>
-//         <List>
-//           {escrow.contract.map((item, index) => (
-//             <ListItem key={index}>
-//               <ListItemText primary={item} />
-//             </ListItem>
-//           ))}
-//         </List>
-
-//         <Divider sx={{ my: 2 }} />
-
-//         <Typography variant="h6">Dispute Details</Typography>
-//         <List>
-//           {escrow.disputeDetails.map((detail, index) => (
-//             <ListItem key={index}>
-//               <ListItemText primary={detail} />
-//             </ListItem>
-//           ))}
-//         </List>
-
-//         <Divider sx={{ my: 2 }} />
-
-//         <Typography variant="h6">Admin Remarks</Typography>
-//         <List>
-//           {remarksList.map((remark, index) => (
-//             <ListItem key={index}>
-//               <ListItemText primary={remark} />
-//             </ListItem>
-//           ))}
-//         </List>
-
-//         <TextField
-//           fullWidth
-//           label="Add Admin Remark"
-//           multiline
-//           rows={3}
-//           variant="outlined"
-//           value={adminRemarks}
-//           onChange={(e) => setAdminRemarks(e.target.value)}
-//           sx={{ mt: 2 }}
-//         />
-//         <Button
-//           variant="contained"
-//           color="primary"
-//           onClick={handleAddRemark}
-//           sx={{ mt: 2 }}
-//         >
-//           Add Remark
-//         </Button>
-//       </CardContent>
-//     </StyledCard>
-//   );
-// };
-
-// export default UpdateDispute;
-
