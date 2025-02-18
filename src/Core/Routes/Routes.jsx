@@ -151,7 +151,7 @@ function Routes() {
             </>
           )}
 
-          <Route path="/queries" element={<Layout isHome={true}/>}>
+          <Route path="/queries" element={<Layout nametext={"black"} isHome={true}/>}>
             <Route path="Escrow" element={<Escrow />} />
             <Route path="Benefits" element={<Benefits />} />
             <Route path="TrustBridge" element={<TrustBridge />} />

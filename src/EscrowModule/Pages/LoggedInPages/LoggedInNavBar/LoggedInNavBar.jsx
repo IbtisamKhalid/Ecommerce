@@ -24,7 +24,9 @@ export default function LoggedInNavBar({
   padd,
   isAdmin,
 }) {
-  const { mobileOpen, handleDrawerToggle, userNavbarLinks,user } = useNavBar({isAdmin});
+  const { mobileOpen, handleDrawerToggle, userNavbarLinks, user } = useNavBar({
+    isAdmin,
+  });
   const drawer = (
     <Box
       onClick={handleDrawerToggle}
@@ -73,42 +75,26 @@ export default function LoggedInNavBar({
         navColor={navColor}
         pad={padd}
       >
-        {!isAdmin || user.role == "Buyer" && children}
-        {!isAdmin || user.role == "Buyer" && (
-          <IconButton
-            color="inherit"
-            aria-label="open drawer"
-            edge="start"
-            onClick={handleDrawerToggle}
-            sx={{
-              display: { xs: "block" },
-              "@media (min-width:910px)": { display: "none" },
-              color: "white",
-              p: 0,
-              mt: -1, // Remove top margin to align with text
-            }}
-          >
-            <MenuIcon />
-          </IconButton>
-        )}
         <Box
           sx={{
             width: "100%",
             display: "flex",
-            justifyContent: isAdmin ? "flex-end":"space-between",
+            justifyContent: isAdmin ? "flex-end" : "space-between",
             alignItems: "center",
             "@media (max-width:910px)": {
               justifyContent: isAdmin ? "space-between" : "flex-end",
             },
           }}
         >
+
           {isAdmin && children}
-            {isAdmin || user.role == "Buyer" && 
-            (<Box
+          {user.role == "Admin" || !isAdmin && (
+            <Box
               sx={{
                 display: { xs: "none", md: "flex" },
                 "@media (max-width:910px)": { display: "none" },
                 justifyContent: "space-between",
+                alignItems:"center"
               }}
             >
               {userNavbarLinks.map((item, index) => (
@@ -130,26 +116,18 @@ export default function LoggedInNavBar({
                   {item.name}
                 </Typography>
               ))}
-            </Box>)
-            }
-          
-          <Box display={"flex"}>
-            {!isAdmin || user.role == "Buyer" && (
-              <GetStartedButton
-                additionalStyles={{
-                  color: "white",
-                  fontWeight: "500",
-                  p: "0.5rem",
-                  "@media (max-width:560px)": {
-                    display: "none",
-                  },
-                }}
-                Text="Start A Transaction"
-              />
-            )}
-            <AccountAvatar />
-          </Box>
+              {isAdmin && <AccountAvatar nametext="white"  />}
+            </Box>
+          )}
+
+          {user.role == "Seller" && children}
+          {user.role == "Seller" || !isAdmin && (
+            <Box>
+              <AccountAvatar nametext="white" />
+            </Box>
+          )}
         </Box>
+
       </LoggedInNavBarLayout>
 
       <Drawer

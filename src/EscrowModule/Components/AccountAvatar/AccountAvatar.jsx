@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Logout from "@mui/icons-material/Logout";
 import Settings from "@mui/icons-material/Settings";
 import PersonAdd from "@mui/icons-material/PersonAdd";
@@ -20,10 +20,19 @@ import {
   IsUserLoggedIn,
 } from "../../EscrowContext/Hooks/useEscrowContext";
 import { AccountCircle as AccountCircleIcon } from "@mui/icons-material";
-function AccountAvatar() {
+function AccountAvatar({ nametext = "black" }) {
   const { setIsUserLoggedIn } = React.useContext(IsUserLoggedIn);
   const { user } = React.useContext(UserContext);
-
+  const [link1, setLink1] = useState();
+  useEffect(() => {
+    if (user.role == "Admin") {
+      setLink1("/Admindashboard/profilesetting");
+    } else if (user.role == "Seller") {
+      setLink1("/dashboard/profilesetting");
+    } else {
+      setLink1("/escrowdashboard/profilesetting");
+    }
+  }, []);
   const [anchorEl, setAnchorEl] = React.useState(null);
   const open = Boolean(anchorEl);
 
@@ -39,15 +48,15 @@ function AccountAvatar() {
     localStorage.removeItem("authToken");
     localStorage.removeItem("user");
     localStorage.removeItem("isUserLoggedIn");
-  
+
     // Update the context
     setIsUserLoggedIn(false);
     setUser([]);
-    
+
     navigate("/SignIn");
   };
-  
-  const navigate = useNavigate()
+
+  const navigate = useNavigate();
 
   return (
     <>
@@ -80,7 +89,14 @@ function AccountAvatar() {
             >
               {!user.profilePicture && user.name.charAt(0).toUpperCase()}
             </Avatar>
-            <Typography sx={{fontWeight:600, fontSize:"15px", color:"white",ml:0.5}}>
+            <Typography
+              sx={{
+                fontWeight: 600,
+                fontSize: "15px",
+                color:  nametext,
+                ml: 0.5,
+              }}
+            >
               {!user.profilePicture && user.name.toUpperCase()}
             </Typography>
 
@@ -166,7 +182,7 @@ function AccountAvatar() {
             <MenuItem
               onClick={handleClose}
               component={Link} // Add Link as the component
-              to="/escrowdashboard/profilesetting" // Define the route
+              to={link1} // Define the route
               sx={{
                 p: "0.5rem 1.8rem",
                 color: "#0088FF",
@@ -179,92 +195,99 @@ function AccountAvatar() {
               My Profile
             </MenuItem>
           </Tooltip>
-          
-          {user.role == "Seller" &&
-           <Tooltip title="DashBoard">
-            <MenuItem
-              onClick={() => {navigate('/dashboard')} }
-              sx={{
-                p: "0.5rem 1.75rem",
-                color: "#0088FF",
-                fontWeight: "600",
-                fontFamily: Fonts.primaryFont,
-              }}
-            >
-              <ListItemIcon>
-                <PersonAdd fontSize="small" />
-              </ListItemIcon>
-              Dashboard
-            </MenuItem>
-          </Tooltip>
-          }
-          {user.role == "Admin" &&
-           <Tooltip title="DashBoard">
-            <MenuItem
-              onClick={() => navigate('/Admindashboard') }
-              sx={{
-                p: "0.5rem 1.75rem",
-                color: "#0088FF",
-                fontWeight: "600",
-                fontFamily: Fonts.primaryFont,
-              }}
-            >
-              <ListItemIcon>
-                <PersonAdd fontSize="small" />
-              </ListItemIcon>
-              Dashboard
-            </MenuItem>
-          </Tooltip>
-          }
-          {user.role == "Buyer" &&
-           <Tooltip title="DashBoard">
-            <MenuItem
-              onClick={() => navigate('/escrowdashboard') }
-              sx={{
-                p: "0.5rem 1.75rem",
-                color: "#0088FF",
-                fontWeight: "600",
-                fontFamily: Fonts.primaryFont,
-              }}
-            >
-              <ListItemIcon>
-                <PersonAdd fontSize="small" />
-              </ListItemIcon>
-              Dashboard
-            </MenuItem>
-          </Tooltip>
-          }
-          
-          {user.role != "Admin" && 
-          <Tooltip title="Open Setting">
-            <MenuItem
-              onClick={handleClose}
-              component={Link} // Add Link as the component
-              to={user.role == "Buyer" ? "/escrowdashboard/profilesetting":"/dashboard/profilesetting"} // Define the route
-              sx={{
-                p: "0.5rem 1.8rem",
-                color: "#0088FF",
-                fontWeight: "600",
-                fontFamily: Fonts.primaryFont,
-                textDecoration: "none", // Prevent underlining the text
-              }}
-            >
-              <ListItemIcon
+
+          {user.role == "Seller" && (
+            <Tooltip title="DashBoard">
+              <MenuItem
+                onClick={() => {
+                  navigate("/dashboard");
+                }}
                 sx={{
-                  "& .MuiListItemIcon-root": {
-                    p: "0 !important",
-                    m: "0 !important",
-                  },
-                  p: "0 !important",
-                  m: "0 !important",
-                  minWidth: "unset",
+                  p: "0.5rem 1.75rem",
+                  color: "#0088FF",
+                  fontWeight: "600",
+                  fontFamily: Fonts.primaryFont,
                 }}
               >
-                <Settings fontSize="small" />
-              </ListItemIcon>
-              Settings
-            </MenuItem>
-          </Tooltip>}
+                <ListItemIcon>
+                  <PersonAdd fontSize="small" />
+                </ListItemIcon>
+                Dashboard
+              </MenuItem>
+            </Tooltip>
+          )}
+          {user.role == "Admin" && (
+            <Tooltip title="DashBoard">
+              <MenuItem
+                onClick={() => navigate("/Admindashboard")}
+                sx={{
+                  p: "0.5rem 1.75rem",
+                  color: "#0088FF",
+                  fontWeight: "600",
+                  fontFamily: Fonts.primaryFont,
+                }}
+              >
+                <ListItemIcon>
+                  <PersonAdd fontSize="small" />
+                </ListItemIcon>
+                Dashboard
+              </MenuItem>
+            </Tooltip>
+          )}
+          {user.role == "Buyer" && (
+            <Tooltip title="DashBoard">
+              <MenuItem
+                onClick={() => navigate("/escrowdashboard")}
+                sx={{
+                  p: "0.5rem 1.75rem",
+                  color: "#0088FF",
+                  fontWeight: "600",
+                  fontFamily: Fonts.primaryFont,
+                }}
+              >
+                <ListItemIcon>
+                  <PersonAdd fontSize="small" />
+                </ListItemIcon>
+                Dashboard
+              </MenuItem>
+            </Tooltip>
+          )}
+
+          {user.role != "Admin" && (
+            <Tooltip title="Open Setting">
+              <MenuItem
+                onClick={handleClose}
+                component={Link} // Add Link as the component
+                to={
+                  user.role == "Buyer"
+                    ? "/escrowdashboard/profilesetting"
+                    : "/dashboard/profilesetting"
+                } // Define the route
+                sx={{
+                  p: "0.5rem 1.8rem",
+                  color: "#0088FF",
+                  fontWeight: "600",
+                  fontFamily: Fonts.primaryFont,
+                  textDecoration: "none", // Prevent underlining the text
+                }}
+              >
+                <ListItemIcon
+                  sx={{
+                    "& .MuiListItemIcon-root": {
+                      p: "0 !important",
+                      m: "0 !important",
+                    },
+                    p: "0 !important",
+                    m: "0 !important",
+                    minWidth: "unset",
+                  }}
+                >
+                  <Settings fontSize="small" />
+                </ListItemIcon>
+                Settings
+              </MenuItem>
+            </Tooltip>
+          )}
           <Tooltip title="Logout" onClick={handleLogout}>
             <MenuItem
               component={Link}

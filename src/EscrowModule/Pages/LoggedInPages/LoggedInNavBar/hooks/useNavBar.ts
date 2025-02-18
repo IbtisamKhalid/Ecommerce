@@ -11,12 +11,12 @@ function useNavBar({isAdmin}) {
   const { user } = React.useContext(UserContext);
 console.log(user.role)
   const userNavbarLinks = [
-    ...(!isAdmin || user.role == "Buyer"
+    ...(user.role == "Seller" || user.role == "Buyer"
       ? [
           { name: "My Escrow", link: "/escrowdashboard" },
           { name: "Dispute", link: "/escrowdashboard/EscrowDisputes" },
           { name: "Payments", link: "/escrowdashboard/escrowpayments" },
-          { name: "Help", link: "/SignIn" },
+          { name: "Help", link: "/queries/help" },
         ]
       : [
         { name: "Dashboard", link: "/admindashboard" },

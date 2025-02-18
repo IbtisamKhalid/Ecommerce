@@ -26,7 +26,7 @@ import { IsUserLoggedIn } from "../../EscrowContext/Hooks/useEscrowContext";
 import AccountAvatar from "../../Components/AccountAvatar/AccountAvatar";
 import React from "react";
 
-function Header({ queries = false }) {
+function Header({nametext, queries = false }) {
   const { isUserLoggedIn } = React.useContext(IsUserLoggedIn);
 
   const {
@@ -253,7 +253,7 @@ function Header({ queries = false }) {
           </Box>
 
           {isUserLoggedIn ? (
-            <AccountAvatar />
+            <AccountAvatar nametext={queries ? isAtTop ? nametext : nametext : isAtTop? "white" : "black" } />
           ) : (
             <Box
               sx={{

@@ -116,7 +116,7 @@ const SortDropdown = ({ sortOption, setSortOption, children }) => {
                     </FormControl>
                     {children}
                   </Box>
-                  {!at800 && <Box>alignment here</Box>}{" "}
+                  {/* {!at800 && <Box>alignment here</Box>} */}
                   {/* Hide alignment box on small screens */}
                 </Box>
               </Box>
@@ -184,7 +184,7 @@ const SortDropdown = ({ sortOption, setSortOption, children }) => {
               </FormControl>
               {children}
             </Box>
-            {!isMobile && <Box>alignment here</Box>}{" "}
+            {/* {!isMobile && <Box>alignment here</Box>}{" "} */}
             {/* Hide alignment box on small screens */}
           </Box>
         </Box>

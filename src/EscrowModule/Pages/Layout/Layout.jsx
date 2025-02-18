@@ -7,12 +7,12 @@ import { Box, Divider, useMediaQuery } from "@mui/material";
 import { SideBar } from "../../Components";
 Divider;
 
-function Layout({isHome}) {
+function Layout({nametext,isHome}) {
   const at850 = useMediaQuery("(min-width:850px)");
   return (
     <>
       <Box>
-        <Header queries={true} />
+        <Header nametext={nametext} queries={true} />
         <Box
           sx={{
             display: "flex",
