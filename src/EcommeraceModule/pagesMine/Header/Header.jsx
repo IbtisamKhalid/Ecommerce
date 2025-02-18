@@ -106,17 +106,18 @@ function Header() {
           </Typography>
           {!isExtraSmallScreen && (
             <Box sx={{ display: "flex", gap: 2 }}>
-              {["Home", "Product", "Escrow", "Contact"].map((item) => (
-                <Button
-                  color="inherit"
-                  component={NavLink}
-                  to={`/store/${item.toLowerCase()}`}
-                  key={item}
-                >
-                  {item}
-                </Button>
-              ))}
-            </Box>
+            {[
+              { label: "Home", path: "/store" },
+              { label: "Product", path: "/store/product" },
+              { label: "Escrow", path: "/" },
+              { label: "Contact", path: "/queries/contact" },
+            ].map(({ label, path }) => (
+              <Button color="inherit" component={NavLink} to={path} key={label}>
+                {label}
+              </Button>
+            ))}
+          </Box>
+          
           )}
           {isExtraSmallScreen && (
             <IconButton color="inherit" onClick={toggleNavDrawer(true)}>
@@ -196,7 +197,7 @@ function Header() {
                 },
                 isUserLoggedIn
                   ? {
-                      icon: <AccountAvatar />,
+                      icon: <AccountAvatar nametext="white" />,
                       text: "", // No extra text for AccountAvatar
                       link: "",
                     }

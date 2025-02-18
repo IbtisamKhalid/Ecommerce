@@ -86,48 +86,70 @@ export default function LoggedInNavBar({
             },
           }}
         >
-
           {isAdmin && children}
+          {console.log("in avatar ", user.role)}
           {user.role == "Admin" || !isAdmin && (
-            <Box
-              sx={{
-                display: { xs: "none", md: "flex" },
-                "@media (max-width:910px)": { display: "none" },
-                justifyContent: "space-between",
-                alignItems:"center"
-              }}
-            >
-              {userNavbarLinks.map((item, index) => (
-                <Typography
-                  component={Link}
-                  to={item.link}
-                  key={index}
-                  sx={{
-                    textDecoration: "none",
-                    color: "white",
-                    "&:hover": { color: "green" },
-                    paddingRight: "0.5rem",
-                    fontFamily: Fonts.primaryFont,
-                    // fontWeight:550,
-                    fontSize: "16px",
-                  }}
-                >
-                  {" "}
-                  {item.name}
-                </Typography>
-              ))}
-              {isAdmin && <AccountAvatar nametext="white"  />}
-            </Box>
-          )}
+              <Box
+                sx={{
+                  display: { xs: "none", md: "flex" },
+                  "@media (max-width:910px)": { display: "none" },
+                  justifyContent: "space-between",
+                  alignItems: "center",
+                }}
+              >
+                {userNavbarLinks.map((item, index) => (
+                  <Typography
+                    component={Link}
+                    to={item.link}
+                    key={index}
+                    sx={{
+                      textDecoration: "none",
+                      color: "white",
+                      "&:hover": { color: "green" },
+                      paddingRight: "0.5rem",
+                      fontFamily: Fonts.primaryFont,
+                      // fontWeight:550,
+                      fontSize: "16px",
+                    }}
+                  >
+                    {" "}
+                    {item.name}
+                  </Typography>
+                ))}
+                {isAdmin && <AccountAvatar nametext="white" />}
+              </Box>
+            )
+            }
+          
 
           {user.role == "Seller" && children}
-          {user.role == "Seller" || !isAdmin && (
-            <Box>
-              <AccountAvatar nametext="white" />
-            </Box>
-          )}
+          {user.role == "Seller" ||
+            (!isAdmin && (
+              <Box display={"flex"}>
+                <GetStartedButton
+                  additionalStyles={{
+                    color: "white",
+                    p:"0.5rem 0.8rem"
+                  }}
+                  Text={"Start Escrow"}
+                />
+                <AccountAvatar nametext="white" />
+              </Box>
+            ))}
+            {/* {user.role == "Seller" && (
+              <Box
+                sx={{
+                  display: { xs: "none", md: "flex" },
+                  "@media (max-width:910px)": { display: "none" },
+                  justifyContent: "space-between",
+                  alignItems: "center",
+                }}
+              >
+              </Box>
+            )
+          } */}
+          {user.role == "Seller" && <AccountAvatar nametext="white" />}
         </Box>
-
       </LoggedInNavBarLayout>
 
       <Drawer
